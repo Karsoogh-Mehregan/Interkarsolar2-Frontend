@@ -2,8 +2,8 @@
 
 ## Installation
 
-- `git clone https://github.com/AmooHashem/KarsooghFrontend.git`
-- `cd KarsooghFrontend`
+- `git clone https://github.com/AmooHashem/Karsoogh-Frontend.git`
+- `cd Karsoogh-Frontend`
 - `yarn`
 - `yarn start`
 - visit http://localhost:3000/

@@ -28,7 +28,6 @@ input.rtl-placeholder::placeholder,
   overflow-y: hidden;
 }
 
-
 .landing-background {
   height: 100vh;
   width: 100%;
@@ -36,7 +35,7 @@ input.rtl-placeholder::placeholder,
   top: 0;
   left: 0;
   background: linear-gradient(#feceab33, #feceab33),
-    url('background.jpg') no-repeat center center fixed;
+    url('background.png') no-repeat center center fixed;
   filter: blur(4px);
   -webkit-filter: blur(4px);
   opacity: 0.8;

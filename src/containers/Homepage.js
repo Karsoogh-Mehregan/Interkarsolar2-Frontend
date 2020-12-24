@@ -9,6 +9,8 @@ import {
   Typography,
 } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
+import Timeline from '../components/TimeLine/TimeLine';
+import ArrowBackOutlinedIcon from '@material-ui/icons/ArrowBackOutlined';
 import {
   Assignment,
   KeyboardArrowUp as KeyboardArrowUpIcon,
@@ -136,12 +138,6 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: '30px',
   },
 
-  video: {
-    width: '100%',
-    borderRadius: 10,
-    boxShadow: '3px 1px 3px 0px #111',
-  },
-
   formPaper: {
     padding: theme.spacing(2),
     boxShadow: '1px 1px 1px 1px black',
@@ -177,26 +173,7 @@ function Homepage({ isLoggedIn, logout }) {
         <div id="back-to-top-anchor"></div>
         <div className="landing-background" />
 
-        <PersonCard/>
-
         <Grid container direction="column" style={{ height: '100%' }}>
-          <Grid container item direction="row" style={{ height: '10%' }}>
-            <Grid item>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => setAuthDialogOpen(true)}>
-                ورود به مسابقه
-              </Button>
-            </Grid>
-            {isLoggedIn && (
-              <Grid item>
-                <Button variant="outlined" onClick={() => logout()}>
-                  خروج
-                </Button>
-              </Grid>
-            )}
-          </Grid>
 
           <Grid container item direction="row" style={{ height: '90%' }}>
             <Grid
@@ -212,13 +189,13 @@ function Homepage({ isLoggedIn, logout }) {
                   component="h1"
                   variant="h1"
                   className={classes.title}>
-                  A-Lympiad
+                  اینترکارسولار
                 </Typography>
                 <Typography
                   component="h2"
                   variant="h3"
                   className={classes.subtitle}>
-                  چهاردهمین دوره مسابقات
+                  دومین دوره مسابقات
                 </Typography>
               </Grid>
             </Grid>
@@ -239,75 +216,26 @@ function Homepage({ isLoggedIn, logout }) {
                   پایان آزمون
                 </Typography>
               </Grid>
+            <Grid item>
+              <Button
+                variant="contained"
+                color="primary"
+                endIcon={<ArrowBackOutlinedIcon />}
+                onClick={() => setAuthDialogOpen(true)}>
+                ورود به مسابقه
+              </Button>
+            </Grid>
+            {isLoggedIn && (
               <Grid item>
-                {isLoggedIn ? (
-                  <Button
-                    size="large"
-                    variant="contained"
-                    className={classes.survey}
-                    startIcon={<Assignment />}
-                    component="a"
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSfdRqjzxFBTpx9FjYP9UY4VwvaJZ-d8tqupWKOi1v3IG-qxJw/viewform?usp=sf_link"
-                    target="_blank">
-                    <Typography variant="h3">شرکت در نظرسنجی</Typography>
-                  </Button>
-                ) : (
-                  <Button
-                    size="large"
-                    variant="contained"
-                    className={classes.survey}
-                    startIcon={<Assignment />}
-                    component={Link}
-                    to="/survey">
-                    <Typography variant="h3">شرکت در نظرسنجی</Typography>
-                  </Button>
-                )}
+                <Button variant="outlined" onClick={() => logout()}>
+                  خروج
+                </Button>
               </Grid>
-            </Grid>
+            )}
+          </Grid>
           </Grid>
         </Grid>
       </Container>
-
-      <Container className={`${classes.section2} ${classes.centerItems}`}>
-        <Grid
-          container
-          direction="row"
-          spacing={4}
-          alignItems="center"
-          justify="center">
-          <Grid item xs={12}>
-            <Typography
-              component="h2"
-              variant="h2"
-              className={classes.sectionTitle}>
-              فیلم‌هایی که حتما باید ببینید!
-            </Typography>
-          </Grid>
-          <Grid
-            container
-            xs={12}
-            sm={8}
-            direction="row"
-            justify="center"
-            spacing={1}>
-            <Grid item xs={10} sm={8}>
-              <video
-                controls
-                src="https://res.cloudinary.com/derp8mdew/video/upload/v1605688659/a-lympiad/platform_yhxza6.mp4"
-                className={classes.video}
-              />
-            </Grid>
-            <Grid item xs={8} sm={4}>
-              <video
-                controls
-                src="https://res.cloudinary.com/derp8mdew/video/upload/v1605689080/a-lympiad/pdf_xkoa0q.mp4"
-                className={classes.video}
-              />
-            </Grid>
-          </Grid>
-        </Grid>
-      </Container>
-
       <Container className={`${classes.section3} ${classes.centerItems}`}>
         <Grid container direction="column" spacing={4}>
           <Grid item>
@@ -447,42 +375,45 @@ function Homepage({ isLoggedIn, logout }) {
       </Container>
 
       <Container className={`${classes.section4} ${classes.centerItems}`}>
-        <Grid container direction="column" spacing={4}>
-          <Grid item>
-            <Typography
-              component="h2"
-              variant="h2"
-              className={classes.sectionTitle}>
-              سوالات رایج
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <FAQ />
-          </Grid>
+      <Grid container direction="column" spacing={4}>
+          <Timeline/>
         </Grid>
       </Container>
-
+      <Container className={`${classes.section4} ${classes.centerItems}`}>
+        <Grid container direction="row" spacing={4} className={classes.personCard}>
+          <Grid item xs={6} sm={3}>
+        <PersonCard/>
+          </Grid>
+          <Grid item xs={6} sm={3}>
+        <PersonCard/>
+          </Grid>
+          <Hidden xsDown="true">
+              <Grid item xs={3}><PersonCard/></Grid>
+            </Hidden>
+          <Hidden xsDown="true">
+              <Grid item xs={3}><PersonCard/></Grid>
+            </Hidden>
+            <Grid container xs={12}  justify="center"
+              alignItems="center" >
+              <Button  
+                variant="contained"
+                color="primary"
+                size="medium"
+                href="members">
+                  <Typography variant="h3">مشاهده همه </Typography>
+                </Button>
+            </Grid>
+        </Grid>
+      </Container>
       <Container className={`${classes.section5} ${classes.centerItems}`}>
         <Grid container direction="column" spacing={4}>
-          <Grid item>
-            <Typography
-              component="h2"
-              variant="h2"
-              className={classes.sectionTitle}>
-              حامیان
-            </Typography>
-          </Grid>
+          
           <Grid item xs={12}>
             <Footer />
           </Grid>
         </Grid>
       </Container>
-
-      <ScrollTop>
-        <Fab color="secondary" size="small" aria-label="scroll back to top">
-          <KeyboardArrowUpIcon />
-        </Fab>
-      </ScrollTop>
+      <ScrollTop showBelow={250} />
       <AuthDialog
         open={authDialogOpen}
         handleClose={() => setAuthDialogOpen(false)}

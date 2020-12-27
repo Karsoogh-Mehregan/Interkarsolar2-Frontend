@@ -16,8 +16,17 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import AssignmentRoundedIcon from '@material-ui/icons/AssignmentRounded';
 import NotificationsActiveRoundedIcon from '@material-ui/icons/NotificationsActiveRounded';
 import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
+import { makeStyles } from '@material-ui/core/styles';
+import {
+  Switch,
+  Redirect,
+  Route,
+} from "react-router-dom";
 
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import ExamsTab from './Exams';
+import AnnouncementsTab from './Announcements';
+import ProfileTab from './Profile';
+
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,48 +59,49 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 'auto',
     marginLeft: 0,
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
-    },
+  logo: {
+    height: 45
   },
-  logo: { height: 45 },
 }));
-function ResponsiveDrawer() {
+
+const drawer = (
+  <div>
+    <List>
+      <ListItem button component='a' href='/dashboard/announcements' key={'announcements'}>
+        <ListItemIcon>
+          <NotificationsActiveRoundedIcon />
+        </ListItemIcon>
+        اطلاعیه‌ها
+      </ListItem>
+      <ListItem button component='a' href='/dashboard/exams' key={'exams'}>
+        <ListItemIcon>
+          <AssignmentRoundedIcon />
+        </ListItemIcon>
+        آزمون‌ها
+      </ListItem>
+      <ListItem button component='a' href='/dashboard/profile' key={'profile'}>
+        <ListItemIcon>
+          <PersonRoundedIcon />
+        </ListItemIcon>
+        ویرایش اطلاعات
+      </ListItem>
+    </List>
+  </div>
+);
+
+function Dashboard() {
+
   const classes = useStyles();
-  const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   function handleDrawerToggle() {
     setMobileOpen(!mobileOpen);
   }
-  const drawer = (
-    <div>
-      <List>
-        <ListItem button key={'quizes'}>
-          <ListItemIcon>
-            <AssignmentRoundedIcon />
-          </ListItemIcon>
-          آزمون‌ها
-        </ListItem>
-        <ListItem button key={'notificatins'}>
-          <ListItemIcon>
-            <NotificationsActiveRoundedIcon />
-          </ListItemIcon>
-          اطلاعیه‌ها
-        </ListItem>
-        <ListItem button key={'profile'}>
-          <ListItemIcon>
-            <PersonRoundedIcon />
-          </ListItemIcon>
-          ویرایش اطلاعات
-        </ListItem>
-      </List>
-    </div>
-  );
+
   return (
     <div className={classes.root}>
       <CssBaseline />
+
+
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
@@ -114,11 +124,12 @@ function ResponsiveDrawer() {
         </Toolbar>
       </AppBar>
 
+
       <nav className={classes.drawer}>
         <Hidden smUp implementation="css">
           <Drawer
             variant="temporary"
-            anchor={theme.direction === 'rtl' ? 'left' : 'right'}
+            anchor={'left'}
             open={mobileOpen}
             onClose={handleDrawerToggle}
             classes={{
@@ -147,45 +158,25 @@ function ResponsiveDrawer() {
           </Drawer>
         </Hidden>
       </nav>
-      <main className={classes.content}>
-        <Toolbar />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-          dolor purus non enim praesent elementum facilisis leo vel. Risus at
-          ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-          quisque non tellus. Convallis convallis tellus id interdum velit
-          laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
-          adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-          integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-          eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-          quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-          vivamus at augue. At augue eget arcu dictum varius duis at consectetur
-          lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
-          faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-          ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-          elementum integer enim neque volutpat ac tincidunt. Ornare suspendisse
-          sed nisi lacus sed viverra tellus. Purus sit amet volutpat consequat
-          mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis
-          risus sed vulputate odio. Morbi tincidunt ornare massa eget egestas
-          purus viverra accumsan in. In hendrerit gravida rutrum quisque non
-          tellus orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant
-          morbi tristique senectus et. Adipiscing elit duis tristique
-          sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-          posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
-      </main>
-      <div className={classes.content}>
-        <div className={classes.toolbar} />
-      </div>
+
+
+      <Switch>
+        <Route
+          path={'/dashboard/exams'}
+          component={ExamsTab}
+        />
+        <Route
+          path={'/dashboard/announcements'}
+          component={AnnouncementsTab}
+        />
+        <Route
+          path={'/dashboard/profile'}
+          component={ProfileTab}
+        />
+        <Redirect to={'/dashboard/announcements'} />
+      </Switch>
     </div>
   );
 }
-ResponsiveDrawer.propTypes = {
-  container: PropTypes.object,
-};
-export default ResponsiveDrawer;
+
+export default Dashboard;

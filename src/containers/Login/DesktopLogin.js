@@ -20,8 +20,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
   },
   statImage: {
-    width: '50vw',
-    height: '50vh',
+    height: '100vh',
     background: `url(${process.env.PUBLIC_URL + '/interlogo.png'})`,
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
@@ -42,13 +41,14 @@ const DesktopLogin = () => {
           className={classes.background}
           justify='center'
           alignItems='center'>
-          <Grid item>
-            <Paper className={classes.paper}>
-              <Grid
-                container
-                direction='row'
-                spacing={2}>
-                <Grid xs={6} item container>
+          <Grid
+            container item
+            justify='center'
+            alignItems='center'
+            xs={6}>
+            <Grid item xs={8}>
+              <Paper className={classes.paper}>
+                <Grid item container>
                   <Grid
                     container
                     item
@@ -77,10 +77,10 @@ const DesktopLogin = () => {
                     </Grid>
                   </Grid>
                 </Grid>
-                <Grid item xs={6} className={classes.statImage} />
-              </Grid>
-            </Paper>
+              </Paper>
+            </Grid>
           </Grid>
+          <Grid item xs={6} className={classes.statImage} />
         </Grid>
       </Container>
     </>

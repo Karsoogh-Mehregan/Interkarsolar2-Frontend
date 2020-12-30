@@ -177,33 +177,14 @@ function Homepage({ isLoggedIn, logout }) {
         <div id="back-to-top-anchor"></div>
         <div className="landing-background" />
 
-        <PersonCard/>
+        {/* <PersonCard/> */}
 
         <Grid container direction="column" style={{ height: '100%' }}>
-          <Grid container item direction="row" style={{ height: '10%' }}>
-            <Grid item>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => setAuthDialogOpen(true)}>
-                ورود به مسابقه
-              </Button>
-            </Grid>
-            {isLoggedIn && (
-              <Grid item>
-                <Button variant="outlined" onClick={() => logout()}>
-                  خروج
-                </Button>
-              </Grid>
-            )}
-          </Grid>
-
           <Grid container item direction="row" style={{ height: '90%' }}>
             <Grid
               item
               container
               xs={12}
-              sm={7}
               justify="center"
               alignItems="center"
               direction="column">
@@ -212,56 +193,28 @@ function Homepage({ isLoggedIn, logout }) {
                   component="h1"
                   variant="h1"
                   className={classes.title}>
-                  A-Lympiad
+                  اینترکارسولار
                 </Typography>
                 <Typography
                   component="h2"
                   variant="h3"
                   className={classes.subtitle}>
-                  چهاردهمین دوره مسابقات
+                  پروژه‌ی فضایی
                 </Typography>
               </Grid>
-            </Grid>
-
-            <Grid
-              item
-              container
-              xs={12}
-              sm={5}
-              justify="center"
-              alignItems="center"
-              direction="column"
-              spacing={5}
-              // style={{ overflowY: 'auto', height: '90%' }}
-            >
-              <Grid item>
-                <Typography variant="h2" className={classes.end}>
-                  پایان آزمون
-                </Typography>
-              </Grid>
-              <Grid item>
-                {isLoggedIn ? (
-                  <Button
-                    size="large"
-                    variant="contained"
-                    className={classes.survey}
-                    startIcon={<Assignment />}
-                    component="a"
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSfdRqjzxFBTpx9FjYP9UY4VwvaJZ-d8tqupWKOi1v3IG-qxJw/viewform?usp=sf_link"
-                    target="_blank">
-                    <Typography variant="h3">شرکت در نظرسنجی</Typography>
-                  </Button>
-                ) : (
-                  <Button
-                    size="large"
-                    variant="contained"
-                    className={classes.survey}
-                    startIcon={<Assignment />}
-                    component={Link}
-                    to="/survey">
-                    <Typography variant="h3">شرکت در نظرسنجی</Typography>
-                  </Button>
-                )}
+              <Grid item style={{ marginTop: '30px' }}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  href='/exam'>
+                  ورود به مسابقه
+                </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  href='/login'>
+                  ورود به سفینه‌ی فضایی
+                </Button>
               </Grid>
             </Grid>
           </Grid>

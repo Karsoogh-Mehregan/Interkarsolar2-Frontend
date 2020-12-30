@@ -5,11 +5,15 @@ import DevTools from '../containers/DevTools';
 import Homepage from '../containers/Homepage';
 import dashboard from '../containers/dashboard';
 import Exam from '../containers/Exam';
+import Login from '../containers/Login';
+import CreateAccount from '../containers/CreateAccount';
 
 const Root = () => {
   return (
     <>
       <Switch>
+        <Route path='/create-account' component={CreateAccount}></Route>
+        <Route path='/login' component={Login}></Route>
         <Route path="/loading/"></Route>
         <Route path='/exam' component={Exam} />
         <Route path="/dashboard/" component={dashboard} />

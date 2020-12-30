@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const DesktopLogin = () => {
+const DesktopCreateAccount = () => {
   const classes = useStyles();
 
   return (
@@ -57,7 +57,7 @@ const DesktopLogin = () => {
                     spacing={2}>
                     <Grid item>
                       <Typography gutterBottom variant='h3' align='center'>
-                        برای ورود به سفینه‌ی فضایی آماده‌ای؟
+                        سفینه‌ت رو بساز و کارت رو آغاز کن!
                       </Typography>
                     </Grid>
                     <Grid item>
@@ -92,4 +92,4 @@ export default connect(
   {
 
   }
-)(DesktopLogin);
+)(DesktopCreateAccount);

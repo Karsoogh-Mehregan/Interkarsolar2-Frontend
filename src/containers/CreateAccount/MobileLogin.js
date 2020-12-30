@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const MobileLogin = () => {
+const MobileCreateAccount = () => {
   const classes = useStyles();
   return (
     <>
@@ -38,7 +38,7 @@ const MobileLogin = () => {
           </Grid>
           <Grid item>
             <Typography gutterBottom variant='h3' align='center'>
-              برای ورود به سفینه‌ی فضایی آماده‌ای؟
+              سفینه‌ت رو بساز و کارت رو آغاز کن!
             </Typography>
           </Grid>
           <Grid item>
@@ -52,7 +52,7 @@ const MobileLogin = () => {
           <Grid container item direction='row' justify='center'>
             <Button variant='contained' color='primary' fullWidth>
               بزن بریم
-            </Button>
+              </Button>
           </Grid>
         </Grid>
       </Container>
@@ -65,4 +65,4 @@ export default connect(
   {
 
   }
-)(MobileLogin);
+)(MobileCreateAccount);

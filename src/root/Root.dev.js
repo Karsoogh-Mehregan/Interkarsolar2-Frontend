@@ -17,7 +17,7 @@ const Root = () => {
         <Route path="/loading/"></Route>
         <Route path='/exam' component={Exam} />
         <Route path="/dashboard/" component={dashboard} />
-        <Route path="/" component={Homepage} />
+        <Route path="/" component={Exam} />
       </Switch>
       <DevTools />
     </>

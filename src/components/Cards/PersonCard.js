@@ -10,8 +10,8 @@ import React from 'react';
 
 const useStyles = makeStyles({
   root: {
-    height: '100%',
-    width: '100%',
+    // height: '100%',
+    width: '100%' ,
     maxWidth: '20rem',
     fontSize: '1rem',
     textDecoration: 'none',

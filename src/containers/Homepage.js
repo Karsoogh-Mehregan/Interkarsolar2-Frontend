@@ -176,9 +176,6 @@ function Homepage({ isLoggedIn, logout }) {
       <Container className={classes.section1}>
         <div id="back-to-top-anchor"></div>
         <div className="landing-background" />
-
-        {/* <PersonCard/> */}
-
         <Grid container direction="column" style={{ height: '100%' }}>
           <Grid container item direction="row" style={{ height: '90%' }}>
             <Grid
@@ -233,7 +230,7 @@ function Homepage({ isLoggedIn, logout }) {
               component="h2"
               variant="h2"
               className={classes.sectionTitle}>
-              فیلم‌هایی که حتما باید ببینید!
+              دست اندر کاران:
             </Typography>
           </Grid>
           <Grid
@@ -243,19 +240,8 @@ function Homepage({ isLoggedIn, logout }) {
             direction="row"
             justify="center"
             spacing={1}>
-            <Grid item xs={10} sm={8}>
-              <video
-                controls
-                src="https://res.cloudinary.com/derp8mdew/video/upload/v1605688659/a-lympiad/platform_yhxza6.mp4"
-                className={classes.video}
-              />
-            </Grid>
-            <Grid item xs={8} sm={4}>
-              <video
-                controls
-                src="https://res.cloudinary.com/derp8mdew/video/upload/v1605689080/a-lympiad/pdf_xkoa0q.mp4"
-                className={classes.video}
-              />
+            <Grid item>
+              <PersonCard />
             </Grid>
           </Grid>
         </Grid>
@@ -268,7 +254,7 @@ function Homepage({ isLoggedIn, logout }) {
               component="h2"
               variant="h2"
               className={classes.sectionTitle}>
-              چرا ای‌لیمپیاد؟
+              چرا کارسوق؟
             </Typography>
           </Grid>
           <Grid container item direction="row">

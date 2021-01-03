@@ -23,7 +23,7 @@ import {
   Route,
 } from "react-router-dom";
 
-import ExamsTab from './Exams';
+import RegistrationTab from './Registration';
 import AnnouncementsTab from './Announcements';
 import ProfileTab from './Profile';
 
@@ -73,11 +73,11 @@ const drawer = (
         </ListItemIcon>
         اطلاعیه‌ها
       </ListItem>
-      <ListItem button component='a' href='/dashboard/exams' key={'exams'}>
+      <ListItem button component='a' href='/dashboard/registration' key={'registration'}>
         <ListItemIcon>
           <AssignmentRoundedIcon />
         </ListItemIcon>
-        آزمون‌ها
+        ثبت‌نام
       </ListItem>
       <ListItem button component='a' href='/dashboard/profile' key={'profile'}>
         <ListItemIcon>
@@ -162,8 +162,8 @@ function Dashboard() {
 
       <Switch>
         <Route
-          path={'/dashboard/exams'}
-          component={ExamsTab}
+          path={'/dashboard/registration'}
+          component={RegistrationTab}
         />
         <Route
           path={'/dashboard/announcements'}

@@ -22,7 +22,6 @@ import FAQ from '../components/FAQ/FAQ';
 import Footer from '../components/Footer/Footer';
 import ScrollTop from '../components/ScrollToTop/ScrollToTop';
 import { logout } from '../redux/actions/account';
-import PersonCard from '../components/Cards/PersonCard'
 
 const useStyles = makeStyles((theme) => ({
   centerItems: {
@@ -177,7 +176,6 @@ function Homepage({ isLoggedIn, logout }) {
         <div id="back-to-top-anchor"></div>
         <div className="landing-background" />
 
-        <PersonCard/>
 
         <Grid container direction="column" style={{ height: '100%' }}>
           <Grid container item direction="row" style={{ height: '10%' }}>

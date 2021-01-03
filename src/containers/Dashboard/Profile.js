@@ -12,8 +12,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    paddingTop: theme.spacing(8),
-    height: '100vh',
+    minHeight: '100vh',
+    [theme.breakpoints.down('sm')]: {
+      paddingTop: theme.spacing(9),
+    },
   },
   centerItems: {
     display: 'flex',
@@ -66,7 +68,7 @@ const ProfileTab = ({
                   </TextField>
                 </Grid>
                 <Grid item>
-                  <TextField placeholder='پایه‌ی تحصیلی' variant='outlined'>
+                  <TextField placeholder='پایه‌ی تحصیلی (که باید دراپ‌داون بشه)' variant='outlined'>
                   </TextField>
                 </Grid>
               </Grid>
@@ -81,9 +83,9 @@ const ProfileTab = ({
                 </Grid>
               </Grid>
               <Grid container item direction='row' justify='center'>
-                <Button variant='contained' color='primary' >
+                <Button size='large' variant='contained' color='primary'>
                   ذخیره
-            </Button>
+                </Button>
               </Grid>
             </Grid>
           </form>

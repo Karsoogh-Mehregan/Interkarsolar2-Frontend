@@ -6,8 +6,10 @@ import {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    paddingTop: theme.spacing(8),
-    height: '100vh',
+    minHeight: '100vh',
+    [theme.breakpoints.down('sm')]: {
+      paddingTop: theme.spacing(9),
+    },
   },
 }))
 

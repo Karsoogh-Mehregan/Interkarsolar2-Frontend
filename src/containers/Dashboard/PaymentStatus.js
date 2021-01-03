@@ -4,10 +4,18 @@ import {
   Grid,
 } from '@material-ui/core'
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    paddingTop: theme.spacing(8),
+    height: '100vh',
+  },
+}))
+
+
 const PaymentStatus = ({
 
 }) => {
-
+  const classes = useStyles();
   const location = useLocation();
   const urlParams = new URLSearchParams(location.search);
   const authority = urlParams.get('Authority');
@@ -18,7 +26,7 @@ const PaymentStatus = ({
 
 
   return (
-    <Container>
+    <Container className={classes.root}>
       <Grid>
         this is Exam tab
       </Grid>

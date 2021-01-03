@@ -8,7 +8,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    paddingTop: '80px',
+    paddingTop: theme.spacing(8),
+    height: '100vh',
   },
 }))
 

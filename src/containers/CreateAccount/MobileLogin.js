@@ -8,6 +8,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { connect } from 'react-redux'
+import InputFields from './InputFields';
 
 const useStyles = makeStyles((theme) => ({
   background: {
@@ -41,19 +42,7 @@ const MobileCreateAccount = () => {
               سفینه‌ت رو بساز و کارت رو آغاز کن!
             </Typography>
           </Grid>
-          <Grid item>
-            <TextField placeholder='نام کاربری' variant='outlined' fullWidth>
-            </TextField>
-          </Grid>
-          <Grid item>
-            <TextField placeholder='رمز عبور' variant='outlined' fullWidth>
-            </TextField>
-          </Grid>
-          <Grid container item direction='row' justify='center'>
-            <Button variant='contained' color='primary' fullWidth>
-              بزن بریم
-              </Button>
-          </Grid>
+          <InputFields />
         </Grid>
       </Container>
     </>

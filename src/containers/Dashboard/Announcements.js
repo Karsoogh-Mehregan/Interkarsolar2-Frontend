@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Container,
-  Grid,
-} from '@material-ui/core';
+import ImgMediaCard from '../../components/Cards/notification';
+import { Container, Grid } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -13,29 +11,17 @@ const useStyles = makeStyles((theme) => ({
       paddingTop: theme.spacing(9),
     },
   },
-}))
+}));
 
-
-const AnnouncementsTab = ({
-
-}) => {
+const AnnouncementsTab = ({}) => {
   const classes = useStyles();
   return (
-    <Container className={classes.root}>
-      <Grid>
-        this is announcements tab
-      </Grid>
+    <Container className={classes.root} style={{ paddingTop: 100 }}>
+      <ImgMediaCard />
     </Container>
-  )
-}
+  );
+};
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state, ownProps) => {};
 
-}
-
-export default connect(
-  mapStateToProps,
-  {
-
-  }
-)(AnnouncementsTab);
+export default connect(mapStateToProps, {})(AnnouncementsTab);

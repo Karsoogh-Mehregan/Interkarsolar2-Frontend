@@ -1,10 +1,10 @@
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import FastfoodIcon from '@material-ui/icons/Fastfood';
-import HotelIcon from '@material-ui/icons/Hotel';
-import LaptopMacIcon from '@material-ui/icons/LaptopMac';
-import RepeatIcon from '@material-ui/icons/Repeat';
+import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
+import ComputerIcon from '@material-ui/icons/Computer';
+import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
+import CreateIcon from '@material-ui/icons/Create';
 import Timeline from '@material-ui/lab/Timeline';
 import TimelineConnector from '@material-ui/lab/TimelineConnector';
 import TimelineContent from '@material-ui/lab/TimelineContent';
@@ -28,19 +28,19 @@ export default function CustomizedTimeline() {
       <TimelineItem>
         <TimelineOppositeContent>
           <Typography variant="body2" color="textSecondary">
-            ۸ صبح
+            25 الی 30 بهمن 1399
           </Typography>
         </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineDot color="secondary">
-            <FastfoodIcon />
+          <HourglassEmptyIcon/>
           </TimelineDot>
           <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent>
           <Paper elevation={3} className={classes.paper}>
             <Typography variant="h6" component="h1">
-              شروع روز اول مسابقه
+              تاریخ ثبت نام
             </Typography>
             {/* <Typography>Because you need strength</Typography> */}
           </Paper>
@@ -49,19 +49,19 @@ export default function CustomizedTimeline() {
       <TimelineItem>
         <TimelineOppositeContent>
           <Typography variant="body2" color="textSecondary">
-            ۱۰ صبح
+            8 الی 10 اسفند 1399
           </Typography>
         </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineDot color="secondary">
-            <LaptopMacIcon />
+            <LibraryBooksIcon />
           </TimelineDot>
           <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent>
           <Paper elevation={3} className={classes.paper}>
             <Typography variant="h6" component="h1">
-              میان‌وعده!
+             آزمون مرحله اول
             </Typography>
             {/* <Typography>Because it&apos;s awesome!</Typography> */}
           </Paper>
@@ -70,19 +70,19 @@ export default function CustomizedTimeline() {
       <TimelineItem>
         <TimelineOppositeContent>
           <Typography variant="body2" color="textSecondary">
-            ۱۲ ظهر
+           5 اردیبهشت 1400
           </Typography>
         </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineDot color="secondary" >
-            <HotelIcon />
+            <ComputerIcon />
           </TimelineDot>
           <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent>
           <Paper elevation={3} className={classes.paper}>
             <Typography variant="h6" component="h1">
-              پایان روز اول
+            آزمون مرحله دوم
             </Typography>
             {/* <Typography>Because you need rest</Typography> */}
           </Paper>
@@ -91,18 +91,18 @@ export default function CustomizedTimeline() {
       <TimelineItem>
         <TimelineOppositeContent>
           <Typography variant="body2" color="textSecondary">
-            فردا
+            13 الی 15 مرداد 1400
           </Typography>
         </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineDot color="secondary">
-            <RepeatIcon />
+            <CreateIcon />
           </TimelineDot>
         </TimelineSeparator>
         <TimelineContent>
           <Paper elevation={3} className={classes.paper}>
             <Typography variant="h6" component="h1">
-              روز دوم
+            مرحله نهایی
             </Typography>
             {/* <Typography>Because this is the life you love!</Typography> */}
           </Paper>

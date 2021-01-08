@@ -1,3 +1,5 @@
+@import '~react-image-gallery/styles/scss/image-gallery.scss';
+
 body {
   margin: 0;
 }
@@ -34,11 +36,8 @@ input.rtl-placeholder::placeholder,
   position: fixed;
   top: 0;
   left: 0;
-  background: linear-gradient(#feceab33, #feceab33),
-    url('background.png') no-repeat center center fixed;
-  filter: blur(4px);
-  -webkit-filter: blur(4px);
-  opacity: 0.8;
+  background: url('background.jpg') no-repeat center center fixed;
+  opacity: 1;
 
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -68,4 +67,33 @@ input.rtl-placeholder::placeholder,
   border: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
+}
+
+.fancy {
+  line-height: 0.5;
+  text-align: center;
+}
+.fancy span {
+  display: inline-block;
+  position: relative;
+}
+.fancy span:before,
+.fancy span:after {
+  content: '';
+  position: absolute;
+  height: 6px;
+  border-bottom: 1px solid #707e8b;
+  border-top: 1px solid rgb(38, 55, 61);
+  top: 0;
+  width: 72vh;
+}
+.fancy span:before {
+  right: 100%;
+  margin-right: 15px;
+  margin: 1.7vh;
+}
+.fancy span:after {
+  left: 100%;
+  margin-left: 15px;
+  margin: 1.7vh;
 }

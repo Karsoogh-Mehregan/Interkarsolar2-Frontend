@@ -10,7 +10,6 @@ import {
 } from '@material-ui/core';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import Container from '@material-ui/core/Container';
-import ImageGallery from 'react-image-gallery';
 import TelegramIcon from '@material-ui/icons/Telegram';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import WallpaperIcon from '@material-ui/icons/Wallpaper';

@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/media-has-caption */
 import {
   Button,
   Divider,
@@ -15,36 +14,20 @@ import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import WallpaperIcon from '@material-ui/icons/Wallpaper';
 import VideocamIcon from '@material-ui/icons/Videocam';
 import MenuBookRoundedIcon from '@material-ui/icons/MenuBookRounded';
-import Timeline from '../components/TimeLine/TimeLine';
-import ArrowBackOutlinedIcon from '@material-ui/icons/ArrowBackOutlined';
-import {
-  Assignment,
-  KeyboardArrowUp as KeyboardArrowUpIcon,
-} from '@material-ui/icons';
+
 import React, { useState } from 'react';
 import Gallery from '../components/Gallery/gallery';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import AuthDialog from '../components/Dialog/AuthDialog/AuthDialog';
-import FAQ from '../components/FAQ/FAQ';
-import Footer from '../components/Footer/Footer';
 import ScrollTop from '../components/ScrollToTop/ScrollToTop';
 import { logout } from '../redux/actions/account';
+
+import FAQ from '../components/FAQ/FAQ';
+import Footer from '../components/Footer/Footer';
 import PersonCard from '../components/Cards/PersonCard'
-const images = [
-  {
-    original: 'https://picsum.photos/id/1018/1000/600/',
-    thumbnail: 'https://picsum.photos/id/1018/250/150/',
-  },
-  {
-    original: 'https://picsum.photos/id/1015/1000/600/',
-    thumbnail: 'https://picsum.photos/id/1015/250/150/',
-  },
-  {
-    original: 'https://picsum.photos/id/1019/1000/600/',
-    thumbnail: 'https://picsum.photos/id/1019/250/150/',
-  },
-];
+import Timeline from '../components/TimeLine/TimeLine';
+
 const useStyles = makeStyles((theme) => ({
   centerItems: {
     display: 'flex',
@@ -136,12 +119,12 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: '30px',
     paddingBottom: '30px',
   },
-  section4headline:{
-    marginBottom:'30px',
+  section4headline: {
+    marginBottom: '30px',
   },
-  section4button:{
-    margin:'20px',
-    marginBottom:'80px',
+  section4button: {
+    margin: '20px',
+    marginBottom: '80px',
   },
   section4: {
     opacity: '1',
@@ -151,7 +134,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: '30px',
     paddingBottom: '30px',
   },
-  gallery:{
+  gallery: {
     opacity: '1',
     background: '#31046e',
     color: '#26373d',
@@ -159,23 +142,23 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: '30px',
     paddingBottom: '30px',
   },
-  grid1:{
-    background:'#240453',
-    alignItems:'center',
+  grid1: {
+    background: '#240453',
+    alignItems: 'center',
   },
-  grid2:{
-    alignContent:'center',
-    background:'#31046e',
+  grid2: {
+    alignContent: 'center',
+    background: '#31046e',
   },
-  gridtext:{
-    alignContent:'center',
+  gridtext: {
+    alignContent: 'center',
     textAlign: 'justify',
     textJustify: 'inter-word',
-    color:'#fffefa',
+    color: '#fffefa',
   },
   section4t: {
     opacity: '1',
-    
+
     background: `url(${process.env.PUBLIC_URL + '/background3.jpg'})`,
     color: '#f7f2f6',
 
@@ -191,9 +174,9 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: '30px',
     paddingBottom: '30px',
   },
-  footer :{
-    alignContent:'center',
-    color:'#a69eac',
+  footer: {
+    alignContent: 'center',
+    color: '#a69eac',
   },
   formPaper: {
     padding: theme.spacing(2),
@@ -227,70 +210,38 @@ function Homepage({ isLoggedIn, logout }) {
   return (
     <>
       <Container className={classes.section1}>
-      
-        <div id="back-to-top-anchor"></div>
+
+        <div id="back-to-top-anchor" />
         <div className="landing-background" />
 
-        <Grid container direction="column" style={{ height: '100%' }}>
-
-          <Grid container item direction="row" style={{ height: '90%' }}>
-            <Grid
-              item
-              container
-              xs={12}
-              sm={7}
-              justify="center"
-              alignItems="center"
-              direction="column">
-              
-            </Grid>
-
-            <Grid
-              item
-              container
-              xs={12}
-              sm={5}
-              justify="center"
-              alignItems="center"
-              direction="column"
-              spacing={5}
-              // style={{ overflowY: 'auto', height: '90%' }}
-            >
-              <Grid item>
-                <Typography
-                  component="h1"
-                  variant="h1"
-                  className={classes.title}>
-                  اینترکارسولار
-                </Typography>
-                <Typography
-                  component="h2"
-                  variant="h3"
-                  className={classes.subtitle}>
-                  دومین دوره مسابقات
-                </Typography>
-              </Grid>
-              
+        <Grid container direction="row" style={{ height: '100%' }}>
+          <Grid item container xs={12} sm={7} />
+          <Grid
+            item container
+            xs={12} sm={5}
+            justify="center"
+            alignItems="center"
+            direction="column"
+            spacing={5}
+          >
             <Grid item>
-              <Button
-                variant="contained"
-                color="primary"
-                endIcon={<ArrowBackOutlinedIcon />}
-                onClick={() => setAuthDialogOpen(true)}>
-                ورود به مسابقه
-              </Button>
+              <Typography
+                component="h1"
+                variant="h1"
+                className={classes.title}>
+                اینترکارسولار
+                </Typography>
+              <Typography
+                component="h2"
+                variant="h3"
+                className={classes.subtitle}>
+                دومین دوره مسابقات
+              </Typography>
             </Grid>
-            {isLoggedIn && (
-              <Grid item>
-                <Button variant="outlined" onClick={() => logout()}>
-                  خروج
-                </Button>
-              </Grid>
-            )}
-          </Grid>
           </Grid>
         </Grid>
       </Container>
+
       <Container className={`${classes.section3} ${classes.centerItems}`}>
         <Grid container direction="column" spacing={4}>
           <Grid item>
@@ -430,149 +381,149 @@ function Homepage({ isLoggedIn, logout }) {
       </Container>
       <Container className={classes.gallery}>
         <Grid container spacing={8}>
-              <Grid item xs={12} sm={3} className={classes.grid1}>
-                   <Button>
-                     <Grid container direction="column">
-                       <Grid container justify="center">
-                          <LibraryBooksIcon style={{ fontSize: 110 , color: 'white' }}/>
-                   <Typography
-                component="h2"
-                variant="h3"
-                className={classes.gridtext}>
-                  نمونه سوالات کارسوق
+          <Grid item xs={12} sm={3} className={classes.grid1}>
+            <Button>
+              <Grid container direction="column">
+                <Grid container justify="center">
+                  <LibraryBooksIcon style={{ fontSize: 110, color: 'white' }} />
+                  <Typography
+                    component="h2"
+                    variant="h3"
+                    className={classes.gridtext}>
+                    نمونه سوالات کارسوق
                 </Typography>
-                       </Grid>
-                 
                 </Grid>
-                </Button>
-                
+
               </Grid>
-              <Grid item xs={12} sm={3} className={classes.grid2}>
-                  
-                   <Button>
-                <Grid container direction="column">
+            </Button>
+
+          </Grid>
+          <Grid item xs={12} sm={3} className={classes.grid2}>
+
+            <Button>
+              <Grid container direction="column">
                 <Grid container justify="center">
 
-                  <WallpaperIcon style={{ fontSize: 110 , color: 'white' }}/>
-                   <Typography
-                component="h2"
-                variant="h3"
-                className={classes.gridtext}>
-                   گالری تصاویر
+                  <WallpaperIcon style={{ fontSize: 110, color: 'white' }} />
+                  <Typography
+                    component="h2"
+                    variant="h3"
+                    className={classes.gridtext}>
+                    گالری تصاویر
                 </Typography>
                 </Grid>
-                </Grid>
-                </Button>
               </Grid>
-              
-              <Grid item xs={12}sm={3}  className={classes.grid1}>
-                   <Button>
-                <Grid container direction="column">
-                <Grid container justify="center">
-                  <MenuBookRoundedIcon style={{ fontSize: 110 , color: 'white' }}/>
-                   <Typography
-                component="h2"
-                variant="h3"
-                className={classes.gridtext}>
-                  آشنایی با کارگاه ها
-                </Typography>
-                </Grid>
-                </Grid>
-                </Button>
-              </Grid>
+            </Button>
+          </Grid>
 
-                <Grid item xs={12} sm={3} className={classes.grid2}>
-                   <Button>
-                <Grid container direction="column">
+          <Grid item xs={12} sm={3} className={classes.grid1}>
+            <Button>
+              <Grid container direction="column">
                 <Grid container justify="center">
-                  <VideocamIcon style={{ fontSize: 110 , color: 'white' }}/>
-                   <Typography
-                component="h2"
-                variant="h3"
-                className={classes.gridtext}>
+                  <MenuBookRoundedIcon style={{ fontSize: 110, color: 'white' }} />
+                  <Typography
+                    component="h2"
+                    variant="h3"
+                    className={classes.gridtext}>
+                    آشنایی با کارگاه ها
+                </Typography>
+                </Grid>
+              </Grid>
+            </Button>
+          </Grid>
+
+          <Grid item xs={12} sm={3} className={classes.grid2}>
+            <Button>
+              <Grid container direction="column">
+                <Grid container justify="center">
+                  <VideocamIcon style={{ fontSize: 110, color: 'white' }} />
+                  <Typography
+                    component="h2"
+                    variant="h3"
+                    className={classes.gridtext}>
                     کلیپ معرفی
                 </Typography>
                 </Grid>
-                </Grid>
-                </Button>
               </Grid>
-               
+            </Button>
+          </Grid>
+
         </Grid>
       </Container>
-     
+
       <Container className={`${classes.section4} ${classes.centerItems}`}>
-      <Grid container direction="column" spacing={4}>
-        <Grid item className={classes.section4headline}>
-      
-        <Typography
+        <Grid container direction="column" spacing={4}>
+          <Grid item className={classes.section4headline}>
+
+            <Typography
               component="h2"
               variant="h2"
               className="fancy">
               <span>زمان بندی رویداد</span>
             </Typography>
-        </Grid>
-          <Timeline/>
+          </Grid>
+          <Timeline />
         </Grid>
       </Container>
 
 
       <Container className={`${classes.section4t} ${classes.centerItems}`}>
-      <Grid container direction="column" spacing={4}>
-        <Grid item className={classes.section4headline}>
-        <Typography
+        <Grid container direction="column" spacing={4}>
+          <Grid item className={classes.section4headline}>
+            <Typography
               component="h2"
               variant="h2"
               className="fancy">
               <span>تیم اینترکارسولار</span>
             </Typography>
-        </Grid>
+          </Grid>
           <Grid container direction="row" spacing={4} className={classes.personCard}>
-          <Grid item xs={6} sm={3}>
-        <PersonCard/>
-          </Grid>
-          <Grid item xs={6} sm={3}>
-        <PersonCard/>
-          </Grid>
-          <Hidden xsDown="true">
-              <Grid item xs={3}><PersonCard/></Grid>
-            </Hidden>
-          <Hidden xsDown="true">
-              <Grid item xs={3}><PersonCard/></Grid>
-            </Hidden>
-        </Grid>
-            <Grid container xs={12}  justify="center"
-              alignItems="center" >
-              <Button  
-                variant="contained"
-                color="default"
-                size="medium"
-                href="members"
-                className={classes.section4button}>
-                  <Typography variant="h3">مشاهده همه </Typography>
-                </Button>
+            <Grid item xs={6} sm={3}>
+              <PersonCard />
             </Grid>
-        <Grid container direction="column" justify="center" className={classes.footer}>
-        <Typography
+            <Grid item xs={6} sm={3}>
+              <PersonCard />
+            </Grid>
+            <Hidden xsDown="true">
+              <Grid item xs={3}><PersonCard /></Grid>
+            </Hidden>
+            <Hidden xsDown="true">
+              <Grid item xs={3}><PersonCard /></Grid>
+            </Hidden>
+          </Grid>
+          <Grid container xs={12} justify="center"
+            alignItems="center" >
+            <Button
+              variant="contained"
+              color="default"
+              size="medium"
+              href="members"
+              className={classes.section4button}>
+              <Typography variant="h3">مشاهده همه </Typography>
+            </Button>
+          </Grid>
+          <Grid container direction="column" justify="center" className={classes.footer}>
+            <Typography
               component="h5"
               variant="h5">
               ما را در شبکه‌های زیر دنبال کنید
             </Typography>
             <Grid item direction="row">
               <Grid container justify="center">
-                
-            <Button href="https://www.instagram.com/karsooghmehregan/" color="default">
-              <InstagramIcon/>
-            </Button>
-            <Button href="https://t.me/karsooghmehregan_20">
-              <TelegramIcon/>
-            </Button>
+
+                <Button href="https://www.instagram.com/karsooghmehregan/" color="default">
+                  <InstagramIcon />
+                </Button>
+                <Button href="https://t.me/karsooghmehregan_20">
+                  <TelegramIcon />
+                </Button>
               </Grid>
             </Grid>
-              
-        </Grid>
+
+          </Grid>
         </Grid>
       </Container>
-      
+
       <ScrollTop showBelow={250} />
       <AuthDialog
         open={authDialogOpen}

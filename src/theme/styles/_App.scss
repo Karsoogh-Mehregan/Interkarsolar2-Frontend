@@ -71,9 +71,6 @@ input.rtl-placeholder::placeholder,
   line-height: 0.5;
   text-align: center;
 
-}
-
-.fancy {
   span {
     display: inline-block;
     position: relative;
@@ -90,13 +87,13 @@ input.rtl-placeholder::placeholder,
     width: 100%;
   }
 
-  span:before {
+  span:after {
     left: 100%;
     margin-right: 15px;
     margin: 1.7vh;
   }
 
-  span:after {
+  span:before {
     right: 100%;
     margin-left: 15px;
     margin: 1.7vh;

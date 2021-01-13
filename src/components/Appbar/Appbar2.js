@@ -1,29 +1,40 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { Grid } from '@material-ui/core';
-
-const drawerWidth = 240;
+import {
+  Typography,
+  Toolbar,
+  CssBaseline,
+  makeStyles,
+  AppBar,
+  IconButton,
+} from '@material-ui/core';
+import SaveIcon from "@material-ui/icons/Save";
+import EditIcon from "@material-ui/icons/Edit";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1000,
+    zIndex: theme.zIndex.drawer + 1,
+    paddingRight: theme.spacing(4),
+    paddingLeft: theme.spacing(4),
   },
-  logo: { height: 45 },
+  rightToolbar: {
+    marginLeft: "auto",
+    marginRight: -12
+  },
+  menuButton: {
+    marginRight: 16,
+    marginLeft: -12
+  },
+  logo: {
+    maxWidth: '50px',
+    marginRight: '10px',
+  }
 }));
 
 export default function ClippedDrawer() {
   const classes = useStyles();
 
   return (
-    <Grid className={classes.root}>
-      <CssBaseline />
+    <div className={classes.root}>
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <img
@@ -31,11 +42,20 @@ export default function ClippedDrawer() {
             alt="logo"
             className={classes.logo}
           />
-          <Typography variant="h6" noWrap>
+          <Typography variant="title" noWrap>
             اینترکارسولار
           </Typography>
+
+          <section className={classes.rightToolbar}>
+            <IconButton color="inherit" aria-label="Edit">
+              <EditIcon />
+            </IconButton>
+            <IconButton color="inherit" aria-label="Save">
+              <SaveIcon />
+            </IconButton>
+          </section>
         </Toolbar>
       </AppBar>
-    </Grid>
+    </div>
   );
 }

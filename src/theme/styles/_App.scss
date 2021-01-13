@@ -70,28 +70,35 @@ input.rtl-placeholder::placeholder,
 .fancy {
   line-height: 0.5;
   text-align: center;
+
 }
-.fancy span {
-  display: inline-block;
-  position: relative;
-}
-.fancy span:before,
-.fancy span:after {
-  content: '';
-  position: absolute;
-  height: 6px;
-  border-bottom: 1px solid #707e8b;
-  border-top: 1px solid rgb(38, 55, 61);
-  top: 0;
-  width: 72vh;
-}
-.fancy span:before {
-  right: 100%;
-  margin-right: 15px;
-  margin: 1.7vh;
-}
-.fancy span:after {
-  left: 100%;
-  margin-left: 15px;
-  margin: 1.7vh;
+
+.fancy {
+  span {
+    display: inline-block;
+    position: relative;
+  }
+
+  span:before,
+  span:after {
+    content: '';
+    position: absolute;
+    height: 6px;
+    border-bottom: 1px solid #707e8b;
+    border-top: 1px solid rgb(38, 55, 61);
+    top: 0;
+    width: 100%;
+  }
+
+  span:before {
+    left: 100%;
+    margin-right: 15px;
+    margin: 1.7vh;
+  }
+
+  span:after {
+    right: 100%;
+    margin-left: 15px;
+    margin: 1.7vh;
+  }
 }

@@ -27,6 +27,7 @@ import FAQ from '../components/FAQ/FAQ';
 import Footer from '../components/Footer/Footer';
 import PersonCard from '../components/Cards/PersonCard'
 import Timeline from '../components/TimeLine/TimeLine';
+import AppBar from '../components/Appbar/ResponsiveAppBar'
 
 const useStyles = makeStyles((theme) => ({
   centerItems: {
@@ -213,7 +214,8 @@ function Homepage({ isLoggedIn, logout }) {
 
         <div id="back-to-top-anchor" />
         <div className="landing-background" />
-
+        <AppBar />
+        
         <Grid container direction="row" style={{ height: '100%' }}>
           <Grid item container xs={12} sm={7} />
           <Grid
@@ -404,7 +406,7 @@ function Homepage({ isLoggedIn, logout }) {
               <Grid container direction="column">
                 <Grid container justify="center">
 
-                  <WallpaperIcon style={{ fontSize: 110, color: 'white' }} />
+                  <WallpaperIcon style={{ height: '100%', width: '100%', color: 'white' }} />
                   <Typography
                     component="h2"
                     variant="h3"

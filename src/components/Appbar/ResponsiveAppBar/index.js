@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
   },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1000,
+    zIndex: theme.zIndex.drawer + 1,
   },
   menuButton: {
     marginRight: 5,
@@ -59,7 +59,7 @@ function ResponsiveAppBar({ mode = 'LANDING' }) {
   return (
     <>
       <HideOnScroll>
-        <AppBar className={classes.appBar} color="inherit">
+        <AppBar className={classes.appBar} color="primary">
           <Container maxWidth="md">
             <Toolbar className={classes.toolbar}>
               <IconButton

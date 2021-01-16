@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/media-has-caption */
 import {
   Button,
   Divider,
@@ -8,21 +7,27 @@ import {
   makeStyles,
   Typography,
 } from '@material-ui/core';
+import InstagramIcon from '@material-ui/icons/Instagram';
 import Container from '@material-ui/core/Container';
-import {
-  Assignment,
-  KeyboardArrowUp as KeyboardArrowUpIcon,
-} from '@material-ui/icons';
+import TelegramIcon from '@material-ui/icons/Telegram';
+import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
+import WallpaperIcon from '@material-ui/icons/Wallpaper';
+import VideocamIcon from '@material-ui/icons/Videocam';
+import MenuBookRoundedIcon from '@material-ui/icons/MenuBookRounded';
+
 import React, { useState } from 'react';
+import Gallery from '../components/Gallery/gallery';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 import AuthDialog from '../components/Dialog/AuthDialog/AuthDialog';
-import FAQ from '../components/FAQ/FAQ';
-import Footer from '../components/Footer/Footer';
 import ScrollTop from '../components/ScrollToTop/ScrollToTop';
 import { logout } from '../redux/actions/account';
+
+import FAQ from '../components/FAQ/FAQ';
+import Footer from '../components/Footer/Footer';
 import PersonCard from '../components/Cards/PersonCard'
+import Timeline from '../components/TimeLine/TimeLine';
+import AppBar from '../components/Appbar/ResponsiveAppBar'
 
 const useStyles = makeStyles((theme) => ({
   centerItems: {
@@ -34,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     fontSize: 70,
     lineHeight: '80px',
-    color: '#37253f',
+    color: '#fbebd1',
     textShadow: '-2px 2px #888',
     [theme.breakpoints.down('sm')]: {
       fontSize: 40,
@@ -45,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   subtitle: {
     fontSize: 30,
     // lineHeight: '40px',
-    color: '#37253f',
+    color: '#fcecd2',
     textShadow: '-2px 2px #888',
     [theme.breakpoints.down('sm')]: {
       fontSize: 20,
@@ -102,7 +107,6 @@ const useStyles = makeStyles((theme) => ({
 
   section2: {
     opacity: '1',
-    boxShadow: '3px 3px 3px 3px black',
     color: '#f7f2f6',
     background: '#410066',
     paddingTop: '30px',
@@ -111,18 +115,54 @@ const useStyles = makeStyles((theme) => ({
 
   section3: {
     opacity: '1',
-    boxShadow: '3px 0px 3px 0px black',
     color: '#f7f2f6',
     background: '#673CC6',
     paddingTop: '30px',
     paddingBottom: '30px',
   },
-
+  section4headline: {
+    marginBottom: '30px',
+  },
+  section4button: {
+    margin: '20px',
+    marginBottom: '80px',
+  },
   section4: {
     opacity: '1',
-    background: '#7400B8',
+    background: `url(${process.env.PUBLIC_URL + '/background.jpg'})`,
+    color: '#26373d',
+
+    paddingTop: '30px',
+    paddingBottom: '30px',
+  },
+  gallery: {
+    opacity: '1',
+    background: '#31046e',
+    color: '#26373d',
+
+    paddingTop: '30px',
+    paddingBottom: '30px',
+  },
+  grid1: {
+    background: '#240453',
+    alignItems: 'center',
+  },
+  grid2: {
+    alignContent: 'center',
+    background: '#31046e',
+  },
+  gridtext: {
+    alignContent: 'center',
+    textAlign: 'justify',
+    textJustify: 'inter-word',
+    color: '#fffefa',
+  },
+  section4t: {
+    opacity: '1',
+
+    background: `url(${process.env.PUBLIC_URL + '/background3.jpg'})`,
     color: '#f7f2f6',
-    boxShadow: '3px 0px 3px 0px black',
+
     paddingTop: '30px',
     paddingBottom: '30px',
   },
@@ -131,17 +171,14 @@ const useStyles = makeStyles((theme) => ({
     opacity: '1',
     background: '#F0DBED',
     // color: '#f2f2f2',
-    boxShadow: '3px 0px 3px 0px black',
+
     paddingTop: '30px',
     paddingBottom: '30px',
   },
-
-  video: {
-    width: '100%',
-    borderRadius: 10,
-    boxShadow: '3px 1px 3px 0px #111',
+  footer: {
+    alignContent: 'center',
+    color: '#a69eac',
   },
-
   formPaper: {
     padding: theme.spacing(2),
     boxShadow: '1px 1px 1px 1px black',
@@ -173,75 +210,34 @@ function Homepage({ isLoggedIn, logout }) {
 
   return (
     <>
-      <Container className={classes.section1}>
-        <div id="back-to-top-anchor"></div>
-        <div className="landing-background" />
-        <Grid container direction="column" style={{ height: '100%' }}>
-          <Grid container item direction="row" style={{ height: '90%' }}>
-            <Grid
-              item
-              container
-              xs={12}
-              justify="center"
-              alignItems="center"
-              direction="column">
-              <Grid item>
-                <Typography
-                  component="h1"
-                  variant="h1"
-                  className={classes.title}>
-                  اینترکارسولار
-                </Typography>
-                <Typography
-                  component="h2"
-                  variant="h3"
-                  className={classes.subtitle}>
-                  پروژه‌ی فضایی
-                </Typography>
-              </Grid>
-              <Grid item style={{ marginTop: '30px' }}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  href='/exam'>
-                  ورود به مسابقه
-                </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  href='/login'>
-                  ورود به سفینه‌ی فضایی
-                </Button>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Container>
+      <div id="back-to-top-anchor" />
+      <div className="landing-background" />
+      <AppBar />
 
-      <Container className={`${classes.section2} ${classes.centerItems}`}>
-        <Grid
-          container
-          direction="row"
-          spacing={4}
-          alignItems="center"
-          justify="center">
-          <Grid item xs={12}>
-            <Typography
-              component="h2"
-              variant="h2"
-              className={classes.sectionTitle}>
-              دست اندر کاران:
-            </Typography>
-          </Grid>
+      <Container className={classes.section1}>
+        <Grid container direction="row" style={{ height: '100%' }}>
+          <Grid item container xs={12} sm={7} />
           <Grid
-            container
-            xs={12}
-            sm={8}
-            direction="row"
+            item container
+            xs={12} sm={5}
             justify="center"
-            spacing={1}>
+            alignItems="center"
+            direction="column"
+            spacing={5}
+          >
             <Grid item>
-              <PersonCard />
+              <Typography
+                component="h1"
+                variant="h1"
+                className={classes.title}>
+                اینترکارسولار
+                </Typography>
+              <Typography
+                component="h2"
+                variant="h3"
+                className={classes.subtitle}>
+                دومین دوره مسابقات
+              </Typography>
             </Grid>
           </Grid>
         </Grid>
@@ -384,44 +380,152 @@ function Homepage({ isLoggedIn, logout }) {
           </Grid>
         </Grid>
       </Container>
+      <Container className={classes.gallery}>
+        <Grid container spacing={8}>
+          <Grid item xs={12} sm={3} className={classes.grid1}>
+            <Button>
+              <Grid container direction="column">
+                <Grid container justify="center">
+                  <LibraryBooksIcon style={{ fontSize: 110, color: 'white' }} />
+                  <Typography
+                    component="h2"
+                    variant="h3"
+                    className={classes.gridtext}>
+                    نمونه سوالات کارسوق
+                </Typography>
+                </Grid>
+
+              </Grid>
+            </Button>
+
+          </Grid>
+          <Grid item xs={12} sm={3} className={classes.grid2}>
+
+            <Button>
+              <Grid container direction="column">
+                <Grid container justify="center">
+
+                  <WallpaperIcon style={{ height: '100%', width: '100%', color: 'white' }} />
+                  <Typography
+                    component="h2"
+                    variant="h3"
+                    className={classes.gridtext}>
+                    گالری تصاویر
+                </Typography>
+                </Grid>
+              </Grid>
+            </Button>
+          </Grid>
+
+          <Grid item xs={12} sm={3} className={classes.grid1}>
+            <Button>
+              <Grid container direction="column">
+                <Grid container justify="center">
+                  <MenuBookRoundedIcon style={{ fontSize: 110, color: 'white' }} />
+                  <Typography
+                    component="h2"
+                    variant="h3"
+                    className={classes.gridtext}>
+                    آشنایی با کارگاه ها
+                </Typography>
+                </Grid>
+              </Grid>
+            </Button>
+          </Grid>
+
+          <Grid item xs={12} sm={3} className={classes.grid2}>
+            <Button>
+              <Grid container direction="column">
+                <Grid container justify="center">
+                  <VideocamIcon style={{ fontSize: 110, color: 'white' }} />
+                  <Typography
+                    component="h2"
+                    variant="h3"
+                    className={classes.gridtext}>
+                    کلیپ معرفی
+                </Typography>
+                </Grid>
+              </Grid>
+            </Button>
+          </Grid>
+
+        </Grid>
+      </Container>
 
       <Container className={`${classes.section4} ${classes.centerItems}`}>
         <Grid container direction="column" spacing={4}>
-          <Grid item>
+          <Grid item className={classes.section4headline}>
+
             <Typography
               component="h2"
               variant="h2"
-              className={classes.sectionTitle}>
-              سوالات رایج
+              className="fancy">
+              <span>زمان بندی رویداد</span>
             </Typography>
           </Grid>
-          <Grid item xs={12}>
-            <FAQ />
-          </Grid>
+          <Timeline />
         </Grid>
       </Container>
 
-      <Container className={`${classes.section5} ${classes.centerItems}`}>
+
+      <Container className={`${classes.section4t} ${classes.centerItems}`}>
         <Grid container direction="column" spacing={4}>
-          <Grid item>
+          <Grid item className={classes.section4headline}>
             <Typography
               component="h2"
               variant="h2"
-              className={classes.sectionTitle}>
-              حامیان
+              className="fancy">
+              <span>تیم اینترکارسولار</span>
             </Typography>
           </Grid>
-          <Grid item xs={12}>
-            <Footer />
+          <Grid container direction="row" spacing={4} className={classes.personCard}>
+            <Grid item xs={6} sm={3}>
+              <PersonCard />
+            </Grid>
+            <Grid item xs={6} sm={3}>
+              <PersonCard />
+            </Grid>
+            <Hidden xsDown="true">
+              <Grid item xs={3}><PersonCard /></Grid>
+            </Hidden>
+            <Hidden xsDown="true">
+              <Grid item xs={3}><PersonCard /></Grid>
+            </Hidden>
+          </Grid>
+          <Grid container xs={12} justify="center"
+            alignItems="center" >
+            <Button
+              variant="contained"
+              color="default"
+              size="medium"
+              href="members"
+              className={classes.section4button}>
+              <Typography variant="h3">مشاهده همه </Typography>
+            </Button>
+          </Grid>
+          <Grid container direction="column" justify="center" className={classes.footer}>
+            <Typography
+              component="h5"
+              variant="h5">
+              ما را در شبکه‌های زیر دنبال کنید
+            </Typography>
+            <Grid item direction="row">
+              <Grid container justify="center">
+
+                <Button href="https://www.instagram.com/karsooghmehregan/" color="default">
+                  <InstagramIcon />
+                </Button>
+                <Button href="https://t.me/karsooghmehregan_20">
+                  <TelegramIcon />
+                </Button>
+              </Grid>
+            </Grid>
+
           </Grid>
         </Grid>
       </Container>
 
-      <ScrollTop>
-        <Fab color="secondary" size="small" aria-label="scroll back to top">
-          <KeyboardArrowUpIcon />
-        </Fab>
-      </ScrollTop>
+      <ScrollTop showBelow={250} />
       <AuthDialog
         open={authDialogOpen}
         handleClose={() => setAuthDialogOpen(false)}

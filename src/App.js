@@ -1,17 +1,16 @@
 import './theme/styles/style.scss';
 import { CssBaseline } from '@material-ui/core';
 import { ThemeProvider, StylesProvider } from '@material-ui/styles';
-import { SnackbarProvider } from 'notistack';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import Notifier from './components/Notifications/Notifications';
 import { initRedirect } from './redux/actions/redirect';
 import Root from './root/Root';
 import RTLMuiTheme from './theme/RTLMuiTheme';
 import jss from './utils/jssRTL';
 
 const App = ({ redirectTo, forceRedirect, initRedirect }) => {
+  
   const history = useHistory();
   useEffect(() => {
     if (redirectTo !== null) {
@@ -30,11 +29,8 @@ const App = ({ redirectTo, forceRedirect, initRedirect }) => {
   return (
     <ThemeProvider theme={RTLMuiTheme}>
       <StylesProvider jss={jss}>
-        <SnackbarProvider>
-          <Notifier />
-          <CssBaseline />
-          <Root />
-        </SnackbarProvider>
+        <CssBaseline />
+        <Root />
       </StylesProvider>
     </ThemeProvider>
   );

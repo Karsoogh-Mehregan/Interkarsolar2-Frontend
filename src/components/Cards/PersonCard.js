@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   Card,
   CardActionArea,
@@ -5,8 +6,10 @@ import {
   CardMedia,
   makeStyles,
   Typography,
+  Button,
+  CardActions,
 } from '@material-ui/core';
-import React from 'react';
+import MentorIntroduction from '../Dialog/MentorIntroduction'
 
 const useStyles = makeStyles({
   root: {
@@ -34,24 +37,38 @@ const useStyles = makeStyles({
 
 const PersonCard = ({ }) => {
   const classes = useStyles();
+  const [isDialogueOpen, setDialogueOpen] = useState(false);
 
   return (
-    <Card className='card' className={classes.root}>
-      <CardActionArea disabled>
-        <CardMedia
-          className={classes.media}
-          image={process.env.PUBLIC_URL + '/Seyyed_Alireza_Hashemi.jpeg'}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {'سید علیرضا هاشمی'}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {'مسئول فیل‌کردن رویداد'}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+    <>
+      <Card className={classes.root}>
+        <CardActionArea disabled>
+          <CardMedia
+            className={classes.media}
+            image={process.env.PUBLIC_URL + '/Seyyed_Alireza_Hashemi.jpeg'}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {'سید علیرضا هاشمی'}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {'مسئول فیل‌کردن رویداد'}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+
+        <CardActions>
+          <Button fullWidth variant='contained' color='secondary' onClick={() => setDialogueOpen(!isDialogueOpen)}>
+            او کیست؟!
+          </Button>
+        </CardActions>
+      </Card>
+
+      <MentorIntroduction
+        open={isDialogueOpen}
+        handleClose={() => { setDialogueOpen(!isDialogueOpen) }}
+      />
+    </>
   );
 };
 

@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
   },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1000,
+    zIndex: theme.zIndex.drawer + 1,
   },
   menuButton: {
     marginRight: 5,
@@ -58,27 +58,27 @@ function ResponsiveAppBar({ mode = 'LANDING' }) {
 
   return (
     <>
-      <HideOnScroll>
-        <AppBar className={classes.appBar} color="inherit">
-          <Container maxWidth="md">
-            <Toolbar className={classes.toolbar}>
-              <IconButton
-                edge="start"
-                color="inherit"
-                aria-label="open drawer"
-                className={classes.menuButton}
-                onClick={() => setDrawerOpen(true)}>
-                <MenuIcon />
-              </IconButton>
-              <Hidden xsDown>{desktopRightItems}</Hidden>
-              <Hidden smUp>{mobileRightItems}</Hidden>
-              <div className={classes.grow} />
-              <Hidden xsDown>{desktopLeftItems}</Hidden>
-              <Hidden smUp>{mobileLeftItems}</Hidden>
-            </Toolbar>
-          </Container>
-        </AppBar>
-      </HideOnScroll>
+      {/* <HideOnScroll> */}
+      <AppBar className={classes.appBar} color="secondary">
+        <Container maxWidth="md">
+          <Toolbar className={classes.toolbar}>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              className={classes.menuButton}
+              onClick={() => setDrawerOpen(true)}>
+              <MenuIcon />
+            </IconButton>
+            <Hidden xsDown>{desktopRightItems}</Hidden>
+            <Hidden smUp>{mobileRightItems}</Hidden>
+            <div className={classes.grow} />
+            <Hidden xsDown>{desktopLeftItems}</Hidden>
+            <Hidden smUp>{mobileLeftItems}</Hidden>
+          </Toolbar>
+        </Container>
+      </AppBar>
+      {/* </HideOnScroll> */}
       <Hidden smUp>
         <Drawer
           anchor="left"

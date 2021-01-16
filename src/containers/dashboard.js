@@ -12,7 +12,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import Appbar2 from '../components/Appbar/Appbar2';
 import AssignmentRoundedIcon from '@material-ui/icons/AssignmentRounded';
 import NotificationsActiveRoundedIcon from '@material-ui/icons/NotificationsActiveRounded';
 import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
@@ -54,7 +53,6 @@ export default function ClippedDrawer() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Appbar2 />
       <Drawer
         className={classes.drawer}
         variant="permanent"

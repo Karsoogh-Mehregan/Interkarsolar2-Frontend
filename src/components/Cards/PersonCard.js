@@ -14,7 +14,7 @@ import MentorIntroduction from '../Dialog/MentorIntroduction'
 const useStyles = makeStyles({
   root: {
     // height: '100%',
-    width: '100%' ,
+    width: '100%',
     maxWidth: '20rem',
     fontSize: '1rem',
     textDecoration: 'none',
@@ -23,7 +23,7 @@ const useStyles = makeStyles({
     transition: 'transform 0.1s ease-in-out',
     maxWidth: '300px',
     '&:hover': {
-      transform: 'translateY(-0.5rem) scale(1.0125)',
+      transform: 'translateY(-0.2rem) scale(1.02)',
       boxShadow: '0 0.5em 3rem -1rem rgba(0, 0, 0, 0.5)',
     }
   },
@@ -35,7 +35,12 @@ const useStyles = makeStyles({
   },
 });
 
-const PersonCard = ({ }) => {
+const PersonCard = ({
+  name = 'سید علیرضا هاشمی',
+  position = 'مسئول سایت',
+  image = 'Seyyed_Alireza_Hashemi.jpeg',
+  description = 'او خیلی خر است!',
+}) => {
   const classes = useStyles();
   const [isDialogueOpen, setDialogueOpen] = useState(false);
 
@@ -45,26 +50,25 @@ const PersonCard = ({ }) => {
         <CardActionArea disabled>
           <CardMedia
             className={classes.media}
-            image={process.env.PUBLIC_URL + '/Seyyed_Alireza_Hashemi.jpeg'}
+            image={`${process.env.PUBLIC_URL}/Staff/${image}`}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {'سید علیرضا هاشمی'}
+              {name}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              {'مسئول فیل‌کردن رویداد'}
+              {position}
             </Typography>
           </CardContent>
         </CardActionArea>
-
         <CardActions>
           <Button fullWidth variant='contained' color='secondary' onClick={() => setDialogueOpen(!isDialogueOpen)}>
             او کیست؟!
           </Button>
         </CardActions>
       </Card>
-
       <MentorIntroduction
+        description={description}
         open={isDialogueOpen}
         handleClose={() => { setDialogueOpen(!isDialogueOpen) }}
       />

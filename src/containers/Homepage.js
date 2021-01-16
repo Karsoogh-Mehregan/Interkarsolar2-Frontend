@@ -209,9 +209,8 @@ function Homepage({ isLoggedIn, logout }) {
     <>
       <Container className={classes.section1}>
         <div className="landing-background" />
-<Navbar/>
-<div id="back-to-top-anchor"></div>
-
+        <div id="back-to-top-anchor"></div>
+        <Navbar />
         <Grid container direction="row" style={{ height: '100%' }}>
           <Grid item container xs={12} sm={7} />
           <Grid
@@ -495,7 +494,7 @@ function Homepage({ isLoggedIn, logout }) {
               variant="contained"
               color="default"
               size="medium"
-              href="members"
+              href="staff/"
               className={classes.section4button}>
               <Typography variant="h3">مشاهده همه </Typography>
             </Button>

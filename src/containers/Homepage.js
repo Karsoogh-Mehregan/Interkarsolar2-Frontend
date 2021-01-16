@@ -17,10 +17,13 @@ import MenuBookRoundedIcon from '@material-ui/icons/MenuBookRounded';
 
 import React, { useState } from 'react';
 import Gallery from '../components/Gallery/gallery';
+import PersonCard from '../components/Cards/PersonCard'
+import Timeline from '../components/TimeLine/TimeLine'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import AuthDialog from '../components/Dialog/AuthDialog/AuthDialog';
 import ScrollTop from '../components/ScrollToTop/ScrollToTop';
+import Navbar from '../components/Appbar/ResponsiveAppBar';
 import { logout } from '../redux/actions/account';
 
 const useStyles = makeStyles((theme) => ({
@@ -207,7 +210,7 @@ function Homepage({ isLoggedIn, logout }) {
       <Container className={classes.section1}>
         <div id="back-to-top-anchor"></div>
         <div className="landing-background" />
-
+        <Navbar />
 
         <Grid container direction="row" style={{ height: '100%' }}>
           <Grid item container xs={12} sm={7} />

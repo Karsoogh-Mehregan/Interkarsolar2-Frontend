@@ -23,12 +23,6 @@ import AuthDialog from '../components/Dialog/AuthDialog/AuthDialog';
 import ScrollTop from '../components/ScrollToTop/ScrollToTop';
 import { logout } from '../redux/actions/account';
 
-import FAQ from '../components/FAQ/FAQ';
-import Footer from '../components/Footer/Footer';
-import PersonCard from '../components/Cards/PersonCard'
-import Timeline from '../components/TimeLine/TimeLine';
-import AppBar from '../components/Appbar/ResponsiveAppBar'
-
 const useStyles = makeStyles((theme) => ({
   centerItems: {
     display: 'flex',
@@ -210,11 +204,11 @@ function Homepage({ isLoggedIn, logout }) {
 
   return (
     <>
-      <div id="back-to-top-anchor" />
-      <div className="landing-background" />
-      <AppBar />
-
       <Container className={classes.section1}>
+        <div id="back-to-top-anchor"></div>
+        <div className="landing-background" />
+
+
         <Grid container direction="row" style={{ height: '100%' }}>
           <Grid item container xs={12} sm={7} />
           <Grid

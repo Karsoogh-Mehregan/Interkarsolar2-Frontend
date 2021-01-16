@@ -3,8 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 import DevTools from '../containers/DevTools';
 
 import Homepage from '../containers/Homepage';
-import dashboard from '../containers/dashboard';
 import members from '../containers/members';
+import Dashboard from '../containers/Dashboard/Dashboard';
 
 const Root = () => {
   return (
@@ -14,7 +14,7 @@ const Root = () => {
         <Route path='/login' component={Login}></Route>
         <Route path="/loading/"></Route>
         <Route path="/members/" component={members} />
-        <Route path="/dashboard/" component={dashboard} />
+        <Route path="/dashboard/" component={Dashboard} />
         <Route path="/" component={Homepage} />
       </Switch>
       <DevTools />

@@ -18,7 +18,7 @@ import { connect } from 'react-redux';
 const useStyles = makeStyles((theme) => ({
   image: (props) => ({
     background: `url(${process.env.PUBLIC_URL}/Staff/${props.image})`,
-    backgroundSize: 'cover',
+    backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center center',
     boxShadow: '2px 2px 5px gray',
@@ -34,10 +34,10 @@ const useStyles = makeStyles((theme) => ({
 function MentorIntroduction({
   open,
   handleClose,
-  name = 'سید علیرضا هاشمی',
-  post = 'مسئول سایت',
-  image = 'Seyyed_Alireza_Hashemi.jpeg',
-  description = 'او خیلی خر است.',
+  name,
+  post,
+  image,
+  description,
 }) {
   const classes = useStyles({ image });
 

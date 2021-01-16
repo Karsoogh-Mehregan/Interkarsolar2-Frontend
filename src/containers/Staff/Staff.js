@@ -9,7 +9,7 @@ import {
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PersonCard from '../../components/Cards/PersonCard'
-import StaffInfo from './StaticData';
+import Positions from './StaticData';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -30,6 +30,16 @@ const useStyles = makeStyles((theme) => ({
       lineHeight: '40px',
     },
   },
+  subtitle: {
+    fontSize: 30,
+    // lineHeight: '40px',
+    color: '#150f40',
+    textShadow: '-1px 1px #888',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 20,
+      // marginBottom: theme.spacing(3),
+    },
+  },
   paper: {
     background: '#f8f1f1',
     padding: theme.spacing(4),
@@ -38,9 +48,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(4),
   },
 }));
-
-console.log(StaffInfo);
-
 
 function Staff() {
   const classes = useStyles();
@@ -53,17 +60,32 @@ function Staff() {
               «کارسوقی‌ها»
             </Typography>
           </Grid>
-          <Grid container item direction='row' spacing={2}>
+          <Grid container item direction='column' spacing={4}>
             {
-              StaffInfo.map((staff) => {
+              Positions.map((position) => {
                 return (
-                  <Grid item xs={3}>
-                    <PersonCard
-                      name={staff.name}
-                      position={staff.position}
-                      description={staff.description}
-                      image={staff.image} />
-                  </Grid>
+                  <>
+                    <Grid item>
+                      <Typography variant='h4' align='center' className={classes.subtitle}>
+                        {position.name}
+                      </Typography>
+                    </Grid>
+                    <Grid container item direction='row' spacing={2}>
+                      {
+                        position.staff.map((staff) => {
+                          return (
+                            <Grid item xs={12} sm={4} md={3}>
+                              <PersonCard
+                                name={staff.name}
+                                position={staff.position}
+                                description={staff.description}
+                                image={staff.image} />
+                            </Grid>
+                          )
+                        })
+                      }
+                    </Grid>
+                  </>
                 )
               })
             }

@@ -36,10 +36,10 @@ const useStyles = makeStyles({
 });
 
 const PersonCard = ({
-  name = 'سید علیرضا هاشمی',
-  position = 'مسئول سایت',
-  image = 'Seyyed_Alireza_Hashemi.jpeg',
-  description = 'او خیلی خر است!',
+  name,
+  position,
+  image,
+  description,
 }) => {
   const classes = useStyles();
   const [isDialogueOpen, setDialogueOpen] = useState(false);
@@ -68,6 +68,8 @@ const PersonCard = ({
         </CardActions>
       </Card>
       <MentorIntroduction
+        name={name}
+        image={image}
         description={description}
         open={isDialogueOpen}
         handleClose={() => { setDialogueOpen(!isDialogueOpen) }}

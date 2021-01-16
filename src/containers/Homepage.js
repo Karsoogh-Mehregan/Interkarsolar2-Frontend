@@ -208,9 +208,9 @@ function Homepage({ isLoggedIn, logout }) {
   return (
     <>
       <Container className={classes.section1}>
-        <div id="back-to-top-anchor"></div>
         <div className="landing-background" />
-        <Navbar />
+<Navbar/>
+<div id="back-to-top-anchor"></div>
 
         <Grid container direction="row" style={{ height: '100%' }}>
           <Grid item container xs={12} sm={7} />

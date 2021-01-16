@@ -12,6 +12,11 @@ import TimelineDot from '@material-ui/lab/TimelineDot';
 import TimelineItem from '@material-ui/lab/TimelineItem';
 import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
 import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
+import SlideshowIcon from '@material-ui/icons/Slideshow';
+import FormatListNumberedRtlIcon from '@material-ui/icons/FormatListNumberedRtl';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import StarHalfIcon from '@material-ui/icons/StarHalf';
+import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 import React from 'react';
 
 const useStyles = makeStyles((theme) => ({
@@ -20,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CustomizedTimeline() {
+export default function TimeLine() {
   const classes = useStyles();
 
   return (
@@ -28,41 +33,32 @@ export default function CustomizedTimeline() {
       <TimelineItem>
         <TimelineOppositeContent>
           <Typography variant="body2" color="textSecondary">
-            25 الی 30 بهمن 1399            25 الی 30 بهمن 1399
-            25 الی 30 بهمن 1399
-            25 الی 30 بهمن 1399
-            25 الی 30 بهمن 1399
-            25 الی 30 بهمن 1399
-            25 الی 30 بهمن 1399
-            25 الی 30 بهمن 1399
-            25 الی 30 بهمن 1399
-            25 الی 30 بهمن 1399
 
           </Typography>
         </TimelineOppositeContent>
         <TimelineSeparator>
-          <TimelineDot color="secondary">
-          <HourglassEmptyIcon/>
+          <TimelineDot color="secondary" >
+            <SlideshowIcon />
           </TimelineDot>
           <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent>
           <Paper elevation={3} className={classes.paper}>
             <Typography variant="h6" component="h1">
-              تاریخ ثبت نام
+              دو فروند ارائه‌ی علمی
             </Typography>
-            {/* <Typography>Because you need strength</Typography> */}
           </Paper>
         </TimelineContent>
       </TimelineItem>
+
       <TimelineItem>
         <TimelineOppositeContent>
           <Typography variant="body2" color="textSecondary">
-            8 الی 10 اسفند 1399
+            ۲۵ بهمن الی ۱ اسفند
           </Typography>
         </TimelineOppositeContent>
         <TimelineSeparator>
-          <TimelineDot color="secondary">
+          <TimelineDot dis color="secondary">
             <LibraryBooksIcon />
           </TimelineDot>
           <TimelineConnector />
@@ -70,53 +66,117 @@ export default function CustomizedTimeline() {
         <TimelineContent>
           <Paper elevation={3} className={classes.paper}>
             <Typography variant="h6" component="h1">
-             آزمون مرحله اول
+              ثبت‌نام مرحله‌ی اول
             </Typography>
-            {/* <Typography>Because it&apos;s awesome!</Typography> */}
           </Paper>
         </TimelineContent>
       </TimelineItem>
+
       <TimelineItem>
         <TimelineOppositeContent>
           <Typography variant="body2" color="textSecondary">
-           5 اردیبهشت 1400
-          </Typography>
-        </TimelineOppositeContent>
-        <TimelineSeparator>
-          <TimelineDot color="secondary" >
-            <ComputerIcon />
-          </TimelineDot>
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent>
-          <Paper elevation={3} className={classes.paper}>
-            <Typography variant="h6" component="h1">
-            آزمون مرحله دوم
-            </Typography>
-            {/* <Typography>Because you need rest</Typography> */}
-          </Paper>
-        </TimelineContent>
-      </TimelineItem>
-      <TimelineItem>
-        <TimelineOppositeContent>
-          <Typography variant="body2" color="textSecondary">
-            13 الی 15 مرداد 1400
+            ۸ الی ۱۰ اسفند
           </Typography>
         </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineDot color="secondary">
             <CreateIcon />
           </TimelineDot>
+          <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent>
           <Paper elevation={3} className={classes.paper}>
             <Typography variant="h6" component="h1">
-            مرحله نهایی
+              آزمون مرحله اول
             </Typography>
-            {/* <Typography>Because this is the life you love!</Typography> */}
           </Paper>
         </TimelineContent>
       </TimelineItem>
+
+      <TimelineItem>
+        <TimelineOppositeContent>
+          <Typography variant="body2" color="textSecondary">
+            ۵ الی ۷ اردیبهشت
+          </Typography>
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <TimelineDot color="secondary">
+            <CreateIcon />
+          </TimelineDot>
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent>
+          <Paper elevation={3} className={classes.paper}>
+            <Typography variant="h6" component="h1">
+              آزمون مرحله دوم
+            </Typography>
+          </Paper>
+        </TimelineContent>
+      </TimelineItem>
+
+      <TimelineItem>
+        <TimelineOppositeContent>
+          <Typography variant="body2" color="textSecondary">
+            خرداد و مرداد ۱۴۰۰
+          </Typography>
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <TimelineDot color="secondary">
+            <SupervisorAccountIcon />
+          </TimelineDot>
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent>
+          <Paper elevation={3} className={classes.paper}>
+            <Typography variant="h6" component="h1">
+              جلسات درون سیاره‌ای بین کارسوقمندانِ سابق و تازه‌واردین به کهکشان
+            </Typography>
+          </Paper>
+        </TimelineContent>
+      </TimelineItem>
+
+
+      <TimelineItem>
+        <TimelineOppositeContent>
+          <Typography variant="body2" color="textSecondary">
+            ۱۳ الی ۱۵ مرداد ۱۴۰۰
+          </Typography>
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <TimelineDot color="secondary">
+            <StarHalfIcon />
+          </TimelineDot>
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent>
+          <Paper elevation={3} className={classes.paper}>
+            <Typography variant="h6" component="h1">
+              مرحله‌ی نهایی، جنگ ستارگان!
+            </Typography>
+          </Paper>
+        </TimelineContent>
+      </TimelineItem>
+
+      <TimelineItem>
+        <TimelineOppositeContent>
+          <Typography variant="body2" color="textSecondary">
+            تا سال بعد...
+          </Typography>
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <TimelineDot color="secondary">
+            <SentimentVeryDissatisfiedIcon />
+          </TimelineDot>
+        </TimelineSeparator>
+        <TimelineContent>
+          <Paper elevation={3} className={classes.paper}>
+            <Typography variant="h6" component="h1">
+              دل‌تنگی و دوری :(
+            </Typography>
+          </Paper>
+        </TimelineContent>
+      </TimelineItem>
+
     </Timeline>
   );
 }

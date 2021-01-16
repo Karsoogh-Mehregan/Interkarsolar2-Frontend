@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 30,
     // lineHeight: '40px',
     color: '#fcecd2',
-    textShadow: '-2px 2px #888',
+    textShadow: '-1px 1px #888',
     [theme.breakpoints.down('sm')]: {
       fontSize: 20,
       // marginBottom: theme.spacing(3),
@@ -211,16 +211,16 @@ function Homepage({ isLoggedIn, logout }) {
         <div className="landing-background" />
         <div id="back-to-top-anchor"></div>
         <Navbar />
+
         <Grid container direction="row" style={{ height: '100%' }}>
-          <Grid item container xs={12} sm={7} />
+          <Hidden xsDown>
+            <Grid item container xs={12} sm={7} />
+          </Hidden>
           <Grid
             item container
             xs={12} sm={5}
             justify="center"
-            alignItems="center"
-            direction="column"
-            spacing={5}
-          >
+            alignItems="center">
             <Grid item>
               <Typography
                 component="h1"
@@ -232,7 +232,7 @@ function Homepage({ isLoggedIn, logout }) {
                 component="h2"
                 variant="h3"
                 className={classes.subtitle}>
-                دومین دوره مسابقات
+                دومین رویداد برخط
               </Typography>
             </Grid>
           </Grid>
@@ -246,7 +246,7 @@ function Homepage({ isLoggedIn, logout }) {
               component="h2"
               variant="h2"
               className={classes.sectionTitle}>
-              چرا کارسوق؟
+              اینجا چه خبره؟!
             </Typography>
           </Grid>
           <Grid container item direction="row">
@@ -256,15 +256,7 @@ function Homepage({ isLoggedIn, logout }) {
                   component="h3"
                   variant="h5"
                   className={classes.text}>
-                  A-لیمپیاد با هدف افزایش قدرت تفکر، یادگیری تکنیک‌های مدل‌سازی
-                  ریاضی، کارگروهی، تمرین نوشتن یافته‌های علمی و جمع‌بندی و ارائه
-                  مطالب در هلند و تعدادی دیگر از کشورها برگزار می‌شود. «حل
-                  مسئله» و «مدل‌سازی ریاضی» در محتوای درسی بسیاری از کشورها
-                  آورده شده است. تمرین این مهارت‌ها معمولا به ندرت انجام می‌شود
-                  زیرا کتاب‌هایی با مثال‌های خوب از مسایل مناسب کم‌تر یافت
-                  می‌شوند و نیز معلمان برای تدریس این دروس مشکلات زیادی دارند،
-                  A-لیمپیاد تلاش می‌کند بستری برای پرورش و ارتقاء این مهارت‌ها
-                  ایجاد نماید.
+                  یک سال پیش ما در تدارک مرحله دوم بیستمین کارسوق مهرگان بودیم که شب خوابیدیم و صبح پاشدیم دیدیم یه مهمون ناخونده به نام کرونا اومده و دیگه نمی‌گذاره که کارسوق رو به روال سابق برگزارکنیم و همدیگر رو ببینیم ولی تیم مهرگان قوی‌تر از اینها بود که کم‌بیاره و از خیر دیدن شما کارسوقی‌های شیفته‌ی ریاضی بگذره. آخه طاقتش رو ‌نداشتیم!
                 </Typography>
               </Grid>
               <Grid item xs={12}>
@@ -272,182 +264,17 @@ function Homepage({ isLoggedIn, logout }) {
                   component="h3"
                   variant="h5"
                   className={classes.text}>
-                  دانش‌آموزان در این مسابقه برای حل یک مسئله در زندگی واقعی تلاش
-                  می‌کنند و در حقیقت مساله به کمک تکنیک‌های مختلف و فرضیات خود
-                  دانش‌آموزان حل می‌شود. دانش‌آموزان بایستی صورت دقیق مسئله را
-                  تفسیر کنند، استراتژی مناسبی برای حل بیابند، نتایج به دست آورده
-                  را تحلیل کنند و نتایج نهایی را ارائه نمایند. نتیجه نهایی این
-                  مسابقه گزارشی نوشته شده است که بایستی به روشنی فرضیات،
-                  تحلیل‌ها و جمع‌بندی دانش‌آموزان را نشان دهد.
+                  خلاصه اینکه ما هم کارسوق رو آنلاین کردیم و چشم‌مون رو بستیم روی کرونا و با هم رفتیم سیاره‌ی اینترکارسولار تا اونجا جناب ریاضیِ دوست‌داشتنی‌مون رو ملاقات‌کنیم و از همنشینی باهاش لذت‌ببریم. امسال هم با سری دوم اینترکارسولار داریم میایم پیشتون تا با هم بریم و دومین سیاره‌ی اینترکارسولار رو در کهکشان مهرگان ببینیم ، حسابی با هم خوش‌بگذرونیم و با جناب ریاضی معاشرت‌کنیم و کلی مسئله حل‌کنیم...
                 </Typography>
               </Grid>
             </Grid>
             <Hidden xsDown="true">
               <Grid item sm={1} />
-              <Grid item sm={5} className={classes.statImage}></Grid>
-            </Hidden>
-          </Grid>
-          <Divider variant="middle" className={classes.divider} />
-          <Grid container item direction="row">
-            <Hidden xsDown="true">
               <Grid item sm={5} className={classes.teamWorkImage}></Grid>
-              <Grid item sm={1} />
             </Hidden>
-            <Grid container item direciton="column" xs={12} sm={6} spacing={2}>
-              <Grid item xs={12}>
-                <Typography
-                  component="h3"
-                  variant="h5"
-                  className={classes.text}>
-                  این آزمون در بیش از ۹۰ مدرسه در هلند و حدود ۱۷ کشور در دنیا با
-                  محوریت موسسه فرودنتال، زیرمجموعه دانشگاه اترخت هلند در حال
-                  برگزاری است و در پی پیمان همکاری این موسسه با خانه ریاضیات
-                  اصفهان، این آزمون از سال ۱۳۸۶ تا کنون در ایران برگزار می‌گردد.
-                  این آزمون ویژگی‌های خاصی دارد:{' '}
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography
-                  component="h3"
-                  variant="h5"
-                  className={classes.text}>
-                  <li>آزمون به صورت گروهی انجام می‌شود.</li>
-                </Typography>
-                <Typography
-                  component="h3"
-                  variant="h5"
-                  className={classes.text}>
-                  <li>
-                    تیپ سوالات، عموما مسایل واقعی از هر جایی نظیر سازمان‌ها،
-                    شرکت‌ها، مراکز پژوهشی و یا مشکلات عمومی یک جامعه است و
-                    معمولا این سوال واقعا در جایی مطرح شده است.
-                  </li>
-                </Typography>
-                <Typography
-                  component="h3"
-                  variant="h5"
-                  className={classes.text}>
-                  <li>
-                    عموما برای ارایه حل برای مساله، یک مدل ریاضی ارائه می‌شود و
-                    با یک ایده خاص روی آن بحث می‌شود.
-                  </li>
-                </Typography>
-                <Typography
-                  component="h3"
-                  variant="h5"
-                  className={classes.text}>
-                  <li>
-                    ایده‌های ارایه شده می‌توانند بسیار متنوع باشند و ممکن است هر
-                    کدام مشکلاتی داشته باشند و هیچ‌کدام مساله را ۱۰۰ درصد حل
-                    نکنند.
-                  </li>
-                </Typography>
-                <Typography
-                  component="h3"
-                  variant="h5"
-                  className={classes.text}>
-                  <li>
-                    عموما صورت مساله‌ها طولانی هستند و فرض‌های زیادی دارند و
-                    ممکن است یک حل برای یک مساله، از همه فرض‌ها استفاده نکند.
-                  </li>
-                </Typography>
-                <Typography
-                  component="h3"
-                  variant="h5"
-                  className={classes.text}>
-                  <li>
-                    حل مساله‌ها نیز کوتاه نیست و عموما بحث‌های تحلیلی نیاز دارد
-                    که از این باب، مهارت نوشتن -چه از نظر مهارت چیدمان مطالب و
-                    چه از نظر نحوه استدلال- بسیار اهمیت داده می‌شود.{' '}
-                  </li>
-                </Typography>
-                <Typography
-                  component="h3"
-                  variant="h5"
-                  className={classes.text}>
-                  <li>
-                    بعضی از مسایل صرفا مهارت خواندن موثر فرض‌های مساله و سپس
-                    هم‌گردانی، استنتاج و تحلیل آن‌ها و ارایه یک خروجی تحلیل شده
-                    را خواسته است.
-                  </li>
-                </Typography>
-              </Grid>
-            </Grid>
           </Grid>
         </Grid>
       </Container>
-      <Container className={classes.gallery}>
-        <Grid container spacing={8}>
-          <Grid item xs={12} sm={3} className={classes.grid1}>
-            <Button>
-              <Grid container direction="column">
-                <Grid container justify="center">
-                  <LibraryBooksIcon style={{ fontSize: 110, color: 'white' }} />
-                  <Typography
-                    component="h2"
-                    variant="h3"
-                    className={classes.gridtext}>
-                    نمونه سوالات کارسوق
-                </Typography>
-                </Grid>
-
-              </Grid>
-            </Button>
-
-          </Grid>
-          <Grid item xs={12} sm={3} className={classes.grid2}>
-
-            <Button>
-              <Grid container direction="column">
-                <Grid container justify="center">
-
-                  <WallpaperIcon style={{ height: '100%', width: '100%', color: 'white' }} />
-                  <Typography
-                    component="h2"
-                    variant="h3"
-                    className={classes.gridtext}>
-                    گالری تصاویر
-                </Typography>
-                </Grid>
-              </Grid>
-            </Button>
-          </Grid>
-
-          <Grid item xs={12} sm={3} className={classes.grid1}>
-            <Button>
-              <Grid container direction="column">
-                <Grid container justify="center">
-                  <MenuBookRoundedIcon style={{ fontSize: 110, color: 'white' }} />
-                  <Typography
-                    component="h2"
-                    variant="h3"
-                    className={classes.gridtext}>
-                    آشنایی با کارگاه ها
-                </Typography>
-                </Grid>
-              </Grid>
-            </Button>
-          </Grid>
-
-          <Grid item xs={12} sm={3} className={classes.grid2}>
-            <Button>
-              <Grid container direction="column">
-                <Grid container justify="center">
-                  <VideocamIcon style={{ fontSize: 110, color: 'white' }} />
-                  <Typography
-                    component="h2"
-                    variant="h3"
-                    className={classes.gridtext}>
-                    کلیپ معرفی
-                </Typography>
-                </Grid>
-              </Grid>
-            </Button>
-          </Grid>
-
-        </Grid>
-      </Container>
-
       <Container className={`${classes.section4} ${classes.centerItems}`}>
         <Grid container direction="column" spacing={4}>
           <Grid item className={classes.section4headline}>

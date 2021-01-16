@@ -9,10 +9,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AppBarButton({ name, to }) {
+export default function AppBarButton({ name, to, ...rest }) {
   const classes = useStyles();
   return (
-    <Button variant='contained' color='primary' size='small' href={to} className={classes.button}>
+    <Button variant='contained' {...rest} color='primary' size='large' href={to} className={classes.button}>
       {name}
     </Button>
   );

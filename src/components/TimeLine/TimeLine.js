@@ -129,7 +129,7 @@ export default function TimeLine() {
         <TimelineContent>
           <Paper elevation={3} className={classes.paper}>
             <Typography variant="h6" component="h1">
-              جلسات درون سیاره‌ای بین کارسوقمندانِ سابق و تازه‌واردین به کهکشان
+              جلسات درون سیاره‌ای بین کارسوقمندانِ سابق و تازه‌واردینِ کهکشان
             </Typography>
           </Paper>
         </TimelineContent>

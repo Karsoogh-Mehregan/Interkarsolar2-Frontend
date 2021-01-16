@@ -9,7 +9,7 @@ import {
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PersonCard from '../../components/Cards/PersonCard'
-import Positions from './StaticData';
+import { Staff as StaffInfo, subteams } from './StaticData';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -62,17 +62,17 @@ function Staff() {
           </Grid>
           <Grid container item direction='column' spacing={4}>
             {
-              Positions.map((position) => {
+              subteams.map((subteam) => {
                 return (
                   <>
                     <Grid item>
                       <Typography variant='h4' align='center' className={classes.subtitle}>
-                        {position.name}
+                        {subteam.name}
                       </Typography>
                     </Grid>
                     <Grid container item direction='row' spacing={2}>
                       {
-                        position.staff.map((staff) => {
+                        StaffInfo.filter((staff) => staff.subteam == subteam.id).map((staff) => {
                           return (
                             <Grid item xs={12} sm={4} md={3}>
                               <PersonCard

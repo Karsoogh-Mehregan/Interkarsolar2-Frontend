@@ -1,6 +1,5 @@
 import {
   Button,
-  Divider,
   Fab,
   Grid,
   Hidden,
@@ -16,7 +15,6 @@ import VideocamIcon from '@material-ui/icons/Videocam';
 import MenuBookRoundedIcon from '@material-ui/icons/MenuBookRounded';
 
 import React, { useState } from 'react';
-import Gallery from '../components/Gallery/gallery';
 import PersonCard from '../components/Cards/PersonCard'
 import Timeline from '../components/TimeLine/TimeLine'
 import { connect } from 'react-redux';
@@ -65,20 +63,6 @@ const useStyles = makeStyles((theme) => ({
   text: {
     textAlign: 'justify',
     textJustify: 'inter-word',
-    paddingLeft: '20px',
-  },
-
-  divider: {
-    boxShadow: '0px 1px 0px 1px #37253F',
-    marginTop: '3vh',
-    marginBottom: '3vh',
-  },
-
-  statImage: {
-    background: `url(${process.env.PUBLIC_URL + '/stat.png'})`,
-    backgroundSize: 'contain',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center center',
   },
 
   teamWorkImage: {
@@ -94,67 +78,23 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(4, 3, 4),
   },
 
-  // section1Grid: {
-  //   height: '50vh',
-  // },
-
-  fullHeight: {
-    height: '100%',
-  },
-
-  section2: {
-    opacity: '1',
-    color: '#f7f2f6',
-    background: '#410066',
-    paddingTop: '30px',
-    paddingBottom: '30px',
-  },
-
   section3: {
-    opacity: '1',
     color: '#f7f2f6',
-    background: '#673CC6',
-    paddingTop: '30px',
-    paddingBottom: '30px',
+    background: 'linear-gradient(90deg, rgba(64,113,149,1) 0%, rgba(39,70,142,1) 35%, rgba(36,33,97,1) 100%);',
+    padding: theme.spacing(8),
+    paddingTop: theme.spacing(4),
   },
-  section4headline: {
-    marginBottom: '30px',
-  },
-  section4button: {
-    margin: '20px',
-    marginBottom: '80px',
-  },
+
   section4: {
     opacity: '1',
     background: `url(${process.env.PUBLIC_URL + '/background.jpg'})`,
     color: '#26373d',
+    padding: theme.spacing(8),
+    paddingTop: theme.spacing(4),
+  },
 
-    paddingTop: '30px',
-    paddingBottom: '30px',
-  },
-  gallery: {
-    opacity: '1',
-    background: '#31046e',
-    color: '#26373d',
 
-    paddingTop: '30px',
-    paddingBottom: '30px',
-  },
-  grid1: {
-    background: '#240453',
-    alignItems: 'center',
-  },
-  grid2: {
-    alignContent: 'center',
-    background: '#31046e',
-  },
-  gridtext: {
-    alignContent: 'center',
-    textAlign: 'justify',
-    textJustify: 'inter-word',
-    color: '#fffefa',
-  },
-  section4t: {
+  section5: {
     opacity: '1',
 
     background: `url(${process.env.PUBLIC_URL + '/background3.jpg'})`,
@@ -164,9 +104,9 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: '30px',
   },
 
-  section5: {
+  section6: {
     opacity: '1',
-    background: '#F0DBED',
+    background: '#F3A321',
     // color: '#f2f2f2',
 
     paddingTop: '30px',
@@ -232,7 +172,7 @@ function Homepage({ isLoggedIn, logout }) {
                 component="h2"
                 variant="h3"
                 className={classes.subtitle}>
-                دومین رویداد برخط
+                دومین دوره رویداد برخط
               </Typography>
             </Grid>
           </Grid>
@@ -240,13 +180,14 @@ function Homepage({ isLoggedIn, logout }) {
       </Container>
 
       <Container className={`${classes.section3} ${classes.centerItems}`}>
-        <Grid container direction="column" spacing={4}>
+        <Grid container direction="column" spacing={6}>
           <Grid item>
             <Typography
               component="h2"
               variant="h2"
-              className={classes.sectionTitle}>
-              اینجا چه خبره؟!
+              className={classes.sectionTitle}
+              align='center'>
+              اینجا چه خبره؟
             </Typography>
           </Grid>
           <Grid container item direction="row">
@@ -256,7 +197,7 @@ function Homepage({ isLoggedIn, logout }) {
                   component="h3"
                   variant="h5"
                   className={classes.text}>
-                  یک سال پیش ما در تدارک مرحله دوم بیستمین کارسوق مهرگان بودیم که شب خوابیدیم و صبح پاشدیم دیدیم یه مهمون ناخونده به نام کرونا اومده و دیگه نمی‌گذاره که کارسوق رو به روال سابق برگزارکنیم و همدیگر رو ببینیم ولی تیم مهرگان قوی‌تر از اینها بود که کم‌بیاره و از خیر دیدن شما کارسوقی‌های شیفته‌ی ریاضی بگذره. آخه طاقتش رو ‌نداشتیم!
+                  یک سال پیش ما در تدارک مرحله دوم بیستمین کارسوق مهرگان بودیم که شب خوابیدیم و صبح پاشدیم دیدیم یه مهمون ناخونده به نام کرونا اومده و دیگه نمی‌گذاره که کارسوق رو به روال سابق برگزارکنیم و همدیگر رو ببینیم. ولی تیم مهرگان قوی‌تر از اینها بود که کم‌بیاره و از خیر دیدن شما کارسوقی‌های شیفته‌ی ریاضی بگذره. آخه طاقتش رو ‌نداشتیم!
                 </Typography>
               </Grid>
               <Grid item xs={12}>
@@ -269,39 +210,40 @@ function Homepage({ isLoggedIn, logout }) {
               </Grid>
             </Grid>
             <Hidden xsDown="true">
-              <Grid item sm={1} />
-              <Grid item sm={5} className={classes.teamWorkImage}></Grid>
+              <Grid item sm={6} className={classes.teamWorkImage}></Grid>
             </Hidden>
           </Grid>
         </Grid>
       </Container>
+
       <Container className={`${classes.section4} ${classes.centerItems}`}>
         <Grid container direction="column" spacing={4}>
-          <Grid item className={classes.section4headline}>
-
+          <Grid item>
             <Typography
               component="h2"
               variant="h2"
-              className="fancy">
-              <span>زمان بندی رویداد</span>
+              align='center'>
+              زمان‌بندی رویداد
             </Typography>
           </Grid>
-          <Timeline />
+          <Grid item>
+            <Timeline />
+          </Grid>
         </Grid>
       </Container>
 
 
-      <Container className={`${classes.section4t} ${classes.centerItems}`}>
+      <Container className={`${classes.section5} ${classes.centerItems}`}>
         <Grid container direction="column" spacing={4}>
-          <Grid item className={classes.section4headline}>
+          <Grid item>
             <Typography
               component="h2"
               variant="h2"
-              className="fancy">
-              <span>تیم اینترکارسولار</span>
+              align='center'>
+              تیم اینترکارسولار
             </Typography>
           </Grid>
-          <Grid container direction="row" spacing={4} className={classes.personCard}>
+          <Grid container item direction="row" spacing={4} className={classes.personCard}>
             <Grid item xs={6} sm={3}>
               <PersonCard />
             </Grid>
@@ -321,8 +263,7 @@ function Homepage({ isLoggedIn, logout }) {
               variant="contained"
               color="default"
               size="medium"
-              href="staff/"
-              className={classes.section4button}>
+              href="staff/">
               <Typography variant="h3">مشاهده همه </Typography>
             </Button>
           </Grid>

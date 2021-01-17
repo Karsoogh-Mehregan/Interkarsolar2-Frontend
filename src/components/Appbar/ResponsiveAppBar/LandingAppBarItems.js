@@ -9,7 +9,7 @@ const LandingAppBarItems = () => {
 
   return ({
     desktopLeftItems: [],
-    desktopRightItems: [<AppBarButton name='خانه' />, <AppBarButton name='چه خبره؟' />],
+    desktopRightItems: [],
     mobileLeftItems: [],
     mobileRightItems: [],
     mobileMenuListItems: [],

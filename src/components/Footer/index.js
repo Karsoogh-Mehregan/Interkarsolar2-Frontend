@@ -17,7 +17,7 @@ const Footer = () => {
       alignItems='center'
       spacing={2}
     >
-      <Grid item>
+      <Grid item style={{ marginBottom: '15px' }}>
         <Typography
           component="h2"
           variant="h2"

@@ -14,14 +14,14 @@ const Media = () => {
         </a>
         <a
           target="_blank"
-          href="https://www.instagram.com/rastaiha/"
+          href="https://www.instagram.com/karsooghmehregan/"
           class="social-link"
         >
           <InstagramIcon />
         </a>
         <a
           target="_blank"
-          href="https://www.aparat.com/Rastaiha/%D8%AC%D9%85%D8%B9_%D8%B9%D9%84%D9%85%DB%8C-%D8%AA%D8%B1%D9%88%DB%8C%D8%AC%DB%8C_%26laquo%3B%D8%B1%D8%B3%D8%AA%D8%A7%26raquo"
+          href="https://www.aparat.com/karsooghmehregan.ir/%DA%A9%D8%A7%D8%B1%D8%B3%D9%88%D9%82_%D8%B1%DB%8C%D8%A7%D8%B6%DB%8C_%D9%85%D9%87%D8%B1%DA%AF%D8%A7%D9%86"
           class="social-link"
         >
           <img

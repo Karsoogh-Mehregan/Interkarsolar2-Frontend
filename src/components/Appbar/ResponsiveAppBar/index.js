@@ -64,14 +64,14 @@ function ResponsiveAppBar({ mode = 'LANDING' }) {
       <AppBar className={classes.appBar} color="secondary">
         <Container maxWidth="lg">
           <Toolbar className={classes.toolbar}>
-            <IconButton
+            {/* <IconButton
               edge="start"
               color="inherit"
               aria-label="open drawer"
               className={classes.menuButton}
               onClick={() => setDrawerOpen(true)}>
               <MenuIcon />
-            </IconButton>
+            </IconButton> */}
             <Hidden xsDown>{desktopRightItems}</Hidden>
             <Hidden smUp>{mobileRightItems}</Hidden>
             <div className={classes.grow} />
@@ -81,7 +81,7 @@ function ResponsiveAppBar({ mode = 'LANDING' }) {
         </Container>
       </AppBar>
       {/* </HideOnScroll> */}
-      <Hidden smUp>
+      {/* <Hidden smUp>
         <Drawer
           anchor="left"
           open={drawerOpen}
@@ -94,7 +94,7 @@ function ResponsiveAppBar({ mode = 'LANDING' }) {
             </List>
           </div>
         </Drawer>
-      </Hidden>
+      </Hidden> */}
     </>
   );
 }

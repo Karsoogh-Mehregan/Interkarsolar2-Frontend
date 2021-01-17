@@ -112,7 +112,7 @@ function Homepage({ isLoggedIn }) {
   const classes = useStyles();
 
   return (
-    <div style={{ overFlowX: 'hidden' }}>
+    <div style={{ overflowX: 'hidden' }}>
       <Container className={classes.section1}>
         <div className="landing-background" />
         <div id="back-to-top-anchor"></div>
@@ -138,7 +138,7 @@ function Homepage({ isLoggedIn }) {
                 component="h2"
                 variant="h3"
                 className={classes.subtitle}>
-                دومین دوره رویداد برخط
+                دومین دوره رویداد برخطِ
               </Typography>
             </Grid>
           </Grid>

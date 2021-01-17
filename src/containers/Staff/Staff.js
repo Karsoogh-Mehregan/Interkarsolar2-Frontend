@@ -15,7 +15,7 @@ import { Staff as StaffInfo, subteams } from './StaticData';
 const useStyles = makeStyles((theme) => ({
   container: {
     padding: theme.spacing(4),
-    backgroundColor: '#d8e7ed',
+    background: 'linear-gradient(90deg, rgba(109,167,209,1) 0%, rgba(118,155,200,1) 14%, rgba(202,242,242,1) 100%);',
     display: 'flex',
     // alignItems: 'center',
     justifyContent: 'center',

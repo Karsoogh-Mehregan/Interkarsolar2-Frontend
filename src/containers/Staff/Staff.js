@@ -1,3 +1,5 @@
+import React from 'react';
+import _ from 'lodash';
 import {
   Button,
   Container,
@@ -6,7 +8,6 @@ import {
   Grid,
   Typography,
 } from '@material-ui/core';
-import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PersonCard from '../../components/Cards/PersonCard'
 import { Staff as StaffInfo, subteams } from './StaticData';
@@ -72,7 +73,7 @@ function Staff() {
                     </Grid>
                     <Grid container item direction='row' spacing={2}>
                       {
-                        StaffInfo.filter((staff) => staff.subteam == subteam.id).map((staff) => {
+                        _.shuffle(StaffInfo.filter((staff) => staff.subteam == subteam.id)).map((staff) => {
                           return (
                             <Grid item xs={12} sm={4} md={3}>
                               <PersonCard

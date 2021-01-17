@@ -39,8 +39,10 @@ const Footer = () => {
       <Grid item>
         <Media />
       </Grid>
-      <Grid item xs={12} justify='center' alignItems='center'>
-        تمامی حقوق برای کارسوق ریاضی مهرگان محفوظ است. ۱۳۹۹-۱۴۰۰
+      <Grid item justify='center'>
+        <Typography align='center'>
+          تمامی حقوق برای کارسوق ریاضی مهرگان محفوظ است. ۱۳۹۹-۱۴۰۰
+        </Typography>
       </Grid>
     </Grid>
   );

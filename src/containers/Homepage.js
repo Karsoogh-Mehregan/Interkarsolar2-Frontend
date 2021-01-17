@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
 
   teamWorkImage: {
     background: `url(${process.env.PUBLIC_URL + '/team-work.png'})`,
-    backgroundSize: 'contain',
+    backgroundSize: 'contain !important',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center center',
   },
@@ -76,6 +76,10 @@ const useStyles = makeStyles((theme) => ({
     background: 'linear-gradient(90deg, rgba(64,113,149,1) 0%, rgba(39,70,142,1) 35%, rgba(36,33,97,1) 100%);',
     padding: theme.spacing(8),
     paddingTop: theme.spacing(6),
+    [theme.breakpoints.down('xs')]: {
+      padding: theme.spacing(4),
+      paddingTop: theme.spacing(3),
+    },
   },
 
   section4: {
@@ -84,6 +88,10 @@ const useStyles = makeStyles((theme) => ({
     color: '#26373d',
     padding: theme.spacing(8),
     paddingTop: theme.spacing(6),
+    [theme.breakpoints.down('xs')]: {
+      padding: theme.spacing(4),
+      paddingTop: theme.spacing(3),
+    },
   },
 
   section5: {
@@ -91,6 +99,10 @@ const useStyles = makeStyles((theme) => ({
     color: '#f7f2f6',
     padding: theme.spacing(8),
     paddingTop: theme.spacing(6),
+    [theme.breakpoints.down('xs')]: {
+      padding: theme.spacing(4),
+      paddingTop: theme.spacing(3),
+    },
   },
 
   section6: {
@@ -99,6 +111,11 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(8),
     paddingTop: theme.spacing(6),
     paddingBottom: theme.spacing(2),
+    [theme.breakpoints.down('xs')]: {
+      padding: theme.spacing(4),
+      paddingTop: theme.spacing(3),
+      paddingBottom: theme.spacing(1),
+    },
   },
 
   footer: {
@@ -156,9 +173,9 @@ function Homepage({ isLoggedIn }) {
               اینجا چه خبره؟
             </Typography>
           </Grid>
-          <Grid container item direction="row">
-            <Grid container item direciton="column" xs={12} sm={6} spacing={2}>
-              <Grid item xs={12}>
+          <Grid container item direction="row" justify='center'>
+            <Grid container item direciton="column" xs={12} sm={6} spacing={2} alignItems='center'>
+              <Grid item>
                 <Typography
                   component="h3"
                   variant="h5"
@@ -166,7 +183,7 @@ function Homepage({ isLoggedIn }) {
                   یک سال پیش ما در تدارک مرحله دوم بیستمین کارسوق مهرگان بودیم که شب خوابیدیم و صبح پاشدیم دیدیم یه مهمون ناخونده به نام کرونا اومده و دیگه نمی‌گذاره که کارسوق رو به روال سابق برگزارکنیم و همدیگر رو ببینیم. ولی تیم مهرگان قوی‌تر از اینها بود که کم‌بیاره و از خیر دیدن شما کارسوقی‌های شیفته‌ی ریاضی بگذره. آخه طاقتش رو ‌نداشتیم!
                 </Typography>
               </Grid>
-              <Grid item xs={12}>
+              <Grid item>
                 <Typography
                   component="h3"
                   variant="h5"
@@ -192,12 +209,11 @@ function Homepage({ isLoggedIn }) {
               زمان‌بندی رویداد
             </Typography>
           </Grid>
-          <Grid item>
+          <Grid container item justify='center'>
             <Timeline />
           </Grid>
         </Grid>
       </Container>
-
 
       <Container className={`${classes.section5} ${classes.centerItems}`}>
         <Grid container direction="column" spacing={4}>
@@ -209,11 +225,17 @@ function Homepage({ isLoggedIn }) {
               تیم اینترکارسولار
             </Typography>
           </Grid>
-          <Grid container item direction="row" spacing={4} className={classes.personCard}>
+          <Grid
+            container item
+            direction="row"
+            spacing={4}
+            justify='center'
+            alignItems='center'
+            className={classes.personCard}>
             {
               _.shuffle(Staff).slice(0, 4).map((staff) => {
                 return (
-                  <Grid item xs={12} sm={4} md={3}>
+                  <Grid container item xs={12} sm={4} md={3} justify='center'>
                     <PersonCard
                       name={staff.name}
                       position={staff.position}

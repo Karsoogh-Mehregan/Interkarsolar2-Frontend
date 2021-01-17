@@ -10,6 +10,7 @@
     "jalali-moment": "^3.3.8",
     "jsonpack": "^1.1.5",
     "jss-rtl": "^0.3.0",
+    "lodash": "^4.17.20",
     "node-sass": "4.14.1",
     "notistack": "^1.0.2",
     "react": "^17.0.1",

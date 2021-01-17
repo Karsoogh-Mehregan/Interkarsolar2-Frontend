@@ -1,15 +1,13 @@
-import '../../assets/styles/footer.css';
-
 import InstagramIcon from '@material-ui/icons/Instagram';
 import TelegramIcon from '@material-ui/icons/Telegram';
 
-const media = () => {
+const Media = () => {
   return (
     <div class="social-medias">
       <div>
         <a
           target="_blank"
-          href="https://t.me/rastaiha"
+          href="https://t.me/karsooghmehregan"
           class="social-link"
         >
           <TelegramIcon />
@@ -35,3 +33,5 @@ const media = () => {
     </div>
   )
 }
+
+export default Media;

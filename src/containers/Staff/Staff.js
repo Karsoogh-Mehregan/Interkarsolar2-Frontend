@@ -57,7 +57,7 @@ function Staff() {
         <Grid container item direction='column'>
           <Grid item>
             <Typography variant='h2' align='center' className={classes.title}>
-              «کارسوقی‌ها»
+              «اینترکارسولاری‌ها»
             </Typography>
           </Grid>
           <Grid container item direction='column' spacing={4}>

@@ -5,9 +5,14 @@ const Institutions = [
     site_url: 'http://mathhouse.org/',
   },
   {
-    name: 'جمع علمی-ترویجی رستا',
-    img_src: process.env.PUBLIC_URL + '/Rasta-logo.png',
-    site_url: 'https://rastaiha.ir/',
+    name: 'دبیرستان دوره اول شهید اژه‌ای یک اصفهان',
+    img_src: process.env.PUBLIC_URL + '/Sampad.svg',
+    site_url: '',
+  },
+  {
+    name: 'دبیرستان دوره اول فرزانگان امین یک اصفهان',
+    img_src: process.env.PUBLIC_URL + '/Sampad.svg',
+    site_url: '',
   },
 ]
 

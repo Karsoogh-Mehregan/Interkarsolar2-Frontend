@@ -1,28 +1,22 @@
+import React, { useState } from 'react';
+import _ from 'lodash';
 import {
   Button,
-  Fab,
   Grid,
   Hidden,
   makeStyles,
   Typography,
+  Container,
 } from '@material-ui/core';
-import InstagramIcon from '@material-ui/icons/Instagram';
-import Container from '@material-ui/core/Container';
-import TelegramIcon from '@material-ui/icons/Telegram';
-import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
-import WallpaperIcon from '@material-ui/icons/Wallpaper';
-import VideocamIcon from '@material-ui/icons/Videocam';
-import MenuBookRoundedIcon from '@material-ui/icons/MenuBookRounded';
-
-import React, { useState } from 'react';
 import PersonCard from '../components/Cards/PersonCard'
 import Timeline from '../components/TimeLine/TimeLine'
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import AuthDialog from '../components/Dialog/AuthDialog/AuthDialog';
 import ScrollTop from '../components/ScrollToTop/ScrollToTop';
 import Navbar from '../components/Appbar/ResponsiveAppBar';
 import { logout } from '../redux/actions/account';
+import { Staff } from './Staff/StaticData';
+import Footer from '../components/Footer';
+import FAQ from '../components/FAQ';
 
 const useStyles = makeStyles((theme) => ({
   centerItems: {
@@ -75,14 +69,13 @@ const useStyles = makeStyles((theme) => ({
   section1: {
     height: '100vh',
     color: 'black',
-    padding: theme.spacing(4, 3, 4),
   },
 
   section3: {
     color: '#f7f2f6',
     background: 'linear-gradient(90deg, rgba(64,113,149,1) 0%, rgba(39,70,142,1) 35%, rgba(36,33,97,1) 100%);',
     padding: theme.spacing(8),
-    paddingTop: theme.spacing(4),
+    paddingTop: theme.spacing(6),
   },
 
   section4: {
@@ -90,63 +83,36 @@ const useStyles = makeStyles((theme) => ({
     background: `url(${process.env.PUBLIC_URL + '/background.jpg'})`,
     color: '#26373d',
     padding: theme.spacing(8),
-    paddingTop: theme.spacing(4),
+    paddingTop: theme.spacing(6),
   },
 
-
   section5: {
-    opacity: '1',
-
     background: `url(${process.env.PUBLIC_URL + '/background3.jpg'})`,
     color: '#f7f2f6',
-
-    paddingTop: '30px',
-    paddingBottom: '30px',
+    padding: theme.spacing(8),
+    paddingTop: theme.spacing(6),
   },
 
   section6: {
-    opacity: '1',
-    background: '#F3A321',
-    // color: '#f2f2f2',
-
-    paddingTop: '30px',
-    paddingBottom: '30px',
+    background: `linear-gradient(90deg, rgba(176,200,255,1) 0%, rgba(124,200,229,1) 51%, rgba(64,113,149,1) 100%);`,
+    color: 'black',
+    padding: theme.spacing(8),
+    paddingTop: theme.spacing(6),
+    paddingBottom: theme.spacing(2),
   },
+
   footer: {
     alignContent: 'center',
     color: '#a69eac',
   },
-  formPaper: {
-    padding: theme.spacing(2),
-    boxShadow: '1px 1px 1px 1px black',
-  },
 
-  supportAnnouncement: {
-    position: 'sticky',
-    bottom: theme.spacing(1),
-    left: theme.spacing(1),
-  },
-  end: {
-    fontSize: 60,
-    color: 'white',
-    textShadow: '2px 2px #333',
-    lineHeight: '60px',
-  },
-  survey: {
-    background: '#689F38',
-    color: 'white',
-    '&:hover': {
-      color: '#689F38',
-    },
-  },
 }));
 
-function Homepage({ isLoggedIn, logout }) {
+function Homepage({ isLoggedIn }) {
   const classes = useStyles();
-  const [authDialogOpen, setAuthDialogOpen] = useState();
 
   return (
-    <>
+    <div style={{ overFlowX: 'hidden' }}>
       <Container className={classes.section1}>
         <div className="landing-background" />
         <div id="back-to-top-anchor"></div>
@@ -244,62 +210,50 @@ function Homepage({ isLoggedIn, logout }) {
             </Typography>
           </Grid>
           <Grid container item direction="row" spacing={4} className={classes.personCard}>
-            <Grid item xs={6} sm={3}>
-              <PersonCard />
-            </Grid>
-            <Grid item xs={6} sm={3}>
-              <PersonCard />
-            </Grid>
-            <Hidden xsDown="true">
-              <Grid item xs={3}><PersonCard /></Grid>
-            </Hidden>
-            <Hidden xsDown="true">
-              <Grid item xs={3}><PersonCard /></Grid>
-            </Hidden>
+            {
+              _.shuffle(Staff).slice(0, 4).map((staff) => {
+                return (
+                  <Grid item xs={12} sm={4} md={3}>
+                    <PersonCard
+                      name={staff.name}
+                      position={staff.position}
+                      description={staff.description}
+                      image={staff.image} />
+                  </Grid>
+                )
+              })
+            }
           </Grid>
-          <Grid container xs={12} justify="center"
-            alignItems="center" >
+          <Grid container item justify="center" alignItems="center" >
             <Button
               variant="contained"
               color="default"
               size="medium"
+              target="_blank"
+              rel="noopener noreferrer"
               href="staff/">
-              <Typography variant="h3">مشاهده همه </Typography>
+              <Typography variant="h3">مشاهده همه</Typography>
             </Button>
-          </Grid>
-          <Grid container direction="column" justify="center" className={classes.footer}>
-            <Typography
-              component="h5"
-              variant="h5">
-              ما را در شبکه‌های زیر دنبال کنید
-            </Typography>
-            <Grid item direction="row">
-              <Grid container justify="center">
-
-                <Button href="https://www.instagram.com/karsooghmehregan/" color="default">
-                  <InstagramIcon />
-                </Button>
-                <Button href="https://t.me/karsooghmehregan_20">
-                  <TelegramIcon />
-                </Button>
-              </Grid>
-            </Grid>
-
           </Grid>
         </Grid>
       </Container>
 
+      <Container className={`${classes.section6} ${classes.centerItems}`}>
+        <Footer />
+      </Container>
+
       <ScrollTop showBelow={250} />
-      <AuthDialog
-        open={authDialogOpen}
-        handleClose={() => setAuthDialogOpen(false)}
-      />
-    </>
+    </div>
   );
 }
 
 const mapStateToProps = (state) => ({
-  isLoggedIn: !!state.account.token,
+  isLoggedIn: state.account.token,
 });
 
-export default connect(mapStateToProps, { logout })(Homepage);
+export default connect(
+  mapStateToProps,
+  {
+    logout
+  }
+)(Homepage);

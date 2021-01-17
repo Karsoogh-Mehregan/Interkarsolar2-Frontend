@@ -18,7 +18,7 @@ import { connect } from 'react-redux';
 const useStyles = makeStyles((theme) => ({
   image: (props) => ({
     background: `url(${process.env.PUBLIC_URL}/Staff/${props.image})`,
-    backgroundSize: 'contain',
+    backgroundSize: 'contain !important',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center center',
     boxShadow: '2px 2px 5px gray',

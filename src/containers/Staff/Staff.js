@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import PersonCard from '../../components/Cards/PersonCard'
 import { Staff as StaffInfo, subteams } from './StaticData';
 import Navbar from '../../components/Appbar/ResponsiveAppBar';
+import Footer from '../../components/Footer/Footer';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -55,7 +56,7 @@ function Staff() {
   const classes = useStyles();
   return (
     <div className={classes.container}>
-              <Navbar />
+      <Navbar />
 
       <Grid container direction='row'>
         <Grid container item direction='column'>
@@ -93,6 +94,9 @@ function Staff() {
                 )
               })
             }
+          </Grid>
+          <Grid item style={{ marginTop: '20px' }}>
+            <Footer />
           </Grid>
         </Grid>
       </Grid>

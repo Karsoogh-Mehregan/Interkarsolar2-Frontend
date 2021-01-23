@@ -15,7 +15,8 @@ import ScrollTop from '../components/ScrollToTop/ScrollToTop';
 import Navbar from '../components/Appbar/ResponsiveAppBar';
 import { logout } from '../redux/actions/account';
 import { Staff } from './Staff/StaticData';
-import Footer from '../components/Footer';
+import Supporter from '../components/Footer/Supporters'
+import Footer from '../components/Footer/Footer';
 import FAQ from '../components/FAQ';
 
 const useStyles = makeStyles((theme) => ({
@@ -235,7 +236,7 @@ function Homepage({ isLoggedIn }) {
             {
               _.shuffle(Staff).slice(0, 4).map((staff) => {
                 return (
-                  <Grid container item xs={12} sm={4} md={3} justify='center'>
+                  <Grid container item xs={12} sm={6} md={3} justify='center'>
                     <PersonCard
                       name={staff.name}
                       position={staff.position}
@@ -261,7 +262,14 @@ function Homepage({ isLoggedIn }) {
       </Container>
 
       <Container className={`${classes.section6} ${classes.centerItems}`}>
-        <Footer />
+        <Grid container direction="column" spacing={4}>
+          <Grid item>
+            <Supporter />
+          </Grid>
+          <Grid item>
+            <Footer />
+          </Grid>
+        </Grid>
       </Container>
 
       <ScrollTop showBelow={250} />

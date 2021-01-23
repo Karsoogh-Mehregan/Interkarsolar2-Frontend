@@ -6,14 +6,15 @@ import LogoButton from './components/LogoButton';
 import AppBarButton from './components/Button'
 const LandingAppBarItems = () => {
 
+  const enterToSpaceShipButton = < AppBarButton name = 'ورود به سفینه' / >
 
-  return ({
-    desktopLeftItems: [],
-    desktopRightItems: [],
-    mobileLeftItems: [],
-    mobileRightItems: [],
-    mobileMenuListItems: [],
-  })
+    return ({
+      desktopLeftItems: [enterToSpaceShipButton, ],
+      desktopRightItems: [],
+      mobileLeftItems: [],
+      mobileRightItems: [],
+      mobileMenuListItems: [],
+    })
 };
 
 export default LandingAppBarItems;

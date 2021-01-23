@@ -11,6 +11,7 @@ import {
 import { connect } from 'react-redux';
 import PersonCard from '../../components/Cards/PersonCard'
 import { Staff as StaffInfo, subteams } from './StaticData';
+import Navbar from '../../components/Appbar/ResponsiveAppBar';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -54,6 +55,8 @@ function Staff() {
   const classes = useStyles();
   return (
     <div className={classes.container}>
+              <Navbar />
+
       <Grid container direction='row'>
         <Grid container item direction='column'>
           <Grid item>
@@ -73,7 +76,7 @@ function Staff() {
                     </Grid>
                     <Grid container item direction='row' spacing={2}>
                       {
-                        _.shuffle(StaffInfo.filter((staff) => staff.subteam == subteam.id)).map((staff) => {
+                        StaffInfo.filter((staff) => staff.subteam == subteam.id).map((staff) => {
                           return (
                             <Grid item xs={12} sm={4} md={3}>
                               <PersonCard

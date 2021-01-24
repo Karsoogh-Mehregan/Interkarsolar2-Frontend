@@ -56,7 +56,7 @@ function Staff() {
   const classes = useStyles();
   return (
     <div className={classes.container}>
-      <ResponsiveAppBar mode="LANDING" showBackOnScroll hideOnScroll={false} />
+      <ResponsiveAppBar mode="SECONDARY" showBackOnScroll hideOnScroll={false} />
 
       <Grid container direction='row'>
         <Grid container item direction='column'>

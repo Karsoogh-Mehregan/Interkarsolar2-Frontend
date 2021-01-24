@@ -130,7 +130,7 @@ function Homepage({ isLoggedIn }) {
   const classes = useStyles();
 
   return (
-    <div style={{ overflowX: 'hidden' }}>
+    <>
       <Container className={classes.section1}>
         <div className="landing-background" />
         <div id="back-to-top-anchor"></div>
@@ -273,7 +273,7 @@ function Homepage({ isLoggedIn }) {
       </Container>
 
       <ScrollTop showBelow={250} />
-    </div>
+    </>
   );
 }
 

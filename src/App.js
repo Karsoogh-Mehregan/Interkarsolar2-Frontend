@@ -1,4 +1,6 @@
 import './theme/styles/style.scss';
+import 'react-toastify/dist/ReactToastify.css';
+import { Slide, ToastContainer } from 'react-toastify';
 import { CssBaseline } from '@material-ui/core';
 import { ThemeProvider, StylesProvider } from '@material-ui/styles';
 import React, { useEffect } from 'react';
@@ -10,7 +12,7 @@ import RTLMuiTheme from './theme/RTLMuiTheme';
 import jss from './utils/jssRTL';
 
 const App = ({ redirectTo, forceRedirect, initRedirect }) => {
-  
+
   const history = useHistory();
   useEffect(() => {
     if (redirectTo !== null) {
@@ -26,11 +28,26 @@ const App = ({ redirectTo, forceRedirect, initRedirect }) => {
     }
   }, [redirectTo, forceRedirect, initRedirect, history]);
 
+  const Toast = () => (
+    <ToastContainer
+      rtl
+      position="top-right"
+      autoClose={4000}
+      transition={Slide}
+      hideProgressBar={false}
+      pauseOnHover={false}
+      pauseOnFocusLoss={false}
+      closeOnClick
+      limit={3}
+    />
+  );
+
   return (
     <ThemeProvider theme={RTLMuiTheme}>
       <StylesProvider jss={jss}>
         <CssBaseline />
         <Root />
+        <Toast />
       </StylesProvider>
     </ThemeProvider>
   );

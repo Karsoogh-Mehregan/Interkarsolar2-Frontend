@@ -3,7 +3,6 @@ import React from 'react';
 
 const useStyles = makeStyles((theme) => ({
   button: {
-    backgroundColor: theme.palette.secondary,
     marginRight: theme.spacing(0.5),
     marginLeft: theme.spacing(0.5),
   },

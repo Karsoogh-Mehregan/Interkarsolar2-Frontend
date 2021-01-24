@@ -22,7 +22,7 @@ const Supporters = () => {
           component="h2"
           variant="h2"
           align='center'>
-          دوستان و آشنایان
+          دوستان
           </Typography>
       </Grid>
       <Grid container item direction='row' justify='center' sm={6}>

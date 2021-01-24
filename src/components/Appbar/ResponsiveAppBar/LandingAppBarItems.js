@@ -1,17 +1,18 @@
 import React from 'react';
-import {
-  Button,
-} from '@material-ui/core'
-import AppBarButton from './components/Button'
+import LoginButton from './components/LoginButton'
+import TypicalButton from './components/Button'
+
 const LandingAppBarItems = () => {
 
-  const enterToSpaceShipButton = < AppBarButton name='ورود به سفینه' />
+  const sampleQuestions = <TypicalButton name='نمونه سوالات سال‌های قبل' target="_blank"
+    rel="noopener noreferrer" to='http://karsooghmehregan.ir/%d9%86%d9%85%d9%88%d9%86%d9%87-%d8%b3%d9%88%d8%a7%d9%84%d8%a7%d8%aa-%d8%b3%d8%a7%d9%84-%d9%87%d8%a7%db%8c-%d9%82%d8%a8%d9%84' />
+
 
   return ({
-    desktopLeftItems: [enterToSpaceShipButton,],
+    desktopLeftItems: [sampleQuestions, <LoginButton />,],
     desktopRightItems: [],
-    mobileLeftItems: [],
-    mobileRightItems: [],
+    mobileLeftItems: [<LoginButton />],
+    mobileRightItems: [sampleQuestions],
     mobileMenuListItems: [],
   })
 };

@@ -119,6 +119,20 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  section7: {
+    background: `linear-gradient(90deg, rgba(176,200,255,1) 0%, rgba(124,200,229,1) 51%, rgba(64,113,149,1) 100%);`,
+    color: 'black',
+    padding: theme.spacing(8),
+    paddingTop: theme.spacing(6),
+    paddingBottom: theme.spacing(2),
+    [theme.breakpoints.down('xs')]: {
+      padding: theme.spacing(4),
+      paddingTop: theme.spacing(3),
+      paddingBottom: theme.spacing(1),
+    },
+  },
+
+
   footer: {
     alignContent: 'center',
     color: '#a69eac',
@@ -196,6 +210,22 @@ function Homepage({ isLoggedIn }) {
             <Hidden xsDown="true">
               <Grid item sm={6} className={classes.teamWorkImage}></Grid>
             </Hidden>
+          </Grid>
+        </Grid>
+      </Container>
+
+      <Container className={`${classes.section7} ${classes.centerItems}`}>
+        <Grid container direction="column" alignItems='center' spacing={4}>
+          <Grid item>
+            <Typography
+              component="h2"
+              variant="h2"
+              align='center'>
+              پرسش‌های متداول
+            </Typography>
+          </Grid>
+          <Grid item sm={6} >
+            <FAQ />
           </Grid>
         </Grid>
       </Container>

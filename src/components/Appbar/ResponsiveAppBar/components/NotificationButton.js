@@ -16,6 +16,7 @@ import {
 import clsx from 'clsx';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { useTranslate } from 'react-redux-multilingual/lib/context';
 
 import dateFormatter from '../../../../utils/dateFormatter';
 
@@ -44,8 +45,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NotificationButton = ({ notifications }) => {
+const NotificationButton = ({ notifications = [] }) => {
   const classes = useStyles();
+  const t = useTranslate();
 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -87,6 +89,7 @@ const NotificationButton = ({ notifications }) => {
               .sort((a, b) => b.time - a.time)
               .map((notification) => (
                 <MenuItem
+                  key={notification.id}
                   className={clsx(
                     classes.notification,
                     notification.seen && classes.seen
@@ -98,7 +101,7 @@ const NotificationButton = ({ notifications }) => {
                           <AccountCircleIcon />
                         </div>
                         <Typography component="small" variant="body2">
-                          پشتیبانی
+                          {t('support')}
                         </Typography>
                       </div>
                     </Grid>
@@ -124,14 +127,4 @@ const NotificationButton = ({ notifications }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  notifications: [
-    {
-      time: Date.now(),
-      message: 'خیلی خوش اومدید!',
-      seen: true,
-    },
-  ],
-});
-
-export default connect(mapStateToProps)(NotificationButton);
+export default connect()(NotificationButton);

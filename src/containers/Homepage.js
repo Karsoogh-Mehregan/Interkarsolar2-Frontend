@@ -12,7 +12,7 @@ import PersonCard from '../components/Cards/PersonCard'
 import Timeline from '../components/TimeLine/TimeLine'
 import { connect } from 'react-redux';
 import ScrollTop from '../components/ScrollToTop/ScrollToTop';
-import Navbar from '../components/Appbar/ResponsiveAppBar';
+import ResponsiveAppBar from '../components/Appbar/ResponsiveAppBar';
 import { logout } from '../redux/actions/account';
 import { Staff } from './Staff/StaticData';
 import Supporter from '../components/Footer/Supporters'
@@ -134,7 +134,7 @@ function Homepage({ isLoggedIn }) {
       <Container className={classes.section1}>
         <div className="landing-background" />
         <div id="back-to-top-anchor"></div>
-        <Navbar />
+        <ResponsiveAppBar mode="LANDING" showBackOnScroll hideOnScroll={false} />
 
         <Grid container direction="row" style={{ height: '100%' }}>
           <Hidden xsDown>

@@ -11,7 +11,7 @@ import {
 import { connect } from 'react-redux';
 import PersonCard from '../../components/Cards/PersonCard'
 import { Staff as StaffInfo, subteams } from './StaticData';
-import Navbar from '../../components/Appbar/ResponsiveAppBar';
+import ResponsiveAppBar from '../../components/Appbar/ResponsiveAppBar';
 import Footer from '../../components/Footer/Footer';
 
 const useStyles = makeStyles((theme) => ({
@@ -56,7 +56,7 @@ function Staff() {
   const classes = useStyles();
   return (
     <div className={classes.container}>
-      <Navbar />
+      <ResponsiveAppBar mode="LANDING" showBackOnScroll hideOnScroll={false} />
 
       <Grid container direction='row'>
         <Grid container item direction='column'>

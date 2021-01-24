@@ -73,7 +73,7 @@ function Staff() {
                         {subteam.name}
                       </Typography>
                     </Grid>
-                    <Grid container item direction='row' spacing={2}>
+                    <Grid container item direction='row' spacing={2} justify='center'>
                       {
                         StaffInfo.filter((staff) => staff.subteam == subteam.id).map((staff) => {
                           return (

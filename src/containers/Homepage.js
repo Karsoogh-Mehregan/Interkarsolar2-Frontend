@@ -124,11 +124,11 @@ const useStyles = makeStyles((theme) => ({
     color: 'black',
     padding: theme.spacing(8),
     paddingTop: theme.spacing(6),
-    paddingBottom: theme.spacing(2),
+    paddingBottom: theme.spacing(6),
     [theme.breakpoints.down('xs')]: {
       padding: theme.spacing(4),
       paddingTop: theme.spacing(3),
-      paddingBottom: theme.spacing(1),
+      paddingBottom: theme.spacing(3),
     },
   },
 

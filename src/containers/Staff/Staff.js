@@ -77,7 +77,7 @@ function Staff() {
                       {
                         StaffInfo.filter((staff) => staff.subteam == subteam.id).map((staff) => {
                           return (
-                            <Grid item xs={12} sm={4} md={3} justify='center'>
+                            <Grid container item xs={12} sm={4} md={3} justify='center'>
                               <PersonCard
                                 name={staff.name}
                                 position={staff.position}

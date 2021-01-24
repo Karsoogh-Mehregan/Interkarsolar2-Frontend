@@ -56,8 +56,6 @@ function Staff() {
   const classes = useStyles();
   return (
     <div className={classes.container}>
-      <ResponsiveAppBar mode="SECONDARY" showBackOnScroll hideOnScroll={false} />
-
       <Grid container direction='row'>
         <Grid container item direction='column'>
           <Grid item>
@@ -65,7 +63,7 @@ function Staff() {
               «اینترکارسولاری‌ها»
             </Typography>
           </Grid>
-          <Grid container item direction='column' spacing={4}>
+          <Grid container item direction='column' spacing={4} alignItems='center'>
             {
               subteams.map((subteam) => {
                 return (
@@ -79,7 +77,7 @@ function Staff() {
                       {
                         StaffInfo.filter((staff) => staff.subteam == subteam.id).map((staff) => {
                           return (
-                            <Grid item xs={12} sm={4} md={3}>
+                            <Grid item xs={12} sm={4} md={3} justify='center'>
                               <PersonCard
                                 name={staff.name}
                                 position={staff.position}

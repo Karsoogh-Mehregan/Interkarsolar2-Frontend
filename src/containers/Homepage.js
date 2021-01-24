@@ -144,7 +144,7 @@ function Homepage({ isLoggedIn }) {
   const classes = useStyles();
 
   return (
-    <>
+    <div style={{ margin: 0 }}>
       <Container className={classes.section1}>
         <div className="landing-background" />
         <div id="back-to-top-anchor"></div>
@@ -224,7 +224,7 @@ function Homepage({ isLoggedIn }) {
               پرسش‌های متداول
             </Typography>
           </Grid>
-          <Grid item sm={6} >
+          <Grid item xs={12} sm={6} >
             <FAQ />
           </Grid>
         </Grid>
@@ -303,7 +303,7 @@ function Homepage({ isLoggedIn }) {
       </Container>
 
       <ScrollTop showBelow={250} />
-    </>
+    </div>
   );
 }
 

@@ -31,14 +31,16 @@ const App = ({ redirectTo, forceRedirect, initRedirect }) => {
   const Toast = () => (
     <ToastContainer
       rtl
-      position="top-right"
+      position="bottom-right"
       autoClose={4000}
       transition={Slide}
+      newestOnTop
       hideProgressBar={false}
       pauseOnHover={false}
       pauseOnFocusLoss={false}
       closeOnClick
       limit={3}
+      draggable={false}
     />
   );
 

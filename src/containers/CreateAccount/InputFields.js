@@ -1,61 +1,76 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux'
 import {
-  Container,
   Grid,
-  makeStyles,
   TextField,
   Button,
-  Typography,
 } from '@material-ui/core';
 import {
   createAccount,
 } from '../../redux/actions/account'
-
-const useStyles = makeStyles((theme) => ({
-  background: {
-    height: '100vh',
-    // backgroundColor: '#984fff', // TODO:
-  },
-  statImage: {
-    height: '50vh',
-    background: `url(${process.env.PUBLIC_URL + '/interlogo.png'})`,
-    backgroundSize: 'contain',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center center',
-  },
-}))
+import { toast } from 'react-toastify';
 
 const InputFields = ({
   createAccount,
 }) => {
-  const classes = useStyles();
   const [username, setUsername] = useState('');
-  const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
-  const [confitmPassword, setConfirmPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
 
-  const doCreateAccount = (username, password, phone) => {
-    // validation
-    createAccount(username, password, phone);
+  const doCreateAccount = () => {
+    if (!username || !password || !confirmPassword || !phoneNumber) {
+      toast.error('لطفاً همه‌ی چیزهایی که ازت خواسته شده رو پر کن!')
+      return;
+    }
+    if (password !== confirmPassword) {
+      toast.error('رمزهایی که وارد کردی مشابه هم نیستند!')
+      return;
+    }
+    var regex = new RegExp('^(\\+98|0)?9\\d{9}$');
+    if (!regex.test(phoneNumber)) {
+      toast.error('شماره تلفنی که وارد کردی اشتباهه!')
+      return;
+    }
+    createAccount(username, password, phoneNumber);
   }
 
   return (
     <>
       <Grid item>
-        <TextField onChange={(e) => setUsername(e.target.value)} placeholder='نام کاربری' variant='outlined' fullWidth>
+        <TextField
+          onChange={(e) => setUsername(e.target.value)}
+          label='نام کاربری'
+          type='text'
+          variant='outlined'
+          fullWidth />
+      </Grid>
+      <Grid item>
+        <TextField
+          onChange={(e) => setPassword(e.target.value)}
+          label='رمز عبور'
+          variant='outlined'
+          type='password'
+          fullWidth>
         </TextField>
       </Grid>
       <Grid item>
-        <TextField onChange={(e) => setUsername(e.target.value)} placeholder='رمز عبور' variant='outlined' fullWidth>
+        <TextField
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          label='تکرار رمز عبور'
+          type='password'
+          variant='outlined'
+          fullWidth>
         </TextField>
       </Grid>
       <Grid item>
-        <TextField onChange={(e) => setUsername(e.target.value)} placeholder='تایید رمز عبور' variant='outlined' fullWidth>
-        </TextField>
-      </Grid>
-      <Grid item>
-        <TextField onChange={(e) => setUsername(e.target.value)} placeholder='شماره موبایل' variant='outlined' fullWidth>
+        <TextField
+          onChange={(e) => setPhoneNumber(e.target.value)}
+          label='شماره موبایل'
+          type='tel'
+          helperText='یادت باشه شماره تلفنت رو فقط با ارقام انگلیسی وارد کنی!'
+          variant='outlined'
+          fullWidth>
         </TextField>
       </Grid>
       <Grid container item direction='row' justify='center'>
@@ -67,6 +82,7 @@ const InputFields = ({
   )
 
 }
+
 
 export default connect(
   undefined,

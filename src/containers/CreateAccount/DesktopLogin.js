@@ -3,12 +3,10 @@ import {
   Container,
   Grid,
   makeStyles,
-  TextField,
-  Button,
   Typography,
   Paper,
 } from '@material-ui/core';
-import { connect } from 'react-redux'
+import InputFields from './InputFields';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -60,21 +58,7 @@ const DesktopCreateAccount = () => {
                         سفینه‌ت رو بساز و کارت رو آغاز کن!
                       </Typography>
                     </Grid>
-                    <Grid item>
-                      <TextField placeholder='نام کاربری' variant='outlined' fullWidth>
-                      </TextField>
-                    </Grid>
-                    <Grid item>
-                      <TextField placeholder='رمز عبور' variant='outlined' fullWidth>
-                      </TextField>
-                    </Grid>
-                    <Grid container item direction='row' justify='center'>
-                      <Grid item>
-                        <Button variant='contained' color='primary'>
-                          بزن بریم
-                      </Button>
-                      </Grid>
-                    </Grid>
+                    <InputFields />
                   </Grid>
                 </Grid>
               </Paper>
@@ -87,9 +71,4 @@ const DesktopCreateAccount = () => {
   )
 }
 
-export default connect(
-  undefined,
-  {
-
-  }
-)(DesktopCreateAccount);
+export default (DesktopCreateAccount);

@@ -17,13 +17,13 @@ const App = ({ redirectTo, forceRedirect, initRedirect }) => {
   useEffect(() => {
     if (redirectTo !== null) {
       history.push(redirectTo);
-      if (forceRedirect) {
-        history.push(redirectTo);
-        history.push('/loading/');
-        history.goBack();
-      } else {
-        history.push(redirectTo);
-      }
+      // if (forceRedirect) {
+      //   history.push(redirectTo);
+      //   history.push('/loading/');
+      //   history.goBack();
+      // } else {
+      //   history.push(redirectTo);
+      // }
       initRedirect();
     }
   }, [redirectTo, forceRedirect, initRedirect, history]);

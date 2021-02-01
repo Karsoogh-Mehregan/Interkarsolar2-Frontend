@@ -1,7 +1,7 @@
 import * as actionTypes from '../actionTypes';
 import { toast } from 'react-toastify';
 
-function Notification(state = {}, action) {
+function notification(state = {}, action) {
   switch (action.type) {
 
     default:
@@ -9,4 +9,4 @@ function Notification(state = {}, action) {
   }
 }
 
-export default Notification;
+export default notification;

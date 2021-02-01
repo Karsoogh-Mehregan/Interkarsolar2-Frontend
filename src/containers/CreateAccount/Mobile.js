@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
   statImage: {
     height: '50vh',
-    background: `url(${process.env.PUBLIC_URL + '/interlogo.png'})`,
+    background: `url(${process.env.PUBLIC_URL + '/logo.png'})`,
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center center',

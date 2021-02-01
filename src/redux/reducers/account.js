@@ -1,6 +1,9 @@
 import * as actionTypes from '../actionTypes';
 
-const initState = { token: null, user: {} };
+const initState = {
+  token: null,
+  user: {},
+};
 
 function account(state = initState, action) {
   switch (action.type) {

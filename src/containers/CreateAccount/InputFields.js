@@ -5,13 +5,14 @@ import {
   TextField,
   Button,
 } from '@material-ui/core';
-import {
-  createAccount,
-} from '../../redux/actions/account'
+import { createAccount } from '../../redux/actions/account'
+import { redirect } from '../../redux/actions/redirect'
+
 import { toast } from 'react-toastify';
 
 const InputFields = ({
   createAccount,
+  redirect,
 }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -76,7 +77,7 @@ const InputFields = ({
       <Grid container item direction='row' justify='center'>
         <Button onClick={doCreateAccount} variant='contained' color='primary' fullWidth>
           بزن بریم
-      </Button>
+        </Button>
       </Grid>
     </>
   )
@@ -84,9 +85,14 @@ const InputFields = ({
 }
 
 
+const mapStateToProps = (state, ownProps) => ({
+
+})
+
 export default connect(
   undefined,
   {
     createAccount,
+    redirect,
   }
 )(InputFields)

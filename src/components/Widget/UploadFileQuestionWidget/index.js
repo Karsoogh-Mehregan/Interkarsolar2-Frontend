@@ -6,10 +6,7 @@ import {
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { sendFileAnswer } from '../../../redux/actions/currentState';
-import UploadFileQuestionEditWidget from './edit';
-
-export { UploadFileQuestionEditWidget };
+import { sendFileAnswer } from '../../../redux/actions/Exam';
 
 const useStyles = makeStyles((theme) => ({
   flex: {
@@ -65,7 +62,7 @@ const UploadFileQuestionWidget = ({
   };
 
   return (
-    <div>
+    <>
       <div className={classes.flex}>
         <Typography>{text}</Typography>
         <input
@@ -101,7 +98,7 @@ const UploadFileQuestionWidget = ({
               size="small"
               endIcon={<DescriptionOutlinedIcon />}
               className={classes.lastUploadButton}
-              href={'http://a-lympiad.rastaiha.ir' + last_submit.answer_file} // TODO: fix in back
+              // href={'http://a-lympiad.rastaiha.ir' + last_submit.answer_file} // TODO: fix in back
               component="a"
               download
               target="_blank">
@@ -110,7 +107,7 @@ const UploadFileQuestionWidget = ({
           </div>
         </>
       )}
-    </div>
+    </>
   );
 };
 

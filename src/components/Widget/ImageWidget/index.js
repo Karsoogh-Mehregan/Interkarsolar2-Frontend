@@ -1,10 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 import React from 'react';
 
-import ImageEditWidget from './edit';
-
-export { ImageEditWidget };
-
 const useStyles = makeStyles((theme) => ({
   imageWidget: {
     width: '100%',

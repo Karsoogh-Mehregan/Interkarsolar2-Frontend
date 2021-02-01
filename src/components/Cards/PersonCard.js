@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   Card,
   CardActionArea,
@@ -5,12 +6,14 @@ import {
   CardMedia,
   makeStyles,
   Typography,
+  Button,
+  CardActions,
 } from '@material-ui/core';
-import React from 'react';
+import MentorIntroduction from '../Dialog/MentorIntroduction'
 
 const useStyles = makeStyles({
   root: {
-    height: '100%',
+    // height: '100%',
     width: '100%',
     maxWidth: '20rem',
     fontSize: '1rem',
@@ -20,7 +23,7 @@ const useStyles = makeStyles({
     transition: 'transform 0.1s ease-in-out',
     maxWidth: '300px',
     '&:hover': {
-      transform: 'translateY(-0.5rem) scale(1.0125)',
+      transform: 'translateY(-0.2rem) scale(1.02)',
       boxShadow: '0 0.5em 3rem -1rem rgba(0, 0, 0, 0.5)',
     }
   },
@@ -32,26 +35,46 @@ const useStyles = makeStyles({
   },
 });
 
-const PersonCard = ({ }) => {
+const PersonCard = ({
+  name,
+  position,
+  image,
+  description,
+}) => {
   const classes = useStyles();
+  const [isDialogueOpen, setDialogueOpen] = useState(false);
 
   return (
-    <Card className='card' className={classes.root}>
-      <CardActionArea disabled>
-        <CardMedia
-          className={classes.media}
-          image={process.env.PUBLIC_URL + '/Seyyed_Alireza_Hashemi.jpeg'}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {'سید علیرضا هاشمی'}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {'مسئول فیل‌کردن رویداد'}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+    <>
+      <Card className={classes.root}>
+        <CardActionArea disabled>
+          <CardMedia
+            className={classes.media}
+            image={`${process.env.PUBLIC_URL}/Staff/${image}`}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {name}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {position}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button fullWidth variant='contained' color='secondary' onClick={() => setDialogueOpen(!isDialogueOpen)}>
+            او کیست؟!
+          </Button>
+        </CardActions>
+      </Card>
+      <MentorIntroduction
+        name={name}
+        image={image}
+        description={description}
+        open={isDialogueOpen}
+        handleClose={() => { setDialogueOpen(!isDialogueOpen) }}
+      />
+    </>
   );
 };
 

@@ -1,13 +1,23 @@
 const Institutions = [
   {
+    name: 'اداره‌ی استعداد‌های درخشان استان اصفهان',
+    img_src: process.env.PUBLIC_URL + '/Sampad.svg',
+    site_url: '',
+  },
+  {
     name: 'خانه ریاضیات اصفهان',
     img_src: process.env.PUBLIC_URL + '/MathHouse-logo.png',
     site_url: 'http://mathhouse.org/',
   },
   {
-    name: 'جمع علمی-ترویجی رستا',
-    img_src: process.env.PUBLIC_URL + '/Rasta-logo.png',
-    site_url: 'https://rastaiha.ir/',
+    name: 'دبیرستان دوره اول شهید اژه‌ای یک اصفهان',
+    img_src: process.env.PUBLIC_URL + '/Sampad.svg',
+    site_url: '',
+  },
+  {
+    name: 'دبیرستان دوره اول فرزانگان امین دو اصفهان',
+    img_src: process.env.PUBLIC_URL + '/Sampad.svg',
+    site_url: '',
   },
 ]
 

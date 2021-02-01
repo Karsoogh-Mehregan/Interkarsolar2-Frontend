@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 const InstitutionCard = ({ img_src, name, site_url }) => {
   const classes = useStyles();
   return (
-    <Grid item xs={5} sm={3}>
+    <Grid item xs={6} sm={3}>
       <Tooltip
         title={name}
         placement="bottom"

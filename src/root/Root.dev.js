@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-
 import DevTools from '../containers/DevTools';
+import CreateAccount from '../containers/CreateAccount'
+import Login from '../containers/Login'
 import Homepage from '../containers/Homepage';
-import dashboard from '../containers/dashboard';
-import Login from '../containers/Login';
-import CreateAccount from '../containers/CreateAccount';
+import Staff from '../containers/Staff/Staff';
+import Dashboard from '../containers/Dashboard/Dashboard';
 
 const Root = () => {
   return (
@@ -14,7 +14,8 @@ const Root = () => {
         <Route path='/create-account' component={CreateAccount}></Route>
         <Route path='/login' component={Login}></Route>
         <Route path="/loading/"></Route>
-        <Route path="/dashboard/" component={dashboard} />
+        <Route path="/staff/" component={Staff} />
+        <Route path="/dashboard/" component={Dashboard} />
         <Route path="/" component={Homepage} />
       </Switch>
       <DevTools />

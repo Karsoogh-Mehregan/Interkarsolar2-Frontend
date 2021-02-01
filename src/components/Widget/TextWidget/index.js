@@ -1,20 +1,26 @@
 import React from 'react';
-
+import { Paper, makeStyles } from '@material-ui/core';
 import TinyPreview from '../../tiny_editor/react_tiny/Preview';
-import TextEditWidget from './edit';
 
-export { TextEditWidget };
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    padding: theme.spacing(2),
+  },
+}))
 
 const TextWidget = ({ text = '' }) => {
+  const classes = useStyles();
   return (
-    <TinyPreview
-      frameProps={{
-        frameBorder: '0',
-        scrolling: 'no',
-        width: '100%',
-      }}
-      content={text}
-    />
+    <Paper className={classes.paper}>
+      <TinyPreview
+        frameProps={{
+          frameBorder: '0',
+          scrolling: 'no',
+          width: '100%',
+        }}
+        content={text}
+      />
+    </Paper>
   );
 };
 

@@ -31,10 +31,10 @@ export const login = ({ username, password }) => ({
     url: URLs.LOGIN,
     fetchOptions: {
       method: 'POST',
-      body: ({
+      body: {
         username,
         password
-      }),
+      },
     },
   },
 });

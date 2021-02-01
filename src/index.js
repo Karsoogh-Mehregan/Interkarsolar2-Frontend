@@ -6,14 +6,14 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import configureStore from './redux/store/configureStore';
 
-const persistedState = localStorage.getItem('rastaState')
-  ? JSON.parse(localStorage.getItem('rastaState'))
+const persistedState = localStorage.getItem('Interkarsoolar')
+  ? JSON.parse(localStorage.getItem('Interkarsoolar'))
   : {};
 const store = configureStore(persistedState);
 store.subscribe(() => {
   const state = store.getState();
   localStorage.setItem(
-    'rastaState',
+    'Interkarsoolar',
     JSON.stringify({
       account: {
         user: state.account.user,

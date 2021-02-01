@@ -2,14 +2,13 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Homepage from '../containers/Homepage';
-import dashboard from '../containers/dashboard';
+import Staff from '../containers/Staff/Staff';
 
 const Root = () => {
   return (
     <>
       <Switch>
-        <Route path="/loading/"></Route>
-        <Route path="/dashboard/" component={dashboard} />
+        <Route path="/staff/" component={Staff} />
         <Route path="/" component={Homepage} />
       </Switch>
     </>

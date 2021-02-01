@@ -7,8 +7,10 @@ import {
   List,
   makeStyles,
   Toolbar,
+  useScrollTrigger,
 } from '@material-ui/core';
 import { Menu as MenuIcon } from '@material-ui/icons';
+import clsx from 'clsx';
 import React, { useState } from 'react';
 
 import HideOnScroll from './components/HideOnScroll';
@@ -26,7 +28,8 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
   },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1000,
+    zIndex: theme.zIndex.drawer + 1,
+    transition: '0.2s',
   },
   menuButton: {
     marginRight: 5,
@@ -42,11 +45,21 @@ const useStyles = makeStyles((theme) => ({
   list: {
     width: 250,
   },
+  hideBack: {
+    background: 'transparent',
+    boxShadow: 'none',
+    paddingTop: theme.spacing(4),
+  },
 }));
 
-function ResponsiveAppBar({ mode = 'LANDING' }) {
+function ResponsiveAppBar({
+  mode = 'LANDING',
+  showBackOnScroll = false,
+  hideOnScroll = true,
+}) {
   const classes = useStyles();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 30 });
 
   const {
     desktopLeftItems,
@@ -58,18 +71,25 @@ function ResponsiveAppBar({ mode = 'LANDING' }) {
 
   return (
     <>
-      <HideOnScroll>
-        <AppBar className={classes.appBar} color="inherit">
-          <Container maxWidth="md">
+      <HideOnScroll disable={!hideOnScroll}>
+        <AppBar
+          className={clsx(
+            classes.appBar,
+            showBackOnScroll && !trigger && classes.hideBack
+          )}
+          color="inherit">
+          <Container maxWidth="lg">
             <Toolbar className={classes.toolbar}>
-              <IconButton
-                edge="start"
-                color="inherit"
-                aria-label="open drawer"
-                className={classes.menuButton}
-                onClick={() => setDrawerOpen(true)}>
-                <MenuIcon />
-              </IconButton>
+              {mobileMenuListItems.length > 0 && (
+                <IconButton
+                  edge="start"
+                  color="inherit"
+                  aria-label="open drawer"
+                  className={classes.menuButton}
+                  onClick={() => setDrawerOpen(true)}>
+                  <MenuIcon />
+                </IconButton>
+              )}
               <Hidden xsDown>{desktopRightItems}</Hidden>
               <Hidden smUp>{mobileRightItems}</Hidden>
               <div className={classes.grow} />
@@ -79,20 +99,22 @@ function ResponsiveAppBar({ mode = 'LANDING' }) {
           </Container>
         </AppBar>
       </HideOnScroll>
-      <Hidden smUp>
-        <Drawer
-          anchor="left"
-          open={drawerOpen}
-          onClose={() => setDrawerOpen(false)}>
-          <div className={classes.list}>
-            <List>
-              {mobileMenuListItems.map((item) => (
-                <>{item}</>
-              ))}
-            </List>
-          </div>
-        </Drawer>
-      </Hidden>
+      {mobileMenuListItems.length > 0 && (
+        <Hidden smUp>
+          <Drawer
+            anchor="left"
+            open={drawerOpen}
+            onClose={() => setDrawerOpen(false)}>
+            <div className={classes.list}>
+              <List>
+                {mobileMenuListItems.map((item) => (
+                  <>{item}</>
+                ))}
+              </List>
+            </div>
+          </Drawer>
+        </Hidden>
+      )}
     </>
   );
 }

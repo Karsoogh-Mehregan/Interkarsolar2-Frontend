@@ -3,12 +3,10 @@ import {
   Container,
   Grid,
   makeStyles,
-  TextField,
-  Button,
   Typography,
   Paper,
 } from '@material-ui/core';
-import { connect } from 'react-redux'
+import InputFields from './InputFields';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -30,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const DesktopLogin = () => {
+const DesktopCreateAccount = () => {
   const classes = useStyles();
 
   return (
@@ -57,24 +55,10 @@ const DesktopLogin = () => {
                     spacing={2}>
                     <Grid item>
                       <Typography gutterBottom variant='h3' align='center'>
-                        برای ورود به سفینه‌ی فضایی آماده‌ای؟
+                        برای ورود به سفینه‌ات آماده‌ای؟
                       </Typography>
                     </Grid>
-                    <Grid item>
-                      <TextField placeholder='نام کاربری' variant='outlined' fullWidth>
-                      </TextField>
-                    </Grid>
-                    <Grid item>
-                      <TextField placeholder='رمز عبور' variant='outlined' fullWidth>
-                      </TextField>
-                    </Grid>
-                    <Grid container item direction='row' justify='center'>
-                      <Grid item>
-                        <Button variant='contained' color='primary'>
-                          بزن بریم
-                      </Button>
-                      </Grid>
-                    </Grid>
+                    <InputFields />
                   </Grid>
                 </Grid>
               </Paper>
@@ -87,9 +71,4 @@ const DesktopLogin = () => {
   )
 }
 
-export default connect(
-  undefined,
-  {
-
-  }
-)(DesktopLogin);
+export default (DesktopCreateAccount);

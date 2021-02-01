@@ -8,6 +8,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { connect } from 'react-redux'
+import InputFields from './InputFields';
 
 const useStyles = makeStyles((theme) => ({
   background: {
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const MobileLogin = () => {
+const MobileCreateAccount = () => {
   const classes = useStyles();
   return (
     <>
@@ -38,22 +39,10 @@ const MobileLogin = () => {
           </Grid>
           <Grid item>
             <Typography gutterBottom variant='h3' align='center'>
-              برای ورود به سفینه‌ی فضایی آماده‌ای؟
+              سفینه‌ات رو بساز و آماده‌ی پرتاب شو!
             </Typography>
           </Grid>
-          <Grid item>
-            <TextField placeholder='نام کاربری' variant='outlined' fullWidth>
-            </TextField>
-          </Grid>
-          <Grid item>
-            <TextField placeholder='رمز عبور' variant='outlined' fullWidth>
-            </TextField>
-          </Grid>
-          <Grid container item direction='row' justify='center'>
-            <Button variant='contained' color='primary' fullWidth>
-              بزن بریم
-            </Button>
-          </Grid>
+          <InputFields />
         </Grid>
       </Container>
     </>
@@ -65,4 +54,4 @@ export default connect(
   {
 
   }
-)(MobileLogin);
+)(MobileCreateAccount);

@@ -39,7 +39,7 @@ const MobileCreateAccount = () => {
           </Grid>
           <Grid item>
             <Typography gutterBottom variant='h3' align='center'>
-              سفینه‌ت رو بساز و کارت رو آغاز کن!
+              برای ورود به سفینه‌ات آماده‌ای؟
             </Typography>
           </Grid>
           <InputFields />

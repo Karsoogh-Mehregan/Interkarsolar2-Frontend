@@ -2,8 +2,8 @@ import React from 'react'
 import {
   Hidden
 } from '@material-ui/core';
-import MobileLogin from './MobileLogin';
-import DesktopLogin from './DesktopLogin';
+import MobileLogin from './Mobile';
+import DesktopLogin from './Desktop';
 
 const Login = () => {
   return (

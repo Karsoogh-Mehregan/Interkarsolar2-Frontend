@@ -50,7 +50,7 @@ export default ({ getState }) => (next) => async (action) => {
       return next(
         actionWith({
           payload,
-          type: actionTypes.LOGOUT_REQUEST,
+          type: actionTypes.LOGOUT,
           error: error.message || 'Something bad happened!',
         })
       );

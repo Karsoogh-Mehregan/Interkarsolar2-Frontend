@@ -112,11 +112,11 @@ function Dashboard() {
             className={classes.menuButton}>
             <MenuIcon />
           </IconButton>
-          <img
-            src={process.env.PUBLIC_URL + '/interlogo.png'}
+          {/* <img
+            src={process.env.PUBLIC_URL + '/logo.png'}
             alt="logo"
             className={classes.logo}
-          />
+          /> */}
           <Typography variant="h6" noWrap>
             اینترکارسولار
           </Typography>

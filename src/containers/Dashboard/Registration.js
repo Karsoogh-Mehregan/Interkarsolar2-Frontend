@@ -6,6 +6,7 @@ import {
   Typography,
   TextField,
   Button,
+  Checkbox,
 } from '@material-ui/core';
 import { connect } from 'react-redux';
 
@@ -72,30 +73,32 @@ const RegistrationTab = ({
             <Grid item container spacing={1} justify='center'>
               <Grid item xs={12} container spacing={1} justify='center'>
                 <Grid item xs={6}>
-                  <TextField placeholder='نام' variant='outlined' fullWidth />
+                  <TextField label='نام' variant='outlined' fullWidth />
                 </Grid>
                 <Grid item xs={6}>
-                  <TextField placeholder='نام خانوادگی' variant='outlined' fullWidth />
+                  <TextField label='نام خانوادگی' variant='outlined' fullWidth />
                 </Grid>
               </Grid>
               <Grid item xs={12} container spacing={1} justify='center'>
                 <Grid item xs={6}>
-                  <TextField placeholder='نام مدرسه' variant='outlined' fullWidth />
+                  <TextField label='نام مدرسه' variant='outlined' fullWidth />
                 </Grid>
                 <Grid item xs={6}>
-                  <TextField placeholder='پایه‌ی تحصیلی (که باید دراپ‌داون بشه)' variant='outlined' fullWidth />
+                  <TextField label='پایه‌ی تحصیلی' variant='outlined' fullWidth />
                 </Grid>
               </Grid>
             </Grid>
             <Grid item container direction='row' justify='space-between'>
-              <Grid item xs={9} spacing={1} container justify='center' alignItems='center'>
+              <Checkbox />
+
+              <Grid item xs={8} spacing={1} container justify='center' alignItems='center'>
                 <Typography>
-                  [جای تیک] قوانین و مقررات (که صد البته نداریم!)‌ رو خوانده‌ام و رعایتشون می‌کنم.
+                  با زدن این تیک، اعلام می‌کنید که سال گذشته در مرحله‌ی اول کارسوق مهرگان ثبت‌نام کرده بودید.
                 </Typography>
               </Grid>
               <Grid item xs={3} spacing={1} container justify='flex-end'>
                 <Button variant='contained' color='primary' fullWidth >
-                  ادامه...
+                  ادامه و پرداخت
                 </Button>
               </Grid>
             </Grid>

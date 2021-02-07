@@ -40,15 +40,5 @@ export const login = ({ username, password }) => ({
 });
 
 export const logout = () => ({
-  [CALL_API]: {
-    types: [
-      actionTypes.LOGOUT_REQUEST,
-      actionTypes.LOGOUT_SUCCESS,
-      actionTypes.LOGOUT_FAILURE,
-    ],
-    url: URLs.LOGOUT,
-    fetchOptions: {
-      method: 'POST',
-    },
-  },
+  type: actionTypes.LOGOUT,
 });

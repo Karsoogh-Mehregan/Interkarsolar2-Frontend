@@ -12,6 +12,7 @@ import { toast } from 'react-toastify';
 
 const InputFields = ({
   login,
+  isFetching,
 }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -44,7 +45,12 @@ const InputFields = ({
         </TextField>
       </Grid>
       <Grid container item direction='row' justify='center'>
-        <Button onClick={doCreateAccount} variant='contained' color='primary' fullWidth>
+        <Button
+          onClick={doCreateAccount}
+          variant='contained'
+          color='primary'
+          disabled={isFetching}
+          fullWidth>
           بزن بریم
       </Button>
       </Grid>
@@ -53,9 +59,13 @@ const InputFields = ({
 
 }
 
+const mapStateToProps = (state, ownProps) => ({
+  isFetching: state.account.isFetching,
+})
+
 
 export default connect(
-  undefined,
+  mapStateToProps,
   {
     login,
   }

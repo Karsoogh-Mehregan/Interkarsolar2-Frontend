@@ -7,22 +7,28 @@ import PushButton from '../../components/Fancy/PushButton'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minHeight: '100vh',
-    [theme.breakpoints.down('sm')]: {
-      paddingTop: theme.spacing(9),
-    },
+    minHeight: '90vh',
+    width: '100wh',
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4),
   },
 }));
 
 const AnnouncementsTab = ({ }) => {
   const classes = useStyles();
   return (
-    <Container className={classes.root} style={{ paddingTop: 100 }}>
-      <PushButton text='سلام!' />
-      <PushButton text='ورودپپپ' />
-
-      {/* <ImgMediaCard /> */}
-    </Container>
+    <>
+      <div className={`dashboard-background`} />
+      <Grid
+        className={classes.root}
+        container
+        justify='space-evenly'
+        direction='column'
+        alignItems='center'
+      >
+        <ImgMediaCard />
+      </Grid>
+    </>
   );
 };
 

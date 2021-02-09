@@ -8,7 +8,13 @@ import FancyPushButton from '../../components/Fancy/PushButton';
 
 const useStyles = makeStyles((theme) => ({
     buttonBar: {
-        overlowX: 'hidden',
+        [theme.breakpoints.up('sm')]: {
+            position: 'fixed',
+            bottom: theme.spacing(4),
+        },
+        [theme.breakpoints.down('xs')]: {
+            marginBottom: theme.spacing(4),
+        }
     }
 }));
 
@@ -22,7 +28,7 @@ const ButtonBar = ({ onClick }) => {
             alignItems='center'
             spacing={2}
             xs={12}
-            sm={8}
+            lg={8}
             className={classes.buttonBar}>
             <Grid container item justify='center' xs={12} sm={4} lg={3}>
                 <FancyPushButton text='اطلاعیه‌ها' onClick={() => onClick(0)} />

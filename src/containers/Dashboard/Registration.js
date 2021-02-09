@@ -12,15 +12,10 @@ import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minHeight: '100vh',
-    [theme.breakpoints.down('sm')]: {
-      paddingTop: theme.spacing(9),
-    },
-  },
-  centerItems: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    minHeight: '90vh',
+    width: '100wh',
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4),
   },
   statImage: {
     height: '40vh',
@@ -30,79 +25,90 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: 'center center',
   },
   title: {
+    fontSize: 60,
+    color: '#fbebd1',
+    textShadow: '-2px 2px #888',
     [theme.breakpoints.down('sm')]: {
-      margin: 'auto',
+      fontSize: 40,
     },
+  },
+  header3: {
+    fontSize: 25,
+    lineHeight: '30px',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    textJustify: 'inter-character',
+    color: '#fbebd1',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 20,
+    },
+  },
+  normalText: {
+    textAlign: 'justify',
+    color: '#fbebd1',
   }
 }))
 
 
-const RegistrationTab = ({
-
-}) => {
+const RegistrationTab = ({ }) => {
   const classes = useStyles();
+  const [isAllowed, setIsAllowed] = useState(false);
+
   return (
-    <Container className={`${classes.root} ${classes.centerItems}`}>
+    <Container>
+      <div className={`dashboard-background blur`} />
       <Grid
+        className={classes.root}
         container
         justify='space-evenly'
         direction='column'
-        alignItems='flex-start'
-        style={{ height: '100%' }}
+        alignItems='center'
       >
         <Grid item container justify='center'>
-          <Typography gutterBottom variant='h3' align='center' >
-            ثبت‌نام در آزمون مرحله اول
+          <Typography gutterBottom variant='h2' align='center' className={classes.title} >
+            ثبت‌نام نهایی
           </Typography>
         </Grid>
         <Grid container item direction='row' justify='center' spacing={2}>
-          <Grid item xs={12} sm={4} className={classes.statImage} />
+          <Grid item xs={12} sm={6} className={classes.statImage} />
           <Grid
-            xs={12} sm={8}
+            xs={12} sm={5}
             item
             container
             direction='column'
             justify='center'
+            alignItems='center'
             spacing={4}
           >
-            <Grid item>
-              <Typography variant='h5'>
-                برای ثبت‌نام در مرحله‌ی اول، اطلاعات زیر را تکمیل کنید و سپس بر روی گزینه‌ی ادامه کلیک کنید.
+            <Grid item container justify='center'>
+              <Typography variant='h3' className={classes.header3} align='center'>
+                {isAllowed
+                  ? 'ایول! اطلاعاتت تکمیله و می‌تونی ثبت‌نامت رو نهایی کنی...'
+                  : 'انگار هنوز اطلاعاتت ناقصه! به بخش «مشخصات من» برو و مشخصاتت رو کامل کن، بعد می‌تونی ثبت‌نامت رو نهایی کنی!'
+                }
               </Typography>
             </Grid>
-            <Grid item container spacing={1} justify='center'>
-              <Grid item xs={12} container spacing={1} justify='center'>
-                <Grid item xs={6}>
-                  <TextField label='نام' variant='filled' fullWidth />
-                </Grid>
-                <Grid item xs={6}>
-                  <TextField label='نام خانوادگی' variant='filled' fullWidth />
-                </Grid>
-              </Grid>
-              <Grid item xs={12} container spacing={1} justify='center'>
-                <Grid item xs={6}>
-                  <TextField label='نام مدرسه' variant='filled' fullWidth />
-                </Grid>
-                <Grid item xs={6}>
-                  <TextField label='پایه‌ی تحصیلی' fullWidth />
-                </Grid>
-              </Grid>
-            </Grid>
-            <Grid item container direction='row' justify='space-between'>
-              <Checkbox />
-
-              <Grid item xs={8} spacing={1} container justify='center' alignItems='center'>
-                <Typography>
-                  با زدن این تیک، اعلام می‌کنید که سال گذشته در مرحله‌ی اول کارسوق مهرگان ثبت‌نام کرده بودید.
+            {isAllowed &&
+              <>
+                <Grid item container direction='row' spacing={4} justify='space-around'>
+                  <Grid item xs={1}>
+                    <Checkbox />
+                  </Grid>
+                  <Grid item xs={10} spacing={1} container justify='center' alignItems='center'>
+                    <Typography className={classes.normalText}>
+                      چنانچه در سال گذشته در مرحله‌ی اول کارسوق ریاضی مهرگان ثبت‌نام کرده بودید، این مورد را تیک بزنید.
                 </Typography>
-              </Grid>
-              <Grid item xs={3} spacing={1} container justify='flex-end'>
-                <Button variant='contained' color='primary' fullWidth >
-                  ادامه و پرداخت
-                </Button>
-              </Grid>
-            </Grid>
+                  </Grid>
+                </Grid>
+                <Grid item container justify='center'>
+                  <Button variant='contained' color='primary' size='large'>
+                    تایید و پرداخت
+              </Button>
+                </Grid>
+              </>
+            }
           </Grid>
+          <Grid item xs={12} sm={1} />
         </Grid>
       </Grid>
     </Container >

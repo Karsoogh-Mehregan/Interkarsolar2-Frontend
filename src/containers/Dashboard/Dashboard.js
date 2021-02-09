@@ -18,12 +18,8 @@ import ButtonBar from './ButtonBar';
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   container: {
-    minHeight: '100vh',
-    width: '100wh',
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
     overflowX: 'hidden',
-  }
+  },
 }));
 
 function Dashboard() {
@@ -32,22 +28,23 @@ function Dashboard() {
 
   return (
     <Grid container direction='column' justify='space-between' alignItems='center' className={classes.container}>
-      <div className={`dashboard-background`} />
-      {
-        tab == 1 &&
-        <RegistrationTab />
-      }
-      {
-        tab == 0 &&
-        <AnnouncementsTab />
-      }
-      {
-        tab == 3 &&
-        <ProfileTab />
-      }
+      <Grid item container direction='row' alignItems='center'>
+        {
+          tab == 0 &&
+          <AnnouncementsTab />
+        }
+        {
+          tab == 1 &&
+          <RegistrationTab />
+        }
+        {
+          tab == 2 &&
+          <ProfileTab />
+        }
+      </Grid>
       <Grid item container>
       </Grid>
-      <ButtonBar onClick={setTab} />
+      <ButtonBar className={classes.buttonBar} onClick={setTab} />
       {/* <Switch className={classes.switch}>
         <Route
           path={'/dashboard/registration'}

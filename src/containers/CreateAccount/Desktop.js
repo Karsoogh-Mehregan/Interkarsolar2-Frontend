@@ -6,7 +6,7 @@ import {
   Typography,
   Paper,
 } from '@material-ui/core';
-import InputFields from './InputFields';
+import InputFields from './Fields'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -55,7 +55,7 @@ const DesktopCreateAccount = () => {
                     spacing={2}>
                     <Grid item>
                       <Typography gutterBottom variant='h3' align='center'>
-                        سفینه‌ت رو بساز و کارت رو آغاز کن!
+                        پیش‌ثبت نام اینترکارسولار۲
                       </Typography>
                     </Grid>
                     <InputFields />

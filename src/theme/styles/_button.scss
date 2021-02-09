@@ -1,0 +1,59 @@
+.fancyPushButton {
+    button {
+        width: 200px;
+        font-size: 20px;
+        border: none;
+        padding: 16px 40px 16px 40px;
+        border-radius: 5px;
+        box-shadow: 0px 10px 0px 0px #1d7f8a,
+            0px 0px 10px 0px rgba(120, 120, 120, 0.4);
+        color: white;
+        background: #139eae;
+        cursor: pointer;
+        transition: all 0.16s;
+        position: relative;
+        top: 0;
+    }
+
+    button:focus {
+        outline: none;
+    }
+
+    button:active {
+        box-shadow: 0px 5px 0px 0px #0d545c;
+        top: 5px;
+    }
+
+    .loading-button.red {
+        background: #d03651;
+        box-shadow: 0px 10px 0px 0px #a72b41,
+            0px 0px 10px 0px rgba(120, 120, 120, 0.4);
+        ;
+    }
+
+    .loading-button.red:active {
+        box-shadow: 0px 5px 0px 0px #a72b41;
+    }
+
+    .loading-button.green {
+        background: #61a74b;
+        box-shadow: 0px 10px 0px 0px #4e883c,
+            0px 0px 10px 0px rgba(120, 120, 120, 0.4);
+        ;
+    }
+
+    .loading-button.green:active {
+        box-shadow: 0px 5px 0px 0px #4e883c;
+    }
+
+    .loading-button.orange {
+        background: #bec04b;
+        box-shadow: 0px 10px 0px 0px #b8a61f,
+            0px 0px 10px 0px rgba(120, 120, 120, 0.4);
+        ;
+    }
+
+    .loading-button.orange:active {
+        box-shadow: 0px 5px 0px 0px #74712d;
+    }
+}

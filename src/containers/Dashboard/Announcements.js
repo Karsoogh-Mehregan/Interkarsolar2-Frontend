@@ -3,6 +3,7 @@ import ImgMediaCard from '../../components/Cards/notification';
 import { Container, Grid } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
+import PushButton from '../../components/Fancy/PushButton'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,15 +14,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AnnouncementsTab = ({}) => {
+const AnnouncementsTab = ({ }) => {
   const classes = useStyles();
   return (
     <Container className={classes.root} style={{ paddingTop: 100 }}>
-      <ImgMediaCard />
+      <PushButton text='سلام!' />
+      <PushButton text='ورودپپپ' />
+
+      {/* <ImgMediaCard /> */}
     </Container>
   );
 };
 
-const mapStateToProps = (state, ownProps) => {};
+const mapStateToProps = (state, ownProps) => { };
 
 export default connect(mapStateToProps, {})(AnnouncementsTab);

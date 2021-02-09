@@ -65,7 +65,7 @@ const ProfileTab = ({
         alignItems='center'
       >
         <Grid item>
-          <Typography gutterBottom variant='h3' align='center'>
+          <Typography variant='h2' className={classes.title} >
             ویرایش اطلاعات
           </Typography>
         </Grid>

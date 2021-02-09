@@ -65,7 +65,7 @@ const RegistrationTab = ({ }) => {
         alignItems='center'
       >
         <Grid item container justify='center'>
-          <Typography gutterBottom variant='h2' align='center' className={classes.title} >
+          <Typography variant='h2' className={classes.title} >
             ثبت‌نام نهایی
           </Typography>
         </Grid>
@@ -84,7 +84,7 @@ const RegistrationTab = ({ }) => {
               <Typography variant='h3' className={classes.header3} align='center'>
                 {isAllowed
                   ? 'ایول! اطلاعاتت تکمیله و می‌تونی ثبت‌نامت رو نهایی کنی...'
-                  : 'انگار هنوز اطلاعاتت ناقصه! به بخش «مشخصات من» برو و مشخصاتت رو کامل کن، بعد می‌تونی ثبت‌نامت رو نهایی کنی!'
+                  : 'انگار هنوز اطلاعاتت ناقصه! به بخش «مشخصات من» برو و مشخصاتت رو کامل کن، بعد می‌تونی ثبت‌نامت رو نهایی کنی.'
                 }
               </Typography>
             </Grid>

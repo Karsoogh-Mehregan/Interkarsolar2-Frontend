@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Grid,
@@ -7,6 +7,7 @@ import {
   Switch,
   Redirect,
   Route,
+  useLocation,
 } from "react-router-dom";
 
 import Appbar from '../../components/Appbar/ResponsiveAppBar';
@@ -25,6 +26,29 @@ const useStyles = makeStyles((theme) => ({
 function Dashboard() {
   const classes = useStyles();
   const [tab, setTab] = useState(0);
+
+  const location = useLocation();
+  console.log(location)
+  const urlParams = new URLSearchParams(location.search);
+  const tabName = urlParams.get('tab');
+
+  console.log(tabName);
+
+  useEffect(
+    () => {
+      if (tabName == 'announcements') {
+        setTab(0);
+      } else if (tabName == 'registration') {
+        setTab(1);
+      } else if (tabName == 'profile') {
+        setTab(2);
+      } else {
+        return (
+          <Redirect to={'/dashboard?tab=announcements'} />
+        )
+      }
+    }
+    , [useLocation])
 
   return (
     <Grid container direction='column' justify='space-between' alignItems='center' className={classes.container}>
@@ -45,21 +69,6 @@ function Dashboard() {
       <Grid item container>
       </Grid>
       <ButtonBar className={classes.buttonBar} onClick={setTab} />
-      {/* <Switch className={classes.switch}>
-        <Route
-          path={'/dashboard/registration'}
-          component={RegistrationTab}
-        />
-        <Route
-          path={'/dashboard/announcements'}
-          component={AnnouncementsTab}
-        />
-        <Route
-          path={'/dashboard/profile'}
-          component={ProfileTab}
-        />
-        <Redirect to={'/dashboard/announcements'} />
-      </Switch> */}
     </Grid>
   );
 }

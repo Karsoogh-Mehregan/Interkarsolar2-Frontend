@@ -8,7 +8,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { connect } from 'react-redux'
-import InputFields from './InputFields';
+import InputFields from './Fields';
 
 const useStyles = makeStyles((theme) => ({
   background: {
@@ -39,7 +39,7 @@ const MobileCreateAccount = () => {
           </Grid>
           <Grid item>
             <Typography gutterBottom variant='h3' align='center'>
-              سفینه‌ات رو بساز و آماده‌ی پرتاب شو!
+              پیش‌ثبت نام اینترکارسولار۲
             </Typography>
           </Grid>
           <InputFields />

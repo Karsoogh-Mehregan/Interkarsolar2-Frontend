@@ -1,8 +1,8 @@
 import * as actionTypes from '../actionTypes';
 
 const initState = {
-  token: null,
-  user: {},
+  token: '',
+  uid: '',
   isFetching: false,
 };
 

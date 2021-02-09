@@ -30,7 +30,7 @@ const InputFields = ({
     }
     var regex = new RegExp('^(\\+98|0)?9\\d{9}$');
     if (!regex.test(phoneNumber)) {
-      toast.error('شماره تلفنی که وارد کردی اشتباهه!')
+      toast.error('شماره موبایلی که وارد کردی اشتباهه!')
       return;
     }
     createAccount(username, password, phoneNumber);
@@ -69,7 +69,7 @@ const InputFields = ({
           onChange={(e) => setPhoneNumber(e.target.value)}
           label='شماره موبایل'
           type='tel'
-          helperText='یادت باشه شماره تلفنت رو فقط با ارقام انگلیسی وارد کنی!'
+          helperText='یادت باشه شماره موبایلت رو فقط با ارقام انگلیسی وارد کنی!'
           variant='outlined'
           fullWidth>
         </TextField>
@@ -81,7 +81,7 @@ const InputFields = ({
           color='primary'
           disabled={isFetching}
           fullWidth>
-          بزن بریم
+          ثبت
         </Button>
       </Grid>
     </>

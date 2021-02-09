@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 import account from './account';
 import notifications from './notifications';
-import loading from './loading';
 import redirect from './redirect';
+import exam from './exam';
 
 const allReducers = combineReducers({
   account,
   notifications,
   redirect,
-  loading,
+  exam,
 });
 export default allReducers;

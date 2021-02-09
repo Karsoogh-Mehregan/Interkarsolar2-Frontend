@@ -21,24 +21,64 @@ export const createAccount = ({ username, phone, password }) => ({
   },
 });
 
-export const login = ({ username, password }) => ({
+export const login = ({ username, phone, password }) => ({
   [CALL_API]: {
     types: [
       actionTypes.LOGIN_REQUEST,
       actionTypes.LOGIN_SUCCESS,
       actionTypes.LOGIN_FAILURE,
     ],
-    url: URLs.LOGIN,
+    url: URLs.CREATE_ACCOUNT,
     fetchOptions: {
       method: 'POST',
-      body: {
+      body: ({
         username,
-        password
-      },
+        password,
+        phone,
+      }),
     },
   },
 });
 
 export const logout = () => ({
   type: actionTypes.LOGOUT,
+});
+
+
+export const payment = ({ username, phone, password }) => ({
+  [CALL_API]: {
+    types: [
+      actionTypes.PAYMENT_REQUEST,
+      actionTypes.PAYMENT_SUCCESS,
+      actionTypes.PAYMENT_FAILURE,
+    ],
+    url: URLs.PAYMENT,
+    fetchOptions: {
+      method: 'POST',
+      body: ({
+        username,
+        password,
+        phone,
+      }),
+    },
+  },
+});
+
+export const updateUserInfo = ({ username, phone, password }) => ({
+  [CALL_API]: {
+    types: [
+      actionTypes.UPDATE_USER_INFO_REQUEST,
+      actionTypes.UPDATE_USER_INFO_SUCCESS,
+      actionTypes.UPDATE_USER_INFO_FAILURE,
+    ],
+    url: URLs.PAYMENT,
+    fetchOptions: {
+      method: 'POST',
+      body: ({
+        username,
+        password,
+        phone,
+      }),
+    },
+  },
 });

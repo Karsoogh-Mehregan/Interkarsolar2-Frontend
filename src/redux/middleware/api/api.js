@@ -25,7 +25,7 @@ export default ({ getState }) => (next) => async (action) => {
 
     if (!fetchOptions.dontContentType) {
       fetchOptions.headers = {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
         ...fetchOptions.headers,
       };
     }

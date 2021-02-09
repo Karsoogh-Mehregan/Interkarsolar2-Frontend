@@ -29,6 +29,7 @@ input.rtl-placeholder::placeholder,
 }
 
 .dashboard-background {
+
   height: 100vh;
   width: 100%;
   position: fixed;
@@ -36,8 +37,8 @@ input.rtl-placeholder::placeholder,
   left: 0;
   background: url('dashboard.jpg') no-repeat center center fixed;
   opacity: 1;
-  filter: blur(2px);
-  -webkit-filter: blur(2px);
+  filter: blur(12px);
+  -webkit-filter: blur(12px);
 
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -45,6 +46,11 @@ input.rtl-placeholder::placeholder,
   background-size: cover;
   z-index: -1;
   animation: show-back 0.8s 0.3s both;
+
+  &.blur {
+    filter: blur(12px);
+    -webkit-filter: blur(12px);
+  }
 }
 
 .landing-background {

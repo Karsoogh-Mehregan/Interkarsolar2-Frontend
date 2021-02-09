@@ -32,11 +32,22 @@ function Dashboard() {
 
   return (
     <Grid container direction='column' justify='space-between' alignItems='center' className={classes.container}>
-      <div className='dashboard-background' />
+      <div className={`dashboard-background`} />
+      {
+        tab == 1 &&
+        <RegistrationTab />
+      }
+      {
+        tab == 0 &&
+        <AnnouncementsTab />
+      }
+      {
+        tab == 3 &&
+        <ProfileTab />
+      }
       <Grid item container>
-        {/* <RegistrationTab /> */}
       </Grid>
-      <ButtonBar />
+      <ButtonBar onClick={setTab} />
       {/* <Switch className={classes.switch}>
         <Route
           path={'/dashboard/registration'}

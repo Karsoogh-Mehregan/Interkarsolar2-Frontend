@@ -73,18 +73,18 @@ const RegistrationTab = ({
             <Grid item container spacing={1} justify='center'>
               <Grid item xs={12} container spacing={1} justify='center'>
                 <Grid item xs={6}>
-                  <TextField label='نام' variant='outlined' fullWidth />
+                  <TextField label='نام' variant='filled' fullWidth />
                 </Grid>
                 <Grid item xs={6}>
-                  <TextField label='نام خانوادگی' variant='outlined' fullWidth />
+                  <TextField label='نام خانوادگی' variant='filled' fullWidth />
                 </Grid>
               </Grid>
               <Grid item xs={12} container spacing={1} justify='center'>
                 <Grid item xs={6}>
-                  <TextField label='نام مدرسه' variant='outlined' fullWidth />
+                  <TextField label='نام مدرسه' variant='filled' fullWidth />
                 </Grid>
                 <Grid item xs={6}>
-                  <TextField label='پایه‌ی تحصیلی' variant='outlined' fullWidth />
+                  <TextField label='پایه‌ی تحصیلی' fullWidth />
                 </Grid>
               </Grid>
             </Grid>

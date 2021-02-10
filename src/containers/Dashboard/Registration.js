@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
 
 const RegistrationTab = ({ }) => {
   const classes = useStyles();
-  const [isAllowed, setIsAllowed] = useState(false);
+  const [isAllowed, setIsAllowed] = useState(true);
 
   return (
     <Container>
@@ -96,7 +96,7 @@ const RegistrationTab = ({ }) => {
                   </Grid>
                   <Grid item xs={10} spacing={1} container justify='center' alignItems='center'>
                     <Typography className={classes.normalText}>
-                      چنانچه در سال گذشته در مرحله‌ی اول کارسوق ریاضی مهرگان ثبت‌نام کرده بودید، این مورد را تیک بزنید.
+                      اگر در سال گذشته در مرحله‌ی اول کارسوق ریاضی مهرگان ثبت‌نام کرده بودی، این مورد را تیک بزن.
                 </Typography>
                   </Grid>
                 </Grid>

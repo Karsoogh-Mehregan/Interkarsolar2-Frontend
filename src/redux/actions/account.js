@@ -2,7 +2,7 @@ import { CALL_API } from '../middleware/api/api';
 import * as actionTypes from '../actionTypes';
 import * as URLs from './urls';
 
-export const createAccount = ({ username, phone, password }) => ({
+export const createAccount = ({ national_code = '1234567890', phone1 = '099999999999', password = '123456' }) => ({
   [CALL_API]: {
     types: [
       actionTypes.CREATE_ACCOUNT_REQUEST,
@@ -12,10 +12,10 @@ export const createAccount = ({ username, phone, password }) => ({
     url: URLs.CREATE_ACCOUNT,
     fetchOptions: {
       method: 'POST',
-      body: ({
-        username,
+      form: ({
+        national_code,
         password,
-        phone,
+        phone1,
       }),
     },
   },
@@ -31,11 +31,11 @@ export const login = ({ username, phone, password }) => ({
     url: URLs.CREATE_ACCOUNT,
     fetchOptions: {
       method: 'POST',
-      body: ({
+      form: {
         username,
         password,
         phone,
-      }),
+      },
     },
   },
 });
@@ -55,11 +55,11 @@ export const payment = ({ username, phone, password }) => ({
     url: URLs.PAYMENT,
     fetchOptions: {
       method: 'POST',
-      body: ({
+      form: {
         username,
         password,
         phone,
-      }),
+      },
     },
   },
 });
@@ -74,11 +74,11 @@ export const updateUserInfo = ({ username, phone, password }) => ({
     url: URLs.PAYMENT,
     fetchOptions: {
       method: 'POST',
-      body: ({
+      form: {
         username,
         password,
         phone,
-      }),
+      },
     },
   },
 });

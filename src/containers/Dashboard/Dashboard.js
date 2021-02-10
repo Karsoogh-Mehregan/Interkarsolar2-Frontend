@@ -28,11 +28,9 @@ function Dashboard() {
   const [tab, setTab] = useState(0);
 
   const location = useLocation();
-  console.log(location)
   const urlParams = new URLSearchParams(location.search);
   const tabName = urlParams.get('tab');
 
-  console.log(tabName);
 
   useEffect(
     () => {

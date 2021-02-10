@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import fetchApi from './fetchApi';
 import * as actionTypes from '../../actionTypes';
 
@@ -21,7 +22,11 @@ export default ({ getState }) => (next) => async (action) => {
   next(actionWith({ payload, type: requestType }));
 
   try {
-    fetchOptions.body = JSON.stringify(fetchOptions.body);
+
+    console.log(fetchOptions)
+
+
+    fetchOptions.form = JSON.stringify(fetchOptions.form);
 
     if (!fetchOptions.dontContentType) {
       fetchOptions.headers = {
@@ -36,6 +41,8 @@ export default ({ getState }) => (next) => async (action) => {
         Authorization: 'Token ' + account.token,
       };
     }
+
+    console.log(fetchOptions)
 
     const response = await fetchApi(url, fetchOptions);
     return next(

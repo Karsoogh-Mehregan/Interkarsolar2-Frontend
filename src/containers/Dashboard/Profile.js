@@ -89,8 +89,6 @@ const ProfileTab = ({
     })
   }
 
-  console.log(info);
-
   return (
     <Container style={{ overflowY: 'hidden' }}>
       <div className={`dashboard-background blur`} />
@@ -103,7 +101,7 @@ const ProfileTab = ({
       >
         <Grid item xs={12}>
           <Typography variant='h2' className={classes.title} align='center'>
-            ویرایش اطلاعات
+            مشخصات من
           </Typography>
         </Grid>
         <Grid item container justify='space-evenly' alignItems='center' spacing={4} xs={12}>
@@ -116,16 +114,16 @@ const ProfileTab = ({
               <Paper className={classes.paper}>
                 <Grid item container spacing={1} justify='center' alignItems='center'>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField name='firstName' label='نام' value={info.firstName} variant='outlined' required onChange={onChange} />
+                    <TextField name='firstName' label='نام' value={info.firstName} variant='outlined' required onChange={onChange} fullWidth />
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField name='lastName' label='نام خانوادگی' value={info.lastName} variant='outlined' required onChange={onChange} />
+                    <TextField name='lastName' label='نام خانوادگی' value={info.lastName} variant='outlined' required onChange={onChange} fullWidth />
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField name='nationalCode' label='کد ملی' value={info.nationalCode} disabled variant='outlined' required onChange={onChange} />
+                    <TextField name='nationalCode' label='کد ملی' value={info.nationalCode} disabled variant='outlined' required onChange={onChange} fullWidth />
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField name='phone1' label='شماره موبایل' value={info.phone1} disabled variant='outlined' required onChange={onChange} />
+                    <TextField name='phone1' label='شماره موبایل' value={info.phone1} disabled variant='outlined' required onChange={onChange} fullWidth />
                   </Grid>
                   <Grid item container xs={12} sm={3}>
                     <FormControl variant="outlined" className={classes.formControl} required>
@@ -148,7 +146,7 @@ const ProfileTab = ({
                     </FormControl >
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField name='phone2' label='شماره موبایل زاپاس' required variant='outlined' onChange={onChange} />
+                    <TextField name='phone2' label='شماره موبایل زاپاس' value={info.phone2} required variant='outlined' onChange={onChange} fullWidth />
                   </Grid>
                   <Grid item container xs={12} sm={6} justify='center'>
                   </Grid>
@@ -163,7 +161,7 @@ const ProfileTab = ({
               <Paper className={classes.paper}>
                 <Grid item container spacing={1} justify='center' alignItems='center'>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField label='نام مدرسه' value={info.schoolName} variant='outlined' required onChange={onChange} />
+                    <TextField label='نام مدرسه' value={info.schoolName} variant='outlined' required onChange={onChange} fullWidth />
                   </Grid>
                   <Grid item container xs={12} sm={3}>
                     <FormControl variant="outlined" className={classes.formControl} required>
@@ -174,6 +172,7 @@ const ProfileTab = ({
                         id="demo-simple-select"
                         value={info.city}
                         onChange={onChange}
+                        name='city'
                         label='شهر'
                       >
                         <MenuItem value="">انتخاب کنید</MenuItem>
@@ -192,6 +191,7 @@ const ProfileTab = ({
                         id="demo-simple-select"
                         value={info.province}
                         onChange={onChange}
+                        name='province'
                         label='استان'
                       >
                         <MenuItem value="">انتخاب کنید</MenuItem>
@@ -203,10 +203,10 @@ const ProfileTab = ({
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
                     <TextField
-                      label='شماره تلفن مدرسه' name='schoolPhone' value={info.schoolPhone} variant='outlined' placeholder='مثال: 03112345678' onChange={onChange} />
+                      label='شماره تلفن مدرسه' name='schoolPhone' value={info.schoolPhone} variant='outlined' placeholder='مثال: 03112345678' onChange={onChange} fullWidth />
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField label='شماره موبایل مدیر' name='principalPhone' value={info.principalPhone} variant='outlined' onChange={onChange} />
+                    <TextField label='شماره موبایل مدیر' name='principalPhone' value={info.principalPhone} variant='outlined' onChange={onChange} fullWidth />
                   </Grid>
                   <Grid item container xs={12} sm={9} justify='center' />
                 </Grid>
@@ -216,9 +216,9 @@ const ProfileTab = ({
           <Hidden smDown>
             <Grid item container md={3} className={classes.statImage} />
           </Hidden>
-          <Grid item container xs={12} sm={3} justify='center'>
+          <Grid item container xs={12} sm={4} justify='center'>
             <Button size='large' variant='contained' color='primary' fullWidth >
-              ذخیره
+              ذخیره تغییرات
             </Button>
           </Grid>
         </Grid>

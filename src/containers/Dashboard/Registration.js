@@ -35,9 +35,9 @@ const useStyles = makeStyles((theme) => ({
   header3: {
     fontSize: 25,
     lineHeight: '30px',
+    textShadow: '-1px 1px #888',
     textAlign: 'center',
     fontWeight: 'bold',
-    textJustify: 'inter-character',
     color: '#fbebd1',
     [theme.breakpoints.down('sm')]: {
       fontSize: 20,

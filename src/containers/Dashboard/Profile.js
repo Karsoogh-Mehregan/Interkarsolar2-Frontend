@@ -10,6 +10,7 @@ import {
   MenuItem,
   FormControl,
   InputLabel,
+  Hidden,
 } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '90vh',
     width: '100wh',
     paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
+    paddingBottom: theme.spacing(2),
   },
   statImage: {
     height: '40vh',
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 60,
     color: '#fbebd1',
     textShadow: '-2px 2px #888',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: 40,
     },
   },
@@ -43,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
     textJustify: 'inter-character',
     color: '#fbebd1',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: 20,
     },
   },
@@ -98,14 +99,15 @@ const ProfileTab = ({
         container
         justify='center'
         alignItems='center'
+        spacing={4}
       >
         <Grid item xs={12}>
           <Typography variant='h2' className={classes.title} align='center'>
             ویرایش اطلاعات
           </Typography>
         </Grid>
-        <Grid item container justify='space-evenly' alignItems='center' spacing={6} xs={12}>
-          <Grid item xs={12} sm={8} container direction='column' justify='center' alignItems='center' spacing={4}>
+        <Grid item container justify='space-evenly' alignItems='center' spacing={4} xs={12}>
+          <Grid item container xs={12} md={8} direction='column' justify='center' alignItems='center' spacing={4}>
             <Grid
               item container
               justify='center'
@@ -120,13 +122,13 @@ const ProfileTab = ({
                     <TextField name='lastName' label='نام خانوادگی' value={info.lastName} variant='outlined' required onChange={onChange} />
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField name='nationalCode' label='کد ملی' value={info.nationalCode} disabled variant='outlined' onChange={onChange} />
+                    <TextField name='nationalCode' label='کد ملی' value={info.nationalCode} disabled variant='outlined' required onChange={onChange} />
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField name='phone1' label='شماره موبایل' value={info.phone1} disabled variant='outlined' onChange={onChange} />
+                    <TextField name='phone1' label='شماره موبایل' value={info.phone1} disabled variant='outlined' required onChange={onChange} />
                   </Grid>
                   <Grid item container xs={12} sm={3}>
-                    <FormControl variant="outlined" className={classes.formControl}>
+                    <FormControl variant="outlined" className={classes.formControl} required>
                       <InputLabel id="demo-simple-select-required-label">پایه</InputLabel>
                       <Select
                         className={classes.dropDown}
@@ -135,6 +137,7 @@ const ProfileTab = ({
                         value={info.grade}
                         onChange={onChange}
                         name='grade'
+                        label='پایه'
                         required
                       >
                         <MenuItem value="">انتخاب کنید</MenuItem>
@@ -163,7 +166,7 @@ const ProfileTab = ({
                     <TextField label='نام مدرسه' value={info.schoolName} variant='outlined' required onChange={onChange} />
                   </Grid>
                   <Grid item container xs={12} sm={3}>
-                    <FormControl variant="outlined" className={classes.formControl}>
+                    <FormControl variant="outlined" className={classes.formControl} required>
                       <InputLabel id="demo-simple-select-required-label">شهر</InputLabel>
                       <Select
                         className={classes.dropDown}
@@ -171,7 +174,7 @@ const ProfileTab = ({
                         id="demo-simple-select"
                         value={info.city}
                         onChange={onChange}
-                        required
+                        label='شهر'
                       >
                         <MenuItem value="">انتخاب کنید</MenuItem>
                         <MenuItem value={'هفتم'}>هفتم</MenuItem>
@@ -181,7 +184,7 @@ const ProfileTab = ({
                     </FormControl >
                   </Grid>
                   <Grid item container xs={12} sm={3}>
-                    <FormControl variant="outlined" className={classes.formControl}>
+                    <FormControl variant="outlined" className={classes.formControl} required>
                       <InputLabel id="demo-simple-select-required-label">استان</InputLabel>
                       <Select
                         className={classes.dropDown}
@@ -189,7 +192,7 @@ const ProfileTab = ({
                         id="demo-simple-select"
                         value={info.province}
                         onChange={onChange}
-                        required
+                        label='استان'
                       >
                         <MenuItem value="">انتخاب کنید</MenuItem>
                         <MenuItem value={'هفتم'}>هفتم</MenuItem>
@@ -199,16 +202,25 @@ const ProfileTab = ({
                     </FormControl >
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField label='شماره تلفن مدرسه' value={info.schoolPhone} variant='outlined' onChange={onChange} />
+                    <TextField
+                      label='شماره تلفن مدرسه' name='schoolPhone' value={info.schoolPhone} variant='outlined' placeholder='مثال: 03112345678' onChange={onChange} />
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField label='شماره موبایل مدیر' value={info.principalPhone} variant='outlined' onChange={onChange} />
+                    <TextField label='شماره موبایل مدیر' name='principalPhone' value={info.principalPhone} variant='outlined' onChange={onChange} />
                   </Grid>
+                  <Grid item container xs={12} sm={9} justify='center' />
                 </Grid>
               </Paper>
             </Grid>
           </Grid>
-          <Grid item xs={12} sm={3} className={classes.statImage} />
+          <Hidden smDown>
+            <Grid item container md={3} className={classes.statImage} />
+          </Hidden>
+          <Grid item container xs={12} sm={3} justify='center'>
+            <Button size='large' variant='contained' color='primary' fullWidth >
+              ذخیره
+            </Button>
+          </Grid>
         </Grid>
       </Grid >
     </Container >

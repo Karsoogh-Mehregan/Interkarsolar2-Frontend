@@ -102,8 +102,8 @@ const RegistrationTab = ({ }) => {
                 </Grid>
                 <Grid item container justify='center'>
                   <Button variant='contained' color='primary' size='large'>
-                    تایید و پرداخت
-              </Button>
+                    ادامه...
+                  </Button>
                 </Grid>
               </>
             }

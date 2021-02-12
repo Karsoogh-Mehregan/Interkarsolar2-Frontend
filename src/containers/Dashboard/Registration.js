@@ -4,9 +4,9 @@ import {
   Grid,
   makeStyles,
   Typography,
-  TextField,
   Button,
   Checkbox,
+  Hidden,
 } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { doPayment } from '../../redux/actions/account'
@@ -116,7 +116,9 @@ const RegistrationTab = ({ doPayment }) => {
               </>
             }
           </Grid>
-          <Grid item xs={12} sm={1} />
+          <Hidden xsDown>
+            <Grid item xs={12} sm={1} />
+          </Hidden>
         </Grid>
       </Grid>
     </Container >

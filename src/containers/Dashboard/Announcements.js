@@ -51,6 +51,8 @@ const useStyles = makeStyles((theme) => ({
 
 const AnnouncementsTab = ({ }) => {
   const classes = useStyles();
+  const [isRegistered, setRegistrationStatus] = useState(false);
+
   return (
     <Container style={{ overflow: 'hidden' }}>
       <div className={`dashboard-background blur`} />
@@ -76,9 +78,16 @@ const AnnouncementsTab = ({ }) => {
           <Grid item xs={12}>
             <Announcement title='آغاز ثبت‌نام مرحله یک' date='۲۵بهمن۹۹' text='بله! بعد از یک سال دوری از شما سیارک‌داران گرامی، دوباره با دوره‌ی دوم رویداد اینترکارسولار در خدمت شما هستیم! ثبت‌نام اینترکارسولار از امروز شروع شده و تا اول اسفند ادامه داره. بدو جا نمونی... ' />
           </Grid>
-          <Grid item xs={12}>
-            <Announcement title='هنوز ثبت‌نامت نهایی نشده!' date='' text='سیارک‌دار گرامی توجه کن! ثبت‌نام تو هنوز نهایی نشده. برای نهایی‌کردن ثبت‌نامت به بخش «ثبت‌نام» برو.' />
-          </Grid>
+          {!isRegistered &&
+            <Grid item xs={12}>
+              <Announcement title='هنوز ثبت‌نامت نهایی نشده!' date='' image='redX.png' text='سیارک‌دار گرامی توجه کن! ثبت‌نامت هنوز نهایی نشده. برای نهایی‌کردن ثبت‌نام باید به بخش «ثبت‌نام» بری.' />
+            </Grid>
+          }
+          {isRegistered &&
+            <Grid item xs={12}>
+              <Announcement title='ثبت‌نامت تکمیله!' date='' image='greenCheck.png' text='ایول! ثبت‌نامت با موفقیت انجام شده و حالا باید منتظر مرحله اول بمونی. ۸ اسفند شروع مرحله یکه!' />
+            </Grid>
+          }
         </Grid>
       </Grid>
     </Container >

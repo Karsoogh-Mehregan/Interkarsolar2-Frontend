@@ -35,7 +35,9 @@ const useStyles = makeStyles((theme) => ({
     color: '#4d4a70',
   },
   paper: {
-    padding: theme.spacing(3),
+    padding: theme.spacing(2),
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
     backgroundColor: 'rgb(255, 255, 255, 0.94)',
   },
 }));
@@ -45,11 +47,11 @@ const Announcement = ({ title = 'ثبت‌نام مرحله یک', date = '۲۵�
 
   return (
     <Paper className={classes.paper}>
-      <Grid container textAlign="center" spacing={3} >
-        <Grid item container justify='center' xs={5} sm={3} md={2} style={{ maxHeight: '20vh' }}>
+      <Grid container textAlign="center" spacing={2} >
+        <Grid item container justify='center' xs={5} sm={4} md={2} style={{ maxHeight: '20vh' }}>
           <img src={process.env.PUBLIC_URL + image} alt='' height='100%' />
         </Grid>
-        <Grid item xs={7} sm={9} md={10} container direction='column' justify='space-evenly'>
+        <Grid item xs={7} sm={8} md={10} container direction='column' justify='space-evenly' spacing={1}>
           <Grid item container alignItems='flex-end' spacing={1}>
             <Grid item>
               <Typography variant="h3" className={classes.notificationTitle}>

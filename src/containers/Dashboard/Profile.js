@@ -91,7 +91,7 @@ const ProfileTab = ({
   }
 
   return (
-    <Container style={{ overflowY: 'hidden' }}>
+    <Container style={{ overflow: 'hidden' }}>
       <div className={`dashboard-background blur`} />
       <Grid
         className={classes.root}

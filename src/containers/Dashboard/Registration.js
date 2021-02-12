@@ -19,8 +19,8 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(4),
   },
   statImage: {
-    height: '40vh',
-    background: `url(${process.env.PUBLIC_URL + '/logo.png'})`,
+    height: '50vh',
+    background: `url(${process.env.PUBLIC_URL + '/sad.png'})`,
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center center',
@@ -37,7 +37,8 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 25,
     lineHeight: '30px',
     textShadow: '-2px 2px 5px #444444',
-    textAlign: 'center',
+    textAlign: 'justify',
+    textJustify: 'inner-character',
     fontWeight: 'bold',
     color: '#fbebd1',
     [theme.breakpoints.down('sm')]: {
@@ -54,24 +55,30 @@ const useStyles = makeStyles((theme) => ({
 
 const RegistrationTab = ({ doPayment }) => {
   const classes = useStyles();
-  const [isAllowed, setIsAllowed] = useState(true);
+  const [isAllowed, setIsAllowed] = useState(false);
 
   return (
-    <Container>
+    <Container style={{ overflow: 'hidden' }}>
       <div className={`dashboard-background blur`} />
       <Grid
         className={classes.root}
         container
         justify='space-evenly'
         alignItems='center'
+        spacing={4}
       >
         <Grid item container justify='center'>
           <Typography variant='h2' className={classes.title} >
             ثبت‌نام نهایی
           </Typography>
         </Grid>
-        <Grid container item direction='row' justify='center' spacing={2}>
-          <Grid item xs={12} sm={6} className={classes.statImage} />
+        <Grid container item direction='row' justify='center' spacing={4}>
+          {isAllowed &&
+            <Grid item xs={12} sm={6} className={classes.statImage} />
+          }
+          {!isAllowed &&
+            <Grid item xs={12} sm={6} className={classes.statImage} />
+          }
           <Grid
             xs={12} sm={5}
             item

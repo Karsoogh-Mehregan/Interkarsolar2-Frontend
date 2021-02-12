@@ -39,7 +39,7 @@ const ButtonBar = ({ onClick }) => {
                 }} />
             </Grid>
             <Grid container item justify='center' xs={12} sm={4} lg={3}>
-                <FancyPushButton text='ثبت‌نام' color='green' onClick={() => {
+                <FancyPushButton text='ثبت‌نام نهایی' color='green' onClick={() => {
                     onClick(1);
                     history.push('/dashboard?tab=registration')
                 }} />

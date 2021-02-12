@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
 const AnnouncementsTab = ({ }) => {
   const classes = useStyles();
   return (
-    <Container style={{ overflowY: 'hidden' }}>
+    <Container style={{ overflow: 'hidden' }}>
       <div className={`dashboard-background blur`} />
       <Grid
         className={classes.root}

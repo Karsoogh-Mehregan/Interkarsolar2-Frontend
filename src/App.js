@@ -16,8 +16,12 @@ const App = ({ redirectTo, forceRedirect, initRedirect, loading }) => {
   const history = useHistory();
   useEffect(() => {
     if (redirectTo !== null) {
-      history.push(redirectTo);
-      initRedirect();
+      setTimeout(
+        () => {
+          history.push(redirectTo);
+          initRedirect();
+        }
+        , 10000)
     }
   }, [redirectTo, forceRedirect, initRedirect, history]);
 
@@ -57,8 +61,8 @@ const App = ({ redirectTo, forceRedirect, initRedirect, loading }) => {
       <StylesProvider jss={jss}>
         <CssBaseline />
         <Loading />
-        <Root />
         <Toast />
+        <Root />
       </StylesProvider>
     </ThemeProvider>
   );

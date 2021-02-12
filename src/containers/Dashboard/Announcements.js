@@ -12,6 +12,13 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
+  statImage: {
+    height: '40vh',
+    background: `url(${process.env.PUBLIC_URL + '/logo.png'})`,
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center center',
+  },
 }));
 
 const AnnouncementsTab = ({ }) => {
@@ -22,11 +29,14 @@ const AnnouncementsTab = ({ }) => {
       <Grid
         className={classes.root}
         container
-        justify='space-evenly'
-        direction='column'
         alignItems='center'
       >
-        <ImgMediaCard />
+        <Grid item xs={12}>
+          <ImgMediaCard />
+        </Grid>
+        <Grid item xs={12}>
+          <ImgMediaCard />
+        </Grid>
       </Grid>
     </>
   );

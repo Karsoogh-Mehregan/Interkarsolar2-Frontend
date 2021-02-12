@@ -1,4 +1,5 @@
 import * as actionTypes from '../actionTypes';
+import { toast } from 'react-toastify';
 
 const initState = {
   token: '',

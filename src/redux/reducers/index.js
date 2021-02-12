@@ -6,8 +6,8 @@ import exam from './exam';
 
 const allReducers = combineReducers({
   account,
-  notifications,
   redirect,
   exam,
+  notifications,
 });
 export default allReducers;

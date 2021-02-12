@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
   header3: {
     fontSize: 25,
     lineHeight: '30px',
+    backgroundColor: '#d1d1d1',
     textShadow: '-1px 1px #888',
     textAlign: 'center',
     fontWeight: 'bold',

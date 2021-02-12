@@ -66,8 +66,8 @@ input.rtl-placeholder::placeholder,
   animation: show-back 0.8s 0.3s both;
 
   &.blur {
-    filter: blur(12px);
-    -webkit-filter: blur(12px);
+    filter: blur(6px);
+    -webkit-filter: blur(6px);
   }
 }
 

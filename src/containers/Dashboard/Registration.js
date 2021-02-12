@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   header3: {
     fontSize: 25,
     lineHeight: '30px',
-    textShadow: '-1px 1px #888',
+    textShadow: '-2px 2px 5px #444444',
     textAlign: 'center',
     fontWeight: 'bold',
     color: '#fbebd1',
@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: 20,
     },
   },
+
   normalText: {
     textAlign: 'justify',
     color: '#fbebd1',
@@ -97,7 +98,7 @@ const RegistrationTab = ({ doPayment }) => {
                   <Grid item xs={10} spacing={1} container justify='center' alignItems='center'>
                     <Typography className={classes.normalText}>
                       اگر در سال گذشته در مرحله‌ی اول کارسوق ریاضی مهرگان ثبت‌نام کرده بودی، این مورد را تیک بزن.
-                </Typography>
+                    </Typography>
                   </Grid>
                 </Grid>
                 <Grid item container justify='center'>

@@ -95,22 +95,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
-  photo: {
-    opacity: '1',
-    height: '100vh',
-    background: `url(${process.env.PUBLIC_URL + '/poster.jpeg'})`,
-    backgroundSize: 'auto 100%',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'bottom',
-    color: '#26373d',
-    padding: theme.spacing(8),
-    paddingTop: theme.spacing(6),
-    [theme.breakpoints.down('xs')]: {
-      padding: theme.spacing(4),
-      paddingTop: theme.spacing(3),
-    },
-  },
-
   section5: {
     background: `url(${process.env.PUBLIC_URL + '/background3.jpg'})`,
     color: '#f7f2f6',

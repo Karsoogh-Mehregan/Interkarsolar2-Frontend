@@ -50,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
+    backgroundColor: 'rgb(255, 255, 255, 0.94)',
   },
   dropDown: {
     minWidth: '100px',

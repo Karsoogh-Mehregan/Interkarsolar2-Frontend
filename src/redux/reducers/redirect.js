@@ -1,4 +1,5 @@
 import * as actionTypes from '../actionTypes';
+import { toast } from 'react-toastify'
 
 const initState = {
   redirectTo: null,
@@ -11,6 +12,7 @@ function redirect(state = initState, action) {
       return { redirectTo: action.payload };
 
     case actionTypes.CREATE_ACCOUNT_SUCCESS:
+      toast.error("DDFDRFGFDSERTGHGB")
       return { redirectTo: '/dashboard?tab=announcements' }
 
     case actionTypes.LOGIN_SUCCESS:

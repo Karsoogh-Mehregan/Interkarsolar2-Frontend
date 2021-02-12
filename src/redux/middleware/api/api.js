@@ -1,6 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 import fetchApi from './fetchApi';
 import * as actionTypes from '../../actionTypes';
+import queryString from 'query-string';
 
 export const CALL_API = 'Call API';
 
@@ -23,10 +24,10 @@ export default ({ getState }) => (next) => async (action) => {
 
   try {
 
-    fetchOptions.data = JSON.stringify(fetchOptions.data);
+    fetchOptions.body = queryString.stringify(fetchOptions.body);
 
     fetchOptions.headers = {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/x-www-form-urlencoded',
       ...fetchOptions.headers,
     };
 

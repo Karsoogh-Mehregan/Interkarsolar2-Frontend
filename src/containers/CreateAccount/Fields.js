@@ -14,13 +14,13 @@ const InputFields = ({
   createAccount,
   isFetching,
 }) => {
-  const [username, setUsername] = useState('');
+  const [nationalID, setNationalID] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
 
   const doCreateAccount = () => {
-    if (!username || !password || !confirmPassword || !phoneNumber) {
+    if (!nationalID || !password || !confirmPassword || !phoneNumber) {
       toast.error('لطفاً همه‌ی چیزهایی که ازت خواسته شده رو پر کن!')
       return;
     }
@@ -28,20 +28,25 @@ const InputFields = ({
       toast.error('رمزهایی که وارد کردی مشابه هم نیستند!')
       return;
     }
-    var regex = new RegExp('^(\\+98|0)?9\\d{9}$');
+    var regex = new RegExp('\\d+');
+    if (!regex.test(nationalID)) {
+      toast.error('کد ملی نامعتبره!')
+      return;
+    }
+    regex = new RegExp('^(\\+98|0)?9\\d{9}$');
     if (!regex.test(phoneNumber)) {
       toast.error('شماره موبایلی که وارد کردی نامعتبره!')
       return;
     }
-    createAccount(username, password, phoneNumber);
+    createAccount(nationalID, password, phoneNumber);
   }
 
   return (
     <>
       <Grid item>
         <TextField
-          onChange={(e) => setUsername(e.target.value)}
-          label='نام کاربری'
+          onChange={(e) => setNationalID(e.target.value)}
+          label='کد ملی'
           type='text'
           variant='outlined'
           fullWidth />

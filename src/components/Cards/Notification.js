@@ -14,15 +14,7 @@ import { Grid } from '@material-ui/core';
 import { Container } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    height: '100%',
-    width: '100%',
-    fontSize: '1rem',
-    textDecoration: 'none',
-    overflow: 'hidden',
-    boxShadow: '0 0 2rem -1rem rgba(0, 0, 0, 0.5)',
-    transition: 'transform 0.1s ease-in-out',
-  },
+
   statImage: {
     height: '40vh',
     background: `url(${process.env.PUBLIC_URL + '/logo.png'})`,
@@ -38,56 +30,49 @@ const useStyles = makeStyles((theme) => ({
       fontSize: 40,
     },
   },
-  header3: {
-    fontSize: 25,
-    lineHeight: '30px',
-    textShadow: '-1px 1px #888',
-    textAlign: 'center',
-    fontWeight: 'bold',
-    color: '#fbebd1',
-    [theme.breakpoints.down('sm')]: {
-      fontSize: 20,
-    },
+  notificationTitle: {
+    fontSize: 30,
+    color: '#4d4a70',
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(3),
   },
 }));
 
-export default function ImgMediaCard() {
+const Announcement = ({ title = 'ثبت‌نام مرحله یک', date = '۲۵بهمن۹۹', text = 'متن اطلاعیه', image = '/logo.png' }) => {
   const classes = useStyles();
 
   return (
     <Paper className={classes.paper}>
-      <Grid container textAlign="center" spacing={2} >
+      <Grid container textAlign="center" spacing={3} >
         <Grid item container justify='center' xs={5} sm={3} md={2} style={{ maxHeight: '20vh' }}>
-          <img src={process.env.PUBLIC_URL + '/logo.png'} alt='' height='100%' />
+          <img src={process.env.PUBLIC_URL + image} alt='' height='100%' />
         </Grid>
-        <Grid item xs={7} sm={9} md={10} container direction='column' justify='space-evenly' >
-          <Grid item container alignItems='flex-start'>
+        <Grid item xs={7} sm={9} md={10} container direction='column' justify='space-evenly'>
+          <Grid item container alignItems='flex-end' spacing={1}>
             <Grid item>
-              <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
-                title
+              <Typography variant="h3" className={classes.notificationTitle}>
+                {title}
               </Typography>
             </Grid>
             <Grid item>
-              <Typography gutterBottom variant="h5" component="h2">
-                date
+              <Typography variant="subtitle" >
+                {date}
               </Typography>
             </Grid>
           </Grid>
           <Grid item>
             <Typography
               variant="body2"
-              color="textSecondary"
-              component="p"
-              style={{ textAlign: 'center' }}>
-              متن اطلاعیه
+              color="textSecondary">
+              {text}
             </Typography>
           </Grid>
         </Grid>
-
       </Grid>
     </Paper>
   );
 }
+
+
+export default Announcement;

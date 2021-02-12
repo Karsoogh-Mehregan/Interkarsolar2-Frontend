@@ -62,7 +62,6 @@ const RegistrationTab = ({ doPayment }) => {
         className={classes.root}
         container
         justify='space-evenly'
-        direction='column'
         alignItems='center'
       >
         <Grid item container justify='center'>

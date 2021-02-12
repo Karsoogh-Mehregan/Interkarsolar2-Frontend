@@ -25,7 +25,7 @@ const Supporters = () => {
           دوستان
           </Typography>
       </Grid>
-      <Grid container item direction='row' justify='center' sm={6}>
+      <Grid container item direction='row' justify='center' xs={10} md={8}>
         {Institutions.map((institution) => {
           return (
             <InstitutionCard

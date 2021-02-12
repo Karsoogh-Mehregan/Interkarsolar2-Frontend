@@ -16,7 +16,6 @@ import AnnouncementsTab from './Announcements';
 import ProfileTab from './Profile';
 import ButtonBar from './ButtonBar';
 
-const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   container: {
     overflowX: 'hidden',

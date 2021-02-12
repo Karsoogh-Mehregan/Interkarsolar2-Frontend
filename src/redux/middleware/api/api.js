@@ -23,26 +23,12 @@ export default ({ getState }) => (next) => async (action) => {
 
   try {
 
-    console.log(fetchOptions)
+    // fetchOptions.form = JSON.stringify(fetchOptions.form);
 
-
-    fetchOptions.form = JSON.stringify(fetchOptions.form);
-
-    if (!fetchOptions.dontContentType) {
-      fetchOptions.headers = {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        ...fetchOptions.headers,
-      };
-    }
-    const account = getState().account;
-    if (!!account && !!account.token) {
-      fetchOptions.headers = {
-        ...fetchOptions.headers,
-        Authorization: 'Token ' + account.token,
-      };
-    }
-
-    console.log(fetchOptions)
+    fetchOptions.headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      ...fetchOptions.headers,
+    };
 
     const response = await fetchApi(url, fetchOptions);
     return next(
@@ -52,6 +38,7 @@ export default ({ getState }) => (next) => async (action) => {
         type: successType,
       })
     );
+    
   } catch (error) {
     if (error.message === 'TOKEN EXPIRED') {
       return next(

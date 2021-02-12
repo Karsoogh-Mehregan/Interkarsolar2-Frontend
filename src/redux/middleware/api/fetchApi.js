@@ -18,6 +18,7 @@ const checkErrorsStatusCode = (response, json_response) => {
 };
 
 const fetchApi = async (url, fetchOptions) => {
+  console.log(fetchOptions)
   const response = await fetch(url, fetchOptions);
   const json_response = await response.json();
   checkErrorsStatusCode(response, json_response);

@@ -77,7 +77,7 @@ function ResponsiveAppBar({
             classes.appBar,
             showBackOnScroll && !trigger && classes.hideBack
           )}
-          color="inherit">
+          color='default'>
           <Container maxWidth="lg">
             <Toolbar className={classes.toolbar}>
               {mobileMenuListItems.length > 0 && (

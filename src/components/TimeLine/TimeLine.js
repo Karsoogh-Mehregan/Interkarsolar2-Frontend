@@ -45,7 +45,7 @@ export default function TimeLine() {
         <TimelineContent>
           <Paper elevation={3} className={classes.paper}>
             <Typography variant="h6" component="h1">
-              دو فروند ارائه‌ی علمی
+              دو فروند ارائه‌ی غیرعلمی
             </Typography>
           </Paper>
         </TimelineContent>

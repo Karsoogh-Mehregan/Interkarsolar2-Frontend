@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ImgMediaCard from '../../components/Cards/notification';
+import ImgMediaCard from '../../components/Cards/Notification';
 import { Container, Grid } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';

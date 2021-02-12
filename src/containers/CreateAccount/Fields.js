@@ -30,7 +30,7 @@ const InputFields = ({
     }
     var regex = new RegExp('^(\\+98|0)?9\\d{9}$');
     if (!regex.test(phoneNumber)) {
-      toast.error('شماره موبایلی که وارد کردی اشتباهه!')
+      toast.error('شماره موبایلی که وارد کردی نامعتبره!')
       return;
     }
     createAccount(username, password, phoneNumber);

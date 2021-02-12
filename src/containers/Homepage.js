@@ -214,22 +214,6 @@ function Homepage({ isLoggedIn }) {
         </Grid>
       </Container>
 
-      <Container className={`${classes.section7} ${classes.centerItems}`}>
-        <Grid container direction="column" alignItems='center' spacing={4}>
-          <Grid item>
-            <Typography
-              component="h2"
-              variant="h2"
-              align='center'>
-              پرسش‌های متداول
-            </Typography>
-          </Grid>
-          <Grid item xs={12} sm={6} >
-            <FAQ />
-          </Grid>
-        </Grid>
-      </Container>
-
       <Container className={`${classes.section4} ${classes.centerItems}`}>
         <Grid container direction="column" spacing={4}>
           <Grid item>
@@ -242,6 +226,22 @@ function Homepage({ isLoggedIn }) {
           </Grid>
           <Grid container item justify='center'>
             <Timeline />
+          </Grid>
+        </Grid>
+      </Container>
+
+      <Container className={`${classes.section7} ${classes.centerItems}`}>
+        <Grid container direction="column" alignItems='center' spacing={4}>
+          <Grid item>
+            <Typography
+              component="h2"
+              variant="h2"
+              align='center'>
+              پرسش‌های متداول
+            </Typography>
+          </Grid>
+          <Grid item xs={12} sm={9} md={6} >
+            <FAQ />
           </Grid>
         </Grid>
       </Container>

@@ -53,9 +53,9 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const RegistrationTab = ({ doPayment }) => {
+const RegistrationTab = ({ doPayment, isFetching }) => {
   const classes = useStyles();
-  const [isAllowed, setIsAllowed] = useState(false);
+  const [isAllowed, setIsAllowed] = useState(true);
 
   return (
     <Container style={{ overflow: 'hidden' }}>
@@ -109,7 +109,7 @@ const RegistrationTab = ({ doPayment }) => {
                   </Grid>
                 </Grid>
                 <Grid item container justify='center'>
-                  <Button variant='contained' color='primary' size='large' onClick={doPayment}>
+                  <Button variant='contained' color='primary' size='large' onClick={doPayment} disabled={isFetching}>
                     ادامه...
                   </Button>
                 </Grid>
@@ -125,9 +125,9 @@ const RegistrationTab = ({ doPayment }) => {
   )
 }
 
-const mapStateToProps = (state, ownProps) => {
-
-}
+const mapStateToProps = (state, ownProps) => ({
+  isFetching: state.account.isFetching,
+})
 
 export default connect(
   mapStateToProps,

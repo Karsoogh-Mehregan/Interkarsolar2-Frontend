@@ -10,6 +10,7 @@ const initState = {
 function account(state = initState, action) {
   switch (action.type) {
 
+    case actionTypes.PAYMENT_REQUEST:
     case actionTypes.CREATE_ACCOUNT_REQUEST:
     case actionTypes.LOGIN_REQUEST:
       return {
@@ -26,12 +27,21 @@ function account(state = initState, action) {
         user: action.response.user_info,
       };
 
+    case actionTypes.PAYMENT_FAILURE:
     case actionTypes.CREATE_ACCOUNT_FAILURE:
     case actionTypes.LOGIN_FAILURE:
       return {
         ...state,
         isFetching: false,
       };
+
+    case actionTypes.PAYMENT_SUCCESS:
+      window.location.replace(action.response.data.pay_link)
+      return {
+        ...state,
+        isFetching: false,
+      }
+
 
     case actionTypes.LOGOUT:
       return initState;

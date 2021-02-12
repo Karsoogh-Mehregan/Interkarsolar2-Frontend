@@ -22,9 +22,9 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(2),
   },
-  statImage: {
+  formImage: {
     height: '40vh',
-    background: `url(${process.env.PUBLIC_URL + '/logo.png'})`,
+    background: `url(${process.env.PUBLIC_URL + '/form.png'})`,
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center center',
@@ -215,7 +215,7 @@ const ProfileTab = ({
             </Grid>
           </Grid>
           <Hidden smDown>
-            <Grid item container md={3} className={classes.statImage} />
+            <Grid item container md={3} className={classes.formImage} />
           </Hidden>
           <Grid item container xs={12} sm={4} justify='center'>
             <Button size='large' variant='contained' color='primary' fullWidth >

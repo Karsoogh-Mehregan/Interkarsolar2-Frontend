@@ -1,17 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import {
-  Paper
+  Paper,
+  Typography,
+  Grid,
 } from '@material-ui/core';
-import { Grid } from '@material-ui/core';
-import { Container } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -35,19 +28,17 @@ const useStyles = makeStyles((theme) => ({
     color: '#4d4a70',
   },
   paper: {
-    padding: theme.spacing(2),
-    paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3),
+    padding: theme.spacing(3),
     backgroundColor: 'rgb(255, 255, 255, 0.94)',
   },
 }));
 
-const Announcement = ({ title = 'ثبت‌نام مرحله یک', date = '۲۵بهمن۹۹', text = 'متن اطلاعیه', image = '/logo.png' }) => {
+const Announcement = ({ title, date, text, image }) => {
   const classes = useStyles();
 
   return (
     <Paper className={classes.paper}>
-      <Grid container textAlign="center" spacing={2} >
+      <Grid container textAlign="center" spacing={4} >
         <Grid item container justify='center' xs={5} sm={4} md={2} style={{ maxHeight: '20vh' }}>
           <img src={process.env.PUBLIC_URL + image} alt='' height='100%' />
         </Grid>

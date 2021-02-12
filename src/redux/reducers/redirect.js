@@ -18,6 +18,11 @@ function redirect(state = initState, action) {
     case actionTypes.LOGIN_SUCCESS:
       return { redirectTo: '/dashboard?tab=announcements' }
 
+    case actionTypes.PAYMENT_SUCCESS:
+      console.log(action.response);
+      window.location.replace(action.response.data.pay_link)
+      return { ...state }
+
     case actionTypes.INIT_REDIRECT:
       return initState;
     default:

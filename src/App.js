@@ -16,12 +16,8 @@ const App = ({ redirectTo, forceRedirect, initRedirect, loading }) => {
   const history = useHistory();
   useEffect(() => {
     if (redirectTo !== null) {
-      setTimeout(
-        () => {
-          history.push(redirectTo);
-          initRedirect();
-        }
-        , 10000)
+      history.push(redirectTo);
+      initRedirect();
     }
   }, [redirectTo, forceRedirect, initRedirect, history]);
 

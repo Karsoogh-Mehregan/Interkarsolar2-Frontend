@@ -23,10 +23,10 @@ export default ({ getState }) => (next) => async (action) => {
 
   try {
 
-    // fetchOptions.form = JSON.stringify(fetchOptions.form);
+    fetchOptions.data = JSON.stringify(fetchOptions.data);
 
     fetchOptions.headers = {
-      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Type': 'application/json',
       ...fetchOptions.headers,
     };
 
@@ -38,7 +38,7 @@ export default ({ getState }) => (next) => async (action) => {
         type: successType,
       })
     );
-    
+
   } catch (error) {
     if (error.message === 'TOKEN EXPIRED') {
       return next(

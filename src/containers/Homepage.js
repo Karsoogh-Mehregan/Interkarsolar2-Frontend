@@ -95,6 +95,22 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  photo: {
+    opacity: '1',
+    height: '100vh',
+    background: `url(${process.env.PUBLIC_URL + '/poster.jpeg'})`,
+    backgroundSize: 'auto 100%',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'bottom',
+    color: '#26373d',
+    padding: theme.spacing(8),
+    paddingTop: theme.spacing(6),
+    [theme.breakpoints.down('xs')]: {
+      padding: theme.spacing(4),
+      paddingTop: theme.spacing(3),
+    },
+  },
+
   section5: {
     background: `url(${process.env.PUBLIC_URL + '/background3.jpg'})`,
     color: '#f7f2f6',
@@ -147,7 +163,7 @@ function Homepage({ isLoggedIn }) {
     <div style={{ margin: 0 }}>
       <Container className={classes.section1}>
         <div className="landing-background" />
-        <div id="back-to-top-anchor"></div>
+        <div id="back-to-top-anchor" />
         <ResponsiveAppBar mode="LANDING" showBackOnScroll hideOnScroll={false} />
 
         <Grid container direction="row" style={{ height: '100%' }}>
@@ -176,6 +192,8 @@ function Homepage({ isLoggedIn }) {
           </Grid>
         </Grid>
       </Container>
+
+      <img src={`${process.env.PUBLIC_URL + '/poster.jpeg'}`} alt='' width='100%' style={{ marginBottom: '-10px' }} />
 
       <Container className={`${classes.section3} ${classes.centerItems}`}>
         <Grid container direction="column" spacing={6}>

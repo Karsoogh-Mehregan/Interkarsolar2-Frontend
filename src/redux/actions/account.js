@@ -12,12 +12,11 @@ export const createAccount = ({ national_code = '1234567890', phone1 = '09999999
     url: URLs.CREATE_ACCOUNT,
     fetchOptions: {
       method: 'POST',
-      form: {
+      data: {
         national_code,
         password,
         phone1,
       },
-      maxRedirects: 20,
     },
   },
 });
@@ -32,7 +31,7 @@ export const login = ({ username, phone, password }) => ({
     url: URLs.CREATE_ACCOUNT,
     fetchOptions: {
       method: 'POST',
-      form: {
+      data: {
         username,
         password,
         phone,
@@ -46,7 +45,7 @@ export const logout = () => ({
 });
 
 
-export const payment = ({ username, phone, password }) => ({
+export const doPayment = ({ uid = 1, amount = '1000' }) => ({
   [CALL_API]: {
     types: [
       actionTypes.PAYMENT_REQUEST,
@@ -56,10 +55,9 @@ export const payment = ({ username, phone, password }) => ({
     url: URLs.PAYMENT,
     fetchOptions: {
       method: 'POST',
-      form: {
-        username,
-        password,
-        phone,
+      data: {
+        uid,
+        amount,
       },
     },
   },
@@ -75,7 +73,7 @@ export const updateUserInfo = ({ username, phone, password }) => ({
     url: URLs.PAYMENT,
     fetchOptions: {
       method: 'POST',
-      form: {
+      data: {
         username,
         password,
         phone,

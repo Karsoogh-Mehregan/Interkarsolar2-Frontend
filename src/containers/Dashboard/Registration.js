@@ -9,6 +9,7 @@ import {
   Checkbox,
 } from '@material-ui/core';
 import { connect } from 'react-redux';
+import { doPayment } from '../../redux/actions/account'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const RegistrationTab = ({ }) => {
+const RegistrationTab = ({ doPayment }) => {
   const classes = useStyles();
   const [isAllowed, setIsAllowed] = useState(true);
 
@@ -101,7 +102,7 @@ const RegistrationTab = ({ }) => {
                   </Grid>
                 </Grid>
                 <Grid item container justify='center'>
-                  <Button variant='contained' color='primary' size='large'>
+                  <Button variant='contained' color='primary' size='large' onClick={doPayment}>
                     ادامه...
                   </Button>
                 </Grid>
@@ -122,6 +123,6 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(
   mapStateToProps,
   {
-
+    doPayment,
   }
 )(RegistrationTab);

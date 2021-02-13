@@ -67,7 +67,7 @@ const App = ({ redirectTo, forceRedirect, initRedirect, loading }) => {
 const mapStateToProps = (state) => ({
   redirectTo: state.redirect.redirectTo,
   forceRedirect: state.redirect.force,
-  loading: state.account.isFetching || state.exam.isFetching,
+  loading: state.account.isFetching,
 });
 
 export default connect(mapStateToProps, { initRedirect })(App);

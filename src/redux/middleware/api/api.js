@@ -35,7 +35,7 @@ export default ({ getState }) => (next) => async (action) => {
     return next(
       actionWith({
         payload,
-        response: JSON.parse(response),
+        response,
         type: successType,
       })
     );

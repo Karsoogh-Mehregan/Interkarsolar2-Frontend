@@ -1,10 +1,14 @@
 import * as actionTypes from '../actionTypes';
 import { toast } from 'react-toastify';
 
-function notifications(state = {}, action) {
+const initState = {
+  nothing: 'ddd',
+};
+
+function notifications(state = initState, action) {
   switch (action.type) {
+
     case actionTypes.CREATE_ACCOUNT_SUCCESS:
-      console.log(action);
       toast.success('ورودت رو به کهکشان مهرگان خوش‌آمد میگم!');
       return { ...state }
 

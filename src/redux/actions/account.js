@@ -21,20 +21,19 @@ export const createAccount = (national_code, phone1, password) => ({
   },
 });
 
-export const login = ({ username, phone, password }) => ({
+export const login = (national_code, password) => ({
   [CALL_API]: {
     types: [
       actionTypes.LOGIN_REQUEST,
       actionTypes.LOGIN_SUCCESS,
       actionTypes.LOGIN_FAILURE,
     ],
-    url: URLs.CREATE_ACCOUNT,
+    url: URLs.LOGIN,
     fetchOptions: {
       method: 'POST',
       body: {
-        username,
+        national_code,
         password,
-        phone,
       },
     },
   },
@@ -44,8 +43,7 @@ export const logout = () => ({
   type: actionTypes.LOGOUT,
 });
 
-
-export const doPayment = ({ uid = 1, amount = '1000' }) => ({
+export const doPayment = (amount = '1000', return_link) => ({
   [CALL_API]: {
     types: [
       actionTypes.PAYMENT_REQUEST,
@@ -56,8 +54,8 @@ export const doPayment = ({ uid = 1, amount = '1000' }) => ({
     fetchOptions: {
       method: 'POST',
       body: {
-        uid,
         amount,
+        return_link,
       },
     },
   },

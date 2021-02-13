@@ -25,7 +25,7 @@ const fetchApi = async (url, fetchOptions) => {
   if (!response.ok) {
     throw new Error(json_response.message || 'error');
   }
-  return json_response;
+  return JSON.parse(json_response);
 };
 
 export default fetchApi;

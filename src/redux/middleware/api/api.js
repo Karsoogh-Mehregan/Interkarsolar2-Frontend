@@ -30,7 +30,7 @@ export default ({ getState }) => (next) => async (action) => {
 
     fetchOptions.headers = {
       "Content-Type": "application/x-www-form-urlencoded",
-      "Access-Control-Allow-Origin": "http://backend.interkarsolar.ir",
+      "Access-Control-Allow-Origin": "https://backend.interkarsolar.ir",
       ...fetchOptions.headers,
     };
 

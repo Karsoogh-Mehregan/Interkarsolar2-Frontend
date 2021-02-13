@@ -6,6 +6,7 @@ import DevTools from '../containers/DevTools';
 import CreateAccount from '../containers/CreateAccount'
 import Login from '../containers/Login'
 import Homepage from '../containers/Homepage';
+import HomepageFake from '../containers/HomepageFake';
 import Staff from '../containers/Staff/Staff';
 import Dashboard from '../containers/Dashboard/Dashboard';
 
@@ -15,9 +16,11 @@ const Root = () => {
       <Switch>
         <Route path='/create-account' component={CreateAccount}></Route>
         <Route path='/login' component={Login}></Route>
+        <Route path="/loading/"></Route>
         <Route path="/staff/" component={Staff} />
-        <PrivateRoute path="/dashboard/" component={Dashboard} />
-        <Route path="/" component={Homepage} />
+        <Route path="/dashboard/" component={Dashboard} />
+        <Route path="/test/" component={Homepage} />
+        <Route path="/" component={HomepageFake} />
       </Switch>
       <DevTools />
     </>

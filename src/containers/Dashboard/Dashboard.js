@@ -7,6 +7,11 @@ import {
   Redirect,
   useLocation,
 } from "react-router-dom";
+import {
+  getUserInfo,
+  updateUserInfo,
+} from '../../redux/actions/account'
+import { connect } from 'react-redux';
 
 import ResponsiveAppBar from '../../components/Appbar/ResponsiveAppBar';
 import RegistrationTab from './Registration';
@@ -23,7 +28,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Dashboard() {
+function Dashboard({
+  getUserInfo,
+}) {
   const classes = useStyles();
   const [tab, setTab] = useState(0);
 
@@ -46,6 +53,12 @@ function Dashboard() {
       }
     }
     , [useLocation])
+
+  useEffect(
+    () => {
+      getUserInfo();
+    }
+    , [getUserInfo])
 
   return (
     <Grid container direction='column' justify='space-between' alignItems='center' className={classes.container}>
@@ -70,4 +83,13 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+const mapStateToProps = (state, ownProps) => ({
+
+})
+
+export default connect(
+  mapStateToProps,
+  {
+    getUserInfo,
+  }
+)(Dashboard);

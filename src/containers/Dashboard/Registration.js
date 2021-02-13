@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { doPayment } from '../../redux/actions/account'
+import { Info } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,9 +54,25 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const RegistrationTab = ({ doPayment, isFetching }) => {
+const RegistrationTab = ({ doPayment, isFetching, info }) => {
   const classes = useStyles();
   const [isAllowed, setIsAllowed] = useState(true);
+
+  useEffect(
+    () => {
+      if (info) {
+        const { city, first_name, last_name, national_code, phone1, phone2, school } = info;
+        if (city && first_name && last_name && national_code && phone1 && phone2 && school) {
+          setIsAllowed(true);
+        } else {
+          setIsAllowed(false);
+        }
+      }
+    }
+    , [info])
+
+  console.log(info);
+  console.log(isAllowed);
 
   return (
     <Container style={{ overflow: 'hidden' }}>
@@ -126,6 +143,7 @@ const RegistrationTab = ({ doPayment, isFetching }) => {
 }
 
 const mapStateToProps = (state, ownProps) => ({
+  info: state.account.info,
   isFetching: state.account.isFetching,
 })
 

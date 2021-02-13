@@ -49,9 +49,19 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const AnnouncementsTab = ({ }) => {
+const AnnouncementsTab = ({ status }) => {
   const classes = useStyles();
   const [isRegistered, setRegistrationStatus] = useState(false);
+
+  useEffect(
+    () => {
+      if (status === 1) {
+        setRegistrationStatus(true)
+      } else {
+        setRegistrationStatus(false)
+      }
+    }
+    , [status])
 
   return (
     <Container style={{ overflow: 'hidden' }}>
@@ -94,6 +104,11 @@ const AnnouncementsTab = ({ }) => {
   );
 };
 
-const mapStateToProps = (state, ownProps) => { };
+const mapStateToProps = (state, ownProps) => ({
+  status: state.account.info
+    ? state.account.info.status
+    : 0,
+  isFetching: state.account.isFetching,
+})
 
 export default connect(mapStateToProps, {})(AnnouncementsTab);

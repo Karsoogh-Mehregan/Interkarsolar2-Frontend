@@ -14,7 +14,6 @@ import {
 } from '@material-ui/core';
 import { connect } from 'react-redux';
 import {
-  getUserInfo,
   updateUserInfo,
 } from '../../redux/actions/account'
 import { makeStyles } from '@material-ui/core/styles';
@@ -68,25 +67,11 @@ const useStyles = makeStyles((theme) => ({
 
 const ProfileTab = ({
   oldInfo,
-  getUserInfo,
   updateUserInfo,
   isFetching,
 }) => {
   const classes = useStyles();
   const [info, setInfo] = useState('');
-
-  useEffect(
-    () => {
-      getUserInfo();
-    }
-    , [getUserInfo])
-
-  useEffect(
-    () => {
-      console.log(oldInfo)
-      setInfo(oldInfo);
-    }
-    , [oldInfo])
 
   const onChange = (event) => {
     setInfo({
@@ -98,6 +83,12 @@ const ProfileTab = ({
   const saveUpdates = () => {
     updateUserInfo(info);
   }
+
+  useEffect(
+    () => {
+      setInfo(oldInfo)
+    }
+    , [oldInfo])
 
 
   if (!info) {
@@ -255,7 +246,6 @@ const mapStateToProps = (state, ownProps) => ({
 export default connect(
   mapStateToProps,
   {
-    getUserInfo,
     updateUserInfo,
   }
 )(ProfileTab);

@@ -15,6 +15,9 @@ import {
 import { connect } from 'react-redux';
 import {
   updateUserInfo,
+  getProvince,
+  getCity,
+  getSchool,
 } from '../../redux/actions/account'
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -66,9 +69,15 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const ProfileTab = ({
+  provinces,
+  cities,
+  schools,
   oldInfo,
-  updateUserInfo,
   isFetching,
+  updateUserInfo,
+  getProvince,
+  getCity,
+  getSchool,
 }) => {
   const classes = useStyles();
   const [info, setInfo] = useState('');
@@ -87,8 +96,26 @@ const ProfileTab = ({
   useEffect(
     () => {
       setInfo(oldInfo)
-    }
-    , [oldInfo])
+    }, [oldInfo])
+
+  useEffect(
+    () => {
+      getProvince();
+    }, [getProvince])
+
+  useEffect(
+    () => {
+      if (info.province) {
+        getCity(info.province);
+      }
+    }, [info.province, getCity])
+
+  useEffect(
+    () => {
+      if (info.city) {
+        getSchool(info.city);
+      }
+    }, [info.city, getSchool])
 
 
   if (!info) {
@@ -171,28 +198,6 @@ const ProfileTab = ({
               spacing={2}>
               <Paper className={classes.paper}>
                 <Grid item container spacing={1} justify='center' alignItems='center'>
-                  <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField label='نام مدرسه' value={info.school} variant='outlined' required onChange={onChange} fullWidth />
-                  </Grid>
-                  <Grid item container xs={12} sm={3}>
-                    <FormControl variant="outlined" className={classes.formControl} required>
-                      <InputLabel id="demo-simple-select-required-label">شهر</InputLabel>
-                      <Select
-                        className={classes.dropDown}
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={info.city}
-                        onChange={onChange}
-                        name='city'
-                        label='شهر'
-                      >
-                        <MenuItem value="">انتخاب کنید</MenuItem>
-                        <MenuItem value={'هفتم'}>هفتم</MenuItem>
-                        <MenuItem value={'هشتم'}>هشتم</MenuItem>
-                        <MenuItem value={'نهم'}>نهم</MenuItem>
-                      </Select>
-                    </FormControl >
-                  </Grid>
                   <Grid item container xs={12} sm={3}>
                     <FormControl variant="outlined" className={classes.formControl} required>
                       <InputLabel id="demo-simple-select-required-label">استان</InputLabel>
@@ -206,9 +211,55 @@ const ProfileTab = ({
                         label='استان'
                       >
                         <MenuItem value="">انتخاب کنید</MenuItem>
-                        <MenuItem value={'هفتم'}>هفتم</MenuItem>
-                        <MenuItem value={'هشتم'}>هشتم</MenuItem>
-                        <MenuItem value={'نهم'}>نهم</MenuItem>
+                        {
+                          provinces.map((province) => (
+                            <MenuItem value={province.id}>{province.title}</MenuItem>
+                          ))
+                        }
+                      </Select>
+                    </FormControl >
+                  </Grid>
+                  <Grid item container xs={12} sm={3}>
+                    <FormControl variant="outlined" className={classes.formControl} required>
+                      <InputLabel id="demo-simple-select-required-label">شهر</InputLabel>
+                      <Select
+                        className={classes.dropDown}
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={info.city}
+                        onChange={onChange}
+                        disabled={!info.province}
+                        name='city'
+                        label='شهر'
+                      >
+                        <MenuItem value="">انتخاب کنید</MenuItem>
+                        {
+                          cities.map((city) => (
+                            <MenuItem value={city.id}>{city.title}</MenuItem>
+                          ))
+                        }
+                      </Select>
+                    </FormControl >
+                  </Grid>
+                  <Grid item container xs={12} sm={3}>
+                    <FormControl variant="outlined" className={classes.formControl} required>
+                      <InputLabel id="demo-simple-select-required-label">مدرسه</InputLabel>
+                      <Select
+                        className={classes.dropDown}
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={info.city}
+                        onChange={onChange}
+                        disabled={!info.city}
+                        name='school'
+                        label='مدرسه'
+                      >
+                        <MenuItem value="">انتخاب کنید</MenuItem>
+                        {
+                          schools.map((school) => (
+                            <MenuItem value={school.id}>{school.title}</MenuItem>
+                          ))
+                        }
                       </Select>
                     </FormControl >
                   </Grid>
@@ -241,11 +292,23 @@ const ProfileTab = ({
 const mapStateToProps = (state, ownProps) => ({
   oldInfo: state.account.info,
   isFetching: state.account.isFetching,
+  provinces: state.account.provinces
+    ? state.account.provinces
+    : [],
+  cities: state.account.cities
+    ? state.account.cities
+    : [],
+  schools: state.account.schools
+    ? state.account.schools
+    : [],
 })
 
 export default connect(
   mapStateToProps,
   {
+    getProvince,
+    getCity,
+    getSchool,
     updateUserInfo,
   }
 )(ProfileTab);

@@ -54,7 +54,7 @@ export const logout = () => ({
   },
 });
 
-export const doPayment = (amount = '1000', return_link) => ({
+export const doPayment = (amount = 100000, return_link = 'https://google.com') => ({
   [CALL_API]: {
     types: [
       actionTypes.PAYMENT_REQUEST,
@@ -65,7 +65,7 @@ export const doPayment = (amount = '1000', return_link) => ({
     fetchOptions: {
       method: 'POST',
       body: {
-        amount,
+        amount: 123456,
         return_link,
       },
     },
@@ -100,6 +100,56 @@ export const getUserInfo = () => ({
     ],
     url: URLs.PROFILE,
     fetchOptions: {
+      method: 'GET',
+    },
+  },
+});
+
+///////////////////////////////////
+
+export const getProvince = () => ({
+  [CALL_API]: {
+    types: [
+      actionTypes.PROVINCE_REQUEST,
+      actionTypes.PROVINCE_SUCCESS,
+      actionTypes.PROVINCE_FAILURE,
+    ],
+    url: URLs.PROVINCE,
+    fetchOptions: {
+      method: 'GET',
+    },
+  },
+});
+
+export const getCity = (province) => ({
+  [CALL_API]: {
+    types: [
+      actionTypes.CITY_REQUEST,
+      actionTypes.CITY_SUCCESS,
+      actionTypes.CITY_FAILURE,
+    ],
+    url: URLs.CITY,
+    fetchOptions: {
+      headers: {
+        "Province": province,
+      },
+      method: 'GET',
+    },
+  },
+});
+
+export const getSchool = (city) => ({
+  [CALL_API]: {
+    types: [
+      actionTypes.SCHOOL_REQUEST,
+      actionTypes.SCHOOL_SUCCESS,
+      actionTypes.SCHOOL_FAILURE,
+    ],
+    url: URLs.SCHOOL,
+    fetchOptions: {
+      headers: {
+        "City": city,
+      },
       method: 'GET',
     },
   },

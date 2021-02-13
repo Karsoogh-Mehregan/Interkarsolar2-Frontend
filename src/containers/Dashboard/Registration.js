@@ -9,7 +9,9 @@ import {
   Hidden,
 } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { doPayment } from '../../redux/actions/account'
+import {
+  doPayment
+} from '../../redux/actions/account'
 import { Info } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({

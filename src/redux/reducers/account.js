@@ -57,6 +57,24 @@ function account(state = initState, action) {
     case actionTypes.LOGOUT:
       return initState;
 
+    case actionTypes.PROVINCE_SUCCESS:
+      return {
+        ...state,
+        provinces: action.response.data,
+      }
+
+    case actionTypes.CITY_SUCCESS:
+      return {
+        ...state,
+        cities: action.response.data,
+      }
+
+    case actionTypes.SCHOOL_SUCCESS:
+      return {
+        ...state,
+        schools: action.response.data,
+      }
+
     default:
       return state;
   }

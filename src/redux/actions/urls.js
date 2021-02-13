@@ -1,7 +1,7 @@
 export const ROOT =
   process.env.NODE_ENV === 'production'
-    ? 'http://backend.interkarsolar.ir/'
-    : 'http://backend.interkarsolar.ir/';
+    ? 'https://backend.interkarsolar.ir/'
+    : 'https://backend.interkarsolar.ir/';
 
 export const CREATE_ACCOUNT = ROOT.concat('student/register/');
 export const UPDATE_PROFILE = ROOT.concat('student/register/completed/');

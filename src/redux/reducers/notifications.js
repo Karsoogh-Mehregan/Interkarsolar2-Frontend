@@ -22,6 +22,7 @@ function notifications(state = initState, action) {
         }, 0)
       return { ...state };
 
+    case actionTypes.UPDATE_USER_INFO_FAILURE:
     case actionTypes.LOGIN_FAILURE:
     case actionTypes.CREATE_ACCOUNT_FAILURE:
       console.log(action)
@@ -39,6 +40,13 @@ function notifications(state = initState, action) {
       }
       return { ...state }
 
+    case actionTypes.UPDATE_USER_INFO_SUCCESS:
+      setTimeout(
+        () => {
+          toast.success('ایول! اطلاعاتت با موفقیت ثبت شد.');
+        }, 0)
+      return { ...state };
+
     case actionTypes.LOGOUT_REQUEST:
       setTimeout(
         () => {
@@ -49,7 +57,7 @@ function notifications(state = initState, action) {
     case actionTypes.LOGOUT:
       setTimeout(
         () => {
-          toast.warning('احتمالاً توکنت منقضی شده. باید دوباره وارد بشی!');
+          toast.warning('هر از چند گاهی باید دوباره وارد سفینه‌ات بشی!');
         }, 0)
       return { ...state };
 

@@ -47,7 +47,7 @@ const InputFields = ({
       </Grid>
       <Grid item container justify='center'>
         <Typography align='center'>
-          {'اگه هنوز پیش‌ثبت‌نامت رو انجام ندادی، '}
+          {'اگه هنوز پیش‌ثبت‌نام نکردی، '}
           <a href='/create-account'>
             {'این‌جا'}
           </a>

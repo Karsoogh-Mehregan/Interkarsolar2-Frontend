@@ -9,6 +9,7 @@ const initState = {
 function account(state = initState, action) {
   switch (action.type) {
 
+    case actionTypes.UPDATE_USER_INFO_REQUEST:
     case actionTypes.PAYMENT_REQUEST:
     case actionTypes.CREATE_ACCOUNT_REQUEST:
     case actionTypes.LOGIN_REQUEST:
@@ -26,6 +27,8 @@ function account(state = initState, action) {
         token: action.response.data.token,
       };
 
+    case actionTypes.UPDATE_USER_INFO_SUCCESS:
+    case actionTypes.UPDATE_USER_INFO_FAILURE:
     case actionTypes.PAYMENT_FAILURE:
     case actionTypes.CREATE_ACCOUNT_FAILURE:
     case actionTypes.LOGIN_FAILURE:

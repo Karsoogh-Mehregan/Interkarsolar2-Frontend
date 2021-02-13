@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import PrivateRoute from './PrivateRoute';
 
 import DevTools from '../containers/DevTools';
 import CreateAccount from '../containers/CreateAccount'
@@ -14,9 +15,8 @@ const Root = () => {
       <Switch>
         <Route path='/create-account' component={CreateAccount}></Route>
         <Route path='/login' component={Login}></Route>
-        <Route path="/loading/"></Route>
         <Route path="/staff/" component={Staff} />
-        <Route path="/dashboard/" component={Dashboard} />
+        <PrivateRoute path="/dashboard/" component={Dashboard} />
         <Route path="/" component={Homepage} />
       </Switch>
       <DevTools />

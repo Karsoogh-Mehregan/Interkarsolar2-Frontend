@@ -10,15 +10,15 @@ const PrivateRoute = ({ component: Component, isLoggedIn, ...rest }) => {
         isLoggedIn ? (
           <Component {...props} />
         ) : (
-          <Redirect to={{ pathname: '/', state: { from: props.location } }} />
-        )
+            <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+          )
       }
     />
   );
 };
 
 const mapStateToProps = (state) => ({
-  isLoggedIn: !!state.account.token,
+  isLoggedIn: state.account.token,
 });
 
 export default connect(mapStateToProps)(PrivateRoute);

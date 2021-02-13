@@ -70,8 +70,8 @@ const RegistrationTab = ({ doPayment, isFetching, info }) => {
   // useEffect(
   //   () => {
   //     if (info) {
-  //       const { city, first_name, last_name, national_code, phone1, phone2, school } = info;
-  //       if (city && first_name && last_name && national_code && phone1 && phone2 && school) {
+  //       const { first_name, last_name, national_code, phone1, phone2, grade, city, school_name } = info;
+  //       if (first_name && last_name && national_code && phone1 && phone2 && grade && city && school_name) {
   //         setIsAllowed(true);
   //       } else {
   //         setIsAllowed(false);

@@ -72,20 +72,35 @@ export const doPayment = (amount = 100000, return_link = 'https://google.com') =
   },
 });
 
-export const updateUserInfo = ({ username, phone, password }) => ({
+export const updateUserInfo = ({
+  first_name,
+  last_name,
+  grade, phone2,
+  school_name,
+  school_phone,
+  manager_name,
+  manager_phone,
+  city,
+}) => ({
   [CALL_API]: {
     types: [
       actionTypes.UPDATE_USER_INFO_REQUEST,
       actionTypes.UPDATE_USER_INFO_SUCCESS,
       actionTypes.UPDATE_USER_INFO_FAILURE,
     ],
-    url: URLs.PROFILE,
+    url: URLs.UPDATE_PROFILE,
     fetchOptions: {
       method: 'POST',
       body: {
-        username,
-        password,
-        phone,
+        first_name,
+        last_name,
+        grade,
+        phone2,
+        school_name,
+        school_phone,
+        manager_name,
+        manager_phone,
+        city,
       },
     },
   },
@@ -98,12 +113,29 @@ export const getUserInfo = () => ({
       actionTypes.GET_USER_INFO_SUCCESS,
       actionTypes.GET_USER_INFO_FAILURE,
     ],
-    url: URLs.PROFILE,
+    url: URLs.GET_PROFILE,
     fetchOptions: {
       method: 'GET',
     },
   },
 });
+
+// export const setRegistrationStatus = (status) => ({
+//   [CALL_API]: {
+//     types: [
+//       actionTypes.SET_STUDENT_STATUS_REQUEST,
+//       actionTypes.SET_STUDENT_STATUS_SUCCESS,
+//       actionTypes.SET_STUDENT_STATUS_FAILURE,
+//     ],
+//     url: URLs.PROFILE,
+//     fetchOptions: {
+//       method: 'POST',
+//       body: {
+//         status,
+//       }
+//     },
+//   },
+// });
 
 ///////////////////////////////////
 

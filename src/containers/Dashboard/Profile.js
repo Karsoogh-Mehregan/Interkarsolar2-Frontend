@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import {
   Container,
   Grid,
@@ -90,6 +91,23 @@ const ProfileTab = ({
   }
 
   const saveUpdates = () => {
+    var regex = new RegExp('^(\\+98|0)?9\\d{9}$');
+    if (info.phone2 && !regex.test(info.phone2)) {
+      toast.error('شماره موبایل زاپاسی که وارد کردی نامعتبره!')
+      return;
+    }
+
+    if (info.manager_phone && !regex.test(info.manager_phone)) {
+      toast.error('شماره موبایل مدیر مدرسه‌ات نامعتبره!')
+      return;
+    }
+
+    regex = new RegExp('^(0)?\\d{10}$');
+    if (info.school_phone && !regex.test(info.school_phone)) {
+      toast.error('شماره تلفن مدرسه‌ات نامعتبره!')
+      return;
+    }
+
     updateUserInfo(info);
   }
 
@@ -110,12 +128,12 @@ const ProfileTab = ({
       }
     }, [info.province, getCity])
 
-  useEffect(
-    () => {
-      if (info.city) {
-        getSchool(info.city);
-      }
-    }, [info.city, getSchool])
+  // useEffect(
+  //   () => {
+  //     if (info.city) {
+  //       getSchool(info.city);
+  //     }
+  //   }, [info.city, getSchool])
 
 
   if (!info) {
@@ -126,6 +144,8 @@ const ProfileTab = ({
       </Container >
     )
   }
+
+  console.log(info.city)
 
   return (
     <Container style={{ overflow: 'hidden' }}>
@@ -160,9 +180,15 @@ const ProfileTab = ({
                   <Grid item container xs={12} sm={3} justify='center'>
                     <TextField name='nationalCode' label='کد ملی' value={info.national_code} disabled variant='outlined' required onChange={onChange} fullWidth />
                   </Grid>
+                  <Hidden xsDown>
+                    <Grid item container xs={12} sm={3} justify='center' />
+                  </Hidden>
                   <Grid item container xs={12} sm={3} justify='center'>
                     <TextField name='phone1' label='شماره موبایل' value={info.phone1} disabled variant='outlined' required onChange={onChange} fullWidth />
                   </Grid>
+                  <Hidden xsDown>
+                    <Grid item container xs={12} sm={3} justify='center' />
+                  </Hidden>
                   <Grid item container xs={12} sm={3}>
                     <FormControl variant="outlined" className={classes.formControl} required>
                       <InputLabel id="demo-simple-select-required-label">پایه</InputLabel>
@@ -177,16 +203,15 @@ const ProfileTab = ({
                         required
                       >
                         <MenuItem value="">انتخاب کنید</MenuItem>
-                        <MenuItem value={'هفتم'}>هفتم</MenuItem>
-                        <MenuItem value={'هشتم'}>هشتم</MenuItem>
-                        <MenuItem value={'نهم'}>نهم</MenuItem>
+                        <MenuItem value={'7'}>هفتم</MenuItem>
+                        <MenuItem value={'8'}>هشتم</MenuItem>
+                        <MenuItem value={'9'}>نهم</MenuItem>
+                        <MenuItem value={'10'}>هیچ‌کدام</MenuItem>
                       </Select>
                     </FormControl >
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
                     <TextField name='phone2' label='شماره موبایل زاپاس' value={info.phone2} required variant='outlined' onChange={onChange} fullWidth />
-                  </Grid>
-                  <Grid item container xs={12} sm={6} justify='center'>
                   </Grid>
                 </Grid>
               </Paper>
@@ -241,36 +266,26 @@ const ProfileTab = ({
                       </Select>
                     </FormControl >
                   </Grid>
-                  <Grid item container xs={12} sm={3}>
-                    <FormControl variant="outlined" className={classes.formControl} required>
-                      <InputLabel id="demo-simple-select-required-label">مدرسه</InputLabel>
-                      <Select
-                        className={classes.dropDown}
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={info.city}
-                        onChange={onChange}
-                        disabled={!info.city}
-                        name='school'
-                        label='مدرسه'
-                      >
-                        <MenuItem value="">انتخاب کنید</MenuItem>
-                        {
-                          schools.map((school) => (
-                            <MenuItem value={school.id}>{school.title}</MenuItem>
-                          ))
-                        }
-                      </Select>
-                    </FormControl >
-                  </Grid>
+                  <Hidden xsDown>
+                    <Grid item container xs={12} sm={3} justify='center' />
+                  </Hidden>
                   <Grid item container xs={12} sm={3} justify='center'>
                     <TextField
-                      label='شماره تلفن مدرسه' name='schoolPhone' value={info.schoolPhone} variant='outlined' placeholder='مثال: 03112345678' onChange={onChange} fullWidth />
+                      label='مدرسه' name='school_name' value={info.school_name} variant='outlined' onChange={onChange} fullWidth />
+                  </Grid>
+                  <Hidden xsDown>
+                    <Grid item container xs={12} sm={3} justify='center' />
+                  </Hidden>
+                  <Grid item container xs={12} sm={3} justify='center'>
+                    <TextField
+                      label='شماره تلفن مدرسه' name='school_phone' value={info.school_phone} variant='outlined' placeholder='مثال: 03112345678' onChange={onChange} fullWidth />
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField label='شماره موبایل مدیر' name='principalPhone' value={info.principalPhone} variant='outlined' onChange={onChange} fullWidth />
+                    <TextField label='نام مدیر' name='manager_name' value={info.manager_name} variant='outlined' onChange={onChange} fullWidth />
                   </Grid>
-                  <Grid item container xs={12} sm={9} justify='center' />
+                  <Grid item container xs={12} sm={3} justify='center'>
+                    <TextField label='شماره موبایل مدیر' name='manager_phone' value={info.manager_phone} variant='outlined' onChange={onChange} fullWidth />
+                  </Grid>
                 </Grid>
               </Paper>
             </Grid>

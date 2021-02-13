@@ -54,7 +54,7 @@ export const logout = () => ({
   },
 });
 
-export const doPayment = (amount = 100000, return_link = 'https://google.com') => ({
+export const doPayment = () => ({
   [CALL_API]: {
     types: [
       actionTypes.PAYMENT_REQUEST,
@@ -65,8 +65,8 @@ export const doPayment = (amount = 100000, return_link = 'https://google.com') =
     fetchOptions: {
       method: 'POST',
       body: {
-        amount: 123456,
-        return_link,
+        amount: 100000,
+        return_link: 'http://backend.interkarsolar.ir/dashboard?tab=announcements',
       },
     },
   },
@@ -120,22 +120,19 @@ export const getUserInfo = () => ({
   },
 });
 
-// export const setRegistrationStatus = (status) => ({
-//   [CALL_API]: {
-//     types: [
-//       actionTypes.SET_STUDENT_STATUS_REQUEST,
-//       actionTypes.SET_STUDENT_STATUS_SUCCESS,
-//       actionTypes.SET_STUDENT_STATUS_FAILURE,
-//     ],
-//     url: URLs.PROFILE,
-//     fetchOptions: {
-//       method: 'POST',
-//       body: {
-//         status,
-//       }
-//     },
-//   },
-// });
+export const ignorePayment = () => ({
+  [CALL_API]: {
+    types: [
+      actionTypes.PAYMENT_IGNORE_REQUEST,
+      actionTypes.PAYMENT_IGNORE_SUCCESS,
+      actionTypes.PAYMENT_IGNORE_FAILURE,
+    ],
+    url: URLs.PAYMENT_IGNORE,
+    fetchOptions: {
+      method: 'GET',
+    },
+  },
+});
 
 ///////////////////////////////////
 

@@ -11,8 +11,8 @@ import {
 import { connect } from 'react-redux';
 import {
   doPayment,
+  ignorePayment,
 } from '../../redux/actions/account'
-import { Info } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -63,25 +63,23 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const RegistrationTab = ({ doPayment, isFetching, info }) => {
+const RegistrationTab = ({ doPayment, isFetching, info, ignorePayment, isAllowed, isRegistrationCompleted }) => {
   const classes = useStyles();
-  const [isAllowed, setIsAllowed] = useState(true);
+  const [didPay, setPaymentStatus] = useState(false);
 
-  // useEffect(
-  //   () => {
-  //     if (info) {
-  //       const { first_name, last_name, national_code, phone1, phone2, grade, city, school_name } = info;
-  //       if (first_name && last_name && national_code && phone1 && phone2 && grade && city && school_name) {
-  //         setIsAllowed(true);
-  //       } else {
-  //         setIsAllowed(false);
-  //       }
-  //     }
-  //   }
-  //   , [info])
+  const handleRegistration = () => {
+    if (didPay) {
+      ignorePayment();
+      return;
+    } else {
+      doPayment();
+    }
+  }
 
   console.log(info);
   console.log(isAllowed);
+  console.log(didPay);
+  console.log(isRegistrationCompleted)
 
   return (
     <Container style={{ overflow: 'hidden' }}>
@@ -116,17 +114,20 @@ const RegistrationTab = ({ doPayment, isFetching, info }) => {
           >
             <Grid item container justify='center'>
               <Typography variant='h3' className={classes.header3} align='center'>
-                {isAllowed
-                  ? 'ایول! اطلاعاتت تکمیله و می‌تونی ثبت‌نامت رو نهایی کنی...'
-                  : 'انگار هنوز اطلاعاتت ناقصه! به بخش «مشخصات من» برو و مشخصاتت رو کامل کن، بعد می‌تونی ثبت‌نامت رو نهایی کنی.'
+                {
+                  isRegistrationCompleted
+                    ? 'خوبه. ثبت‌نامت نهایی‌ات با موفقیت انجام شده. ان‌شاالله اطلاعاتت رو بررسی می‌کنیم و اگه مشکلی بود، بهت خبر می‌دیم :)'
+                    : isAllowed
+                      ? 'ایول! اطلاعاتت تکمیله و می‌تونی ثبت‌نامت رو نهایی کنی...'
+                      : 'انگار هنوز اطلاعاتت ناقصه! به بخش «مشخصات من» برو و مشخصاتت رو کامل کن، بعد می‌تونی ثبت‌نامت رو نهایی کنی.'
                 }
               </Typography>
             </Grid>
-            {isAllowed &&
+            {isAllowed && !isRegistrationCompleted &&
               <>
                 <Grid item container direction='row' spacing={4} justify='space-around'>
                   <Grid item xs={1}>
-                    <Checkbox />
+                    <Checkbox onClick={() => setPaymentStatus(!didPay)} />
                   </Grid>
                   <Grid item xs={10} spacing={1} container justify='center' alignItems='center'>
                     <Typography className={classes.normalText}>
@@ -135,7 +136,7 @@ const RegistrationTab = ({ doPayment, isFetching, info }) => {
                   </Grid>
                 </Grid>
                 <Grid item container justify='center'>
-                  <Button variant='contained' color='primary' size='large' onClick={doPayment} disabled={isFetching}>
+                  <Button variant='contained' color='primary' size='large' onClick={handleRegistration} disabled={isFetching}>
                     ادامه...
                   </Button>
                 </Grid>
@@ -154,11 +155,14 @@ const RegistrationTab = ({ doPayment, isFetching, info }) => {
 const mapStateToProps = (state, ownProps) => ({
   info: state.account.info,
   isFetching: state.account.isFetching,
+  isRegistrationCompleted: ownProps.isRegistrationCompleted,
+  isAllowed: ownProps.isAllowed,
 })
 
 export default connect(
   mapStateToProps,
   {
     doPayment,
+    ignorePayment,
   }
 )(RegistrationTab);

@@ -30,9 +30,31 @@ const useStyles = makeStyles((theme) => ({
 
 function Dashboard({
   getUserInfo,
+  info,
 }) {
   const classes = useStyles();
   const [tab, setTab] = useState(0);
+  const [isAllowed, setIsAllowed] = useState(false);
+  const [isRegistrationCompleted, setRegistrationStatus] = useState(false);
+
+  useEffect(
+    () => {
+      if (info) {
+        if (info.status === 20) {
+          setRegistrationStatus(true);
+        } else {
+          setRegistrationStatus(false);
+        }
+
+        const { first_name, last_name, national_code, phone1, phone2, grade, city, school_name } = info;
+        if (first_name && last_name && national_code && phone1 && phone2 && grade && city && school_name) {
+          setIsAllowed(true);
+        } else {
+          setIsAllowed(false);
+        }
+      }
+    }
+    , [info])
 
   const location = useLocation();
   const urlParams = new URLSearchParams(location.search);
@@ -65,15 +87,15 @@ function Dashboard({
       <Grid item container direction='row' alignItems='center'>
         {
           tab == 0 &&
-          <AnnouncementsTab />
+          <AnnouncementsTab isRegistrationCompleted={isRegistrationCompleted} />
         }
         {
           tab == 1 &&
-          <RegistrationTab />
+          <RegistrationTab isAllowed={isAllowed} isRegistrationCompleted={isRegistrationCompleted} />
         }
         {
           tab == 2 &&
-          <ProfileTab />
+          <ProfileTab setIsAllowed={setIsAllowed} isRegistrationCompleted={isRegistrationCompleted} />
         }
       </Grid>
       <Grid item container>
@@ -84,7 +106,8 @@ function Dashboard({
 }
 
 const mapStateToProps = (state, ownProps) => ({
-
+  info: state.account.info,
+  isFetching: state.account.isFetching,
 })
 
 export default connect(

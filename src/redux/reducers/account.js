@@ -9,6 +9,7 @@ const initState = {
 function account(state = initState, action) {
   switch (action.type) {
 
+    case actionTypes.PAYMENT_IGNORE_REQUEST:
     case actionTypes.UPDATE_USER_INFO_REQUEST:
     case actionTypes.PAYMENT_REQUEST:
     case actionTypes.CREATE_ACCOUNT_REQUEST:
@@ -27,6 +28,7 @@ function account(state = initState, action) {
         token: action.response.data.token,
       };
 
+    case actionTypes.PAYMENT_IGNORE_FAILURE:
     case actionTypes.UPDATE_USER_INFO_SUCCESS:
     case actionTypes.UPDATE_USER_INFO_FAILURE:
     case actionTypes.PAYMENT_FAILURE:
@@ -56,9 +58,14 @@ function account(state = initState, action) {
         info,
       }
 
-    case actionTypes.LOGOUT_REQUEST:
-    case actionTypes.LOGOUT:
-      return initState;
+    case actionTypes.PAYMENT_IGNORE_SUCCESS:
+      window.location.reload();
+      return {
+        ...state,
+        isFetching: false,
+      };
+
+    //////////////////////////
 
     case actionTypes.PROVINCE_SUCCESS:
       return {

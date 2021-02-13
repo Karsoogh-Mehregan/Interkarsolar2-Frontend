@@ -22,6 +22,9 @@ function notifications(state = initState, action) {
         }, 0)
       return { ...state };
 
+
+    case actionTypes.PAYMENT_IGNORE_FAILURE:
+    case actionTypes.PAYMENT_FAILURE:
     case actionTypes.UPDATE_USER_INFO_FAILURE:
     case actionTypes.LOGIN_FAILURE:
     case actionTypes.CREATE_ACCOUNT_FAILURE:
@@ -43,7 +46,7 @@ function notifications(state = initState, action) {
     case actionTypes.UPDATE_USER_INFO_SUCCESS:
       setTimeout(
         () => {
-          toast.success('ایول! اطلاعاتت با موفقیت ثبت شد.');
+          toast.success('ایول! اطلاعاتت با موفقیت به روز شد.');
         }, 0)
       return { ...state };
 
@@ -57,7 +60,28 @@ function notifications(state = initState, action) {
     case actionTypes.LOGOUT:
       setTimeout(
         () => {
-          toast.warning('هر از چند گاهی باید دوباره وارد سفینه‌ات بشی!');
+          toast.warning('به دستور سازمان امنیت کهکشانی، لازمه که هر از چند گاهی دوباره وارد سفینه‌ات بشی!');
+        }, 0)
+      return { ...state };
+
+    case actionTypes.PAYMENT_IGNORE_SUCCESS:
+      window.location.reload();
+      setTimeout(
+        () => {
+          toast.success('حله! ثبت‌نامت با موفقیت انجام شد. ان‌شا‌الله اطلاعاتت رو بررسی می‌کنیم و اگه مشکلی بود، بهت میگیم.',
+            {
+              autoClose: false,
+              closeOnClick: false,
+              draggable: false,
+            }
+          );
+        }, 0)
+      return { ...state };
+
+    case actionTypes.PAYMENT_SUCCESS:
+      setTimeout(
+        () => {
+          toast.info('در حال رفتن به درگاه پرداخت...');
         }, 0)
       return { ...state };
 

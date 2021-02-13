@@ -128,13 +128,6 @@ const ProfileTab = ({
       }
     }, [info.province, getCity])
 
-  // useEffect(
-  //   () => {
-  //     if (info.city) {
-  //       getSchool(info.city);
-  //     }
-  //   }, [info.city, getSchool])
-
 
   if (!info) {
     return (
@@ -172,13 +165,13 @@ const ProfileTab = ({
               <Paper className={classes.paper}>
                 <Grid item container spacing={1} justify='center' alignItems='center'>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField name='firstName' label='نام' value={info.first_name} variant='outlined' required onChange={onChange} fullWidth />
+                    <TextField name='first_name' label='نام' value={info.first_name} variant='outlined' required onChange={onChange} fullWidth />
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField name='lastName' label='نام خانوادگی' value={info.last_name} variant='outlined' required onChange={onChange} fullWidth />
+                    <TextField name='last_name' label='نام خانوادگی' value={info.last_name} variant='outlined' required onChange={onChange} fullWidth />
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField name='nationalCode' label='کد ملی' value={info.national_code} disabled variant='outlined' required onChange={onChange} fullWidth />
+                    <TextField name='national_code' label='کد ملی' value={info.national_code} disabled variant='outlined' required onChange={onChange} fullWidth />
                   </Grid>
                   <Hidden xsDown>
                     <Grid item container xs={12} sm={3} justify='center' />
@@ -202,7 +195,6 @@ const ProfileTab = ({
                         label='پایه'
                         required
                       >
-                        <MenuItem value="">انتخاب کنید</MenuItem>
                         <MenuItem value={'7'}>هفتم</MenuItem>
                         <MenuItem value={'8'}>هشتم</MenuItem>
                         <MenuItem value={'9'}>نهم</MenuItem>
@@ -235,7 +227,6 @@ const ProfileTab = ({
                         name='province'
                         label='استان'
                       >
-                        <MenuItem value="">انتخاب کنید</MenuItem>
                         {
                           provinces.map((province) => (
                             <MenuItem value={province.id}>{province.title}</MenuItem>
@@ -257,7 +248,6 @@ const ProfileTab = ({
                         name='city'
                         label='شهر'
                       >
-                        <MenuItem value="">انتخاب کنید</MenuItem>
                         {
                           cities.map((city) => (
                             <MenuItem value={city.id}>{city.title}</MenuItem>
@@ -271,7 +261,7 @@ const ProfileTab = ({
                   </Hidden>
                   <Grid item container xs={12} sm={3} justify='center'>
                     <TextField
-                      label='مدرسه' name='school_name' value={info.school_name} variant='outlined' onChange={onChange} fullWidth />
+                      label='مدرسه' name='school_name' value={info.school_name} required variant='outlined' onChange={onChange} fullWidth />
                   </Grid>
                   <Hidden xsDown>
                     <Grid item container xs={12} sm={3} justify='center' />

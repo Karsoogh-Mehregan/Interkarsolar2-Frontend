@@ -21,6 +21,9 @@ function redirect(state = initState, action) {
     case actionTypes.LOGOUT:
       return { redirectTo: '/login' }
 
+    case actionTypes.PAYMENT_IGNORE_SUCCESS:
+      return { redirectTo: '/dashboard?tab=announcements' }
+
     case actionTypes.INIT_REDIRECT:
       return initState;
     default:

@@ -49,19 +49,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const AnnouncementsTab = ({ status }) => {
+const AnnouncementsTab = ({ status, isRegistrationCompleted }) => {
   const classes = useStyles();
-  const [isRegistered, setRegistrationStatus] = useState(false);
-
-  useEffect(
-    () => {
-      if (status === 1) {
-        setRegistrationStatus(true)
-      } else {
-        setRegistrationStatus(false)
-      }
-    }
-    , [status])
 
   return (
     <Container style={{ overflow: 'hidden' }}>
@@ -85,17 +74,17 @@ const AnnouncementsTab = ({ status }) => {
           alignItems='center'
           spacing={2}
         >
+          {isRegistrationCompleted &&
+            <Grid item xs={12}>
+              <Announcement title='ثبت‌نامت تکمیله!' date='' image='greenCheck.png' text='ایول! ثبت‌نامت با موفقیت انجام شده و حالا باید منتظر مرحله اول بمونی. ۸ اسفند شروع مرحله یکه!' />
+            </Grid>
+          }
           <Grid item xs={12}>
             <Announcement title='آغاز ثبت‌نام مرحله یک' date='۲۵بهمن۹۹' image='announcement.jpg' text='بله! بعد از یک سال دوری از شما سیارک‌داران گرامی، دوباره با دوره‌ی دوم رویداد اینترکارسولار در خدمت شما هستیم! ثبت‌نام اینترکارسولار از امروز شروع شده و تا اول اسفند ادامه داره. بدو جا نمونی... ' />
           </Grid>
-          {!isRegistered &&
+          {!isRegistrationCompleted &&
             <Grid item xs={12}>
               <Announcement title='هنوز ثبت‌نامت نهایی نشده!' date='' image='redX.png' text='سیارک‌دار گرامی توجه کن! ثبت‌نامت هنوز نهایی نشده. برای نهایی‌کردن ثبت‌نام باید به بخش «ثبت‌نام نهایی» بری.' />
-            </Grid>
-          }
-          {isRegistered &&
-            <Grid item xs={12}>
-              <Announcement title='ثبت‌نامت تکمیله!' date='' image='greenCheck.png' text='ایول! ثبت‌نامت با موفقیت انجام شده و حالا باید منتظر مرحله اول بمونی. ۸ اسفند شروع مرحله یکه!' />
             </Grid>
           }
         </Grid>
@@ -109,6 +98,7 @@ const mapStateToProps = (state, ownProps) => ({
     ? state.account.info.status
     : 0,
   isFetching: state.account.isFetching,
+  isRegistrationCompleted: ownProps.isRegistrationCompleted,
 })
 
 export default connect(mapStateToProps, {})(AnnouncementsTab);

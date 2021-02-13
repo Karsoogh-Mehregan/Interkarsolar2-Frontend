@@ -14,23 +14,23 @@ const InputFields = ({
   login,
   isFetching,
 }) => {
-  const [username, setUsername] = useState('');
+  const [nationalID, setNationalID] = useState('');
   const [password, setPassword] = useState('');
 
   const doCreateAccount = () => {
-    if (!username || !password) {
+    if (!nationalID || !password) {
       toast.error('لطفاً همه‌ی چیزهایی که ازت خواسته شده رو پر کن!')
       return;
     }
-    login(username, password);
+    login(nationalID, password);
   }
 
   return (
     <>
       <Grid item>
         <TextField
-          onChange={(e) => setUsername(e.target.value)}
-          label='نام کاربری'
+          onChange={(e) => setNationalID(e.target.value)}
+          label='کد ملی'
           type='text'
           variant='outlined'
           fullWidth />

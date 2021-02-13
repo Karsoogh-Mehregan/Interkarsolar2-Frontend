@@ -82,7 +82,6 @@ const temp = {
 }
 
 const ProfileTab = ({
-  oldInfo = temp,
   getUserInfo,
   updateUserInfo,
 }) => {
@@ -91,9 +90,9 @@ const ProfileTab = ({
 
   useEffect(
     () => {
-
+      getUserInfo()
     }
-    , [])
+    , [getUserInfo])
 
   const onChange = (event) => {
     setInfo({

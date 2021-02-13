@@ -12,33 +12,39 @@ function notifications(state = initState, action) {
       setTimeout(
         () => {
           toast.success('ورودت رو به کهکشان مهرگان خوش‌آمد میگم!');
-        }
-        , 0);
+        }, 0);
       return { ...state };
 
     case actionTypes.LOGIN_SUCCESS:
       setTimeout(
         () => {
           toast.success('دوباره سلام!');
-        }
-        , 0)
+        }, 0)
       return { ...state };
 
     case actionTypes.LOGIN_FAILURE:
     case actionTypes.CREATE_ACCOUNT_FAILURE:
-      setTimeout(
-        () => {
-          toast.error('ای بابا! یه مشکلی وجود داره. یه چند لحظه دیگه دوباره امتحان کن.');
-        }
-        , 0)
+      console.log(action)
+      if (action.error) {
+        console.log(action)
+        setTimeout(
+          () => {
+            toast.error(action.error);
+          }, 0)
+      } else {
+        setTimeout(
+          () => {
+            toast.error('ای بابا! یه مشکلی وجود داره. یه چند لحظه دیگه دوباره امتحان کن.');
+          }, 0)
+      }
       return { ...state }
 
     case actionTypes.LOGOUT:
+    case actionTypes.LOGOUT_REQUEST:
       setTimeout(
         () => {
           toast.info('خدا به همراهت!');
-        }
-        , 0)
+        }, 0)
       return { ...state };
 
     default:

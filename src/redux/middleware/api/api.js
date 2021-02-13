@@ -24,12 +24,22 @@ export default ({ getState }) => (next) => async (action) => {
 
   try {
 
-    fetchOptions.body = queryString.stringify(fetchOptions.body);
+    if (fetchOptions.body) {
+      fetchOptions.body = queryString.stringify(fetchOptions.body);
+    }
 
     fetchOptions.headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
       ...fetchOptions.headers,
     };
+
+    const account = getState().account;
+    if (account && account.token) {
+      fetchOptions.headers = {
+        ...fetchOptions.headers,
+        Token: account.token,
+      };
+    }
 
     const response = await fetchApi(url, fetchOptions);
     return next(
@@ -45,7 +55,7 @@ export default ({ getState }) => (next) => async (action) => {
       return next(
         actionWith({
           payload,
-          type: actionTypes.LOGOUT,
+          type: actionTypes.LOGOUT_REQUEST,
           error: error.message || 'Something bad happened!',
         })
       );

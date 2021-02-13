@@ -15,9 +15,7 @@ store.subscribe(() => {
   localStorage.setItem(
     'Interkarsoolar2',
     JSON.stringify({
-      account: {
-        account: state.account,
-      },
+      account: state.account,
     })
   );
 });

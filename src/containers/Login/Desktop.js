@@ -6,7 +6,7 @@ import {
   Typography,
   Paper,
 } from '@material-ui/core';
-import InputFields from './InputFields';
+import InputFields from './Fields';
 
 
 const useStyles = makeStyles((theme) => ({

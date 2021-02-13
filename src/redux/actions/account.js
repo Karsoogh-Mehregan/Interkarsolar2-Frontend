@@ -39,10 +39,20 @@ export const login = (national_code, password) => ({
   },
 });
 
-export const logout = () => ({
-  type: actionTypes.LOGOUT,
-});
 
+export const logout = () => ({
+  [CALL_API]: {
+    types: [
+      actionTypes.LOGOUT_REQUEST,
+      actionTypes.LOGOUT_SUCCESS,
+      actionTypes.LOGOUT_FAILURE,
+    ],
+    url: URLs.LOGOUT,
+    fetchOptions: {
+      method: 'GET',
+    },
+  },
+});
 export const doPayment = (amount = '1000', return_link) => ({
   [CALL_API]: {
     types: [

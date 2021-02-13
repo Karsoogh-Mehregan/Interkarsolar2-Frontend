@@ -8,7 +8,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { connect } from 'react-redux'
-import InputFields from './InputFields';
+import InputFields from './Fields';
 
 const useStyles = makeStyles((theme) => ({
   background: {

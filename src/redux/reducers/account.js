@@ -3,7 +3,6 @@ import { toast } from 'react-toastify';
 
 const initState = {
   token: '',
-  uid: '',
   isFetching: false,
 };
 
@@ -20,11 +19,11 @@ function account(state = initState, action) {
 
     case actionTypes.CREATE_ACCOUNT_SUCCESS:
     case actionTypes.LOGIN_SUCCESS:
+      console.log(action)
       return {
         ...state,
         isFetching: false,
-        token: action.response.access,
-        user: action.response.user_info,
+        token: action.response.data.token,
       };
 
     case actionTypes.PAYMENT_FAILURE:
@@ -42,7 +41,12 @@ function account(state = initState, action) {
         isFetching: false,
       }
 
+    case actionTypes.GET_USER_INFO_SUCCESS:
+      return {
+        ...state,
+      }
 
+    case actionTypes.LOGOUT_REQUEST:
     case actionTypes.LOGOUT:
       return initState;
 

@@ -2,7 +2,7 @@ import { CALL_API } from '../middleware/api/api';
 import * as actionTypes from '../actionTypes';
 import * as URLs from './urls';
 
-export const createAccount = (national_code, phone1, password) => ({
+export const createAccount = (national_code, password, phone1) => ({
   [CALL_API]: {
     types: [
       actionTypes.CREATE_ACCOUNT_REQUEST,
@@ -53,6 +53,7 @@ export const logout = () => ({
     },
   },
 });
+
 export const doPayment = (amount = '1000', return_link) => ({
   [CALL_API]: {
     types: [

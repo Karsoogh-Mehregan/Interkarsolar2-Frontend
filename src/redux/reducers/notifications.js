@@ -21,6 +21,10 @@ function notifications(state = initState, action) {
       toast.error('ای بابا! یه مشکلی وجود داره. یه چند لحظه دیگه دوباره امتحان کن.');
       return { ...state }
 
+    case actionTypes.LOGOUT:
+      toast.info('خدا به همراهت!')
+      return { ...state }
+
     default:
       return state;
   }

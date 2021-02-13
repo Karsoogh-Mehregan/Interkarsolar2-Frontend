@@ -9,7 +9,7 @@ import rootReducer from '../reducers';
 const configureStore = (preloadedState) => {
   const store = createStore(
     rootReducer,
-    { Intl: { locale: 'fa' }, ...preloadedState },
+    { ...preloadedState },
     compose(
       applyMiddleware(
         thunk,

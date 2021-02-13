@@ -1,9 +1,17 @@
 import React from 'react'
+import {
+    Typography,
+    Button,
+} from '@material-ui/core';
 
 const PushButton = ({ text, color, onClick }) => {
     return (
         <div className='fancyPushButton'>
-            <button onClick={onClick} class={`${color} loading-button`}>{text}</button>
+            <Button onClick={onClick} class={`${color} loading-button`} >
+                <Typography variant='h4' align='center'>
+                    {text}
+                </Typography>
+            </Button>
         </div>
     )
 }

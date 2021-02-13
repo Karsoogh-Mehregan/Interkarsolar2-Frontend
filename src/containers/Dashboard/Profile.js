@@ -13,6 +13,10 @@ import {
   Hidden,
 } from '@material-ui/core';
 import { connect } from 'react-redux';
+import {
+  getUserInfo,
+  updateUserInfo,
+} from '../../redux/actions/account'
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -79,9 +83,17 @@ const temp = {
 
 const ProfileTab = ({
   oldInfo = temp,
+  getUserInfo,
+  updateUserInfo,
 }) => {
   const classes = useStyles();
   const [info, setInfo] = useState(temp);
+
+  useEffect(
+    () => {
+
+    }
+    , [])
 
   const onChange = (event) => {
     setInfo({
@@ -235,6 +247,7 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(
   mapStateToProps,
   {
-
+    getUserInfo,
+    updateUserInfo,
   }
 )(ProfileTab);

@@ -21,6 +21,10 @@ const fetchApi = async (url, fetchOptions) => {
   console.log(fetchOptions)
   const response = await fetch(url, fetchOptions);
   const json_response = await response.json();
+
+  console.log(response);
+  console.log(json_response)
+
   checkErrorsStatusCode(response, json_response);
   if (!response.ok) {
     throw new Error(json_response.message || 'error');

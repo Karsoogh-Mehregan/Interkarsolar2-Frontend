@@ -68,7 +68,7 @@ export const updateUserInfo = ({ username, phone, password }) => ({
       actionTypes.UPDATE_USER_INFO_SUCCESS,
       actionTypes.UPDATE_USER_INFO_FAILURE,
     ],
-    url: URLs.PAYMENT,
+    url: URLs.PROFILE,
     fetchOptions: {
       method: 'POST',
       body: {
@@ -76,6 +76,20 @@ export const updateUserInfo = ({ username, phone, password }) => ({
         password,
         phone,
       },
+    },
+  },
+});
+
+export const getUserInfo = () => ({
+  [CALL_API]: {
+    types: [
+      actionTypes.GET_USER_INFO_REQUEST,
+      actionTypes.GET_USER_INFO_SUCCESS,
+      actionTypes.GET_USER_INFO_FAILURE,
+    ],
+    url: URLs.PROFILE,
+    fetchOptions: {
+      method: 'GET',
     },
   },
 });

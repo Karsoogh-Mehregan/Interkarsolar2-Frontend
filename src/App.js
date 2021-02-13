@@ -24,7 +24,7 @@ const App = ({ redirectTo, forceRedirect, initRedirect, loading }) => {
   const Toast = () => (
     <ToastContainer
       rtl
-      position="bottom-right"
+      position="top-left"
       autoClose={4000}
       transition={Slide}
       newestOnTop

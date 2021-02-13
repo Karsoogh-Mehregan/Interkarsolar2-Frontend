@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
-import 'react-toastify/dist/ReactToastify.css';
-import { Slide, ToastContainer } from 'react-toastify';
 
 import App from './App';
 import configureStore from './redux/store/configureStore';
@@ -18,35 +16,15 @@ store.subscribe(() => {
     'Interkarsoolar2',
     JSON.stringify({
       account: {
-        user: state.account.user,
-        token: state.account.token,
+        account: state.account,
       },
-      Intl: state.Intl,
     })
   );
 });
 
-const Toast = () => (
-  <ToastContainer
-    rtl
-    position="bottom-right"
-    autoClose={4000}
-    transition={Slide}
-    newestOnTop
-    hideProgressBar={false}
-    pauseOnHover={false}
-    pauseOnFocusLoss={false}
-    closeOnClick
-    limit={3}
-    draggable={false}
-  />
-);
-
-
 ReactDOM.render(
   <Router>
     <Provider store={store}>
-      <Toast />
       <App />
     </Provider>
   </Router>,

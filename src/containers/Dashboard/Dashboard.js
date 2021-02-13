@@ -4,13 +4,11 @@ import {
   Grid,
 } from '@material-ui/core'
 import {
-  Switch,
   Redirect,
-  Route,
   useLocation,
 } from "react-router-dom";
 
-import Appbar from '../../components/Appbar/ResponsiveAppBar';
+import ResponsiveAppBar from '../../components/Appbar/ResponsiveAppBar';
 import RegistrationTab from './Registration';
 import AnnouncementsTab from './Announcements';
 import ProfileTab from './Profile';
@@ -19,6 +17,9 @@ import ButtonBar from './ButtonBar';
 const useStyles = makeStyles((theme) => ({
   container: {
     overflowX: 'hidden',
+    [theme.breakpoints.only('sm')]: {
+      minHeight: '110vh',
+    },
   },
 }));
 
@@ -29,7 +30,6 @@ function Dashboard() {
   const location = useLocation();
   const urlParams = new URLSearchParams(location.search);
   const tabName = urlParams.get('tab');
-
 
   useEffect(
     () => {

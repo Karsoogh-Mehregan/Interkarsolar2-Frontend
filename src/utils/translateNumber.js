@@ -1,5 +1,3 @@
-import getLocale from './getLocale';
-
 export const toPersianNumber = (num) => {
   const persian = {
     0: '۰',
@@ -48,7 +46,7 @@ export function tLocalNum(num) {
   return translateNumber({ num });
 }
 
-export default function translateNumber({ lang = getLocale(), num }) {
+export default function translateNumber({ lang = 'fa', num }) {
   switch (lang) {
     case 'fa':
       return toPersianNumber(num);

@@ -5,6 +5,10 @@ import {
     makeStyles,
 } from '@material-ui/core';
 import { useHistory } from "react-router-dom";
+import { connect } from 'react-redux'
+import {
+    logout,
+} from '../../redux/actions/account'
 import FancyPushButton from '../../components/Fancy/PushButton';
 
 const useStyles = makeStyles((theme) => ({
@@ -19,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const ButtonBar = ({ onClick }) => {
+const ButtonBar = ({ onClick, logout }) => {
     let history = useHistory();
     const classes = useStyles();
     return (
@@ -27,31 +31,43 @@ const ButtonBar = ({ onClick }) => {
             container
             direction='row'
             justify='space-around'
-            alignItems='center'
+            alignItems='flex-end'
             spacing={2}
             xs={12}
-            lg={8}
+            md={10}
             className={classes.buttonBar}>
-            <Grid container item justify='center' xs={12} sm={4} lg={3}>
+            <Grid container item justify='center' xs={12} sm={3} lg={3}>
                 <FancyPushButton text='اطلاعیه‌ها' onClick={() => {
                     onClick(0);
                     history.push('/dashboard?tab=announcements')
                 }} />
             </Grid>
-            <Grid container item justify='center' xs={12} sm={4} lg={3}>
+            <Grid container item justify='center' xs={12} sm={3} lg={3}>
                 <FancyPushButton text='ثبت‌نام نهایی' color='green' onClick={() => {
                     onClick(1);
                     history.push('/dashboard?tab=registration')
                 }} />
             </Grid>
-            <Grid container item justify='center' xs={12} sm={4} lg={3}>
+            <Grid container item justify='center' xs={12} sm={3} lg={3}>
                 <FancyPushButton text='مشخصات من' color='dark-blue' onClick={() => {
                     onClick(2);
                     history.push('/dashboard?tab=profile')
                 }} />
             </Grid>
+            <Grid container item justify='center' xs={12} sm={3} lg={3}>
+                <FancyPushButton text='خروج' color='red' onClick={logout} />
+            </Grid>
         </Grid>
     )
 }
 
-export default ButtonBar;
+const mapStateToProps = (state, ownProps) => ({
+    onClick: ownProps.onClick,
+})
+
+export default connect(
+    mapStateToProps,
+    {
+        logout,
+    }
+)(ButtonBar);

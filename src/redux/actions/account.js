@@ -66,7 +66,7 @@ export const doPayment = () => ({
       method: 'POST',
       body: {
         amount: 100000,
-        return_link: 'http://backend.interkarsolar.ir/dashboard?tab=announcements',
+        return_link: 'http://interkarsolar.ir/dashboard?tab=announcements',
       },
     },
   },

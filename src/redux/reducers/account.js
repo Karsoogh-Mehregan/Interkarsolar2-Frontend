@@ -65,6 +65,13 @@ function account(state = initState, action) {
         isFetching: false,
       };
 
+
+    //////////////////////////
+
+    case actionTypes.LOGOUT_REQUEST:
+    case actionTypes.LOGOUT:
+      return initState;
+
     //////////////////////////
 
     case actionTypes.PROVINCE_SUCCESS:

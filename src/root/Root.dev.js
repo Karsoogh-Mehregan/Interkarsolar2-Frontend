@@ -6,7 +6,7 @@ import DevTools from '../containers/DevTools';
 import CreateAccount from '../containers/CreateAccount'
 import Login from '../containers/Login'
 import Homepage from '../containers/Homepage';
-import HomepageFake from '../containers/HomepageFake';
+import HomepageFake from '../containers/Homepage-fake';
 import Staff from '../containers/Staff/Staff';
 import Dashboard from '../containers/Dashboard/Dashboard';
 

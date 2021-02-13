@@ -95,7 +95,7 @@ function Dashboard({
         }
         {
           tab == 2 &&
-          <ProfileTab setIsAllowed={setIsAllowed} isRegistrationCompleted={isRegistrationCompleted} />
+          <ProfileTab isAllowed={isAllowed} isRegistrationCompleted={isRegistrationCompleted} />
         }
       </Grid>
       <Grid item container>

@@ -79,6 +79,7 @@ const ProfileTab = ({
   getProvince,
   getCity,
   getSchool,
+  isRegistrationCompleted,
 }) => {
   const classes = useStyles();
   const [info, setInfo] = useState('');
@@ -91,6 +92,12 @@ const ProfileTab = ({
   }
 
   const saveUpdates = () => {
+    const { first_name, last_name, national_code, phone1, phone2, grade, city, school_name } = info;
+    if (isRegistrationCompleted && !(first_name && last_name && national_code && phone1 && phone2 && grade && city && school_name)) {
+      toast.error('همه‌ی مشخصات اجباری رو باید تکمیل کنی! اجباری‌ها با علامت ستاره کنار اسمشون مشخص شدند.')
+      return;
+    }
+
     var regex = new RegExp('^(\\+98|0)?9\\d{9}$');
     if (info.phone2 && !regex.test(info.phone2)) {
       toast.error('شماره موبایل زاپاسی که وارد کردی نامعتبره!')
@@ -306,6 +313,7 @@ const mapStateToProps = (state, ownProps) => ({
   schools: state.account.schools
     ? state.account.schools
     : [],
+  isRegistrationCompleted: ownProps.isRegistrationCompleted,
 })
 
 export default connect(

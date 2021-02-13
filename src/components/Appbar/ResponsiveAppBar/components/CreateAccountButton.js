@@ -1,8 +1,6 @@
 import { Button, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
-import { toast } from 'react-toastify';
-
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -10,16 +8,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function LoginButton({ name, to, ...rest }) {
+function CreateAccountButton({ name, to, ...rest }) {
   const classes = useStyles();
   return (
-    <Button variant='contained' href='/login' color='primary' size='large' className={classes.button} >
+    <Button variant='contained' href='/create-account' color='primary' size='large' className={classes.button} >
       <Typography variant='inherit' align='center'>
-        ورود به سفینه
+        پیش‌ثبت‌نام
       </Typography>
     </Button>
   );
 }
 
 
-export default LoginButton;
+export default CreateAccountButton;

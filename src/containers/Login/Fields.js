@@ -32,14 +32,14 @@ const InputFields = ({
           onChange={(e) => setNationalID(e.target.value)}
           label='کد ملی'
           type='text'
-          variant='outlined'
+          variant='filled'
           fullWidth />
       </Grid>
       <Grid item>
         <TextField
           onChange={(e) => setPassword(e.target.value)}
           label='رمز عبور'
-          variant='outlined'
+          variant='filled'
           type='password'
           fullWidth>
         </TextField>

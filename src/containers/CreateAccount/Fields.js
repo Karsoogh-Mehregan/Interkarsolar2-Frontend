@@ -48,14 +48,14 @@ const InputFields = ({
           onChange={(e) => setNationalID(e.target.value)}
           label='کد ملی'
           type='text'
-          variant='outlined'
+          variant='filled'
           fullWidth />
       </Grid>
       <Grid item>
         <TextField
           onChange={(e) => setPassword(e.target.value)}
           label='رمز عبور'
-          variant='outlined'
+          variant='filled'
           type='password'
           fullWidth>
         </TextField>
@@ -65,7 +65,7 @@ const InputFields = ({
           onChange={(e) => setConfirmPassword(e.target.value)}
           label='تکرار رمز عبور'
           type='password'
-          variant='outlined'
+          variant='filled'
           fullWidth>
         </TextField>
       </Grid>
@@ -75,7 +75,7 @@ const InputFields = ({
           label='شماره موبایل'
           type='tel'
           helperText='یادت باشه شماره موبایلت رو فقط با ارقام انگلیسی وارد کنی!'
-          variant='outlined'
+          variant='filled'
           fullWidth>
         </TextField>
       </Grid>
@@ -83,7 +83,7 @@ const InputFields = ({
         <Button
           onClick={doCreateAccount}
           variant='contained'
-          color='primary'
+          color='secondary'
           disabled={isFetching}
           fullWidth>
           ثبت

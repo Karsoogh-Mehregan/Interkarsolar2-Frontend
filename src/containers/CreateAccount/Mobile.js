@@ -13,11 +13,15 @@ import InputFields from './Fields';
 const useStyles = makeStyles((theme) => ({
   background: {
     height: '100vh',
-    // backgroundColor: '#984fff', // TODO:
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
   },
-  statImage: {
-    height: '50vh',
-    background: `url(${process.env.PUBLIC_URL + '/logo.png'})`,
+  readyImage: {
+    height: '40vh',
+    background: `url(${process.env.PUBLIC_URL + '/ready.png'})`,
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center center',
@@ -35,7 +39,7 @@ const MobileCreateAccount = () => {
           justify='space-evenly'
           alignItems='stretch'
           spacing={2}>
-          <Grid item className={classes.statImage}>
+          <Grid item className={classes.readyImage}>
           </Grid>
           <Grid item>
             <Typography gutterBottom variant='h3' align='center'>

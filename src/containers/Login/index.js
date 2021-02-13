@@ -8,6 +8,7 @@ import DesktopLogin from './Desktop';
 const Login = () => {
   return (
     <>
+      <div className='login-background' />
       <Hidden smUp>
         <MobileLogin />
       </Hidden>

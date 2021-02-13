@@ -10,7 +10,7 @@ import {
 } from '@material-ui/core';
 import { connect } from 'react-redux';
 import {
-  doPayment
+  doPayment,
 } from '../../redux/actions/account'
 import { Info } from '@material-ui/icons';
 
@@ -21,9 +21,16 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
-  statImage: {
+  sadImage: {
     height: '50vh',
     background: `url(${process.env.PUBLIC_URL + '/sad.png'})`,
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center center',
+  },
+  readyImage: {
+    height: '50vh',
+    background: `url(${process.env.PUBLIC_URL + '/ready.png'})`,
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center center',
@@ -93,10 +100,10 @@ const RegistrationTab = ({ doPayment, isFetching, info }) => {
         </Grid>
         <Grid container item direction='row' justify='center' spacing={4}>
           {isAllowed &&
-            <Grid item xs={12} sm={6} className={classes.statImage} />
+            <Grid item xs={12} sm={6} className={classes.readyImage} />
           }
           {!isAllowed &&
-            <Grid item xs={12} sm={6} className={classes.statImage} />
+            <Grid item xs={12} sm={6} className={classes.sadImage} />
           }
           <Grid
             xs={12} sm={5}

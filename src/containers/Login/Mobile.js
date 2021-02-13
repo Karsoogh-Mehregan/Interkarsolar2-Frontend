@@ -13,14 +13,21 @@ import InputFields from './Fields';
 const useStyles = makeStyles((theme) => ({
   background: {
     height: '100vh',
-    // backgroundColor: '#984fff', // TODO:
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
   },
-  statImage: {
-    height: '50vh',
-    background: `url(${process.env.PUBLIC_URL + '/logo.png'})`,
+  loginImage: {
+    height: '40vh',
+    background: `url(${process.env.PUBLIC_URL + '/login.png'})`,
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center center',
+  },
+  title: {
+    color: '#fbebd1',
   },
 }))
 
@@ -35,10 +42,10 @@ const MobileCreateAccount = () => {
           justify='space-evenly'
           alignItems='stretch'
           spacing={2}>
-          <Grid item className={classes.statImage}>
+          <Grid item className={classes.loginImage}>
           </Grid>
           <Grid item>
-            <Typography gutterBottom variant='h3' align='center'>
+            <Typography gutterBottom variant='h3' align='center' >
               برای ورود به سفینه‌ات آماده‌ای؟
             </Typography>
           </Grid>

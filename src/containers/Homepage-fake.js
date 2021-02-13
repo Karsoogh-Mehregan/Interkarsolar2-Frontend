@@ -132,6 +132,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+
   footer: {
     alignContent: 'center',
     color: '#a69eac',
@@ -147,7 +148,6 @@ function Homepage({ isLoggedIn }) {
       <Container className={classes.section1}>
         <div className="landing-background" />
         <div id="back-to-top-anchor" />
-        <ResponsiveAppBar mode="LANDING" showBackOnScroll hideOnScroll={false} />
 
         <Grid container direction="row" style={{ height: '100%' }}>
           <Hidden xsDown>

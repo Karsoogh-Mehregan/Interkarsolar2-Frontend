@@ -12,14 +12,16 @@ import InputFields from './Fields';
 const useStyles = makeStyles((theme) => ({
   background: {
     height: '100vh',
-    // backgroundColor: '#984fff', // TODO:
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   paper: {
     padding: theme.spacing(2),
   },
-  statImage: {
-    height: '100vh',
-    background: `url(${process.env.PUBLIC_URL + '/logo.png'})`,
+  loginImage: {
+    height: '60vh',
+    background: `url(${process.env.PUBLIC_URL + '/login.png'})`,
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center center',
@@ -64,7 +66,7 @@ const DesktopCreateAccount = () => {
               </Paper>
             </Grid>
           </Grid>
-          <Grid item xs={6} className={classes.statImage} />
+          <Grid item xs={6} className={classes.loginImage} />
         </Grid>
       </Container>
     </>

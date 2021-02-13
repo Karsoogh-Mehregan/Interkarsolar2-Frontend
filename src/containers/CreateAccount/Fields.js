@@ -4,6 +4,7 @@ import {
   Grid,
   TextField,
   Button,
+  Typography,
 } from '@material-ui/core';
 import { createAccount } from '../../redux/actions/account'
 import { redirect } from '../../redux/actions/redirect'
@@ -53,6 +54,16 @@ const InputFields = ({
       </Grid>
       <Grid item>
         <TextField
+          onChange={(e) => setPhoneNumber(e.target.value)}
+          label='شماره موبایل'
+          type='tel'
+          helperText='یادت باشه شماره موبایلت رو فقط با ارقام انگلیسی وارد کنی!'
+          variant='filled'
+          fullWidth>
+        </TextField>
+      </Grid>
+      <Grid item>
+        <TextField
           onChange={(e) => setPassword(e.target.value)}
           label='رمز عبور'
           variant='filled'
@@ -69,15 +80,14 @@ const InputFields = ({
           fullWidth>
         </TextField>
       </Grid>
-      <Grid item>
-        <TextField
-          onChange={(e) => setPhoneNumber(e.target.value)}
-          label='شماره موبایل'
-          type='tel'
-          helperText='یادت باشه شماره موبایلت رو فقط با ارقام انگلیسی وارد کنی!'
-          variant='filled'
-          fullWidth>
-        </TextField>
+      <Grid item container justify='center'>
+        <Typography align='center'>
+          {'اگه قبلاً پیش‌ثبت‌نامت رو انجام دادی، از '}
+          <a href='/login'>
+            {'این‌جا'}
+          </a>
+          {' وارد شو!'}
+        </Typography>
       </Grid>
       <Grid container item direction='row' justify='center'>
         <Button

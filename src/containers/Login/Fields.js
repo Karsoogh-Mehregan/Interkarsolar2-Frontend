@@ -4,6 +4,7 @@ import {
   Grid,
   TextField,
   Button,
+  Typography,
 } from '@material-ui/core';
 import {
   login,
@@ -43,6 +44,15 @@ const InputFields = ({
           type='password'
           fullWidth>
         </TextField>
+      </Grid>
+      <Grid item container justify='center'>
+        <Typography align='center'>
+          {'اگه هنوز پیش‌ثبت‌نامت رو انجام ندادی، '}
+          <a href='/create-account'>
+            {'این‌جا'}
+          </a>
+          {' انجامش بده!'}
+        </Typography>
       </Grid>
       <Grid container item direction='row' justify='center'>
         <Button

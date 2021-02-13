@@ -4,11 +4,22 @@ import {
 } from '@material-ui/core';
 import MobileLogin from './Mobile';
 import DesktopLogin from './Desktop';
+import { connect } from 'react-redux';
+import {
+  Redirect,
+} from "react-router-dom";
 
-const Login = () => {
+const CreateAccount = ({ token }) => {
+
+  if (token) {
+    return (
+      <Redirect to='/dashboard' />
+    )
+  }
+
   return (
     <>
-      <div className='createAccount-background' />
+      <div className='login-background' />
       <Hidden smUp>
         <MobileLogin />
       </Hidden>
@@ -19,4 +30,13 @@ const Login = () => {
   )
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+  token: state.account.token,
+})
+
+export default connect(
+  mapStateToProps,
+  {
+
+  }
+)(CreateAccount);

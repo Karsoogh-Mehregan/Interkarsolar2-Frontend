@@ -51,11 +51,11 @@ export default ({ getState }) => (next) => async (action) => {
     );
 
   } catch (error) {
-    if (error.message === 'TOKEN EXPIRED') {
+    if (error.message === 'شما دسترسی ندارید!') {
       return next(
         actionWith({
           payload,
-          type: actionTypes.LOGOUT_REQUEST,
+          type: actionTypes.LOGOUT,
           error: error.message || 'Something bad happened!',
         })
       );

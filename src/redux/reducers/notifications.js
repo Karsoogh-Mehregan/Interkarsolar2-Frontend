@@ -39,11 +39,17 @@ function notifications(state = initState, action) {
       }
       return { ...state }
 
-    case actionTypes.LOGOUT:
     case actionTypes.LOGOUT_REQUEST:
       setTimeout(
         () => {
           toast.info('خدا به همراهت!');
+        }, 0)
+      return { ...state };
+
+    case actionTypes.LOGOUT:
+      setTimeout(
+        () => {
+          toast.warning('احتمالاً توکنت منقضی شده. باید دوباره وارد بشی!');
         }, 0)
       return { ...state };
 

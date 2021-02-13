@@ -16,8 +16,10 @@ function redirect(state = initState, action) {
       return { redirectTo: '/dashboard?tab=announcements' }
 
     case actionTypes.LOGOUT_REQUEST:
-    case actionTypes.LOGOUT:
       return { redirectTo: '/' }
+
+    case actionTypes.LOGOUT:
+      return { redirectTo: '/login' }
 
     case actionTypes.INIT_REDIRECT:
       return initState;

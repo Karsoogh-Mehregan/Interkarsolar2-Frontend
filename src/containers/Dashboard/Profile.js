@@ -66,39 +66,47 @@ const useStyles = makeStyles((theme) => ({
   color: '#fbebd1',
 }))
 
-const temp = {
-  firstName: 'سید علیرضا',
-  lastName: 'هاشمی',
-  grade: 'هفتم',
-  nationalCode: '1273067185',
-  phone1: '09140914091',
-  phone2: '09123456789',
-  schoolName: 'شهید اژه‌ای',
-  schoolPhone: '031-31234233',
-  city: 'اصفهان',
-  province: 'اصفهان',
-  principalPhone: '09999999999',
-  hasPaidBefore: 'false',
-}
-
 const ProfileTab = ({
+  oldInfo,
   getUserInfo,
   updateUserInfo,
+  isFetching,
 }) => {
   const classes = useStyles();
-  const [info, setInfo] = useState(temp);
+  const [info, setInfo] = useState('');
 
   useEffect(
     () => {
-      getUserInfo()
+      getUserInfo();
     }
     , [getUserInfo])
+
+  useEffect(
+    () => {
+      console.log(oldInfo)
+      setInfo(oldInfo);
+    }
+    , [oldInfo])
 
   const onChange = (event) => {
     setInfo({
       ...info,
       [event.target.name]: event.target.value,
     })
+  }
+
+  const saveUpdates = () => {
+    updateUserInfo(info);
+  }
+
+
+  if (!info) {
+    return (
+      <Container style={{ overflow: 'hidden' }}>
+        <div className={`dashboard-background blur`} />
+        loading...
+      </Container >
+    )
   }
 
   return (
@@ -126,13 +134,13 @@ const ProfileTab = ({
               <Paper className={classes.paper}>
                 <Grid item container spacing={1} justify='center' alignItems='center'>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField name='firstName' label='نام' value={info.firstName} variant='outlined' required onChange={onChange} fullWidth />
+                    <TextField name='firstName' label='نام' value={info.first_name} variant='outlined' required onChange={onChange} fullWidth />
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField name='lastName' label='نام خانوادگی' value={info.lastName} variant='outlined' required onChange={onChange} fullWidth />
+                    <TextField name='lastName' label='نام خانوادگی' value={info.last_name} variant='outlined' required onChange={onChange} fullWidth />
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField name='nationalCode' label='کد ملی' value={info.nationalCode} disabled variant='outlined' required onChange={onChange} fullWidth />
+                    <TextField name='nationalCode' label='کد ملی' value={info.national_code} disabled variant='outlined' required onChange={onChange} fullWidth />
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
                     <TextField name='phone1' label='شماره موبایل' value={info.phone1} disabled variant='outlined' required onChange={onChange} fullWidth />
@@ -173,7 +181,7 @@ const ProfileTab = ({
               <Paper className={classes.paper}>
                 <Grid item container spacing={1} justify='center' alignItems='center'>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField label='نام مدرسه' value={info.schoolName} variant='outlined' required onChange={onChange} fullWidth />
+                    <TextField label='نام مدرسه' value={info.school} variant='outlined' required onChange={onChange} fullWidth />
                   </Grid>
                   <Grid item container xs={12} sm={3}>
                     <FormControl variant="outlined" className={classes.formControl} required>
@@ -229,7 +237,7 @@ const ProfileTab = ({
             <Grid item container md={3} className={classes.formImage} />
           </Hidden>
           <Grid item container xs={12} sm={4} justify='center'>
-            <Button size='large' variant='contained' color='primary' fullWidth >
+            <Button disabled={isFetching} size='large' variant='contained' color='primary' fullWidth onClick={saveUpdates}>
               ذخیره تغییرات
             </Button>
           </Grid>
@@ -239,9 +247,10 @@ const ProfileTab = ({
   )
 }
 
-const mapStateToProps = (state, ownProps) => {
-
-}
+const mapStateToProps = (state, ownProps) => ({
+  oldInfo: state.account.info,
+  isFetching: state.account.isFetching,
+})
 
 export default connect(
   mapStateToProps,

@@ -42,8 +42,15 @@ function account(state = initState, action) {
       }
 
     case actionTypes.GET_USER_INFO_SUCCESS:
+      console.log(action.response);
+      let info = {};
+      if (action.response) {
+        info = action.response.data[0].fields;
+      }
+      console.log(info)
       return {
         ...state,
+        info,
       }
 
     case actionTypes.LOGOUT_REQUEST:

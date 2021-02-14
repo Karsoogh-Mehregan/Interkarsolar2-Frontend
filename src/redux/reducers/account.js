@@ -38,7 +38,6 @@ function account(state = initState, action) {
       };
 
     case actionTypes.UPDATE_USER_INFO_SUCCESS:
-      console.log(action.payload)
       return {
         ...state,
         isFetching: false,

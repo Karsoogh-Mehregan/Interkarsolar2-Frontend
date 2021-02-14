@@ -145,8 +145,6 @@ const ProfileTab = ({
     )
   }
 
-  console.log(info.city)
-
   return (
     <Container style={{ overflow: 'hidden' }}>
       <div className={`dashboard-background blur`} />

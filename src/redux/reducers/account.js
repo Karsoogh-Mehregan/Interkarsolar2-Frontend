@@ -21,7 +21,6 @@ function account(state = initState, action) {
 
     case actionTypes.CREATE_ACCOUNT_SUCCESS:
     case actionTypes.LOGIN_SUCCESS:
-      console.log(action)
       return {
         ...state,
         isFetching: false,
@@ -29,7 +28,6 @@ function account(state = initState, action) {
       };
 
     case actionTypes.PAYMENT_IGNORE_FAILURE:
-    case actionTypes.UPDATE_USER_INFO_SUCCESS:
     case actionTypes.UPDATE_USER_INFO_FAILURE:
     case actionTypes.PAYMENT_FAILURE:
     case actionTypes.CREATE_ACCOUNT_FAILURE:
@@ -39,6 +37,17 @@ function account(state = initState, action) {
         isFetching: false,
       };
 
+    case actionTypes.UPDATE_USER_INFO_SUCCESS:
+      console.log(action.payload)
+      return {
+        ...state,
+        isFetching: false,
+        info: {
+          ...state.info,
+          ...action.payload,
+        }
+      }
+
     case actionTypes.PAYMENT_SUCCESS:
       window.location.replace(action.response.data.pay_link)
       return {
@@ -47,12 +56,10 @@ function account(state = initState, action) {
       }
 
     case actionTypes.GET_USER_INFO_SUCCESS:
-      console.log(action.response);
       let info = {};
       if (action.response) {
         info = action.response.data[0].fields;
       }
-      console.log(info)
       return {
         ...state,
         info,

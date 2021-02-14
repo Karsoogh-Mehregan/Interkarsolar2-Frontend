@@ -21,14 +21,9 @@ const checkErrorsStatusCode = (response, jsonResponse) => {
 };
 
 const fetchApi = async (url, fetchOptions) => {
-  console.log(fetchOptions)
   const response = await fetch(url, fetchOptions);
   const stringifiedResponse = await response.json();
   const jsonResponse = JSON.parse(stringifiedResponse);
-
-  console.log(response);
-  console.log(stringifiedResponse);
-  console.log(jsonResponse)
 
   checkErrorsStatusCode(response, jsonResponse);
   if (!response.ok) {

@@ -76,11 +76,6 @@ const RegistrationTab = ({ doPayment, isFetching, info, ignorePayment, isAllowed
     }
   }
 
-  console.log(info);
-  console.log(isAllowed);
-  console.log(didPay);
-  console.log(isRegistrationCompleted)
-
   return (
     <Container style={{ overflow: 'hidden' }}>
       <div className={`dashboard-background blur`} />

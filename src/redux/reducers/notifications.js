@@ -28,9 +28,7 @@ function notifications(state = initState, action) {
     case actionTypes.UPDATE_USER_INFO_FAILURE:
     case actionTypes.LOGIN_FAILURE:
     case actionTypes.CREATE_ACCOUNT_FAILURE:
-      console.log(action)
       if (action.error) {
-        console.log(action)
         setTimeout(
           () => {
             toast.error(action.error);

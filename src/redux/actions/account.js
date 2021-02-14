@@ -80,6 +80,7 @@ export const updateUserInfo = ({
   school_phone,
   manager_name,
   manager_phone,
+  province,
   city,
 }) => ({
   [CALL_API]: {
@@ -89,6 +90,17 @@ export const updateUserInfo = ({
       actionTypes.UPDATE_USER_INFO_FAILURE,
     ],
     url: URLs.UPDATE_PROFILE,
+    payload: {
+      first_name,
+      last_name,
+      grade, phone2,
+      school_name,
+      school_phone,
+      manager_name,
+      manager_phone,
+      province,
+      city,
+    },
     fetchOptions: {
       method: 'POST',
       body: {

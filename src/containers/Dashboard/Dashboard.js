@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import {
   getUserInfo,
-  updateUserInfo,
+  getCityDetails,
 } from '../../redux/actions/account'
 import { connect } from 'react-redux';
 
@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Dashboard({
   getUserInfo,
+  getCityDetails,
   info,
 }) {
   const classes = useStyles();
@@ -40,9 +41,6 @@ function Dashboard({
   useEffect(
     () => {
       if (info) {
-
-        console.log(info)
-
         if (info.status === 20 || info.status === 10) {
           setRegistrationStatus(true);
         } else {
@@ -117,5 +115,6 @@ export default connect(
   mapStateToProps,
   {
     getUserInfo,
+    getCityDetails,
   }
 )(Dashboard);

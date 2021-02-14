@@ -7,11 +7,11 @@ const checkErrorsStatusCode = (response, jsonResponse) => {
     throw new Error('صفحه مورد نظر یافت نشد!');
     // throw new Error('Not Found!');
   }
-  if (response.status === 401 || jsonResponse.res_code === 661) {
+  if (jsonResponse.res_code === 661) {
     throw new Error('توکن شما منقضی شده است!');
     // throw new Error('TOKEN EXPIRED');
   }
-  if (response.status === 403 || jsonResponse.res_code === 662 || jsonResponse.res_code === 601) {
+  if (response.status === 403 || jsonResponse.res_code === 601 || jsonResponse.res_code === 662 || jsonResponse.res_code === 663) {
     throw new Error('شما دسترسی ندارید!');
     // throw new Error('You don\'t have access!');
   }

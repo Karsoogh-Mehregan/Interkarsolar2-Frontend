@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import {
   Container,
@@ -16,9 +16,10 @@ import {
 import { connect } from 'react-redux';
 import {
   updateUserInfo,
-  getProvince,
+  getProvinces,
   getCity,
   getSchool,
+  getCityDetails,
 } from '../../redux/actions/account'
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -76,27 +77,38 @@ const ProfileTab = ({
   oldInfo,
   isFetching,
   updateUserInfo,
-  getProvince,
+  getProvinces,
   getCity,
   getSchool,
+  getCityDetails,
+  province_name,
+  city_name,
   isRegistrationCompleted,
 }) => {
   const classes = useStyles();
   const [info, setInfo] = useState('');
+  const [province, setProvince] = useState('');
+  const first_name = useRef();
 
-  const onChange = (event) => {
+  const onBlur = (event) => {
     setInfo({
       ...info,
       [event.target.name]: event.target.value,
     })
   }
 
-  console.log(info)
+  const handleProvinceChange = (event) => {
+    setProvince(event.target.value);
+    setInfo({
+      ...info,
+      city: '',
+    })
+  }
 
   const saveUpdates = () => {
     const { first_name, last_name, national_code, phone1, phone2, grade, city, school_name } = info;
-    if (isRegistrationCompleted && !(first_name && last_name && national_code && phone1 && phone2 && grade && city && school_name)) {
-      toast.error('همه‌ی مشخصات اجباری رو باید تکمیل کنی! اجباری‌ها با علامت ستاره کنار اسمشون مشخص شدند.')
+    if (!(first_name && last_name && national_code && phone1 && phone2 && grade && city && school_name)) {
+      toast.error('همه‌ی اطلاعاتی که اجباری هستند (کنارشون علامت ستاره خورده) رو باید تکمیل کنی!.')
       return;
     }
 
@@ -127,15 +139,28 @@ const ProfileTab = ({
 
   useEffect(
     () => {
-      getProvince();
-    }, [getProvince])
+      getProvinces();
+    }, [getProvinces])
 
   useEffect(
     () => {
-      if (info.province) {
-        getCity(info.province);
+      if (province) {
+        getCity(province);
       }
-    }, [info.province, getCity])
+    }, [province, getCity])
+
+
+  // todo: fix
+  useEffect(
+    () => {
+      const fetchAndSetProvince = async () => {
+        const action = await getCityDetails(info.city)
+        setProvince(action.response.data.pid)
+      }
+      if (info.city) {
+        fetchAndSetProvince();
+      }
+    }, [info.city, getCityDetails])
 
 
   if (!info) {
@@ -172,19 +197,19 @@ const ProfileTab = ({
               <Paper className={classes.paper}>
                 <Grid item container spacing={1} justify='center' alignItems='center'>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField name='first_name' label='نام' value={info.first_name} variant='outlined' required onChange={onChange} fullWidth />
+                    <TextField name='first_name' label='نام' defaultValue={info.first_name} variant='outlined' required onBlur={onBlur} fullWidth />
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField name='last_name' label='نام خانوادگی' value={info.last_name} variant='outlined' required onChange={onChange} fullWidth />
+                    <TextField name='last_name' label='نام خانوادگی' defaultValue={info.last_name} variant='outlined' required onBlur={onBlur} fullWidth />
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField name='national_code' label='کد ملی' value={info.national_code} disabled variant='outlined' required onChange={onChange} fullWidth />
+                    <TextField name='national_code' label='کد ملی' defaultValue={info.national_code} disabled variant='outlined' required onBlur={onBlur} fullWidth />
                   </Grid>
                   <Hidden xsDown>
                     <Grid item container xs={12} sm={3} justify='center' />
                   </Hidden>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField name='phone1' label='شماره موبایل' value={info.phone1} disabled variant='outlined' required onChange={onChange} fullWidth />
+                    <TextField name='phone1' label='شماره موبایل' defaultValue={info.phone1} disabled variant='outlined' required onBlur={onBlur} fullWidth />
                   </Grid>
                   <Hidden xsDown>
                     <Grid item container xs={12} sm={3} justify='center' />
@@ -197,7 +222,7 @@ const ProfileTab = ({
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         value={info.grade}
-                        onChange={onChange}
+                        onClick={onBlur}
                         name='grade'
                         label='پایه'
                         required
@@ -210,7 +235,7 @@ const ProfileTab = ({
                     </FormControl >
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField name='phone2' label='شماره موبایل زاپاس' value={info.phone2} required variant='outlined' onChange={onChange} fullWidth />
+                    <TextField name='phone2' label='شماره موبایل زاپاس' defaultValue={info.phone2} required variant='outlined' onBlur={onBlur} fullWidth />
                   </Grid>
                 </Grid>
               </Paper>
@@ -229,8 +254,8 @@ const ProfileTab = ({
                         className={classes.dropDown}
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={info.province}
-                        onChange={onChange}
+                        value={province}
+                        onClick={handleProvinceChange}
                         name='province'
                         label='استان'
                       >
@@ -250,8 +275,8 @@ const ProfileTab = ({
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         value={info.city}
-                        onChange={onChange}
-                        disabled={!info.province}
+                        onClick={onBlur}
+                        disabled={!province}
                         name='city'
                         label='شهر'
                       >
@@ -268,20 +293,20 @@ const ProfileTab = ({
                   </Hidden>
                   <Grid item container xs={12} sm={3} justify='center'>
                     <TextField
-                      label='مدرسه' name='school_name' value={info.school_name} required variant='outlined' onChange={onChange} fullWidth />
+                      label='مدرسه' name='school_name' defaultValue={info.school_name} required variant='outlined' onBlur={onBlur} fullWidth />
                   </Grid>
                   <Hidden xsDown>
                     <Grid item container xs={12} sm={3} justify='center' />
                   </Hidden>
                   <Grid item container xs={12} sm={3} justify='center'>
                     <TextField
-                      label='شماره تلفن مدرسه' name='school_phone' value={info.school_phone} variant='outlined' placeholder='مثال: 03112345678' onChange={onChange} fullWidth />
+                      label='شماره تلفن مدرسه' name='school_phone' defaultValue={info.school_phone} variant='outlined' placeholder='مثال: 03112345678' onBlur={onBlur} fullWidth />
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField label='نام مدیر' name='manager_name' value={info.manager_name} variant='outlined' onChange={onChange} fullWidth />
+                    <TextField label='نام مدیر' name='manager_name' defaultValue={info.manager_name} variant='outlined' onBlur={onBlur} fullWidth />
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField label='شماره موبایل مدیر' name='manager_phone' value={info.manager_phone} variant='outlined' onChange={onChange} fullWidth />
+                    <TextField label='شماره موبایل مدیر' name='manager_phone' defaultValue={info.manager_phone} variant='outlined' onBlur={onBlur} fullWidth />
                   </Grid>
                 </Grid>
               </Paper>
@@ -314,14 +339,17 @@ const mapStateToProps = (state, ownProps) => ({
     ? state.account.schools
     : [],
   isRegistrationCompleted: ownProps.isRegistrationCompleted,
+  city_name: state.account.city_name,
+  province_name: state.account.province_name,
 })
 
 export default connect(
   mapStateToProps,
   {
-    getProvince,
+    getProvinces,
     getCity,
     getSchool,
     updateUserInfo,
+    getCityDetails,
   }
 )(ProfileTab);

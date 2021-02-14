@@ -51,7 +51,7 @@ export default ({ getState }) => (next) => async (action) => {
     );
 
   } catch (error) {
-    if (error.message === 'شما دسترسی ندارید!' || error.message === 'توکن شما منقضی شده است!') {
+    if (error.message === 'توکن شما منقضی شده است!') {
       return next(
         actionWith({
           payload,

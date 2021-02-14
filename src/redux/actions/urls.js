@@ -10,7 +10,9 @@ export const LOGIN = ROOT.concat('student/login/');
 export const LOGOUT = ROOT.concat('student/logout/');
 
 export const PROVINCE = ROOT.concat('province/');
+export const PROVINCE_DETAILS = ROOT.concat('province/detail/');
 export const CITY = ROOT.concat('city/');
+export const CITY_DETAILS = ROOT.concat('city/detail/');
 export const SCHOOL = ROOT.concat('school/');
 
 export const GET_PROFILE = ROOT.concat('student/profile/');

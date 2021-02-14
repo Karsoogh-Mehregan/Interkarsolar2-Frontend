@@ -39,7 +39,6 @@ export const login = (national_code, password) => ({
   },
 });
 
-
 export const logout = () => ({
   [CALL_API]: {
     types: [
@@ -148,7 +147,41 @@ export const ignorePayment = () => ({
 
 ///////////////////////////////////
 
-export const getProvince = () => ({
+export const getProvinceDetails = (id) => ({
+  [CALL_API]: {
+    types: [
+      actionTypes.PROVINCE_DETAILS_REQUEST,
+      actionTypes.PROVINCE_DETAILS_SUCCESS,
+      actionTypes.PROVINCE_DETAILS_FAILURE,
+    ],
+    url: URLs.PROVINCE_DETAILS,
+    fetchOptions: {
+      headers: {
+        province: id,
+      },
+      method: 'GET',
+    },
+  },
+});
+
+export const getCityDetails = (id) => ({
+  [CALL_API]: {
+    types: [
+      actionTypes.CITY_DETAILS_REQUEST,
+      actionTypes.CITY_DETAILS_SUCCESS,
+      actionTypes.CITY_DETAILS_FAILURE,
+    ],
+    url: URLs.CITY_DETAILS,
+    fetchOptions: {
+      headers: {
+        city: id,
+      },
+      method: 'GET',
+    },
+  },
+});
+
+export const getProvinces = () => ({
   [CALL_API]: {
     types: [
       actionTypes.PROVINCE_REQUEST,
@@ -162,7 +195,7 @@ export const getProvince = () => ({
   },
 });
 
-export const getCity = (province) => ({
+export const getCity = (provinceID) => ({
   [CALL_API]: {
     types: [
       actionTypes.CITY_REQUEST,
@@ -172,14 +205,14 @@ export const getCity = (province) => ({
     url: URLs.CITY,
     fetchOptions: {
       headers: {
-        "Province": province,
+        "Province": provinceID,
       },
       method: 'GET',
     },
   },
 });
 
-export const getSchool = (city) => ({
+export const getSchool = (cityID) => ({
   [CALL_API]: {
     types: [
       actionTypes.SCHOOL_REQUEST,
@@ -189,7 +222,7 @@ export const getSchool = (city) => ({
     url: URLs.SCHOOL,
     fetchOptions: {
       headers: {
-        "City": city,
+        "City": cityID,
       },
       method: 'GET',
     },

@@ -76,7 +76,7 @@ const AnnouncementsTab = ({ status, isRegistrationCompleted, didPaymentFail }) =
         >
           {didPaymentFail &&
             < Grid item xs={12}>
-              <Announcement title='ای بابا!' date='' image='png' text='به نظر می‌رسه که پرداختت با خطا روبه‌رو شده. اگه پول از حسابت کم شده ولی ثبت‌نامت نهایی نشده، به کارسوق‌ادمین توی بله، اینستاگرام یا تلگرام پیام بده تا پیگیری کنیم :)' />
+              <Announcement title='ای بابا!' date='همین چند لحظه پیش' image='ohDad.png' text='به نظر می‌رسه که پرداختت با خطا روبه‌رو شده. اگه پول از حسابت کم شده ولی ثبت‌نامت نهایی نشده، به ادمینِ کاروسق توی بله، اینستاگرام یا تلگرام پیام بده تا پیگیری کنیم :)' />
             </Grid>
           }
           {isRegistrationCompleted &&
@@ -84,14 +84,15 @@ const AnnouncementsTab = ({ status, isRegistrationCompleted, didPaymentFail }) =
               <Announcement title='ثبت‌نامت تکمیله!' date='' image='greenCheck.png' text='ایول! ثبت‌نامت با موفقیت انجام شده و حالا باید منتظر مرحله اول بمونی. ۸ اسفند شروع مرحله یکه!' />
             </Grid>
           }
-          <Grid item xs={12}>
-            <Announcement title='آغاز ثبت‌نام مرحله یک' date='۲۵بهمن۹۹' image='announcement.jpg' text='بله! بعد از یک سال دوری از شما سیارک‌داران گرامی، دوباره با دوره‌ی دوم رویداد اینترکارسولار در خدمت شما هستیم! ثبت‌نام اینترکارسولار از امروز شروع شده و تا اول اسفند ادامه داره. بدو جا نمونی... ' />
-          </Grid>
           {!isRegistrationCompleted &&
             <Grid item xs={12}>
               <Announcement title='هنوز ثبت‌نامت نهایی نشده!' date='' image='redX.png' text='سیارک‌دار گرامی توجه کن! ثبت‌نامت هنوز نهایی نشده. برای نهایی‌کردن ثبت‌نام باید به بخش «ثبت‌نام نهایی» بری.' />
             </Grid>
           }
+          <Grid item xs={12}>
+            <Announcement title='آغاز ثبت‌نام مرحله یک' date='۲۵بهمن۹۹' image='announcement.jpg' text='بله! بعد از یک سال دوری از شما سیارک‌داران گرامی، دوباره با دوره‌ی دوم رویداد اینترکارسولار در خدمت شما هستیم! ثبت‌نام اینترکارسولار از امروز شروع شده و تا اول اسفند ادامه داره. بدو جا نمونی... ' />
+          </Grid>
+
         </Grid>
       </Grid>
     </Container >

@@ -11,9 +11,9 @@ const LandingAppBarItems = () => {
 
 
   return ({
-    desktopLeftItems: [<LoginButton />,],
+    desktopLeftItems: [<LoginButton />, <CreateAccountButton />],
     desktopRightItems: [],
-    mobileLeftItems: [<LoginButton />,],
+    mobileLeftItems: [<LoginButton />, <CreateAccountButton />],
     mobileRightItems: [],
     mobileMenuListItems: [],
   })

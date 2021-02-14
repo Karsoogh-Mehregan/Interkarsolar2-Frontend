@@ -74,7 +74,7 @@ function Dashboard({
 
   useEffect(
     () => {
-      if (payments && (!payments[0].status || toInteger(payments[0].status) < 60)
+      if (payments && payments[0] && (!payments[0].status || toInteger(payments[0].status) < 60)
         && new Date().getTime() / 1000 - payments[0].update_date < 600) {
         setPaymentFailure(true);
       }

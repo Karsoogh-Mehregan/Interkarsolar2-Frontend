@@ -206,9 +206,17 @@ function Homepage({ isLoggedIn }) {
                 </Typography>
               </Grid>
             </Grid>
-            <Hidden xsDown="true">
-              <Grid item sm={6} className={classes.teamWorkImage}></Grid>
-            </Hidden>
+            <Grid item >
+              <div className={classes.h_iframe_aparat_embed_frame}>
+                {/* <span></span> */}
+                <iframe
+                  title="کارگاه‌های رستا"
+                  src="https://www.aparat.com/video/video/embed/videohash/B8VfK/vt/frame"
+                  allowFullScreen
+                  webkitallowfullscreen="true"
+                  mozallowfullscreen="true"></iframe>
+              </div>
+            </Grid>
           </Grid>
         </Grid>
       </Container>

@@ -40,7 +40,10 @@ function Dashboard({
   useEffect(
     () => {
       if (info) {
-        if (info.status === 20) {
+
+        console.log(info)
+
+        if (info.status === 20 || info.status === 10) {
           setRegistrationStatus(true);
         } else {
           setRegistrationStatus(false);

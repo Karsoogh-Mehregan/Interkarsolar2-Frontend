@@ -56,6 +56,7 @@ function account(state = initState, action) {
 
     case actionTypes.GET_USER_INFO_SUCCESS:
       let info = {};
+      console.log(action.response.data[0].fields)
       if (action.response) {
         info = action.response.data[0].fields;
       }

@@ -12,8 +12,17 @@ const useStyles = makeStyles((theme) => ({
 
 function LoginButton({ name, to, ...rest }) {
   const classes = useStyles();
+
+  const show = () => {
+    toast.info('ثبت‌نام هنوز شروع نشده! یکم دیگه هم وایسین تا سایت درست بشه :))))',
+      {
+        position: 'bottom-right',
+      }
+    )
+  }
+
   return (
-    <Button variant='contained' href='/login' color='primary' size='large' className={classes.button} >
+    <Button variant='contained' onClick={show} color='primary' size='large' className={classes.button} >
       <Typography variant='inherit' align='center'>
         ورود به سفینه
       </Typography>

@@ -91,6 +91,8 @@ const ProfileTab = ({
     })
   }
 
+  console.log(info)
+
   const saveUpdates = () => {
     const { first_name, last_name, national_code, phone1, phone2, grade, city, school_name } = info;
     if (isRegistrationCompleted && !(first_name && last_name && national_code && phone1 && phone2 && grade && city && school_name)) {

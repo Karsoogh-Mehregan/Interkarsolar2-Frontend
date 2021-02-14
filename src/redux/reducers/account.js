@@ -67,6 +67,13 @@ function account(state = initState, action) {
         isFetching: false,
       };
 
+    case actionTypes.CHECK_PAYMENT_STATUS_SUCCESS:
+      console.log(action.response)
+      return {
+        ...state,
+        payments: action.response.data,
+      }
+
 
     //////////////////////////
 

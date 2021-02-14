@@ -51,7 +51,11 @@ function notifications(state = initState, action) {
     case actionTypes.LOGOUT_REQUEST:
       setTimeout(
         () => {
-          toast.info('خدا به همراهت!');
+          toast.info('خدا به همراهت!',
+            {
+              position: 'bottom-right',
+            }
+          )
         }, 0)
       return { ...state };
 

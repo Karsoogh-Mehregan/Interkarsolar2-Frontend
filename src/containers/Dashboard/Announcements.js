@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const AnnouncementsTab = ({ status, isRegistrationCompleted }) => {
+const AnnouncementsTab = ({ status, isRegistrationCompleted, didPaymentFail }) => {
   const classes = useStyles();
 
   return (
@@ -74,6 +74,11 @@ const AnnouncementsTab = ({ status, isRegistrationCompleted }) => {
           alignItems='center'
           spacing={2}
         >
+          {didPaymentFail &&
+            < Grid item xs={12}>
+              <Announcement title='ای بابا!' date='' image='png' text='به نظر می‌رسه که پرداختت با خطا روبه‌رو شده. اگه پول از حسابت کم شده ولی ثبت‌نامت نهایی نشده، به کارسوق‌ادمین توی بله، اینستاگرام یا تلگرام پیام بده تا پیگیری کنیم :)' />
+            </Grid>
+          }
           {isRegistrationCompleted &&
             <Grid item xs={12}>
               <Announcement title='ثبت‌نامت تکمیله!' date='' image='greenCheck.png' text='ایول! ثبت‌نامت با موفقیت انجام شده و حالا باید منتظر مرحله اول بمونی. ۸ اسفند شروع مرحله یکه!' />
@@ -99,6 +104,7 @@ const mapStateToProps = (state, ownProps) => ({
     : 0,
   isFetching: state.account.isFetching,
   isRegistrationCompleted: ownProps.isRegistrationCompleted,
+  didPaymentFail: ownProps.didPaymentFail,
 })
 
 export default connect(mapStateToProps, {})(AnnouncementsTab);

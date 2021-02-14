@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { toast } from 'react-toastify';
 import {
   Grid,
 } from '@material-ui/core'
@@ -10,6 +11,7 @@ import {
 import {
   getUserInfo,
   getCityDetails,
+  checkPaymentStatus,
 } from '../../redux/actions/account'
 import { connect } from 'react-redux';
 
@@ -18,12 +20,13 @@ import RegistrationTab from './Registration';
 import AnnouncementsTab from './Announcements';
 import ProfileTab from './Profile';
 import ButtonBar from './ButtonBar';
+import { toInteger } from 'lodash';
 
 const useStyles = makeStyles((theme) => ({
   container: {
     overflowX: 'hidden',
     [theme.breakpoints.only('sm')]: {
-      minHeight: '110vh',
+      // minHeight: '110vh',
     },
   },
 }));
@@ -31,12 +34,16 @@ const useStyles = makeStyles((theme) => ({
 function Dashboard({
   getUserInfo,
   getCityDetails,
+  checkPaymentStatus,
+  payments,
   info,
 }) {
   const classes = useStyles();
   const [tab, setTab] = useState(0);
   const [isAllowed, setIsAllowed] = useState(false);
   const [isRegistrationCompleted, setRegistrationStatus] = useState(false);
+  const [didPaymentFail, setPaymentFailure] = useState(false);
+
 
   useEffect(
     () => {
@@ -54,8 +61,27 @@ function Dashboard({
           setIsAllowed(false);
         }
       }
+    }, [info])
+
+
+
+  useEffect(
+    () => {
+      checkPaymentStatus();
+    }, [checkPaymentStatus])
+
+
+
+  useEffect(
+    () => {
+      if (payments && (!payments[0].status || toInteger(payments[0].status) < 60)
+        && new Date().getTime() / 1000 - payments[0].update_date < 600) {
+        setPaymentFailure(true);
+      }
     }
-    , [info])
+    , [payments])
+
+
 
   const location = useLocation();
   const urlParams = new URLSearchParams(location.search);
@@ -77,18 +103,22 @@ function Dashboard({
     }
     , [useLocation])
 
+
+
   useEffect(
     () => {
       getUserInfo();
     }
     , [getUserInfo])
 
+
+
   return (
     <Grid container direction='column' justify='space-between' alignItems='center' className={classes.container}>
       <Grid item container direction='row' alignItems='center'>
         {
           tab == 0 &&
-          <AnnouncementsTab isRegistrationCompleted={isRegistrationCompleted} />
+          <AnnouncementsTab isRegistrationCompleted={isRegistrationCompleted} didPaymentFail={didPaymentFail} />
         }
         {
           tab == 1 &&
@@ -109,6 +139,7 @@ function Dashboard({
 const mapStateToProps = (state, ownProps) => ({
   info: state.account.info,
   isFetching: state.account.isFetching,
+  payments: state.account.payments,
 })
 
 export default connect(
@@ -116,5 +147,6 @@ export default connect(
   {
     getUserInfo,
     getCityDetails,
+    checkPaymentStatus,
   }
 )(Dashboard);

@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '90vh',
     width: '100wh',
     paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(2),
+    paddingBottom: theme.spacing(4),
   },
   formImage: {
     height: '40vh',
@@ -129,6 +129,11 @@ const ProfileTab = ({
       return;
     }
 
+    if (info.phone1 === info.phone2) {
+      toast.error('یه شماره موبایل متفاوت با شماره‌ی اولت به عنوان زاپاس برامون بنویس!')
+      return;
+    }
+
     updateUserInfo(info);
   }
 
@@ -209,30 +214,14 @@ const ProfileTab = ({
                     <Grid item container xs={12} sm={3} justify='center' />
                   </Hidden>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField name='phone1' label='شماره موبایل' defaultValue={info.phone1} disabled variant='outlined' required onBlur={onBlur} fullWidth />
+                    <TextField
+                      label='مدرسه' name='school_name' defaultValue={info.school_name} required variant='outlined' onBlur={onBlur} fullWidth />
                   </Grid>
                   <Hidden xsDown>
                     <Grid item container xs={12} sm={3} justify='center' />
                   </Hidden>
-                  <Grid item container xs={12} sm={3}>
-                    <FormControl variant="outlined" className={classes.formControl} required>
-                      <InputLabel id="demo-simple-select-required-label">پایه</InputLabel>
-                      <Select
-                        className={classes.dropDown}
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={info.grade}
-                        onClick={onBlur}
-                        name='grade'
-                        label='پایه'
-                        required
-                      >
-                        <MenuItem value={'7'}>هفتم</MenuItem>
-                        <MenuItem value={'8'}>هشتم</MenuItem>
-                        <MenuItem value={'9'}>نهم</MenuItem>
-                        <MenuItem value={'10'}>هیچ‌کدام</MenuItem>
-                      </Select>
-                    </FormControl >
+                  <Grid item container xs={12} sm={3} justify='center'>
+                    <TextField name='phone1' label='شماره موبایل' defaultValue={info.phone1} disabled variant='outlined' required onBlur={onBlur} fullWidth />
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
                     <TextField name='phone2' label='شماره موبایل زاپاس' defaultValue={info.phone2} required variant='outlined' onBlur={onBlur} fullWidth />
@@ -291,9 +280,25 @@ const ProfileTab = ({
                   <Hidden xsDown>
                     <Grid item container xs={12} sm={3} justify='center' />
                   </Hidden>
-                  <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField
-                      label='مدرسه' name='school_name' defaultValue={info.school_name} required variant='outlined' onBlur={onBlur} fullWidth />
+                  <Grid item container xs={12} sm={3}>
+                    <FormControl variant="outlined" className={classes.formControl} required>
+                      <InputLabel id="demo-simple-select-required-label">پایه</InputLabel>
+                      <Select
+                        className={classes.dropDown}
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={info.grade}
+                        onClick={onBlur}
+                        name='grade'
+                        label='پایه'
+                        required
+                      >
+                        <MenuItem value={'7'}>هفتم</MenuItem>
+                        <MenuItem value={'8'}>هشتم</MenuItem>
+                        <MenuItem value={'9'}>نهم</MenuItem>
+                        <MenuItem value={'10'}>هیچ‌کدام</MenuItem>
+                      </Select>
+                    </FormControl >
                   </Grid>
                   <Hidden xsDown>
                     <Grid item container xs={12} sm={3} justify='center' />

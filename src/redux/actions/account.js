@@ -53,23 +53,6 @@ export const logout = () => ({
   },
 });
 
-export const doPayment = () => ({
-  [CALL_API]: {
-    types: [
-      actionTypes.PAYMENT_REQUEST,
-      actionTypes.PAYMENT_SUCCESS,
-      actionTypes.PAYMENT_FAILURE,
-    ],
-    url: URLs.PAYMENT,
-    fetchOptions: {
-      method: 'POST',
-      body: {
-        amount: 100000,
-        return_link: 'https://interkarsolar.ir/dashboard?tab=announcements',
-      },
-    },
-  },
-});
 
 export const updateUserInfo = ({
   first_name,
@@ -125,6 +108,40 @@ export const getUserInfo = () => ({
       actionTypes.GET_USER_INFO_FAILURE,
     ],
     url: URLs.GET_PROFILE,
+    fetchOptions: {
+      method: 'GET',
+    },
+  },
+});
+
+//////////////////////
+
+export const doPayment = () => ({
+  [CALL_API]: {
+    types: [
+      actionTypes.PAYMENT_REQUEST,
+      actionTypes.PAYMENT_SUCCESS,
+      actionTypes.PAYMENT_FAILURE,
+    ],
+    url: URLs.PAYMENT,
+    fetchOptions: {
+      method: 'POST',
+      body: {
+        amount: 100000,
+        return_link: 'https://interkarsolar.ir/dashboard?tab=announcements',
+      },
+    },
+  },
+});
+
+export const checkPaymentStatus = () => ({
+  [CALL_API]: {
+    types: [
+      actionTypes.CHECK_PAYMENT_STATUS_REQUEST,
+      actionTypes.CHECK_PAYMENT_STATUS_SUCCESS,
+      actionTypes.CHECK_PAYMENT_STATUS_FAILURE,
+    ],
+    url: URLs.PAYMENT_STATUS,
     fetchOptions: {
       method: 'GET',
     },

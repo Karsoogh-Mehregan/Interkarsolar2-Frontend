@@ -46,7 +46,7 @@ const InputFields = ({
     <>
       <Grid item>
         <TextField
-          onChange={(e) => setNationalID(e.target.value)}
+          onBlur={(e) => setNationalID(e.target.value)}
           label='کد ملی'
           type='text'
           variant='filled'
@@ -54,7 +54,7 @@ const InputFields = ({
       </Grid>
       <Grid item>
         <TextField
-          onChange={(e) => setPhoneNumber(e.target.value)}
+          onBlur={(e) => setPhoneNumber(e.target.value)}
           label='شماره موبایل'
           type='tel'
           helperText='یادت باشه شماره موبایلت رو فقط با ارقام انگلیسی وارد کنی!'
@@ -64,7 +64,7 @@ const InputFields = ({
       </Grid>
       <Grid item>
         <TextField
-          onChange={(e) => setPassword(e.target.value)}
+          onBlur={(e) => setPassword(e.target.value)}
           label='رمز عبور'
           variant='filled'
           type='password'
@@ -73,7 +73,7 @@ const InputFields = ({
       </Grid>
       <Grid item>
         <TextField
-          onChange={(e) => setConfirmPassword(e.target.value)}
+          onBlur={(e) => setConfirmPassword(e.target.value)}
           label='تکرار رمز عبور'
           type='password'
           variant='filled'

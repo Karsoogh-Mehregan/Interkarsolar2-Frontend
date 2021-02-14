@@ -29,7 +29,7 @@ const InputFields = ({
       toast.error('رمزهایی که وارد کردی مشابه هم نیستند!')
       return;
     }
-    var regex = new RegExp('\\d+');
+    var regex = new RegExp('\\d');
     if (!regex.test(nationalID)) {
       toast.error('کد ملی نامعتبره!')
       return;
@@ -48,6 +48,7 @@ const InputFields = ({
         <TextField
           onBlur={(e) => setNationalID(e.target.value)}
           label='کد ملی'
+          helperText='یادت باشه فقط از ارقام انگلیسی استفاده کنی!'
           type='text'
           variant='filled'
           fullWidth />
@@ -57,7 +58,7 @@ const InputFields = ({
           onBlur={(e) => setPhoneNumber(e.target.value)}
           label='شماره موبایل'
           type='tel'
-          helperText='یادت باشه شماره موبایلت رو فقط با ارقام انگلیسی وارد کنی!'
+          helperText='این‌جا هم همینطور، فقط رقم انگلیسی به کار ببر.'
           variant='filled'
           fullWidth>
         </TextField>

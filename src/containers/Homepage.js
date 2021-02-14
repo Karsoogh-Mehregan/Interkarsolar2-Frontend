@@ -131,12 +131,24 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: theme.spacing(3),
     },
   },
-
   footer: {
     alignContent: 'center',
     color: '#a69eac',
   },
-
+  h_iframe_aparat_embed_frame: {
+    position: 'relative',
+    height: 'auto',
+    width: '100%',
+    '& iframe': {
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      border: 'none',
+      boxShadow: '0 2px 4px rgb(0 0 0 / 15%), 0 1px 3px rgb(0 0 0 / 25%)',
+      borderRadius: 8,
+    },
+  },
 }));
 
 function Homepage({ isLoggedIn }) {
@@ -187,7 +199,7 @@ function Homepage({ isLoggedIn }) {
               اینجا چه خبره؟
             </Typography>
           </Grid>
-          <Grid container item direction="row" justify='center'>
+          <Grid container item direction="row" justify='space-evenly' spacing={2}>
             <Grid container item direciton="column" xs={12} sm={6} spacing={2} alignItems='center'>
               <Grid item>
                 <Typography
@@ -206,12 +218,11 @@ function Homepage({ isLoggedIn }) {
                 </Typography>
               </Grid>
             </Grid>
-            <Grid item >
+            <Grid item container justify='center' xs={12} sm={5}>
               <div className={classes.h_iframe_aparat_embed_frame}>
-                {/* <span></span> */}
                 <iframe
-                  title="کارگاه‌های رستا"
-                  src="https://www.aparat.com/video/video/embed/videohash/B8VfK/vt/frame"
+                  title="تیزر دومین دوره رویداد برخط اینترکارسولار"
+                  src="https://www.aparat.com/video/video/embed/videohash/vjScO/vt/frame"
                   allowFullScreen
                   webkitallowfullscreen="true"
                   mozallowfullscreen="true"></iframe>

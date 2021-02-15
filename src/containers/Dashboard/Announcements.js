@@ -76,7 +76,7 @@ const AnnouncementsTab = ({ status, isRegistrationCompleted, didPaymentFail }) =
         >
           {didPaymentFail &&
             < Grid item xs={12}>
-              <Announcement title='ای بابا!' date='همین چند لحظه پیش' image='ohDad.png' text='به نظر می‌رسه که پرداختت با خطا روبه‌رو شده. اگه پول از حسابت کم شده ولی ثبت‌نامت نهایی نشده، به ادمینِ کاروسق توی بله، اینستاگرام یا تلگرام پیام بده تا پیگیری کنیم :)' />
+              <Announcement title='ای بابا!' date='همین چند لحظه پیش' image='ohDad.png' text='به نظر می‌رسه که پرداختت با موفقیت به پایان نرسیده. اگه پولی از حسابت کم شده ولی ثبت‌نامت نهایی نشده، به ادمینِ کاروسق توی بله، اینستاگرام یا تلگرام پیام بده تا پیگیری کنیم :)' />
             </Grid>
           }
           {isRegistrationCompleted &&

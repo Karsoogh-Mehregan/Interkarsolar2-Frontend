@@ -74,18 +74,12 @@ function Dashboard({
 
   useEffect(
     () => {
-      if (payments && payments[0] && (!payments[0].status || toInteger(payments[0].status) < 60)
-        && new Date().getTime() / 1000 - payments[0].update_date < 1000) {
-      }
-      if (payments && payments[0] && payments[0] === 100) {
+      if (payments && payments[0] && payments[0].status === 100) {
         setRegistrationStatus(true);
       } else if (payments && payments[0] && (new Date().getTime() / 1000 - payments[0].update_date) < 1000) {
         setPaymentFailure(true);
       }
-    }
-    , [payments])
-
-
+    }, [payments])
 
   const location = useLocation();
   const urlParams = new URLSearchParams(location.search);

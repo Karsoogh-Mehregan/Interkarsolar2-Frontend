@@ -88,7 +88,15 @@ const ProfileTab = ({
   const classes = useStyles();
   const [info, setInfo] = useState('');
   const [province, setProvince] = useState('');
-  const first_name = useRef();
+
+  const checkForEnglishDigits = (number) => {
+    var regex = new RegExp(`\\d{${number.length}}`);
+    if (regex.test(number)) {
+      return number;
+    } else {
+      return 'error'
+    }
+  }
 
   const onBlur = (event) => {
     setInfo({
@@ -113,7 +121,7 @@ const ProfileTab = ({
     }
 
     var regex = new RegExp('^(\\+98|0)?9\\d{9}$');
-    if (info.phone2 && !regex.test(info.phone2)) {
+    if (!regex.test(info.phone2)) {
       toast.error('شماره موبایل زاپاسی که وارد کردی نامعتبره!')
       return;
     }
@@ -155,7 +163,7 @@ const ProfileTab = ({
     }, [province, getCity])
 
 
-  // todo: fix
+  // todo: add province in backend
   useEffect(
     () => {
       const fetchAndSetProvince = async () => {
@@ -208,7 +216,7 @@ const ProfileTab = ({
                     <TextField name='last_name' label='نام خانوادگی' defaultValue={info.last_name} variant='outlined' required onBlur={onBlur} fullWidth />
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField name='national_code' label='کد ملی' defaultValue={info.national_code} disabled variant='outlined' required onBlur={onBlur} fullWidth />
+                    <TextField name='national_code' label='کد ملی' defaultValue={info.national_code} disabled variant='outlined' required fullWidth />
                   </Grid>
                   <Hidden xsDown>
                     <Grid item container xs={12} sm={3} justify='center' />
@@ -224,7 +232,17 @@ const ProfileTab = ({
                     <TextField name='phone1' label='شماره موبایل' defaultValue={info.phone1} disabled variant='outlined' required onBlur={onBlur} fullWidth />
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField name='phone2' label='شماره موبایل زاپاس' defaultValue={info.phone2} required variant='outlined' onBlur={onBlur} fullWidth />
+                    <TextField name='phone2' label='شماره موبایل زاپاس' value={info.phone2} required variant='outlined' fullWidth
+                      onChange={
+                        (e) => {
+                          if (checkForEnglishDigits(e.target.value) !== 'error') {
+                            setInfo({
+                              ...info,
+                              phone2: checkForEnglishDigits(e.target.value)
+                            })
+                          }
+                        }
+                      } />
                   </Grid>
                 </Grid>
               </Paper>
@@ -305,13 +323,33 @@ const ProfileTab = ({
                   </Hidden>
                   <Grid item container xs={12} sm={3} justify='center'>
                     <TextField
-                      label='شماره تلفن مدرسه' name='school_phone' defaultValue={info.school_phone} variant='outlined' placeholder='مثال: 03112345678' onBlur={onBlur} fullWidth />
+                      label='شماره تلفن مدرسه' name='school_phone' value={info.school_phone} variant='outlined' placeholder='پیش‌شماره یادت نره!' fullWidth
+                      onChange={
+                        (e) => {
+                          if (checkForEnglishDigits(e.target.value) !== 'error') {
+                            setInfo({
+                              ...info,
+                              school_phone: checkForEnglishDigits(e.target.value)
+                            })
+                          }
+                        }
+                      } />
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
                     <TextField label='نام مدیر' name='manager_name' defaultValue={info.manager_name} variant='outlined' onBlur={onBlur} fullWidth />
                   </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
-                    <TextField label='شماره موبایل مدیر' name='manager_phone' defaultValue={info.manager_phone} variant='outlined' onBlur={onBlur} fullWidth />
+                    <TextField label='شماره موبایل مدیر' name='manager_phone' value={info.manager_phone} variant='outlined' fullWidth
+                      onChange={
+                        (e) => {
+                          if (checkForEnglishDigits(e.target.value) !== 'error') {
+                            setInfo({
+                              ...info,
+                              manager_phone: checkForEnglishDigits(e.target.value)
+                            })
+                          }
+                        }
+                      } />
                   </Grid>
                 </Grid>
               </Paper>

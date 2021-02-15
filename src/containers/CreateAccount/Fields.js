@@ -20,6 +20,15 @@ const InputFields = ({
   const [confirmPassword, setConfirmPassword] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
 
+  const checkForEnglishDigits = (number) => {
+    var regex = new RegExp(`\\d{${number.length}}`);
+    if (regex.test(number)) {
+      return number;
+    } else {
+      return 'error'
+    }
+  }
+
   const doCreateAccount = () => {
     if (!nationalID || !password || !confirmPassword || !phoneNumber) {
       toast.error('لطفاً همه‌ی چیزهایی که ازت خواسته شده رو پر کن!')
@@ -29,12 +38,7 @@ const InputFields = ({
       toast.error('رمزهایی که وارد کردی مشابه هم نیستند!')
       return;
     }
-    var regex = new RegExp('\\d');
-    if (!regex.test(nationalID)) {
-      toast.error('کد ملی نامعتبره!')
-      return;
-    }
-    regex = new RegExp('^(\\+98|0)?9\\d{9}$');
+    var regex = new RegExp('^(\\+98|0)?9\\d{9}$');
     if (!regex.test(phoneNumber)) {
       toast.error('شماره موبایلی که وارد کردی نامعتبره!')
       return;
@@ -46,16 +50,30 @@ const InputFields = ({
     <>
       <Grid item>
         <TextField
-          onBlur={(e) => setNationalID(e.target.value)}
+          onChange={
+            (e) => {
+              if (checkForEnglishDigits(e.target.value) !== 'error') {
+                setNationalID(checkForEnglishDigits(e.target.value))
+              }
+            }
+          }
           label='کد ملی'
           helperText='یادت باشه فقط از ارقام انگلیسی استفاده کنی!'
+          value={nationalID}
           type='text'
           variant='filled'
           fullWidth />
       </Grid>
       <Grid item>
         <TextField
-          onBlur={(e) => setPhoneNumber(e.target.value)}
+          onChange={
+            (e) => {
+              if (checkForEnglishDigits(e.target.value) !== 'error') {
+                setPhoneNumber(checkForEnglishDigits(e.target.value))
+              }
+            }
+          }
+          value={phoneNumber}
           label='شماره موبایل'
           type='tel'
           helperText='این‌جا هم همینطور، فقط رقم انگلیسی به کار ببر.'

@@ -18,6 +18,15 @@ const InputFields = ({
   const [nationalID, setNationalID] = useState('');
   const [password, setPassword] = useState('');
 
+  const checkForEnglishDigits = (number) => {
+    var regex = new RegExp(`\\d{${number.length}}`);
+    if (regex.test(number)) {
+      return number;
+    } else {
+      return 'error'
+    }
+  }
+
   const doCreateAccount = () => {
     if (!nationalID || !password) {
       toast.error('لطفاً همه‌ی چیزهایی که ازت خواسته شده رو پر کن!')
@@ -30,7 +39,14 @@ const InputFields = ({
     <>
       <Grid item>
         <TextField
-          onBlur={(e) => setNationalID(e.target.value)}
+          onChange={
+            (e) => {
+              if (checkForEnglishDigits(e.target.value) !== 'error') {
+                setNationalID(checkForEnglishDigits(e.target.value))
+              }
+            }
+          }
+          value={nationalID}
           label='کد ملی'
           type='text'
           variant='filled'

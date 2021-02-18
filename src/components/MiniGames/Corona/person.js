@@ -43,7 +43,7 @@ function Person({ id, x, y, name, patience, isSelected, selectPerson, unselectPe
   }
 
   return (
-    <Layer draggable onClick={handleClick} offsetX={50} offsetY={140} x={x} y={y} scaleX={scale} scaleY={scale}>
+    <Layer draggable onDblTap={handleClick} onClick={handleClick} offsetX={50} offsetY={140} x={x} y={y} scaleX={scale} scaleY={scale}>
       <Text text={patience} height={30} width={100} fontSize={30} verticalAlign='center' align='center' />
       <Text text='صبر' height={20} width={100} y={25} fontSize={20} verticalAlign='center' align='center' />
       <PersonImage width={100} height={200} y={50} isSelected={isSelected} />

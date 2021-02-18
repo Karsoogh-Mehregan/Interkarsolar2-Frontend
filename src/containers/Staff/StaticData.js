@@ -201,7 +201,7 @@ export const Staff = [
     subteam: 2,
   },
   {
-    name: 'حسین مسعودی',
+    name:  'حسین مسعودی',
     position: 'از مسئولین علمی',
     image: 'Hossein-Masoodi.jpg',
     description:

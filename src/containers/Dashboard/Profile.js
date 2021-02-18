@@ -120,8 +120,8 @@ const ProfileTab = ({
       return;
     }
 
-    if (school_name.length > 40) {
-      toast.error('طول اسم مدرسه‌ات بیشتر از اندازه‌ی مجازه. باید حداکثر ۴۰ کاراکتر باشه!')
+    if (school_name.length > 255) {
+      toast.error('طول اسم مدرسه‌ات بیشتر از اندازه‌ی مجازه. باید حداکثر ۲۵۵ کاراکتر باشه!')
       return;
     }
 

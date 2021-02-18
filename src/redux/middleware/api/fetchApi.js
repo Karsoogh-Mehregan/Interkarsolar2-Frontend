@@ -17,7 +17,7 @@ const checkErrorsStatusCode = (response, jsonResponse) => {
     // throw new Error('You don\'t have access!');
   }
   if (jsonResponse.res_code === 660) {
-    throw new Error('نام کاربری یا کلمه‌ی عبور اشتباه است!');
+    throw new Error('کد ملی یا کلمه‌ی عبور اشتباه است!');
   }
 };
 

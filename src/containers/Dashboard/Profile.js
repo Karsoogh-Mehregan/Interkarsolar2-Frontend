@@ -120,6 +120,11 @@ const ProfileTab = ({
       return;
     }
 
+    if (school_name.length > 40) {
+      toast.error('طول اسم مدرسه‌ات بیشتر از اندازه‌ی مجازه. باید حداکثر ۴۰ کاراکتر باشه!')
+      return;
+    }
+
     var regex = new RegExp('^(\\+98|0)?9\\d{9}$');
     if (!regex.test(info.phone2)) {
       toast.error('شماره موبایل زاپاسی که وارد کردی نامعتبره!')

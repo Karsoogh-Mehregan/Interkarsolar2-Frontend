@@ -26,10 +26,9 @@ const useStyles = makeStyles((theme) => ({
 
 function CoronaTest({ }) {
 	const classes = useStyles();
-	const [society, setSociety] = useState(new Society());
+	const [_, updateComponent] = useState();
+	const [society, setSociety] = useState(new Society(updateComponent));
 	const [mode, setMode] = useState(1);
-
-	console.log(society)
 
 	const doTakeTest = () => {
 		if (society.selectedPeople.length === 0) {
@@ -51,11 +50,13 @@ function CoronaTest({ }) {
 		// todo: build "send to hospital" function 
 	}
 
+	console.log(society)
+
 	return (
 		<Container className={classes.container}>
 			<Grid container justify='center' spacing={2}>
 				<Grid item>
-					<Stage width={window.innerWidth} height={window.innerHeight}>
+					<Stage width={window.innerWidth} height={window.innerHeight} >
 						{society.people.map((person) => {
 							return (
 								<PersonView

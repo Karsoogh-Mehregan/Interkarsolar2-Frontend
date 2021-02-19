@@ -31,7 +31,7 @@ const LAST_NAMES = [
 ];
 
 class Person {
-    constructor(isIll = Math.random() < CHANCE_OF_BEING_ILL, patience = 0) {
+    constructor(isIll = Math.random() < CHANCE_OF_BEING_ILL, patience = 1) {
         this.firstName = FIRST_NAMES[PERSON_ID % FIRST_NAMES.length];
         this.lastName = LAST_NAMES[Math.floor(Math.random() * PERSON_ID) % LAST_NAMES.length];
         this.id = PERSON_ID++;
@@ -53,12 +53,13 @@ class Test {
 }
 
 export class Society {
-    constructor() {
+    constructor(updateComponent) {
         this.budget = parseInt(0);
         this._buildPeople();
         this._buildTests();
         this.selectedPeople = [];
         this.selectedTest = '';
+        this.updateComponent = updateComponent;
     }
 
     _buildPeople() {
@@ -78,21 +79,25 @@ export class Society {
     }
 
     selectPerson(personID) {
+        console.log(personID);
+        console.log(this);
         if (this.people[personID].patience <= 0) {
             toast.error('بابا بنده خدا بیشتر از این تحمل نداره! ولش کنین.');
             return;
         }
         this.people[personID].isSelected = true;
         this.selectedPeople.push(personID);
+        this.updateComponent(Math.random()); //todo: handle re-rendering in another way!
     }
 
     unselectPerson(personID) {
         for (var i = 0; i < this.selectedPeople.length; i++) {
             if (this.people[this.selectedPeople[i]].id === personID) {
                 this.selectedPeople.splice(i, 1);
-                this.people[personID].isSelected = true;
+                this.people[personID].isSelected = false;
             }
         }
+        this.updateComponent(Math.random()); //todo: handle re-rendering in another way!
     }
 
     takeTest() {
@@ -118,6 +123,7 @@ export class Society {
         var x = selectedTest.diagnosis * realIllPeople.length;
         var y = (1 - selectedTest.correctness) * x / selectedTest.correctness;
 
+        this.updateComponent(Math.random()); //todo: handle re-rendering in another way!
         return _getRandomSubset(x, realIllPeople).concat(_getRandomSubset(y, realHealthyPeople));
     }
 }

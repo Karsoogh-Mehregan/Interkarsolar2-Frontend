@@ -20,8 +20,8 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '5px',
     backgroundColor: 'rgba(76, 173, 211, 70%)',
     overflowY: 'scroll',
-    margin: 10,
-    boxShadow: '-5px 5px 40px #62b1d1',
+    margin: 15,
+    boxShadow: '-5px 5px 20px #62b1d1',
   },
   title: {
     fontSize: 60,

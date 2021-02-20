@@ -193,18 +193,7 @@ input.rtl-placeholder::placeholder,
 }
 
 .announcements {
-
-
   &::-webkit-scrollbar {
-    width: 0px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: #4a3b8d;
-    border-radius: 2px;
+    display: none;
   }
 }

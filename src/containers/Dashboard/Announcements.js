@@ -7,7 +7,6 @@ import {
 } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import PushButton from '../../components/Fancy/PushButton'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,12 +15,13 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
-  statImage: {
-    height: '40vh',
-    background: `url(${process.env.PUBLIC_URL + '/logo.png'})`,
-    backgroundSize: 'contain',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center center',
+  announcements: {
+    height: '55vh',
+    borderRadius: '5px',
+    backgroundColor: 'rgba(76, 173, 211, 70%)',
+    overflowY: 'scroll',
+    margin: 10,
+    boxShadow: '-5px 5px 40px #62b1d1',
   },
   title: {
     fontSize: 60,
@@ -69,11 +69,11 @@ const AnnouncementsTab = ({ status, isRegistrationCompleted, didPaymentFail }) =
         </Grid>
         <Grid
           xs={12} sm={8}
+          className={`${classes.announcements} announcements`}
           item container
           justify='center'
           alignItems='center'
-          spacing={2}
-        >
+          spacing={2}>
           {didPaymentFail &&
             < Grid item xs={12}>
               <Announcement title='ای بابا!' date='همین چند لحظه پیش' image='ohDad.png' text='به نظر می‌رسه که پرداختت با موفقیت به پایان نرسیده. اگه پولی از حسابت کم شده ولی ثبت‌نامت نهایی نشده، به ادمینِ کاروسق توی بله، اینستاگرام یا تلگرام پیام بده تا پیگیری کنیم :)' />
@@ -89,6 +89,9 @@ const AnnouncementsTab = ({ status, isRegistrationCompleted, didPaymentFail }) =
               <Announcement title='هنوز ثبت‌نامت نهایی نشده!' date='' image='redX.png' text='سیارک‌دار گرامی توجه کن! ثبت‌نامت هنوز نهایی نشده. برای نهایی‌کردن ثبت‌نام باید به بخش «ثبت‌نام نهایی» بری.' />
             </Grid>
           }
+          <Grid item xs={12}>
+            <Announcement title='تمدید مهلت ثبت‌نام' date='۳۰بهمن۹۹' image='announcement.jpg' text='خب خبر خوب اینکه مهلت ثبت‌نام مرحله اول تا ۵ ام اسفند تمدید شد!' />
+          </Grid>
           <Grid item xs={12}>
             <Announcement title='آغاز ثبت‌نام مرحله یک' date='۲۵بهمن۹۹' image='announcement.jpg' text='بله! بعد از یک سال دوری از شما سیارک‌داران گرامی، دوباره با دوره‌ی دوم رویداد اینترکارسولار در خدمت شما هستیم! ثبت‌نام اینترکارسولار از امروز شروع شده و تا اول اسفند ادامه داره. بدو جا نمونی... ' />
           </Grid>

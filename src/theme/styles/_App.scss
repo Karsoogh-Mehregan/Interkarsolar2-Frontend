@@ -168,3 +168,43 @@ input.rtl-placeholder::placeholder,
     margin: 1.7vh;
   }
 }
+
+// scrollbar
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #5f4d96;
+  border-radius: 2px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #4b3882;
+}
+
+.announcements {
+
+
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #4a3b8d;
+    border-radius: 2px;
+  }
+}

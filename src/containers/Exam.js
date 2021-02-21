@@ -15,15 +15,15 @@ import Editor from '../components/tiny_editor/react_tiny/TinyEditorComponent'
 import ImageWidget from '../components/Widget/ImageWidget';
 import BigAnswerQuestionWidget from '../components/Widget/BigAnswerQuestionWidget';
 import TextWidget from '../components/Widget/TextWidget';
-import UploadFileQuestionWidget from '../components/Widget/UploadFileQuestionWidget';
-import VideoWidget from '../components/Widget/VideoWidget';
+// import UploadFileQuestionWidget from '../components/Widget/UploadFileQuestionWidget';
+// import VideoWidget from '../components/Widget/VideoWidget';
 
 
 import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    backgroundColor: '#e3dae5',
+    // backgroundColor: '#e3dae5',
     paddingTop: theme.spacing(2),
   },
   centerItems: {

@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
 
 const BigAnswerQuestionWidget = ({
   text = '',
+  answer = 'جوابت به سوال بالا رو این جا بنویس!',
 }) => {
   const classes = useStyles();
   return (
@@ -29,7 +30,7 @@ const BigAnswerQuestionWidget = ({
       />
       <TinyEditorComponent
         id={`edit-big-answer-${Math.floor(Math.random() * 1000)}`}
-        content={'جوابت به سوال بالا رو این جا بنویس!'}
+        content={answer}
       />
       <Button
         fullWidth

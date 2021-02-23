@@ -7,7 +7,7 @@ import CreateAccount from '../containers/CreateAccount'
 import Login from '../containers/Login'
 import Homepage from '../containers/Homepage';
 import Staff from '../containers/Staff/Staff';
-import Exam from '../containers/Exam';
+import Exam from '../containers/Exam/Exam';
 import Dashboard from '../containers/Dashboard/Dashboard';
 
 const Root = () => {

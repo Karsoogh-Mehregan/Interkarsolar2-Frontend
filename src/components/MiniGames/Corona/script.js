@@ -3,8 +3,8 @@ import _ from 'lodash';
 
 const CHANCE_OF_BEING_ILL = 0.5;
 var PERSON_ID = 0;
-const PEOPLE_NUMBER = 30;
-const TEST_NUMBER = 5;
+const PEOPLE_NUMBER = 60;
+const TEST_NUMBER = 10;
 const FIRST_NAMES = [
     'اصغر',
     'ممد',
@@ -44,17 +44,18 @@ class Person {
 }
 
 class Test {
-    constructor(diagnosis, correctness, difficulty, cost) {
+    constructor(diagnosis, difficulty, cost) {
         this.diagnosis = parseFloat(diagnosis);
-        this.correctness = parseFloat(correctness);
         this.difficulty = parseFloat(difficulty);
         this.cost = parseInt(cost);
     }
 }
 
+let patientsList = [];
+
 export class Society {
     constructor(updateComponent) {
-        this.budget = parseInt(0);
+        this.budget = parseInt(100000);
         this._buildPeople();
         this._buildTests();
         this.selectedPeople = [];
@@ -71,10 +72,7 @@ export class Society {
     }
 
     _buildTests() {
-        let tests = [];
-        for (let i = 0; i < TEST_NUMBER; i++) {
-            tests.push(new Test(Math.random().toFixed(2), Math.random().toFixed(2), Math.random().toFixed(2), Math.floor(Math.random() * 10) + 1));
-        }
+        let tests = [new Test(0.5,0.2,3000),new Test(0.6,0.3,4000),new Test(0.2,0.1,1000),new Test(0.8,0.7,5000),new Test(0.25,0.2,2000),new Test(0.7,0.8,7000),new Test(0.1,0.1,1000),new Test(0.5,0.5,5000),new Test(0.45,0.3,4500),new Test(0.65,0.65,6500)];
         this.tests = tests;
     }
 
@@ -88,6 +86,7 @@ export class Society {
         this.people[personID].isSelected = true;
         this.selectedPeople.push(personID);
         this.updateComponent(Math.random()); //todo: handle re-rendering in another way!
+        console.log("selected people: ",this.selectedPeople);
     }
 
     unselectPerson(personID) {
@@ -112,6 +111,10 @@ export class Society {
 
         this.budget -= selectedTest.cost * this.selectedPeople.length;
         this.selectedPeople.forEach((personID) => {
+            // if ( this.people[personID].patience - selectedTest.difficulty < 0 ) {
+            //     toast.error(`you cant test on person ${personID}`);
+            //     continue;
+            // } else { ... }
             this.people[personID].patience -= selectedTest.difficulty;
             if (this.people[personID].isIll) {
                 realHealthyPeople.push(personID)
@@ -120,11 +123,24 @@ export class Society {
             }
         })
 
-        var x = selectedTest.diagnosis * realIllPeople.length;
-        var y = (1 - selectedTest.correctness) * x / selectedTest.correctness;
-
+        let x = parseInt(selectedTest.diagnosis * realIllPeople.length);
         this.updateComponent(Math.random()); //todo: handle re-rendering in another way!
-        return _getRandomSubset(x, realIllPeople).concat(_getRandomSubset(y, realHealthyPeople));
+
+        // patients list: list of people who have been diagnosed with the disease so far
+        return _getRandomSubset(x, realIllPeople).concat(patientsList);
+
+
+        // terms of the game:
+
+        // if ( this.budget < 1000 (lowest test cost) || patientsList.length == 30 (total number of sick people))
+        // {
+        // patientsList.forEach(i => {
+        //     console.log(`patient list ${patientsList[i]}`);
+        // })
+    
+        // alert("Game is Over. \br your final score: " + score);
+        // location.reload();
+        // }
     }
 }
 
@@ -132,61 +148,3 @@ const _getRandomSubset = (size, list) => {
     return _.shuffle(list).slice(0, size);
 }
 
-// let society1 = new Society(14, 7, Math.floor(Math.random() * 30) + 10);
-
-// let is_sick = [];
-// for (let i = 0; i < society1.peopleList.length; ++i) {
-//     if (society1.peopleList[i].isIll == true) {
-//         is_sick.push(i);
-//     }
-// }
-// console.log(is_sick);
-// console.log(society1.peopleList);
-// console.log(society1.testList);
-// let costList = [];
-// for (let i = 0; i < 7; i++) {
-//     costList.push(society1.testList[i].cost)
-// }
-// let minCost = Math.min.apply(Math, costList);
-
-
-// let flag = false;
-// let score = 100;
-// let testnum;
-// let selected = new Set();
-// let p1 = [];
-// function pushToArray(n) {
-//     p1.push(n);
-//     console.log("person added successfully!", society1.peopleList[n]);
-// }
-// function testNumber(n) {
-//     testnum = n;
-//     console.log("test selected successfully!", society1.testList[n]);
-// }
-// function Test1() {
-
-//     if (!flag) takeTest(p1, testnum);
-// }
-
-// let patientsList = [];
-// function gameOver() {
-
-// }
-
-
-
-// function displayTests(t) {
-//     document.getElementById('test-specifications').innerHTML = "درصد درستی: " + society1.testList[t].cp + " " + "درصد تشخیص: " + society1.testList[t].pod + " " + "سختی: " + society1.testList[t].testDifficulty + " " + "هزینه: " + society1.testList[t].cost;
-// }
-// function clear() {
-//     document.getElementById('test-specifications').innerHTML = " ";
-// }
-// function resetButton() {
-//     var x = document.getElementsByClassName("BTN");
-//     for (let i = 0; i < x.length; i++) {
-//         x[i].style.backgroundColor = "#efefef";
-//     }
-// }
-// function showBudget() {
-//     document.getElementById('show-budget').innerHTML = society1.budget;
-// }

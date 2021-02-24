@@ -19,6 +19,7 @@ import ResponsiveAppBar from '../../components/Appbar/ResponsiveAppBar';
 import RegistrationTab from './Registration';
 import AnnouncementsTab from './Announcements';
 import ProfileTab from './Profile';
+import Exam from './Exam';
 import ButtonBar from './ButtonBar';
 import { toInteger } from 'lodash';
 
@@ -93,6 +94,8 @@ function Dashboard({
         setTab(1);
       } else if (tabName == 'profile') {
         setTab(2);
+      } else if (tabName == 'exam') {
+        setTab(3);
       } else {
         return (
           <Redirect to={'/dashboard?tab=announcements'} />
@@ -126,10 +129,14 @@ function Dashboard({
           tab == 2 &&
           <ProfileTab isRegistrationCompleted={isRegistrationCompleted} />
         }
+        {
+          tab == 3 &&
+          <Exam isRegistrationCompleted={isRegistrationCompleted} />
+        }
       </Grid>
       <Grid item container>
       </Grid>
-      <ButtonBar className={classes.buttonBar} onClick={setTab} />
+      <ButtonBar isRegistrationCompleted={isRegistrationCompleted} className={classes.buttonBar} onClick={setTab} />
     </Grid>
   );
 }

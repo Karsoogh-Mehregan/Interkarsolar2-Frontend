@@ -9,6 +9,7 @@ import {
   Hidden,
 } from '@material-ui/core';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
 import {
   doPayment,
   ignorePayment,
@@ -61,17 +62,11 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const RegistrationTab = ({ doPayment, isFetching, ignorePayment, isAllowed }) => {
+const ExamTab = ({ isFetching }) => {
   const classes = useStyles();
-  const [didPay, setPaymentStatus] = useState(false);
 
-  const handleRegistration = () => {
-    if (didPay) {
-      ignorePayment();
-      return;
-    } else {
-      doPayment();
-    }
+  const handleEnterExam = () => {
+    toast.info('آزمون هنوز شروع نشده!');
   }
 
   return (
@@ -86,16 +81,11 @@ const RegistrationTab = ({ doPayment, isFetching, ignorePayment, isAllowed }) =>
       >
         <Grid item container justify='center'>
           <Typography variant='h2' className={classes.title} >
-            ثبت‌نام نهایی
+            آزمون‌ها
           </Typography>
         </Grid>
         <Grid container item direction='row' justify='center' spacing={4}>
-          {isAllowed &&
-            <Grid item xs={12} sm={6} className={classes.readyImage} />
-          }
-          {!isAllowed &&
-            <Grid item xs={12} sm={6} className={classes.sadImage} />
-          }
+          <Grid item xs={12} sm={6} className={classes.readyImage} />
           <Grid
             xs={12} sm={5}
             item
@@ -107,32 +97,14 @@ const RegistrationTab = ({ doPayment, isFetching, ignorePayment, isAllowed }) =>
           >
             <Grid item container justify='center'>
               <Typography variant='h3' className={classes.header3} align='center'>
-                {
-                  isAllowed
-                    ? 'ایول! اطلاعاتت تکمیله و می‌تونی ثبت‌نامت رو نهایی کنی...'
-                    : 'هنوز اطلاعاتت ناقصه! به بخش «مشخصات من» برو و مشخصاتت رو کامل کن، بعد می‌تونی ثبت‌نامت رو نهایی کنی.'
-                }
+                برای ورود به آزمون مرحله اول آماده‌ای؟
               </Typography>
             </Grid>
-            {isAllowed &&
-              <>
-                <Grid item container direction='row' spacing={4} justify='space-around'>
-                  <Grid item xs={1}>
-                    <Checkbox onClick={() => setPaymentStatus(!didPay)} />
-                  </Grid>
-                  <Grid item xs={10} spacing={1} container justify='center' alignItems='center'>
-                    <Typography className={classes.normalText}>
-                      اگر در سال گذشته در مرحله‌ی اول کارسوق ریاضی مهرگان ثبت‌نام کرده بودی، این مورد را تیک بزن.
-                    </Typography>
-                  </Grid>
-                </Grid>
-                <Grid item container justify='center'>
-                  <Button variant='contained' color='primary' size='large' onClick={handleRegistration} disabled={isFetching}>
-                    ادامه...
-                  </Button>
-                </Grid>
-              </>
-            }
+            <Grid item container justify='center'>
+              <Button variant='contained' color='primary' size='large' onClick={handleEnterExam} disabled={isFetching}>
+                بزن بریم!
+              </Button>
+            </Grid>
           </Grid>
           <Hidden xsDown>
             <Grid item xs={12} sm={1} />
@@ -145,7 +117,6 @@ const RegistrationTab = ({ doPayment, isFetching, ignorePayment, isAllowed }) =>
 
 const mapStateToProps = (state, ownProps) => ({
   isFetching: state.account.isFetching,
-  isAllowed: ownProps.isAllowed,
 })
 
 export default connect(
@@ -154,4 +125,4 @@ export default connect(
     doPayment,
     ignorePayment,
   }
-)(RegistrationTab);
+)(ExamTab);

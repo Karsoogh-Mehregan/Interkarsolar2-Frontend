@@ -185,7 +185,14 @@ const Exam = ({
                     <ImageWidget link={content.content_desc} />
                   </Grid>
                 )
-              } else if (content.type == 4) {
+              }
+            })
+          }
+        </Grid>
+        <Grid container item xs={12} direction='column' spacing={2}>
+          {questionContent &&
+            questionContent.map((content) => {
+              if (content.type == 4) {
                 return (
                   <Grid item>
                     <MiniGameWidget link={content.content_desc} />
@@ -194,9 +201,9 @@ const Exam = ({
               }
             })
           }
-
         </Grid>
       </Grid>
+
     </Container>
   )
 }

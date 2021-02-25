@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 const useStyles = makeStyles(() => ({
   gameWidget: {
     width: '100%',
+    height: '100vh',
     borderRadius: 10,
     minHeight: 300,
     border: 'none',
@@ -14,15 +15,11 @@ const useStyles = makeStyles(() => ({
 
 const GameWidget = ({ link = '' }) => {
   const classes = useStyles();
-
-  const [iFrameHeight, setIFrameHeight] = useState(500);
-
   return (
     <iframe
-      title={'بازیچه'}
+      title='بازیچه'
       src={link}
       className={classes.gameWidget}
-    // style={{ height: iFrameHeight }}
     />
   );
 };

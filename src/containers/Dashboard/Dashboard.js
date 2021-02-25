@@ -18,7 +18,6 @@ import { connect } from 'react-redux';
 import Exam from './Exam';
 import AnnouncementsTab from './Announcements';
 import ProfileTab from './Profile';
-import Exam from './Exam';
 import ButtonBar from './ButtonBar';
 
 const useStyles = makeStyles((theme) => ({

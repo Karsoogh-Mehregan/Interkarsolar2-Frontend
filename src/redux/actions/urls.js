@@ -16,6 +16,10 @@ export const CITY = ROOT.concat('city/');
 export const CITY_DETAILS = ROOT.concat('city/detail/');
 export const SCHOOL = ROOT.concat('school/');
 
+export const EXAM = ROOT.concat('exam/question/list/')
+export const QUESTION = (qid) => ROOT.concat(`exam/question/${qid}/content/`)
+export const ANSWER = ROOT.concat(`exam/answer/`)
+
 export const PAYMENT = ROOT.concat('pay/request/');
 export const PAYMENT_IGNORE = ROOT.concat('pay/ignore/');
 export const PAYMENT_STATUS = ROOT.concat('pay/check/');

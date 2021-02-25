@@ -2,9 +2,8 @@ import { toast } from 'react-toastify';
 import _ from 'lodash';
 
 const CHANCE_OF_BEING_ILL = 0.5;
-var PERSON_ID = 0;
 const PEOPLE_NUMBER = 60;
-const TEST_NUMBER = 10;
+const INITIAL_BUDGET = 100000;
 const FIRST_NAMES = [
     'اصغر',
     'ممد',
@@ -100,14 +99,14 @@ export const TESTS = [
 ]
 
 class Person {
-    constructor(isIll = Math.random() < CHANCE_OF_BEING_ILL, patience = 1) {
-        this.firstName = FIRST_NAMES[PERSON_ID % FIRST_NAMES.length];
-        this.lastName = LAST_NAMES[Math.floor(Math.random() * PERSON_ID) % LAST_NAMES.length];
-        this.id = PERSON_ID++;
+    constructor(id, isIll = Math.random() < CHANCE_OF_BEING_ILL, patience = 1) {
+        this.firstName = FIRST_NAMES[id % FIRST_NAMES.length];
+        this.lastName = LAST_NAMES[Math.floor(Math.random() * id) % LAST_NAMES.length];
+        this.id = id;
         this.isIll = isIll;
         this.patience = parseFloat(patience);
         this.x = Math.random() * (window.innerWidth - 100) + 50; // todo: better distribution
-        this.y = Math.random() * (window.innerHeight * 2 - 100) + 50; // todo: better distribution
+        this.y = Math.random() * (window.innerHeight * 2 - 200) + 100; // todo: better distribution
         this.isSelected = false;
         this.imageType = 'normal';
     }
@@ -124,7 +123,7 @@ class Test {
 
 export class Society {
     constructor(updateComponent) {
-        this.budget = parseInt(100000);
+        this.budget = parseInt(INITIAL_BUDGET);
         this._buildPeople();
         this._buildTests();
         this.selectedPeople = [];
@@ -134,8 +133,8 @@ export class Society {
 
     _buildPeople() {
         let people = [];
-        for (let i = 0; i < PEOPLE_NUMBER; i++) {
-            people.push(new Person());
+        for (let id = 0; id < PEOPLE_NUMBER; id++) {
+            people.push(new Person(id));
         }
         this.people = people;
     }
@@ -170,10 +169,20 @@ export class Society {
     }
 
     takeTest() {
+        if (this.selectedPeople.length === 0) {
+            toast.error('یه چند نفر رو برای انجام آزمایش انتخاب کن!');
+            return 'ERROR';
+        }
+
+        if (this.selectedTest === '') {
+            toast.error('یه تست رو برای انجام آزمایش انتخاب کن!');
+            return 'ERROR';
+        }
+
         const selectedTest = this.tests[this.selectedTest];
         if (selectedTest.cost * this.selectedPeople.length > this.budget) {
-            toast.error('نمیشه آقا! هزینه‌ی تست‌ها بیشتر از بودجه‌ایه که داریم. برا همین آزمایش انجام نشد :(');
-            return;
+            toast.error('نمیشه آقا! هزینه‌ی تست‌ها بیشتر از بودجه‌ایه که داریم :(');
+            return 'ERROR';
         }
 
         const realHealthyPeople = [];
@@ -181,10 +190,10 @@ export class Society {
 
         for (const personID of this.selectedPeople) {
             if (this.people[personID].patience - selectedTest.difficulty < 0) {
-                toast.error('یکی از این بنده خداهایی که انتخاب کردی، صبر کافی نیست. برا همین آزمایش انجام نشد :(');
-                return;
+                toast.error('یکی از این بنده خداهایی که انتخاب کردی، صبرش کمتر از سختی تسته :(');
+                return 'ERROR';
             }
-            this.people[personID].patience -= selectedTest.difficulty;
+            this.people[personID].patience = Math.round((this.people[personID].patience - selectedTest.difficulty + 0.0001) * 100) / 100;
             if (this.people[personID].isIll) {
                 realIllPeople.push(personID)
             } else {
@@ -219,8 +228,21 @@ export class Society {
         this.updateComponent(Math.random()); //todo: handle re-rendering in another way!
     }
 
-    endGame() {
-
+    sendToHospital() {
+        if (this.selectedPeople.length === 0) {
+            toast.error('یه چند نفر رو برای فرستادن به بیمارستان انتخاب کن!');
+            return 'ERROR';
+        }
+        let score = 0;
+        this.people.forEach((person) => {
+            if ((person.isIll && this.selectedPeople.includes(person.id)) || (!person.isIll && !this.selectedPeople.includes(person.id))) {
+                score++;
+            } else if ((!person.isIll && this.selectedPeople.includes(person.id)) || (person.isIll && !this.selectedPeople.includes(person.id))) {
+                score--;
+            }
+        })
+        this.updateComponent(Math.random()); //todo: handle re-rendering in another way!
+        return score;
     }
 }
 

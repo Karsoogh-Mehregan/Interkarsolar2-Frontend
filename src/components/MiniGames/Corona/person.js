@@ -42,11 +42,11 @@ function Person({ id, x, y, name, patience, isSelected, selectPerson, unselectPe
 
   return (
     <Group draggable onDblTap={handleClick} onClick={handleClick} offsetX={40} offsetY={120} x={x} y={y} scaleX={scale} scaleY={scale}>
-      <Text text={patience} height={30} width={80} fontSize={30} verticalAlign='center' align='center' />
+      <Text text={Math.round(patience * 100) / 100} height={30} width={80} fontSize={30} verticalAlign='center' align='center' />
       <Text text='صبر' height={20} width={80} y={25} fontSize={20} verticalAlign='center' align='center' />
       <PersonImage width={80} height={160} y={50} isSelected={isSelected} imageType={imageType} />
       <Text text={name} width={300} height={30} x={-110} fontSize={25} y={220} verticalAlign='center' align='center' />
-      {/* <Text text={info} width={100} height={30} fontSize={15} y={290} verticalAlign='center' align='center' /> */}
+      {/* <Texht text={info} width={100} height={30} fontSize={15} y={290} verticalAlign='center' align='center' /> */}
     </Group>
   )
 }

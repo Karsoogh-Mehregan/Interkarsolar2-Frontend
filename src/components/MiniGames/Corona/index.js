@@ -9,6 +9,7 @@ import {
 	Select,
 	MenuItem,
 	Container,
+	Paper,
 } from '@material-ui/core';
 import { toast } from 'react-toastify';
 import { Society, TESTS } from './script';
@@ -27,8 +28,16 @@ const useStyles = makeStyles((theme) => ({
 		position: 'fixed',
 		top: theme.spacing(2),
 		left: theme.spacing(2),
-		textShadow: '-2px 2px 5px #d3d3d3',
 		zIndex: 10,
+	},
+	resetGame: {
+		position: 'fixed',
+		top: theme.spacing(2),
+		right: theme.spacing(2),
+		zIndex: 10,
+	},
+	paper: {
+		padding: theme.spacing(2),
 	}
 }))
 
@@ -37,35 +46,37 @@ function CoronaTest({ }) {
 	const [_, updateComponent] = useState();
 	const [society, setSociety] = useState(new Society(updateComponent));
 	const [mode, setMode] = useState(0);
+	const [score, setScore] = useState(0);
 
 	const doTakeTest = () => {
-		if (society.selectedPeople.length === 0) {
-			toast.error('یه چند نفر رو برای انجام آزمایش انتخاب کن!');
-			return;
+		const result = society.takeTest();
+		if (result !== 'ERROR') {
+			setMode(1);
 		}
-		if (society.selectedTest === '') {
-			toast.error('یه تست رو برای انجام آزمایش انتخاب کن!');
-			return;
-		}
-		society.takeTest();
-		setMode(1);
 	}
 
 	const roadToHospital = () => {
+		society.reset();
 		setMode(2);
 	}
 
 	const doSendToHospital = () => {
-		if (society.selectedPeople.length === 0) {
-			toast.error('یه چند نفر رو برای فرستادن به بیمارستان انتخاب کن!');
-			return;
+		const out = society.sendToHospital();
+		console.log(out);
+		if (out !== 'ERROR') {
+			setScore(out);
+			setMode(3);
 		}
-		// todo: build "send to hospital" function 
 	}
 
 	const getReadyForAnotherTest = () => {
-		setMode(0);
 		society.reset();
+		setMode(0);
+	}
+
+	const resetGame = () => {
+		setSociety(new Society(updateComponent))
+		setMode(0);
 	}
 
 	console.log(society)
@@ -73,14 +84,25 @@ function CoronaTest({ }) {
 	return (
 		<Container className={classes.container}>
 			<div className={classes.budget}>
-				<Typography variant='h4'>
-					{`بودجه باقی‌مانده: ${toPersianNumber(society.budget)}`}
-				</Typography>
+				<Paper className={classes.paper}>
+					<Typography variant='h4'>
+						{`بودجه‌ی باقی‌مانده: ${toPersianNumber(society.budget)}`}
+					</Typography>
+				</Paper>
 			</div>
-			<div className={classes.budget}>
-				<Typography variant='h4'>
-					{`بودجه باقی‌مانده: ${toPersianNumber(society.budget)}`}
-				</Typography>
+			<div className={classes.resetGame}>
+				<Grid container direction='column' spacing={1}>
+					<Grid item>
+						<Button onClick={resetGame} variant='contained' color='primary' fullWidth>
+							شروع دوباره‌ی بازی
+						</Button>
+					</Grid>
+					<Grid item>
+						<Button onClick={roadToHospital} variant='contained' color='primary' fullWidth>
+							به سوی بیمارستان...
+						</Button>
+					</Grid>
+				</Grid>
 			</div>
 			<Grid container justify='center' spacing={2}>
 				<Grid item>
@@ -116,7 +138,7 @@ function CoronaTest({ }) {
 								>
 									{TESTS.map((test, index) => {
 										return (
-											<MenuItem value={index}>{`تست شماره ${toPersianNumber(index + 1)} با درصد‌تشخیص ${toPersianNumber(test.diagnosis)} و دشواری ${toPersianNumber(test.difficulty)}. هزینه‌ی این تست ${toPersianNumber(test.cost)} تومان است.`}</MenuItem>
+											<MenuItem value={index}>{`تست شماره ${toPersianNumber(index + 1)} با درصد‌تشخیص ${toPersianNumber(test.diagnosis)} و دشواری ${toPersianNumber(test.difficulty)}. هزینه‌ی این تست به ازای هر نفر ${toPersianNumber(test.cost)} تومان است.`}</MenuItem>
 										)
 									})}
 								</Select>
@@ -127,11 +149,6 @@ function CoronaTest({ }) {
 								انجام تست
 						</Button>
 						</Grid>
-						<Grid item xs={12} sm={3} container justify='center' alignItems='center'>
-							<Button variant='contained' color='primary' fullWidth onClick={roadToHospital}>
-								به سوی بیمارستان...
-						</Button>
-						</Grid>
 					</Grid>
 				}
 				{mode === 1 &&
@@ -140,11 +157,6 @@ function CoronaTest({ }) {
 							<Button variant='contained' color='primary' fullWidth onClick={getReadyForAnotherTest}>
 								انجام تست مجدد
 							</Button>
-						</Grid>
-						<Grid item xs={12} sm={6} container justify='center' alignItems='center'>
-							<Button variant='contained' color='primary' fullWidth onClick={roadToHospital}>
-								به سوی بیمارستان...
-						</Button>
 						</Grid>
 					</Grid>
 				}
@@ -160,9 +172,11 @@ function CoronaTest({ }) {
 				{mode === 3 &&
 					<Grid container item spacing={2} justify='center' alignItems='center'>
 						<Grid item xs={12} container justify='center' alignItems='center'>
-							<Typography variant='h4'>
-								{`امتیاز شما: ${toPersianNumber(society.budget)}`}
-							</Typography>
+							<Paper className={classes.paper}>
+								<Typography variant='h4'>
+									{`امتیاز شما: ${toPersianNumber(score)}`}
+								</Typography>
+							</Paper>
 						</Grid>
 					</Grid>
 				}

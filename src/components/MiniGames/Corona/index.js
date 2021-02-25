@@ -62,7 +62,6 @@ function CoronaTest({ }) {
 
 	const doSendToHospital = () => {
 		const out = society.sendToHospital();
-		console.log(out);
 		if (out !== 'ERROR') {
 			setScore(out);
 			setMode(3);

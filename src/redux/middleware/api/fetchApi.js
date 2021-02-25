@@ -16,6 +16,7 @@ const checkErrorsStatusCode = (response, jsonResponse) => {
     throw new Error('شما دسترسی ندارید!');
     // throw new Error('You don\'t have access!');
   }
+  // todo: show "this account doesn't exist" when attempting to login with no-existing account info
   if (jsonResponse.res_code === 660) {
     throw new Error('کد ملی یا کلمه‌ی عبور اشتباه است!');
   }

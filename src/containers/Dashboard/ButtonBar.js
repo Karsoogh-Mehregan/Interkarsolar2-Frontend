@@ -42,10 +42,18 @@ const ButtonBar = ({ onClick, logout, isRegistrationCompleted }) => {
                     history.push('/dashboard?tab=announcements')
                 }} />
             </Grid>
+            {!isRegistrationCompleted &&
+                <Grid container item justify='center' xs={12} sm={3} lg={3}>
+                    <FancyPushButton text='ثبت‌نام نهایی' color='green' onClick={() => {
+                        onClick(1);
+                        history.push('/dashboard?tab=registration')
+                    }} />
+                </Grid>
+            }
             {isRegistrationCompleted &&
                 <Grid container item justify='center' xs={12} sm={3} lg={3}>
-                    <FancyPushButton text='آزمون مرحله اول' color='green' onClick={() => {
-                        onClick(1);
+                    <FancyPushButton text='آزمون‌ها' color='green' onClick={() => {
+                        onClick(3);
                         history.push('/dashboard?tab=exam')
                     }} />
                 </Grid>

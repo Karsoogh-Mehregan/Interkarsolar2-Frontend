@@ -15,8 +15,9 @@ import Editor from '../../components/tiny_editor/react_tiny/TinyEditorComponent'
 import ImageWidget from '../../components/Widget/ImageWidget';
 import BigAnswerQuestionWidget from '../../components/Widget/BigAnswerQuestionWidget';
 import TextWidget from '../../components/Widget/TextWidget';
-// import UploadFileQuestionWidget from '../components/Widget/UploadFileQuestionWidget';
-// import VideoWidget from '../components/Widget/VideoWidget';
+// import UploadFileQuestionWidget from '../../components/Widget/UploadFileQuestionWidget';
+import VideoWidget from '../../components/Widget/VideoWidget';
+import MiniGameWidget from '../../components/Widget/MiniGameWidget';
 
 import {
   getExamQuestionsList,
@@ -72,7 +73,8 @@ const Exam = ({
   redirect,
   getExamQuestionsList,
   getQuestionContents,
-  examQuestionList
+  examQuestionList,
+  questionContent,
 }) => {
   const classes = useStyles();
   const [, rerenderPage] = useState();
@@ -143,7 +145,7 @@ const Exam = ({
                 <Grid item>
                   <Typography align='center' variant='h2'>
                     سوال اول
-                    </Typography>
+                  </Typography>
                 </Grid>
                 <Divider />
                 <Grid item>
@@ -163,29 +165,36 @@ const Exam = ({
         </Grid>
 
         <Grid container item xs={12} sm={9} md={6} direction='column' spacing={2}>
-          <Grid item>
-            <TextWidget
-              text='خب بچه‌ها. باز دوباره با کارسوق برگشتیم. ایشالا یه رویداد تماماً فیل رو در کنارتون برگزار کنیم. علی‌الحساب بیاین باب‌اسفنجی ببینین کیف کنین:' />
-          </Grid>
-          <Grid item >
-            <div className={classes.h_iframe_aparat_embed_frame}>
-              {/* <span></span> */}
-              <iframe
-                title="کارگاه‌های رستا"
-                src="https://www.aparat.com/video/video/embed/videohash/B8VfK/vt/frame"
-                allowFullScreen
-                webkitallowfullscreen="true"
-                mozallowfullscreen="true"></iframe>
-            </div>
-          </Grid>
-          <Grid item>
-            <BigAnswerQuestionWidget
-              text='خب فیلم رو دیدین؟ بسه دیگه. برید خونه‌هاتون. کارسوق فیله. مرگ بر رستا. مرگ بر کارسوق. مرگ بر شفیعیون. قبل از این که برید، بیاید به این سوال جواب بدین تا ببینم چی به چیه. اگه عکسی چیزی باید آپلود می‌کردین، آپلود کنین. آفرین بچه‌های خوب...'
-            />
-          </Grid>
-          <Grid item>
-            <ImageWidget link='https://media.mehrnews.com/d/2020/08/11/3/3521680.jpg' />
-          </Grid>
+          {questionContent &&
+            questionContent.map((content) => {
+              if (content.type == 1) {
+                return (
+                  <Grid item>
+                    <TextWidget text={content.content_desc} />
+                  </Grid>
+                )
+              } else if (content.type == 2) {
+                return (
+                  <Grid item>
+                    <VideoWidget link={content.content_desc} />
+                  </Grid>
+                )
+              } else if (content.type == 3) {
+                return (
+                  <Grid item>
+                    <ImageWidget link={content.content_desc} />
+                  </Grid>
+                )
+              } else if (content.type == 4) {
+                return (
+                  <Grid item>
+                    <MiniGameWidget link={content.content_desc} />
+                  </Grid>
+                )
+              }
+            })
+          }
+
         </Grid>
       </Grid>
     </Container>

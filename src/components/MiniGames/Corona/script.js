@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 const CHANCE_OF_BEING_ILL = 0.5;
 var PERSON_ID = 0;
-const PEOPLE_NUMBER = 40;
+const PEOPLE_NUMBER = 60;
 const TEST_NUMBER = 10;
 const FIRST_NAMES = [
     'اصغر',

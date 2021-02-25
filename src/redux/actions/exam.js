@@ -42,7 +42,7 @@ export const sendAnswer = ({ file, answer, QCID }) => ({
       actionTypes.SEND_ANSWER_SUCCESS,
       actionTypes.SEND_ANSWER_FAILURE,
     ],
-    url: URLs.ANSWER,
+    url: URLs.SEND_ANSWER,
     fetchOptions: {
       method: 'POST',
       body: {
@@ -57,11 +57,11 @@ export const sendAnswer = ({ file, answer, QCID }) => ({
 export const getPreviousAnswer = ({ file, answer, QCID }) => ({
   [CALL_API]: {
     types: [
-      actionTypes.SEND_ANSWER_REQUEST,
-      actionTypes.SEND_ANSWER_SUCCESS,
-      actionTypes.SEND_ANSWER_FAILURE,
+      actionTypes.GET_ANSWER_REQUEST,
+      actionTypes.GET_ANSWER_SUCCESS,
+      actionTypes.GET_ANSWER_FAILURE,
     ],
-    url: URLs.SEND_ANSWER,
+    url: URLs.GET_ANSWER,
     fetchOptions: {
       method: 'POST',
       body: {

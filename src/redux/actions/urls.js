@@ -18,7 +18,8 @@ export const SCHOOL = ROOT.concat('school/');
 
 export const EXAM = ROOT.concat('exam/question/list/')
 export const QUESTION = (qid) => ROOT.concat(`exam/question/${qid}/content/`)
-export const ANSWER = ROOT.concat(`exam/answer/`)
+export const SEND_ANSWER = ROOT.concat(`exam/answer/`)
+export const GET_ANSWER = ROOT.concat(`exam/answer/`)
 
 export const PAYMENT = ROOT.concat('pay/request/');
 export const PAYMENT_IGNORE = ROOT.concat('pay/ignore/');

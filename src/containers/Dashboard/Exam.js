@@ -13,6 +13,10 @@ import {
   doPayment,
   ignorePayment,
 } from '../../redux/actions/account'
+import {
+  getExamQuestionsList,
+} from '../../redux/actions/exam'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -63,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const RegistrationTab = ({ doPayment, isFetching, info, ignorePayment, isAllowed, isRegistrationCompleted }) => {
+const RegistrationTab = ({ doPayment, isFetching, info, ignorePayment, getExamQuestionsList, isAllowed, isRegistrationCompleted }) => {
   const classes = useStyles();
   const [didPay, setPaymentStatus] = useState(false);
 
@@ -75,6 +79,12 @@ const RegistrationTab = ({ doPayment, isFetching, info, ignorePayment, isAllowed
       doPayment();
     }
   }
+
+  useEffect(
+    () => {
+      getExamQuestionsList(0);
+    }
+    , [])
 
   return (
     <Container style={{ overflow: 'hidden' }}>
@@ -159,5 +169,6 @@ export default connect(
   {
     doPayment,
     ignorePayment,
+    getExamQuestionsList,
   }
 )(RegistrationTab);

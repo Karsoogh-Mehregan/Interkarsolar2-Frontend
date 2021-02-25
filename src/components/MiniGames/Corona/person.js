@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { Stage, Layer, Rect, Text, Image, Group } from 'react-konva';
 import useImage from 'use-image';
 
-const normalURL = 'http://s6.uplod.ir/i/01009/06izcdyx5i4f.png';
-const redURL = 'http://s6.uplod.ir/i/01009/zxm8lz2s3l1o.png';
-const greenURL = 'http://s6.uplod.ir/i/01009/7r7v57xmqt7i.png';
+const normalURL = 'https://s17.picofile.com/file/8426208826/imageedit_2_9761167524.png';
+const redURL = 'https://s17.picofile.com/file/8426208842/161359269031294027.png';
+const greenURL = 'https://s16.picofile.com/file/8426208868/green.png';
 
 const PersonImage = ({ isSelected, imageType, ...rest }) => {
   let imageURL = normalURL;

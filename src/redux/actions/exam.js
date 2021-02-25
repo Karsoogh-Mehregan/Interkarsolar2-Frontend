@@ -2,7 +2,7 @@ import { CALL_API } from '../middleware/api/api';
 import * as actionTypes from '../actionTypes';
 import * as URLs from './urls';
 
-export const getExamQuestionsList = ({ examID }) => ({
+export const getExamQuestionsList = (examID) => ({
   [CALL_API]: {
     types: [
       actionTypes.GET_EXAM_REQUEST,
@@ -19,7 +19,7 @@ export const getExamQuestionsList = ({ examID }) => ({
   },
 });
 
-export const getQuestionContents = ({ questionID }) => ({
+export const getQuestionContents = (questionID) => ({
   [CALL_API]: {
     types: [
       actionTypes.GET_QUESTION_REQUEST,
@@ -35,7 +35,7 @@ export const getQuestionContents = ({ questionID }) => ({
   },
 });
 
-export const sendAnswer = ({ file, answer, QCID }) => ({
+export const sendAnswer = (file, answer, QCID) => ({
   [CALL_API]: {
     types: [
       actionTypes.SEND_ANSWER_REQUEST,

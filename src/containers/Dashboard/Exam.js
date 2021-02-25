@@ -16,7 +16,6 @@ import {
 } from '../../redux/actions/account'
 import {
   getExamQuestionsList,
-  getQuestionContents,
 } from '../../redux/actions/exam'
 
 
@@ -67,26 +66,12 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const ExamTab = ({ isFetching, getExamQuestionsLis, }) => {
+const ExamTab = ({ isFetching, }) => {
   const classes = useStyles();
 
   const handleEnterExam = () => {
     toast.info('آزمون هنوز شروع نشده!');
   }
-
-  useEffect(
-    () => {
-      getExamQuestionsList(0);
-      getExamQuestionsList(1);
-      getExamQuestionsList(2);
-      getExamQuestionsList(3);
-      getExamQuestionsList(4);
-      getExamQuestionsList(5);
-      getExamQuestionsList(6);
-      getExamQuestionsList(7);
-      getExamQuestionsList(8);
-    }
-    , [])
 
   return (
     <Container style={{ overflow: 'hidden' }}>

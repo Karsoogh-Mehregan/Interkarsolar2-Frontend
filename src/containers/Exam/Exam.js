@@ -18,6 +18,17 @@ import TextWidget from '../../components/Widget/TextWidget';
 // import UploadFileQuestionWidget from '../components/Widget/UploadFileQuestionWidget';
 // import VideoWidget from '../components/Widget/VideoWidget';
 
+import {
+  getExamQuestionsList,
+  getQuestionContents,
+} from '../../redux/actions/exam'
+import {
+  redirect,
+} from '../../redux/actions/redirect'
+import {
+  useParams,
+  Link,
+} from "react-router-dom";
 
 import { connect } from 'react-redux';
 
@@ -57,9 +68,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Exam = ({ }) => {
+const Exam = ({
+  redirect,
+  getExamQuestionsList,
+  getQuestionContents,
+  examQuestionList
+}) => {
   const classes = useStyles();
   const [, rerenderPage] = useState();
+  const { examID, questionID } = useParams();
+
+  console.log(examID, questionID);
 
   useEffect(
     () => {
@@ -67,12 +86,26 @@ const Exam = ({ }) => {
         () => {
           rerenderPage(Math.random());
         }
-        , 1000)
+        , 2000)
     }
     , [])
 
-  return (
+  useEffect(
+    () => {
+      getExamQuestionsList(examID)
+    }
+    , [getExamQuestionsList, examID])
 
+  useEffect(
+    () => {
+      if (examQuestionList) {
+        redirect(`/exam/${examID}/${examQuestionList[0].id}`);
+      }
+    }
+    , [examQuestionList, examID, redirect])
+
+
+  return (
     <Container className={`${classes.centerItems} ${classes.container}`}>
       <Grid
         container
@@ -137,12 +170,14 @@ const Exam = ({ }) => {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-
+  examQuestionList: state.exam.examQuestionList,
 })
 
 export default connect(
   mapStateToProps,
   {
-
+    redirect,
+    getExamQuestionsList,
+    getQuestionContents,
   }
 )(Exam)

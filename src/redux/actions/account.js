@@ -39,7 +39,7 @@ export const login = (national_code, password) => ({
   },
 });
 
-export const changePassword = (national_code, mobile1, new_password) => ({
+export const changePassword = (national_code, new_password, phone1) => ({
   [CALL_API]: {
     types: [
       actionTypes.CHANGE_PASSWORD_REQUEST,
@@ -51,7 +51,7 @@ export const changePassword = (national_code, mobile1, new_password) => ({
       method: 'POST',
       body: {
         national_code,
-        mobile1,
+        phone1,
         new_password,
       },
     },

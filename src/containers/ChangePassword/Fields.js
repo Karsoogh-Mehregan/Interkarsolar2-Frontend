@@ -73,8 +73,9 @@ const InputFields = ({
             }
           }
           value={phoneNumber}
-          label='شماره موبایل'
+          label='شماره موبایل اصلی'
           type='tel'
+          helperText='شماره موبایل زاپاس رو وارد نکنیا!'
           variant='filled'
           fullWidth>
         </TextField>

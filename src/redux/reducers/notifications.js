@@ -62,7 +62,7 @@ function notifications(state = initState, action) {
     case actionTypes.CHANGE_PASSWORD_SUCCESS:
       setTimeout(
         () => {
-          toast.success('خوبه! رمز با موفقیت به اون چیزی که وارد کردی، تغییر کرد.');
+          toast.success('خوبه! رمزت با موفقیت به اون چیزی که وارد کردی، تغییر کرد.');
         }, 0)
       return { ...state };
 

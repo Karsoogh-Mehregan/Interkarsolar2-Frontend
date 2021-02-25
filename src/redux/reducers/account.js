@@ -28,6 +28,7 @@ function account(state = initState, action) {
         token: action.response.data.token,
       };
 
+    case actionTypes.CHANGE_PASSWORD_SUCCESS:
     case actionTypes.CHANGE_PASSWORD_FAILURE:
     case actionTypes.PAYMENT_IGNORE_FAILURE:
     case actionTypes.UPDATE_USER_INFO_FAILURE:

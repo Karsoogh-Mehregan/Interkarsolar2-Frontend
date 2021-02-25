@@ -20,6 +20,10 @@ const checkErrorsStatusCode = (response, jsonResponse) => {
   if (jsonResponse.res_code === 660) {
     throw new Error('کد ملی یا کلمه‌ی عبور اشتباه است!');
   }
+
+  if (jsonResponse.res_code === 668) {
+    throw new Error('این شماره متعلق به این کد ملی نیست!');
+  }
 };
 
 const fetchApi = async (url, fetchOptions) => {

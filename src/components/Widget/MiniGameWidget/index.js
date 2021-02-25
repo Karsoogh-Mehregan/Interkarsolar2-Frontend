@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 const useStyles = makeStyles(() => ({
   gameWidget: {
     width: '100%',
-    height: '100vh',
+    height: '95vh',
     borderRadius: 10,
     minHeight: 300,
     border: 'none',

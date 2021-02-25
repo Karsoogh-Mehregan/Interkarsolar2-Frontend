@@ -6,7 +6,7 @@ import {
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { sendFileAnswer } from '../../../redux/actions/Exam';
+import { sendAnswer } from '../../../redux/actions/exam';
 
 const useStyles = makeStyles((theme) => ({
   flex: {
@@ -40,19 +40,14 @@ const UploadFileQuestionWidget = ({
   text = 'محل آپلود فایل',
   last_submit,
   disabled = true,
-  playerId,
-  sendFileAnswer,
+  sendAnswer,
 }) => {
   const classes = useStyles({ haveFile: !!last_submit });
   const onChangeFile = async (e) => {
     e.preventDefault();
     if (e.target.files[0]) {
       if (e.target.files[0].size <= 8e6) {
-        sendFileAnswer({
-          answer_file: e.target.files[0],
-          player: playerId,
-          problem: id,
-        });
+        sendAnswer();
       } else {
         e.target.value = '';
         e.target.setCustomValidity('Maximum upload file size is 8 MB.');
@@ -74,8 +69,6 @@ const UploadFileQuestionWidget = ({
         />
         <Button
           component="label"
-          htmlFor={disabled || !playerId ? '' : 'raised-button-file' + id}
-          disabled={disabled || !playerId}
           variant="contained"
           color="primary"
           size="small"
@@ -112,9 +105,8 @@ const UploadFileQuestionWidget = ({
 };
 
 const mapStateToProps = (state) => ({
-  playerId: state.currentState.player?.id,
 });
 
-export default connect(mapStateToProps, { sendFileAnswer })(
+export default connect(mapStateToProps, { sendAnswer })(
   UploadFileQuestionWidget
 );

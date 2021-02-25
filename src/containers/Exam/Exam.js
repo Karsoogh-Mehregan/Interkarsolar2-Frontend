@@ -15,7 +15,7 @@ import Editor from '../../components/tiny_editor/react_tiny/TinyEditorComponent'
 import ImageWidget from '../../components/Widget/ImageWidget';
 import BigAnswerQuestionWidget from '../../components/Widget/BigAnswerQuestionWidget';
 import TextWidget from '../../components/Widget/TextWidget';
-// import UploadFileQuestionWidget from '../../components/Widget/UploadFileQuestionWidget';
+import UploadFileWidget from '../../components/Widget/UploadFileQuestionWidget';
 import VideoWidget from '../../components/Widget/VideoWidget';
 import MiniGameWidget from '../../components/Widget/MiniGameWidget';
 
@@ -74,7 +74,7 @@ const Exam = ({
   getExamQuestionsList,
   getQuestionContents,
   examQuestionList,
-  questionContent,
+  question,
 }) => {
   const classes = useStyles();
   const [, rerenderPage] = useState();
@@ -130,6 +130,8 @@ const Exam = ({
     , [getQuestionContents, examQuestionList, questionID, setPreviousProblemButtonStatus, setNextProblemButtonStatus])
 
 
+  console.log(question);
+
   return (
     <Container className={`${classes.centerItems} ${classes.container}`}>
       <Grid
@@ -165,8 +167,11 @@ const Exam = ({
         </Grid>
 
         <Grid container item xs={12} sm={9} md={6} direction='column' spacing={2}>
-          {questionContent &&
-            questionContent.map((content) => {
+          <Grid item>
+            <UploadFileWidget />
+          </Grid>
+          {question && question.contents &&
+            question.contents.map((content) => {
               if (content.type == 1) {
                 return (
                   <Grid item>
@@ -190,8 +195,8 @@ const Exam = ({
           }
         </Grid>
         <Grid container item xs={12} direction='column' spacing={2}>
-          {questionContent &&
-            questionContent.map((content) => {
+          {question && question.contents &&
+            question.contents.map((content) => {
               if (content.type == 4) {
                 return (
                   <Grid item>
@@ -210,7 +215,7 @@ const Exam = ({
 
 const mapStateToProps = (state, ownProps) => ({
   examQuestionList: state.exam.examQuestionList,
-  questionContent: state.exam.questionContent,
+  question: state.exam.question,
 })
 
 export default connect(

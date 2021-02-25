@@ -32,7 +32,7 @@ function exam(state = initState, action) {
             return {
                 ...state,
                 isFetching: false,
-                questionContent: action.response.data,
+                question: action.response.data,
             }
 
         default:

@@ -76,9 +76,9 @@ const Exam = ({
 }) => {
   const classes = useStyles();
   const [, rerenderPage] = useState();
+  const [isNextProblemButtonDisabled, setNextProblemButtonStatus] = useState(false);
+  const [isPreviousProblemButtonDisabled, setPreviousProblemButtonStatus] = useState(false);
   const { examID, questionID } = useParams();
-
-  console.log(examID, questionID);
 
   useEffect(
     () => {
@@ -96,13 +96,36 @@ const Exam = ({
     }
     , [getExamQuestionsList, examID])
 
+
+  const goToQuestion = (questionID) => {
+    redirect(`/exam/${examID}/${questionID}`);
+  }
+
   useEffect(
     () => {
-      if (examQuestionList) {
-        redirect(`/exam/${examID}/${examQuestionList[0].id}`);
+      if (!questionID && examQuestionList) {
+        goToQuestion(examQuestionList[0].id);
       }
     }
-    , [examQuestionList, examID, redirect])
+    , [examQuestionList, examID, redirect, questionID])
+
+  useEffect(
+    () => {
+      if (questionID && examQuestionList) {
+        getQuestionContents(questionID);
+        if (questionID == examQuestionList[0].id) {
+          setPreviousProblemButtonStatus(true);
+        } else {
+          setPreviousProblemButtonStatus(false);
+        }
+        if (questionID == examQuestionList[examQuestionList.length - 1].id) {
+          setNextProblemButtonStatus(true);
+        } else {
+          setNextProblemButtonStatus(false);
+        }
+      }
+    }
+    , [getQuestionContents, examQuestionList, questionID, setPreviousProblemButtonStatus, setNextProblemButtonStatus])
 
 
   return (
@@ -126,12 +149,12 @@ const Exam = ({
                 <Grid item>
                   <Typography>
                     در این سوال، ما به کشف نیروهای خارق‌العاده و قدرت چرت و پرت نویسیِ نویسنده پی می‌بریم. حواستان باشد در دام آموزشی سوال نیافتید...
-                    </Typography>
+                  </Typography>
                 </Grid>
                 <Grid item container justify='center'>
                   <ButtonGroup variant='contained' color="primary" aria-label="text primary button group">
-                    <Button>سوال بعدی</Button>
-                    <Button>سوال قبلی</Button>
+                    <Button disabled={isNextProblemButtonDisabled} onClick={() => goToQuestion(parseInt(questionID) + 1)}>سوال بعدی</Button>
+                    <Button disabled={isPreviousProblemButtonDisabled} onClick={() => goToQuestion(parseInt(questionID) - 1)}>سوال قبلی</Button>
                   </ButtonGroup>
                 </Grid>
               </Grid>
@@ -171,6 +194,7 @@ const Exam = ({
 
 const mapStateToProps = (state, ownProps) => ({
   examQuestionList: state.exam.examQuestionList,
+  questionContent: state.exam.questionContent,
 })
 
 export default connect(

@@ -22,7 +22,6 @@ function exam(state = initState, action) {
 
 
         case actionTypes.GET_EXAM_SUCCESS:
-            console.log(action.response);
             return {
                 ...state,
                 isFetching: false,
@@ -30,10 +29,10 @@ function exam(state = initState, action) {
             }
 
         case actionTypes.GET_QUESTION_SUCCESS:
-            console.log(action.response);
             return {
                 ...state,
                 isFetching: false,
+                questionContent: action.response.data,
             }
 
         default:

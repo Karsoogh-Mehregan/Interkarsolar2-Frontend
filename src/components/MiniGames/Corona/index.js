@@ -27,6 +27,8 @@ const useStyles = makeStyles((theme) => ({
 		position: 'fixed',
 		top: theme.spacing(2),
 		left: theme.spacing(2),
+		textShadow: '-2px 2px 5px #d3d3d3',
+		zIndex: 10,
 	}
 }))
 
@@ -75,6 +77,11 @@ function CoronaTest({ }) {
 					{`بودجه باقی‌مانده: ${toPersianNumber(society.budget)}`}
 				</Typography>
 			</div>
+			<div className={classes.budget}>
+				<Typography variant='h4'>
+					{`بودجه باقی‌مانده: ${toPersianNumber(society.budget)}`}
+				</Typography>
+			</div>
 			<Grid container justify='center' spacing={2}>
 				<Grid item>
 					<Stage width={window.innerWidth} height={window.innerHeight * 2} >
@@ -112,9 +119,6 @@ function CoronaTest({ }) {
 											<MenuItem value={index}>{`تست شماره ${toPersianNumber(index + 1)} با درصد‌تشخیص ${toPersianNumber(test.diagnosis)} و دشواری ${toPersianNumber(test.difficulty)}. هزینه‌ی این تست ${toPersianNumber(test.cost)} تومان است.`}</MenuItem>
 										)
 									})}
-									{/* <MenuItem value={8}>{'تست چینی - میزان درستی: ۷۰٪ - قدرت تشخیص: ۶۰٪'}</MenuItem>
-									<MenuItem value={9}>{'تست آلمانی - میزان درستی: ۸۰٪ - قدرت تشخیص: ۹۰٪'}</MenuItem>
-									<MenuItem value={10}>{'تست ایرانی - میزان درستی: ۷۵٪ - قدرت تشخیص: ۸۵٪'}</MenuItem> */}
 								</Select>
 							</FormControl >
 						</Grid>
@@ -138,7 +142,7 @@ function CoronaTest({ }) {
 							</Button>
 						</Grid>
 						<Grid item xs={12} sm={6} container justify='center' alignItems='center'>
-							<Button variant='contained' color='primary' fullWidth ocClick={roadToHospital}>
+							<Button variant='contained' color='primary' fullWidth onClick={roadToHospital}>
 								به سوی بیمارستان...
 						</Button>
 						</Grid>

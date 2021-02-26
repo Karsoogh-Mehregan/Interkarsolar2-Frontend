@@ -40,7 +40,7 @@ const App = ({ redirectTo, forceRedirect, initRedirect, loading }) => {
   const Loading = () => {
     if (loading) {
       return (
-        <div style={{ width: '100%', position: 'fixed', top: '0px' }}>
+        <div style={{ width: '100%', position: 'fixed', top: '0px', zIndex: '1000' }}>
           <LinearProgress />
         </div>
       )
@@ -67,7 +67,7 @@ const App = ({ redirectTo, forceRedirect, initRedirect, loading }) => {
 const mapStateToProps = (state) => ({
   redirectTo: state.redirect.redirectTo,
   forceRedirect: state.redirect.force,
-  loading: state.account.isFetching,
+  loading: state.account.isFetching || state.exam.isFetching,
 });
 
 export default connect(mapStateToProps, { initRedirect })(App);

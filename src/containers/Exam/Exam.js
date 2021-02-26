@@ -9,28 +9,17 @@ import {
   Paper,
   Divider,
 } from '@material-ui/core';
-import TinyPreview from '../../components/tiny_editor/react_tiny/Preview'
-import Editor from '../../components/tiny_editor/react_tiny/TinyEditorComponent'
-
 import ImageWidget from '../../components/Widget/ImageWidget';
-import BigAnswerQuestionWidget from '../../components/Widget/BigAnswerQuestionWidget';
+import AnswerWidget from '../../components/Widget/AnswerWidget';
 import TextWidget from '../../components/Widget/TextWidget';
-import UploadFileWidget from '../../components/Widget/UploadFileQuestionWidget';
 import VideoWidget from '../../components/Widget/VideoWidget';
 import MiniGameWidget from '../../components/Widget/MiniGameWidget';
-
 import {
   getExamQuestionsList,
   getQuestionContents,
 } from '../../redux/actions/exam'
-import {
-  redirect,
-} from '../../redux/actions/redirect'
-import {
-  useParams,
-  Link,
-} from "react-router-dom";
-
+import { redirect } from '../../redux/actions/redirect'
+import { useParams } from "react-router-dom";
 import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
@@ -70,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Exam = ({
+  isFetching,
   redirect,
   getExamQuestionsList,
   getQuestionContents,
@@ -77,20 +67,9 @@ const Exam = ({
   question,
 }) => {
   const classes = useStyles();
-  const [, rerenderPage] = useState();
   const [isNextProblemButtonDisabled, setNextProblemButtonStatus] = useState(false);
   const [isPreviousProblemButtonDisabled, setPreviousProblemButtonStatus] = useState(false);
   const { examID, questionID } = useParams();
-
-  useEffect(
-    () => {
-      setTimeout(
-        () => {
-          rerenderPage(Math.random());
-        }
-        , 2000)
-    }
-    , [])
 
   useEffect(
     () => {
@@ -99,10 +78,6 @@ const Exam = ({
     , [getExamQuestionsList, examID])
 
 
-  const goToQuestion = (questionID) => {
-    redirect(`/exam/${examID}/${questionID}`);
-  }
-
   useEffect(
     () => {
       if (!questionID && examQuestionList) {
@@ -110,6 +85,10 @@ const Exam = ({
       }
     }
     , [examQuestionList, examID, redirect, questionID])
+
+  const goToQuestion = (questionID) => {
+    redirect(`/exam/${examID}/${questionID}`);
+  }
 
   useEffect(
     () => {
@@ -129,9 +108,6 @@ const Exam = ({
     }
     , [getQuestionContents, examQuestionList, questionID, setPreviousProblemButtonStatus, setNextProblemButtonStatus])
 
-
-  console.log(question);
-
   return (
     <Container className={`${classes.centerItems} ${classes.container}`}>
       <Grid
@@ -139,20 +115,19 @@ const Exam = ({
         direction='row'
         justify='center'
         spacing={2}>
-
         <Grid container item xs={12} sm={9} md={3} direction='column' spacing={2}>
           <Grid item>
             <Paper className={classes.paper}>
               <Grid container direction='column' spacing={2}>
                 <Grid item>
                   <Typography align='center' variant='h2'>
-                    سوال اول
+                    {question && question.title}
                   </Typography>
                 </Grid>
                 <Divider />
                 <Grid item>
                   <Typography>
-                    در این سوال، ما به کشف نیروهای خارق‌العاده و قدرت چرت و پرت نویسیِ نویسنده پی می‌بریم. حواستان باشد در دام آموزشی سوال نیافتید...
+                    {question && question.description}
                   </Typography>
                 </Grid>
                 <Grid item container justify='center'>
@@ -167,9 +142,6 @@ const Exam = ({
         </Grid>
 
         <Grid container item xs={12} sm={9} md={6} direction='column' spacing={2}>
-          <Grid item>
-            <UploadFileWidget />
-          </Grid>
           {question && question.contents &&
             question.contents.map((content) => {
               if (content.type == 1) {
@@ -190,6 +162,12 @@ const Exam = ({
                     <ImageWidget link={content.content_desc} />
                   </Grid>
                 )
+              } else if (content.type == 5) {
+                return (
+                  <Grid item>
+                    <AnswerWidget qc_id={content.qc_id} text={content.content_desc} />
+                  </Grid>
+                )
               }
             })
           }
@@ -208,12 +186,12 @@ const Exam = ({
           }
         </Grid>
       </Grid>
-
     </Container>
   )
 }
 
 const mapStateToProps = (state, ownProps) => ({
+  isFetching: state.exam.isFetching,
   examQuestionList: state.exam.examQuestionList,
   question: state.exam.question,
 })

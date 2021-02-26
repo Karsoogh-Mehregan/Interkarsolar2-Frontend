@@ -15,13 +15,10 @@ import {
 } from '../../redux/actions/account'
 import { connect } from 'react-redux';
 
-import ResponsiveAppBar from '../../components/Appbar/ResponsiveAppBar';
-import RegistrationTab from './Registration';
+import Exam from './Exam';
 import AnnouncementsTab from './Announcements';
 import ProfileTab from './Profile';
-import Exam from './Exam';
 import ButtonBar from './ButtonBar';
-import { toInteger } from 'lodash';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -90,7 +87,7 @@ function Dashboard({
     () => {
       if (tabName == 'announcements') {
         setTab(0);
-      } else if (tabName == 'registration') {
+      } else if (tabName == 'exam') {
         setTab(1);
       } else if (tabName == 'profile') {
         setTab(2);
@@ -122,8 +119,8 @@ function Dashboard({
           <AnnouncementsTab isRegistrationCompleted={isRegistrationCompleted} didPaymentFail={didPaymentFail} />
         }
         {
-          tab == 1 &&
-          <RegistrationTab isAllowed={isAllowed} isRegistrationCompleted={isRegistrationCompleted} />
+          tab == 1 && isRegistrationCompleted &&
+          <Exam />
         }
         {
           tab == 2 &&

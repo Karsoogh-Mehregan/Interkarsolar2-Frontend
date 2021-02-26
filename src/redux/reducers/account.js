@@ -50,6 +50,14 @@ function account(state = initState, action) {
         }
       }
 
+    case actionTypes.GET_ANSWER_SUCCESS:
+      console.log(action);
+      return {
+        ...state,
+        isFetching: false,
+      }
+
+
     case actionTypes.PAYMENT_SUCCESS:
       window.location.replace(action.response.data.pay_link)
       return {

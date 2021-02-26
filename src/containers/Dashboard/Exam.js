@@ -14,6 +14,10 @@ import {
   doPayment,
   ignorePayment,
 } from '../../redux/actions/account'
+import {
+  getExamQuestionsList,
+} from '../../redux/actions/exam'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,12 +66,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const ExamTab = ({ isFetching }) => {
+const ExamTab = ({ isFetching, }) => {
   const classes = useStyles();
-
-  const handleEnterExam = () => {
-    toast.info('آزمون هنوز شروع نشده!');
-  }
 
   return (
     <Container style={{ overflow: 'hidden' }}>
@@ -101,7 +101,7 @@ const ExamTab = ({ isFetching }) => {
               </Typography>
             </Grid>
             <Grid item container justify='center'>
-              <Button variant='contained' color='primary' size='large' onClick={handleEnterExam} disabled={isFetching}>
+              <Button href='/exam/1/' target="_blank" rel="noopener noreferrer" variant='contained' color='primary' size='large' disabled={isFetching}>
                 بزن بریم!
               </Button>
             </Grid>
@@ -124,5 +124,6 @@ export default connect(
   {
     doPayment,
     ignorePayment,
+    getExamQuestionsList,
   }
 )(ExamTab);

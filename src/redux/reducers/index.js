@@ -8,5 +8,6 @@ const allReducers = combineReducers({
   notifications,
   account,
   redirect,
+  exam,
 });
 export default allReducers;

@@ -90,6 +90,25 @@ const Exam = ({
     redirect(`/exam/${examID}/${questionID}`);
   }
 
+  const getQuestionIndex = (questionID) => {
+    for (let i = 0; i < examQuestionList.length; i++) {
+      if (examQuestionList[i].id == questionID) {
+        return i;
+      }
+    }
+  }
+
+  const getNextQuestionID = (questionID) => {
+    let index = getQuestionIndex(questionID);
+    return examQuestionList[index + 1].id;
+  }
+
+  const getPreviousQuestionID = (questionID) => {
+    let index = getQuestionIndex(questionID);
+    return examQuestionList[index - 1].id;
+  }
+
+
   useEffect(
     () => {
       if (questionID && examQuestionList && examQuestionList[0] && examQuestionList[examQuestionList.length - 1]) {
@@ -132,8 +151,8 @@ const Exam = ({
                 </Grid>
                 <Grid item container justify='center'>
                   <ButtonGroup variant='contained' color="primary" aria-label="text primary button group">
-                    <Button disabled={isNextProblemButtonDisabled} onClick={() => goToQuestion(parseInt(questionID) + 1)}>سوال بعدی</Button>
-                    <Button disabled={isPreviousProblemButtonDisabled} onClick={() => goToQuestion(parseInt(questionID) - 1)}>سوال قبلی</Button>
+                    <Button disabled={isNextProblemButtonDisabled} onClick={() => goToQuestion(parseInt(getNextQuestionID(questionID)))}>سوال بعدی</Button>
+                    <Button disabled={isPreviousProblemButtonDisabled} onClick={() => goToQuestion(parseInt(getPreviousQuestionID(questionID)))}>سوال قبلی</Button>
                   </ButtonGroup>
                 </Grid>
               </Grid>

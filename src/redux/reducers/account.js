@@ -51,7 +51,6 @@ function account(state = initState, action) {
       }
 
     case actionTypes.GET_ANSWER_SUCCESS:
-      console.log(action);
       return {
         ...state,
         isFetching: false,
@@ -79,7 +78,6 @@ function account(state = initState, action) {
       };
 
     case actionTypes.CHECK_PAYMENT_STATUS_SUCCESS:
-      console.log(action.response)
       return {
         ...state,
         payments: action.response.data,

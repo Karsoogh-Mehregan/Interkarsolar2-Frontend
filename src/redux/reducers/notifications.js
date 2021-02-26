@@ -37,7 +37,6 @@ function notifications(state = initState, action) {
     case actionTypes.LOGIN_FAILURE:
     case actionTypes.CREATE_ACCOUNT_FAILURE:
       if (action.error) {
-        console.log("####")
         return {
           ...state,
           error: action.error,

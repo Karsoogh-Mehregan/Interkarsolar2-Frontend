@@ -100,6 +100,7 @@ const AnswerWidget = ({
         <Grid item container xs={12} sm={6} justify='center' alignItems='center'>
           <Grid item container justify='center' alignItems='center'>
             <input
+              id={Math.random()}
               accept="application/pdf,image/*"
               type="file"
               onChange={onChangeFile}

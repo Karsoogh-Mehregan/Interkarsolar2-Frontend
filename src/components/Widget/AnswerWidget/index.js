@@ -103,13 +103,12 @@ const AnswerWidget = ({
             onChange={setTextAnswer}
           />
         </Grid>
-        <Grid item container xs={12} sm={6} justify='center' alignItems='center'>
+        {/* <Grid item container xs={12} sm={6} justify='center' alignItems='center'>
           <Grid item container justify='center' alignItems='center'>
             <input
               id={`file-answer-${Math.random()}`}
               accept="application/pdf,image/*"
               type="file"
-              value=''
               onChange={onChangeFile}
             />
           </Grid>
@@ -127,7 +126,7 @@ const AnswerWidget = ({
               </Button>
             </Grid>
           }
-        </Grid>
+        </Grid> */}
         <Grid item container xs={12} sm={6} justify='center' alignItems='center'>
           <Button
             fullWidth

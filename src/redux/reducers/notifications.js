@@ -22,7 +22,14 @@ function notifications(state = initState, action) {
         }, 0)
       return { ...state };
 
+    case actionTypes.SEND_ANSWER_SUCCESS:
+      setTimeout(
+        () => {
+          toast.success('جواب با موفقیت ثبت شد!');
+        }, 0)
+      return { ...state };
 
+    case actionTypes.SEND_ANSWER_FAILURE:
     case actionTypes.PAYMENT_IGNORE_FAILURE:
     case actionTypes.PAYMENT_FAILURE:
     case actionTypes.UPDATE_USER_INFO_FAILURE:

@@ -7,13 +7,19 @@ const initState = {
 function exam(state = initState, action) {
     switch (action.type) {
 
-
+        case actionTypes.SEND_ANSWER_REQUEST:
+        case actionTypes.GET_ANSWER_REQUEST:
+        case actionTypes.GET_QUESTION_REQUEST:
         case actionTypes.GET_EXAM_REQUEST:
             return {
                 ...state,
                 isFetching: true,
             }
 
+        case actionTypes.SEND_ANSWER_SUCCESS:
+        case actionTypes.SEND_ANSWER_FAILURE:
+        case actionTypes.GET_ANSWER_FAILURE:
+        case actionTypes.GET_QUESTION_FAILURE:
         case actionTypes.GET_EXAM_FAILURE:
             return {
                 ...state,
@@ -28,8 +34,10 @@ function exam(state = initState, action) {
             }
 
         case actionTypes.GET_ANSWER_SUCCESS:
+            console.log(action.response)
             return {
                 ...state,
+                isFetching: false,
             }
 
         case actionTypes.GET_QUESTION_SUCCESS:

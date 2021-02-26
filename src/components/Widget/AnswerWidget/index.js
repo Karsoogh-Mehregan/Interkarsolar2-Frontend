@@ -13,9 +13,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
   },
-  submit: {
-    marginTop: theme.spacing(1),
-  },
   paper: {
     padding: theme.spacing(2),
   },
@@ -34,8 +31,6 @@ const AnswerWidget = ({
   const [textAnswer, setTextAnswer] = useState(previousTextAnswer);
 
   const doSendAnswer = () => {
-    console.log(textAnswer);
-    console.log(fileAnswer);
     sendAnswer(fileAnswer, textAnswer, qc_id)
   }
 
@@ -60,13 +55,9 @@ const AnswerWidget = ({
     }
     , [qc_id])
 
-  console.log(textAnswer);
-  console.log(fileAnswer);
-
-
   return (
     <Paper className={classes.paper}>
-      <Grid container justify='center'>
+      <Grid container justify='center' spacing={1}>
         <Grid item xs={12}>
           <TinyPreview
             frameProps={{
@@ -91,13 +82,12 @@ const AnswerWidget = ({
             onChange={onChangeFile}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item container xs={12} sm={6} justify='center' alignItems='center'>
           <Button
             fullWidth
             variant="contained"
             color="primary"
-            onClick={doSendAnswer}
-            className={classes.submit}>
+            onClick={doSendAnswer}>
             ذخیره جواب
           </Button>
         </Grid>

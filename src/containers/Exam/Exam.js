@@ -10,7 +10,7 @@ import {
   Divider,
 } from '@material-ui/core';
 import ImageWidget from '../../components/Widget/ImageWidget';
-import BigAnswerQuestionWidget from '../../components/Widget/AnswerWidget';
+import AnswerWidget from '../../components/Widget/AnswerWidget';
 import TextWidget from '../../components/Widget/TextWidget';
 import VideoWidget from '../../components/Widget/VideoWidget';
 import MiniGameWidget from '../../components/Widget/MiniGameWidget';
@@ -59,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Exam = ({
+  isFetching,
   redirect,
   getExamQuestionsList,
   getQuestionContents,
@@ -107,9 +108,6 @@ const Exam = ({
     }
     , [getQuestionContents, examQuestionList, questionID, setPreviousProblemButtonStatus, setNextProblemButtonStatus])
 
-
-  console.log(question);
-
   return (
     <Container className={`${classes.centerItems} ${classes.container}`}>
       <Grid
@@ -123,13 +121,13 @@ const Exam = ({
               <Grid container direction='column' spacing={2}>
                 <Grid item>
                   <Typography align='center' variant='h2'>
-                    سوال اول
+                    {question.title}
                   </Typography>
                 </Grid>
                 <Divider />
                 <Grid item>
                   <Typography>
-                    در این سوال، ما به کشف نیروهای خارق‌العاده و قدرت چرت و پرت نویسیِ نویسنده پی می‌بریم. حواستان باشد در دام آموزشی سوال نیافتید...
+                    {question.description}
                   </Typography>
                 </Grid>
                 <Grid item container justify='center'>
@@ -167,7 +165,7 @@ const Exam = ({
               } else if (content.type == 5) {
                 return (
                   <Grid item>
-                    <BigAnswerQuestionWidget qc_id={content.qc_id} text={content.content_desc} />
+                    <AnswerWidget qc_id={content.qc_id} text={content.content_desc} />
                   </Grid>
                 )
               }
@@ -188,12 +186,12 @@ const Exam = ({
           }
         </Grid>
       </Grid>
-
     </Container>
   )
 }
 
 const mapStateToProps = (state, ownProps) => ({
+  isFetching: state.exam.isFetching,
   examQuestionList: state.exam.examQuestionList,
   question: state.exam.question,
 })

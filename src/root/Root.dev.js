@@ -19,7 +19,7 @@ const Root = () => {
         <Route path='/login' component={Login} />
         <Route path='/change-password' component={ChangePassword} />
         <Route path="/staff/" component={Staff} />
-        <Route path="/exam/:examID/:questionID?" component={Exam} />
+        <PrivateRoute path="/exam/:examID/:questionID?" component={Exam} />
         <PrivateRoute path="/dashboard/" component={Dashboard} />
         <Route path="/" component={Homepage} />
       </Switch>

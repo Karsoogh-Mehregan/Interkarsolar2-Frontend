@@ -301,7 +301,6 @@ function Homepage({ isLoggedIn }) {
               color="default"
               size="medium"
               target="_blank"
-              rel="noopener noreferrer"
               href="staff/">
               <Typography variant="h3">مشاهده همه</Typography>
             </Button>

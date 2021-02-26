@@ -69,6 +69,10 @@ const useStyles = makeStyles((theme) => ({
 const ExamTab = ({ isFetching, }) => {
   const classes = useStyles();
 
+  const showToast = () => {
+    toast.info('مسابقه هنوز شروع نشده. یکم صبر کنین!');
+  }
+
   return (
     <Container style={{ overflow: 'hidden' }}>
       <div className={`dashboard-background blur`} />
@@ -101,7 +105,7 @@ const ExamTab = ({ isFetching, }) => {
               </Typography>
             </Grid>
             <Grid item container justify='center'>
-              <Button href='/exam/1/' target="_blank" rel="noopener noreferrer" variant='contained' color='primary' size='large' disabled={isFetching}>
+              <Button onClick={showToast} target="_blank" variant='contained' color='primary' size='large' disabled={isFetching}>
                 بزن بریم!
               </Button>
             </Grid>

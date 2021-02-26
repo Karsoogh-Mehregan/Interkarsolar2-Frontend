@@ -1,4 +1,3 @@
-import Konva from 'konva';
 import React, { useState, useEffect } from 'react';
 import { Stage, Layer, Rect, Text, Image, Group } from 'react-konva';
 import useImage from 'use-image';

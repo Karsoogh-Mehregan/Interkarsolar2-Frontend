@@ -150,6 +150,7 @@ export class Society {
 	}
 
 	selectPerson(personID) {
+		if (this.people[personID].isSelected) return;
 		this.people[personID].isSelected = true;
 		this.selectedPeople.push(personID);
 		this.updateComponent(Math.random()); //todo: handle re-rendering in another way!
@@ -161,6 +162,7 @@ export class Society {
 	}
 
 	unselectPerson(personID) {
+		if (!this.people[personID].isSelected) return;
 		for (var i = 0; i < this.selectedPeople.length; i++) {
 			if (this.people[this.selectedPeople[i]].id === personID) {
 				this.selectedPeople.splice(i, 1);
@@ -209,12 +211,10 @@ export class Society {
 
 		const probableIllPeople = _getRandomSubset(x, realIllPeople).concat(_getRandomSubset(y, realHealthyPeople));
 		probableIllPeople.forEach((probableIllID) => {
-			console.log(probableIllID)
 			const probableIllPerson = this.people[probableIllID];
 			probableIllPerson.imageType = 'red';
 		})
 		this.selectedPeople.filter(personID => !probableIllPeople.includes(personID)).forEach((probableHealthyID) => {
-			console.log(probableHealthyID)
 			const probableHealthyPerson = this.people[probableHealthyID];
 			probableHealthyPerson.imageType = 'green';
 		})
@@ -222,19 +222,23 @@ export class Society {
 	}
 
 	reset() {
+		this.unselectAll()
 		this.people.forEach((person) => {
 			person.imageType = 'normal';
-			person.isSelected = false;
 		})
-		this.selectedPeople = [];
 		this.updateComponent(Math.random()); //todo: handle re-rendering in another way!
 	}
 
 	selectAll() {
 		this.people.forEach((person) => {
-			this.selectedPeople.push(person.id);
+			this.selectPerson(person.id)
 		})
-		this.updateComponent(Math.random()); //todo: handle re-rendering in another way!
+	}
+
+	unselectAll() {
+		this.people.forEach((person) => {
+			this.unselectPerson(person.id)
+		})
 	}
 
 	sendToHospital() {
@@ -244,10 +248,12 @@ export class Society {
 		}
 		let score = 0;
 		this.people.forEach((person) => {
-			if ((person.isIll && this.selectedPeople.includes(person.id)) || (!person.isIll && !this.selectedPeople.includes(person.id))) {
-				score++;
-			} else if ((!person.isIll && this.selectedPeople.includes(person.id)) || (person.isIll && !this.selectedPeople.includes(person.id))) {
-				score--;
+			if (this.selectedPeople.includes(person.id)) {
+				if (person.isIll) {
+					score++;
+				} else {
+					score--;
+				}
 			}
 		})
 		this.updateComponent(Math.random()); //todo: handle re-rendering in another way!

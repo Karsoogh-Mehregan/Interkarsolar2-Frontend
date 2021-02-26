@@ -9,6 +9,7 @@ import {
 	MenuItem,
 	Container,
 	Paper,
+	ButtonGroup,
 } from '@material-ui/core';
 import { toast } from 'react-toastify';
 import { Society, TESTS } from './script';
@@ -91,14 +92,17 @@ function CoronaTest({ }) {
 			<div className={classes.resetGame}>
 				<Grid container direction='column' spacing={1}>
 					<Grid item>
-						<Button onClick={resetGame} variant='contained' color='primary' fullWidth>
-							شروع دوباره‌ی بازی
-						</Button>
-					</Grid>
-					<Grid item>
-						<Button onClick={roadToHospital} variant='contained' color='primary' fullWidth>
-							به سوی بیمارستان...
-						</Button>
+						<ButtonGroup
+							orientation="vertical"
+							color="primary"
+							variant='contained'
+							fullWidth
+						>
+							<Button onClick={resetGame}>شروع دوباره‌ی بازی</Button>
+							<Button onClick={roadToHospital}>به سوی بیمارستان...</Button>
+							<Button onClick={() => { society.selectAll() }}>انتخاب همه</Button>
+							<Button onClick={() => { society.unselectAll() }}>حذف انتخاب همه</Button>
+						</ButtonGroup>
 					</Grid>
 				</Grid>
 			</div>

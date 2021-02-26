@@ -15,8 +15,9 @@ import {
 } from '../../redux/actions/account'
 import { connect } from 'react-redux';
 
-import Exam from './Exam';
+import ExamTab from './Exam';
 import AnnouncementsTab from './Announcements';
+import RegistrationTab from './Registration';
 import ProfileTab from './Profile';
 import ButtonBar from './ButtonBar';
 
@@ -87,7 +88,7 @@ function Dashboard({
     () => {
       if (tabName == 'announcements') {
         setTab(0);
-      } else if (tabName == 'exam') {
+      } else if (tabName == 'registration') {
         setTab(1);
       } else if (tabName == 'profile') {
         setTab(2);
@@ -120,7 +121,7 @@ function Dashboard({
         }
         {
           tab == 1 && isRegistrationCompleted &&
-          <Exam />
+          <RegistrationTab isRegistrationCompleted={isRegistrationCompleted} isAllowed={isAllowed} />
         }
         {
           tab == 2 &&
@@ -128,7 +129,7 @@ function Dashboard({
         }
         {
           tab == 3 &&
-          <Exam isRegistrationCompleted={isRegistrationCompleted} />
+          <ExamTab isRegistrationCompleted={isRegistrationCompleted} />
         }
       </Grid>
       <Grid item container>

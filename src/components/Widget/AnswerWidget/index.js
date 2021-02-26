@@ -67,6 +67,7 @@ const AnswerWidget = ({
     () => {
       const fetchPreviousAnswers = async () => {
         const action = await getPreviousAnswer(qc_id)
+        if (!action.response) return;
         setPreviousFileAnswer(action.response.data.file ? BASE_URL_OF_FILES_ON_DATABASE + action.response.data.file : '');
         setTextAnswer(action.response.data.answer)
       }

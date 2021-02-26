@@ -24,14 +24,16 @@ export default ({ getState }) => (next) => async (action) => {
 
   try {
 
-    if (fetchOptions.body) {
+    if (!fetchOptions.dontContentType && fetchOptions.body) {
       fetchOptions.body = queryString.stringify(fetchOptions.body);
     }
 
-    fetchOptions.headers = {
-      "Content-Type": "application/x-www-form-urlencoded",
-      ...fetchOptions.headers,
-    };
+    if (!fetchOptions.dontContentType) {
+      fetchOptions.headers = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        ...fetchOptions.headers,
+      };
+    }
 
     const account = getState().account;
     if (account && account.token) {

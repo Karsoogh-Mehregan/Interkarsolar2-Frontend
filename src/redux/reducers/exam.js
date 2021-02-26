@@ -20,12 +20,16 @@ function exam(state = initState, action) {
                 isFetching: false,
             }
 
-
         case actionTypes.GET_EXAM_SUCCESS:
             return {
                 ...state,
                 isFetching: false,
                 examQuestionList: action.response.data,
+            }
+
+        case actionTypes.GET_ANSWER_SUCCESS:
+            return {
+                ...state,
             }
 
         case actionTypes.GET_QUESTION_SUCCESS:

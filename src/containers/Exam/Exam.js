@@ -9,28 +9,17 @@ import {
   Paper,
   Divider,
 } from '@material-ui/core';
-import TinyPreview from '../../components/tiny_editor/react_tiny/Preview'
-import Editor from '../../components/tiny_editor/react_tiny/TinyEditorComponent'
-
 import ImageWidget from '../../components/Widget/ImageWidget';
-import BigAnswerQuestionWidget from '../../components/Widget/BigAnswerQuestionWidget';
+import BigAnswerQuestionWidget from '../../components/Widget/AnswerWidget';
 import TextWidget from '../../components/Widget/TextWidget';
-import UploadFileWidget from '../../components/Widget/UploadFileQuestionWidget';
 import VideoWidget from '../../components/Widget/VideoWidget';
 import MiniGameWidget from '../../components/Widget/MiniGameWidget';
-
 import {
   getExamQuestionsList,
   getQuestionContents,
 } from '../../redux/actions/exam'
-import {
-  redirect,
-} from '../../redux/actions/redirect'
-import {
-  useParams,
-  Link,
-} from "react-router-dom";
-
+import { redirect } from '../../redux/actions/redirect'
+import { useParams } from "react-router-dom";
 import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
@@ -77,20 +66,9 @@ const Exam = ({
   question,
 }) => {
   const classes = useStyles();
-  const [, rerenderPage] = useState();
   const [isNextProblemButtonDisabled, setNextProblemButtonStatus] = useState(false);
   const [isPreviousProblemButtonDisabled, setPreviousProblemButtonStatus] = useState(false);
   const { examID, questionID } = useParams();
-
-  useEffect(
-    () => {
-      setTimeout(
-        () => {
-          rerenderPage(Math.random());
-        }
-        , 2000)
-    }
-    , [])
 
   useEffect(
     () => {
@@ -99,10 +77,6 @@ const Exam = ({
     , [getExamQuestionsList, examID])
 
 
-  const goToQuestion = (questionID) => {
-    redirect(`/exam/${examID}/${questionID}`);
-  }
-
   useEffect(
     () => {
       if (!questionID && examQuestionList) {
@@ -110,6 +84,10 @@ const Exam = ({
       }
     }
     , [examQuestionList, examID, redirect, questionID])
+
+  const goToQuestion = (questionID) => {
+    redirect(`/exam/${examID}/${questionID}`);
+  }
 
   useEffect(
     () => {
@@ -139,7 +117,6 @@ const Exam = ({
         direction='row'
         justify='center'
         spacing={2}>
-
         <Grid container item xs={12} sm={9} md={3} direction='column' spacing={2}>
           <Grid item>
             <Paper className={classes.paper}>
@@ -167,9 +144,6 @@ const Exam = ({
         </Grid>
 
         <Grid container item xs={12} sm={9} md={6} direction='column' spacing={2}>
-          <Grid item>
-            <UploadFileWidget />
-          </Grid>
           {question && question.contents &&
             question.contents.map((content) => {
               if (content.type == 1) {
@@ -188,6 +162,12 @@ const Exam = ({
                 return (
                   <Grid item>
                     <ImageWidget link={content.content_desc} />
+                  </Grid>
+                )
+              } else if (content.type == 5) {
+                return (
+                  <Grid item>
+                    <BigAnswerQuestionWidget qc_id={content.qc_id} text={content.content_desc} />
                   </Grid>
                 )
               }

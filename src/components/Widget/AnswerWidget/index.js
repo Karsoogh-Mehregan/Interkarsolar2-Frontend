@@ -4,9 +4,15 @@ import { connect } from 'react-redux';
 import TinyPreview from '../../tiny_editor/react_tiny/Preview';
 import TinyEditorComponent from '../../tiny_editor/react_tiny/TinyEditorComponent';
 import {
+  DescriptionOutlined as DescriptionOutlinedIcon,
+} from '@material-ui/icons';
+import {
   getPreviousAnswer,
   sendAnswer,
 } from '../../../redux/actions/exam'
+
+const BASE_URL_OF_FILES_ON_DATABASE = 'https://backend.interkarsolar.ir/media/'
+const INSTEAD_OF_BLANK = 'پاسخت به این سوال رو یا به صورت متن این‌جا تایپ کن، یا در قالب یک فایل بارگذاریش کن.';
 
 const useStyles = makeStyles((theme) => ({
   flex: {
@@ -16,22 +22,32 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
   },
+  lastUploadButton: {
+    fontSize: 10,
+    color: '#334499',
+    '& .MuiButton-endIcon': {
+      marginLeft: 2,
+      '& > *:first-child': {
+        fontSize: 11,
+      },
+    },
+  },
 }));
 
 const AnswerWidget = ({
+  isFetching,
   getPreviousAnswer,
   sendAnswer,
   qc_id,
   text,
-  previousFileAnswer,
-  previousTextAnswer = 'پاسخت به این سوال رو یا به صورت متن این‌جا تایپ کن، یا در قالب یک فایل بارگزاریش کن.',
 }) => {
   const classes = useStyles();
-  const [fileAnswer, setFileAnswer] = useState('ddd');
-  const [textAnswer, setTextAnswer] = useState(previousTextAnswer);
+  const [previousFileAnswer, setPreviousFileAnswer] = useState();
+  const [fileAnswer, setFileAnswer] = useState();
+  const [textAnswer, setTextAnswer] = useState();
 
   const doSendAnswer = () => {
-    sendAnswer(fileAnswer, textAnswer, qc_id)
+    sendAnswer(fileAnswer, textAnswer ? textAnswer : INSTEAD_OF_BLANK, qc_id)
   }
 
   const onChangeFile = async (e) => {
@@ -49,11 +65,16 @@ const AnswerWidget = ({
 
   useEffect(
     () => {
+      const fetchPreviousAnswers = async () => {
+        const action = await getPreviousAnswer(qc_id)
+        setPreviousFileAnswer(action.response.data.file ? BASE_URL_OF_FILES_ON_DATABASE + action.response.data.file : '');
+        setTextAnswer(action.response.data.answer)
+      }
       if (qc_id) {
-        getPreviousAnswer(qc_id)
+        fetchPreviousAnswers();
       }
     }
-    , [qc_id])
+    , [qc_id, getPreviousAnswer])
 
   return (
     <Paper className={classes.paper}>
@@ -71,22 +92,39 @@ const AnswerWidget = ({
         <Grid item xs={12}>
           <TinyEditorComponent
             id={`text-answer-${Math.floor(Math.random() * 1000)}`}
-            content={previousTextAnswer}
+            content={textAnswer}
             onChange={setTextAnswer}
           />
         </Grid>
         <Grid item container xs={12} sm={6} justify='center' alignItems='center'>
-          <input
-            accept="application/pdf,image/*"
-            type="file"
-            onChange={onChangeFile}
-          />
+          <Grid item container justify='center' alignItems='center'>
+            <input
+              accept="application/pdf,image/*"
+              type="file"
+              onChange={onChangeFile}
+            />
+          </Grid>
+          {previousFileAnswer &&
+            <Grid item container justify='center' alignItems='center'>
+              <Button
+                size="small"
+                endIcon={<DescriptionOutlinedIcon />}
+                className={classes.lastUploadButton}
+                href={previousFileAnswer}
+                component="a"
+                download
+                target="_blank">
+                آخرین فایل ارسالی
+              </Button>
+            </Grid>
+          }
         </Grid>
         <Grid item container xs={12} sm={6} justify='center' alignItems='center'>
           <Button
             fullWidth
             variant="contained"
             color="primary"
+            disabled={isFetching}
             onClick={doSendAnswer}>
             ذخیره جواب
           </Button>
@@ -98,6 +136,7 @@ const AnswerWidget = ({
 
 const mapStateToProps = (state, ownProps) => ({
   qc_id: ownProps.qc_id,
+  isFetching: state.exam.isFetching,
 })
 
 export default connect(

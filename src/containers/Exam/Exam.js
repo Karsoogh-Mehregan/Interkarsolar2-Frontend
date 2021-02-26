@@ -121,13 +121,13 @@ const Exam = ({
               <Grid container direction='column' spacing={2}>
                 <Grid item>
                   <Typography align='center' variant='h2'>
-                    {question.title}
+                    {question && question.title}
                   </Typography>
                 </Grid>
                 <Divider />
                 <Grid item>
                   <Typography>
-                    {question.description}
+                    {question && question.description}
                   </Typography>
                 </Grid>
                 <Grid item container justify='center'>

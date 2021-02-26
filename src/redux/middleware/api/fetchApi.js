@@ -11,6 +11,9 @@ const checkErrorsStatusCode = (response, jsonResponse) => {
     throw new Error('توکن شما منقضی شده است!');
     // throw new Error('TOKEN EXPIRED');
   }
+  if (jsonResponse.res_code === 667) {
+    throw new Error('نمیشه که نه متن بفرستی، نه فایل!');
+  }
   // todo: confusing!
   if (response.status === 403 || jsonResponse.res_code === 601 || jsonResponse.res_code === 662 || jsonResponse.res_code === 663) {
     throw new Error('شما دسترسی ندارید!');

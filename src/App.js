@@ -1,17 +1,43 @@
 import './theme/styles/style.scss';
 import 'react-toastify/dist/ReactToastify.css';
-import { Slide, ToastContainer } from 'react-toastify';
+import { Slide, ToastContainer, toast } from 'react-toastify';
 import { CssBaseline, LinearProgress } from '@material-ui/core';
 import { ThemeProvider, StylesProvider } from '@material-ui/styles';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { initRedirect } from './redux/actions/redirect';
+import { initToast } from './redux/actions/notifications';
 import Root from './root/Root';
 import RTLMuiTheme from './theme/RTLMuiTheme';
 import jss from './utils/jssRTL';
 
-const App = ({ redirectTo, forceRedirect, initRedirect, loading }) => {
+const App = ({ redirectTo, forceRedirect, initRedirect, initToast, loading, notifications }) => {
+
+  const [_, rerender] = useState();
+
+  useEffect(() => {
+    console.log(notifications)
+    if (notifications.success) {
+      setTimeout(() => {
+        toast.success(notifications.success);
+      }, 0)
+    } else if (notifications.warning) {
+      setTimeout(() => {
+        toast.warning(notifications.warning);
+      }, 0)
+    } else if (notifications.info) {
+      setTimeout(() => {
+        toast.info(notifications.info);
+      }, 0)
+    } else if (notifications.error) {
+      setTimeout(() => {
+        toast.error(notifications.error);
+      }, 0)
+    }
+    rerender(Math.random());
+    initToast();
+  }, [notifications, initToast])
 
   const history = useHistory();
   useEffect(() => {
@@ -19,7 +45,7 @@ const App = ({ redirectTo, forceRedirect, initRedirect, loading }) => {
       history.push(redirectTo);
       initRedirect();
     }
-  }, [redirectTo, forceRedirect, initRedirect, history]);
+  }, [redirectTo, initRedirect, history]);
 
   const Toast = () => (
     <ToastContainer
@@ -68,6 +94,7 @@ const mapStateToProps = (state) => ({
   redirectTo: state.redirect.redirectTo,
   forceRedirect: state.redirect.force,
   loading: state.account.isFetching || state.exam.isFetching,
+  notifications: state.notifications,
 });
 
-export default connect(mapStateToProps, { initRedirect })(App);
+export default connect(mapStateToProps, { initRedirect, initToast })(App);

@@ -44,7 +44,7 @@ const AnswerWidget = ({
   const classes = useStyles();
   const [previousFileAnswer, setPreviousFileAnswer] = useState();
   const [fileAnswer, setFileAnswer] = useState();
-  const [textAnswer, setTextAnswer] = useState();
+  const [textAnswer, setTextAnswer] = useState(INSTEAD_OF_BLANK);
 
   const doSendAnswer = () => {
     sendAnswer(fileAnswer, textAnswer ? textAnswer : INSTEAD_OF_BLANK, qc_id)

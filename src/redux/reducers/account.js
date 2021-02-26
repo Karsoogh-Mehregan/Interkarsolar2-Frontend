@@ -88,7 +88,6 @@ function account(state = initState, action) {
 
     //////////////////////////
 
-    case actionTypes.LOGOUT_REQUEST:
     case actionTypes.LOGOUT:
       return initState;
 

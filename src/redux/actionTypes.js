@@ -80,3 +80,7 @@ export const GET_ANSWER_FAILURE = 'GET_ANSWER_FAILURE';
 // Redirect
 export const REDIRECT = 'REDIRECT';
 export const INIT_REDIRECT = 'INIT_REDIRECT';
+
+//Toast
+export const INIT_TOAST = 'INIT_TOAST';
+

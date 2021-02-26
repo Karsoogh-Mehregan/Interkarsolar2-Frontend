@@ -165,13 +165,13 @@ const Exam = ({
             question.contents.map((content) => {
               if (content.type == 1) {
                 return (
-                  <Grid item>
+                  <Grid item id={Math.random()}>
                     <TextWidget text={content.content_desc} />
                   </Grid>
                 )
               } else if (content.type == 2) {
                 return (
-                  <Grid item>
+                  <Grid item id={Math.random()}>
                     <VideoWidget link={content.content_desc} />
                   </Grid>
                 )
@@ -183,7 +183,7 @@ const Exam = ({
                 )
               } else if (content.type == 5) {
                 return (
-                  <Grid item>
+                  <Grid item id={Math.random()}>
                     <AnswerWidget qc_id={content.qc_id} text={content.content_desc} />
                   </Grid>
                 )
@@ -196,7 +196,7 @@ const Exam = ({
             question.contents.map((content) => {
               if (content.type == 4) {
                 return (
-                  <Grid item>
+                  <Grid item id={Math.random()}>
                     <MiniGameWidget link={content.content_desc} />
                   </Grid>
                 )

@@ -75,6 +75,9 @@ const AnnouncementsTab = ({ status, isRegistrationCompleted, didPaymentFail }) =
           alignItems='center'
           spacing={2}>
           <Grid item xs={12}>
+            <Announcement title='مرحله یک شروع شد!' date='۸اسفند۹۹' image='announcement.jpg' text='بالاخره مرحله یک شروع شد! اگه پیش‌تر ثبت‌نام کردی، می‌تونی از همین الان وارد بخش «آزمون‌ها» بشی و مرحله اول رو شروع کنی! اگه سوالی برات پیش اومد، از ادمین کارسوق بپرسین!' />
+          </Grid>
+          <Grid item xs={12}>
             <Announcement title='داغ‌ترین اخبار!' date='۸اسفند۹۹' image='changePassword.png' text='کم‌کم داره مرحله یک شروع میشه. برای اطلاع از آخرین اخبار و اطلاعیه‌های آزمون، عضو کانال کارسوق در تلگرام، بله یا ایتا (@karsooghmehregan) بشید.' />
           </Grid>
           {didPaymentFail &&

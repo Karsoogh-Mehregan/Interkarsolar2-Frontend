@@ -74,6 +74,9 @@ const AnnouncementsTab = ({ status, isRegistrationCompleted, didPaymentFail }) =
           justify='center'
           alignItems='center'
           spacing={2}>
+          <Grid item xs={12}>
+            <Announcement title='داغ‌ترین اخبار!' date='۸اسفند۹۹' image='changePassword.png' text='کم‌کم داره مرحله یک شروع میشه. برای اطلاع از آخرین اخبار و اطلاعیه‌های آزمون، عضو کانال کارسوق در تلگرام، بله یا ایتا (@karsooghmehregan) بشید.' />
+          </Grid>
           {didPaymentFail &&
             < Grid item xs={12}>
               <Announcement title='ای بابا!' date='همین چند لحظه پیش' image='ohDad.png' text='به نظر می‌رسه که پرداختت با موفقیت به پایان نرسیده. اگه پولی از حسابت کم شده ولی ثبت‌نامت نهایی نشده، به ادمینِ کاروسق توی بله، اینستاگرام یا تلگرام پیام بده تا پیگیری کنیم :)' />

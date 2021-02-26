@@ -39,6 +39,25 @@ export const login = (national_code, password) => ({
   },
 });
 
+export const changePassword = (national_code, new_password, phone1) => ({
+  [CALL_API]: {
+    types: [
+      actionTypes.CHANGE_PASSWORD_REQUEST,
+      actionTypes.CHANGE_PASSWORD_SUCCESS,
+      actionTypes.CHANGE_PASSWORD_FAILURE,
+    ],
+    url: URLs.CHANGE_PASSWORD,
+    fetchOptions: {
+      method: 'POST',
+      body: {
+        national_code,
+        phone1,
+        new_password,
+      },
+    },
+  },
+});
+
 export const logout = () => ({
   [CALL_API]: {
     types: [

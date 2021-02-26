@@ -80,7 +80,7 @@ const Exam = ({
 
   useEffect(
     () => {
-      if (!questionID && examQuestionList) {
+      if (!questionID && examQuestionList && examQuestionList[0]) {
         goToQuestion(examQuestionList[0].id);
       }
     }
@@ -92,7 +92,7 @@ const Exam = ({
 
   useEffect(
     () => {
-      if (questionID && examQuestionList) {
+      if (questionID && examQuestionList && examQuestionList[0] && examQuestionList[examQuestionList.length - 1]) {
         getQuestionContents(questionID);
         if (questionID == examQuestionList[0].id) {
           setPreviousProblemButtonStatus(true);

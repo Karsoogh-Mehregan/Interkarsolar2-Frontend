@@ -17,7 +17,6 @@ const App = ({ redirectTo, forceRedirect, initRedirect, initToast, loading, noti
   const [_, rerender] = useState();
 
   useEffect(() => {
-    console.log(notifications)
     if (notifications.success) {
       setTimeout(() => {
         toast.success(notifications.success);

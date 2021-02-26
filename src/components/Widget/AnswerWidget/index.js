@@ -44,7 +44,7 @@ const AnswerWidget = ({
   const classes = useStyles();
   const [previousFileAnswer, setPreviousFileAnswer] = useState();
   const [fileAnswer, setFileAnswer] = useState();
-  const [textAnswer, setTextAnswer] = useState(INSTEAD_OF_BLANK);
+  const [textAnswer, setTextAnswer] = useState();
 
   const doSendAnswer = () => {
     sendAnswer(fileAnswer, textAnswer ? textAnswer : INSTEAD_OF_BLANK, qc_id)
@@ -67,7 +67,13 @@ const AnswerWidget = ({
     () => {
       const fetchPreviousAnswers = async () => {
         const action = await getPreviousAnswer(qc_id)
+        console.log(action);
         if (!action.response) return;
+        if (action.response.res_code === 602) {
+          setPreviousFileAnswer('');
+          setTextAnswer(INSTEAD_OF_BLANK)
+          return;
+        }
         setPreviousFileAnswer(action.response.data.file ? BASE_URL_OF_FILES_ON_DATABASE + action.response.data.file : '');
         setTextAnswer(action.response.data.answer)
       }
@@ -100,7 +106,7 @@ const AnswerWidget = ({
         <Grid item container xs={12} sm={6} justify='center' alignItems='center'>
           <Grid item container justify='center' alignItems='center'>
             <input
-              id={Math.random()}
+              id={`file-answer-${Math.random()}`}
               accept="application/pdf,image/*"
               type="file"
               onChange={onChangeFile}

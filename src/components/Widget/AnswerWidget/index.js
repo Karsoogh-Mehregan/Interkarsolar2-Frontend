@@ -109,6 +109,7 @@ const AnswerWidget = ({
               id={`file-answer-${Math.random()}`}
               accept="application/pdf,image/*"
               type="file"
+              value=''
               onChange={onChangeFile}
             />
           </Grid>

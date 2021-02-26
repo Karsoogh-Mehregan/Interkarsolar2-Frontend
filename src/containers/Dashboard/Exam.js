@@ -105,7 +105,7 @@ const ExamTab = ({ isFetching, }) => {
               </Typography>
             </Grid>
             <Grid item container justify='center'>
-              <Button onClick={showToast} target="_blank" variant='contained' color='primary' size='large' disabled={isFetching}>
+              <Button href='/exam/1' target="_blank" variant='contained' color='primary' size='large' disabled={isFetching}>
                 بزن بریم!
               </Button>
             </Grid>

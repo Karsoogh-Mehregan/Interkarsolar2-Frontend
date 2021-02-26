@@ -45,43 +45,50 @@ const AnswerWidget = ({
   const [previousFileAnswer, setPreviousFileAnswer] = useState();
   const [fileAnswer, setFileAnswer] = useState();
   const [textAnswer, setTextAnswer] = useState();
+  const [inputFileID,] = useState(`file-answer-${Math.random()}`);
 
   const doSendAnswer = () => {
-    sendAnswer(fileAnswer, textAnswer ? textAnswer : INSTEAD_OF_BLANK, qc_id)
+    sendAnswer(fileAnswer, textAnswer ? textAnswer : INSTEAD_OF_BLANK, qc_id).then(() => {
+      clearInputFile();
+    });
+  }
+
+  const clearInputFile = () => {
+    document.getElementById(inputFileID).value = '';
+    setFileAnswer('');
   }
 
   const onChangeFile = async (e) => {
     e.preventDefault();
     if (e.target.files[0]) {
-      if (e.target.files[0].size <= 8e6) {
+      if (e.target.files[0].size <= 10e6) {
         setFileAnswer(e.target.files[0]);
       } else {
         e.target.value = '';
-        e.target.setCustomValidity('حداکثر حجم فایلی که می‌تونی بفرستی ۸ مگابایته');
+        e.target.setCustomValidity('اندازه‌ی فایلت خیلی بیشتر از ۸ مگابایته!');
         e.target.reportValidity();
       }
     }
   };
 
-  useEffect(
-    () => {
-      const fetchPreviousAnswers = async () => {
-        const action = await getPreviousAnswer(qc_id)
-        console.log(action);
-        if (!action.response) return;
-        if (action.response.res_code === 602) {
-          setPreviousFileAnswer('');
-          setTextAnswer(INSTEAD_OF_BLANK)
-          return;
-        }
-        setPreviousFileAnswer(action.response.data.file ? BASE_URL_OF_FILES_ON_DATABASE + action.response.data.file : '');
-        setTextAnswer(action.response.data.answer)
+  useEffect(() => {
+    clearInputFile();
+    const fetchPreviousAnswers = async () => {
+      const action = await getPreviousAnswer(qc_id);
+      console.log(action);
+      if (!action.response) return;
+      if (action.response.res_code === 602) {
+        setPreviousFileAnswer('');
+        setTextAnswer(INSTEAD_OF_BLANK)
+        return;
       }
-      if (qc_id) {
-        fetchPreviousAnswers();
-      }
+      setPreviousFileAnswer(action.response.data.file ? BASE_URL_OF_FILES_ON_DATABASE + action.response.data.file : '');
+      setTextAnswer(action.response.data.answer)
     }
-    , [qc_id, getPreviousAnswer])
+    if (qc_id) {
+      fetchPreviousAnswers();
+    }
+  }, [qc_id,])
 
   return (
     <Paper className={classes.paper}>
@@ -103,14 +110,19 @@ const AnswerWidget = ({
             onChange={setTextAnswer}
           />
         </Grid>
-        {/* <Grid item container xs={12} sm={6} justify='center' alignItems='center'>
-          <Grid item container justify='center' alignItems='center'>
+        <Grid item container xs={12} sm={6} justify='center' alignItems='center'>
+          <Grid item container justify='flex-start' alignItems='center'>
             <input
-              id={`file-answer-${Math.random()}`}
+              id={inputFileID}
               accept="application/pdf,image/*"
               type="file"
               onChange={onChangeFile}
             />
+            {!previousFileAnswer &&
+              <Typography variant='caption'>
+                حداکثر حجم فایل ارسالی ۸ مگابایته.
+              </Typography>
+            }
           </Grid>
           {previousFileAnswer &&
             <Grid item container justify='center' alignItems='center'>
@@ -126,7 +138,7 @@ const AnswerWidget = ({
               </Button>
             </Grid>
           }
-        </Grid> */}
+        </Grid>
         <Grid item container xs={12} sm={6} justify='center' alignItems='center'>
           <Button
             fullWidth

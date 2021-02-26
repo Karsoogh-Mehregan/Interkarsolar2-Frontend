@@ -120,7 +120,7 @@ function Dashboard({
           <AnnouncementsTab isRegistrationCompleted={isRegistrationCompleted} didPaymentFail={didPaymentFail} />
         }
         {
-          tab == 1 && isRegistrationCompleted &&
+          tab == 1 &&
           <RegistrationTab isRegistrationCompleted={isRegistrationCompleted} isAllowed={isAllowed} />
         }
         {

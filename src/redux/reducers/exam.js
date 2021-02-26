@@ -16,17 +16,11 @@ function exam(state = initState, action) {
                 isFetching: true,
             }
 
+        case actionTypes.SEND_ANSWER_SUCCESS:
         case actionTypes.SEND_ANSWER_FAILURE:
         case actionTypes.GET_ANSWER_FAILURE:
         case actionTypes.GET_QUESTION_FAILURE:
         case actionTypes.GET_EXAM_FAILURE:
-            return {
-                ...state,
-                isFetching: false,
-            }
-
-        case actionTypes.SEND_ANSWER_SUCCESS:
-            window.location.reload();
             return {
                 ...state,
                 isFetching: false,

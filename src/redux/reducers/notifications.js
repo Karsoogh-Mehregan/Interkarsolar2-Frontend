@@ -2,33 +2,34 @@ import * as actionTypes from '../actionTypes';
 import { toast } from 'react-toastify';
 
 const initState = {
-  nothing: '',
+  success: '',
+  error: '',
+  info: '',
+  warning: '',
 };
 
 function notifications(state = initState, action) {
   switch (action.type) {
 
     case actionTypes.CREATE_ACCOUNT_SUCCESS:
-      setTimeout(
-        () => {
-          toast.success('ورودت رو به کهکشان مهرگان خوش‌آمد میگم!');
-        }, 0);
-      return { ...state };
+      return {
+        ...state,
+        success: 'ورودت رو به کهکشان مهرگان خوش‌آمد میگم!',
+      };
 
     case actionTypes.LOGIN_SUCCESS:
-      setTimeout(
-        () => {
-          toast.success('دوباره سلام!');
-        }, 0)
-      return { ...state };
+      return {
+        ...state,
+        success: 'دوباره سلام!',
+      };
 
     case actionTypes.SEND_ANSWER_SUCCESS:
-      setTimeout(
-        () => {
-          toast.success('جواب با موفقیت ثبت شد!');
-        }, 0)
-      return { ...state };
+      return {
+        ...state,
+        success: 'جواب با موفقیت ثبت شد!',
+      };
 
+    case actionTypes.CHANGE_PASSWORD_FAILURE:
     case actionTypes.SEND_ANSWER_FAILURE:
     case actionTypes.PAYMENT_IGNORE_FAILURE:
     case actionTypes.PAYMENT_FAILURE:
@@ -36,17 +37,16 @@ function notifications(state = initState, action) {
     case actionTypes.LOGIN_FAILURE:
     case actionTypes.CREATE_ACCOUNT_FAILURE:
       if (action.error) {
-        setTimeout(
-          () => {
-            toast.error(action.error);
-          }, 0)
+        return {
+          ...state,
+          error: action.error,
+        }
       } else {
-        setTimeout(
-          () => {
-            toast.error('ای بابا! یه مشکلی وجود داره. یه چند لحظه دیگه دوباره امتحان کن.');
-          }, 0)
+        return {
+          ...state,
+          error: 'ای بابا! یه مشکلی وجود داره. یه چند لحظه دیگه دوباره امتحان کن.',
+        }
       }
-      return { ...state }
 
     case actionTypes.UPDATE_USER_INFO_SUCCESS:
       setTimeout(
@@ -66,7 +66,6 @@ function notifications(state = initState, action) {
         }, 0)
       return { ...state };
 
-    case actionTypes.CHANGE_PASSWORD_FAILURE:
       toast.error('ای بابا! یه مشکلی وجود داره. یه چند لحظه دیگه دوباره امتحان کن.');
       return { ...state };
 

@@ -59,17 +59,7 @@ export const changePassword = (national_code, new_password, phone1) => ({
 });
 
 export const logout = () => ({
-  [CALL_API]: {
-    types: [
-      actionTypes.LOGOUT_REQUEST,
-      actionTypes.LOGOUT_SUCCESS,
-      actionTypes.LOGOUT_FAILURE,
-    ],
-    url: URLs.LOGOUT,
-    fetchOptions: {
-      method: 'GET',
-    },
-  },
+  type: actionTypes.LOGOUT_REQUEST,
 });
 
 

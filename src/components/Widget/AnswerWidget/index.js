@@ -48,9 +48,7 @@ const AnswerWidget = ({
   const [inputFileID,] = useState(`file-answer-${Math.random()}`);
 
   const doSendAnswer = () => {
-    sendAnswer(fileAnswer, textAnswer ? textAnswer : INSTEAD_OF_BLANK, qc_id).then(() => {
-      clearInputFile();
-    });
+    sendAnswer(fileAnswer, textAnswer ? textAnswer : INSTEAD_OF_BLANK, qc_id);
   }
 
   const clearInputFile = () => {

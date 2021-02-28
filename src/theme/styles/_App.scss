@@ -99,7 +99,7 @@ input.rtl-placeholder::placeholder,
   top: 0;
   left: 0;
   background: url('bazi.jpg') no-repeat center center fixed;
-  opacity: 0.6;
+  opacity: 0.8;
 
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -108,8 +108,8 @@ input.rtl-placeholder::placeholder,
   z-index: -1;
   animation: show-back 0.8s 0.3s both;
 
-  filter: blur(1px);
-  -webkit-filter: blur(1px);
+  filter: blur(4px);
+  -webkit-filter: blur(4px);
 }
 
 

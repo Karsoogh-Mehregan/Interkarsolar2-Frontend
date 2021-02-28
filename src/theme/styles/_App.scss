@@ -28,6 +28,92 @@ input.rtl-placeholder::placeholder,
   overflow-y: hidden;
 }
 
+.exam-background-1 {
+  transform: scale(1.1);
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: url('exam-background-1.jpg') no-repeat center center fixed;
+  opacity: 0.5;
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  z-index: -1;
+  animation: show-back 0.8s 0.3s both;
+
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+}
+
+.exam-background-2 {
+  transform: scale(1.1);
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: url('exam-background-2.jpg') no-repeat center center fixed;
+  opacity: 0.5;
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  z-index: -1;
+  animation: show-back 0.8s 0.3s both;
+
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+}
+
+.exam-background-3 {
+  transform: scale(1.1);
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: url('exam-background-3.jpg') no-repeat center center fixed;
+  opacity: 0.5;
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  z-index: -1;
+  animation: show-back 0.8s 0.3s both;
+
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+}
+
+.bazi {
+  transform: scale(1.1);
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: url('bazi.jpg') no-repeat center center fixed;
+  opacity: 0.6;
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  z-index: -1;
+  animation: show-back 0.8s 0.3s both;
+
+  filter: blur(1px);
+  -webkit-filter: blur(1px);
+}
+
+
+
 
 .login-background {
   transform: scale(1.1);
@@ -58,7 +144,7 @@ input.rtl-placeholder::placeholder,
   position: fixed;
   top: 0;
   left: 0;
-  background: url('createAccountBackground.jpg') no-repeat center center fixed;
+  background: url('createAccount-background.jpg') no-repeat center center fixed;
   opacity: 0.5;
 
   -webkit-background-size: cover;

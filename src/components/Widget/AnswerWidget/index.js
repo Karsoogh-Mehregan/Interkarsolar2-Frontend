@@ -141,7 +141,7 @@ const AnswerWidget = ({
           <Button
             fullWidth
             variant="contained"
-            color="primary"
+            color="secondary"
             disabled={isFetching}
             onClick={doSendAnswer}>
             ذخیره جواب

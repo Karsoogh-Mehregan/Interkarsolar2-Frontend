@@ -129,6 +129,7 @@ const Exam = ({
 
   return (
     <Container className={`${classes.centerItems} ${classes.container}`}>
+      <div className='bazi' />
       <Grid
         container
         direction='row'
@@ -150,7 +151,7 @@ const Exam = ({
                   </Typography>
                 </Grid>
                 <Grid item container justify='center'>
-                  <ButtonGroup variant='contained' color="primary" aria-label="text primary button group">
+                  <ButtonGroup variant='contained' color="secondary" aria-label="text primary button group">
                     <Button disabled={isNextProblemButtonDisabled} onClick={() => goToQuestion(parseInt(getNextQuestionID(questionID)))}>سوال بعدی</Button>
                     <Button disabled={isPreviousProblemButtonDisabled} onClick={() => goToQuestion(parseInt(getPreviousQuestionID(questionID)))}>سوال قبلی</Button>
                   </ButtonGroup>

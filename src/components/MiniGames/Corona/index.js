@@ -94,7 +94,7 @@ function CoronaTest({ }) {
 					<Grid item>
 						<ButtonGroup
 							orientation="vertical"
-							color="primary"
+							color="secondary"
 							variant='contained'
 							fullWidth
 						>
@@ -147,7 +147,7 @@ function CoronaTest({ }) {
 							</FormControl >
 						</Grid>
 						<Grid item xs={12} sm={3} container justify='center' alignItems='center'>
-							<Button variant='contained' color='primary' fullWidth onClick={doTakeTest}>
+							<Button variant='contained' color='secondary' fullWidth onClick={doTakeTest}>
 								انجام تست
 						</Button>
 						</Grid>
@@ -156,7 +156,7 @@ function CoronaTest({ }) {
 				{mode === 1 &&
 					<Grid container item spacing={2} justify='center' alignItems='center'>
 						<Grid item xs={12} sm={6} container justify='center' alignItems='center'>
-							<Button variant='contained' color='primary' fullWidth onClick={getReadyForAnotherTest}>
+							<Button variant='contained' color='secondary' fullWidth onClick={getReadyForAnotherTest}>
 								انجام تست مجدد
 							</Button>
 						</Grid>
@@ -165,7 +165,7 @@ function CoronaTest({ }) {
 				{mode === 2 &&
 					<Grid container item spacing={2} justify='center' alignItems='center'>
 						<Grid item xs={12} container justify='center' alignItems='center'>
-							<Button variant='contained' color='primary' fullWidth onClick={doSendToHospital}>
+							<Button variant='contained' color='secondary' fullWidth onClick={doSendToHospital}>
 								افرادی رو که فکر می‌کنی بیمار هستند، انتخاب کن و به بیمارستان معرفیشون کن!
 							</Button>
 						</Grid>

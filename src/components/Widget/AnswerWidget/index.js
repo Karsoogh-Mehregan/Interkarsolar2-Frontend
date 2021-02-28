@@ -73,7 +73,6 @@ const AnswerWidget = ({
     clearInputFile();
     const fetchPreviousAnswers = async () => {
       const action = await getPreviousAnswer(qc_id);
-      console.log(action);
       if (!action.response) return;
       if (action.response.res_code === 602) {
         setPreviousFileAnswer('');

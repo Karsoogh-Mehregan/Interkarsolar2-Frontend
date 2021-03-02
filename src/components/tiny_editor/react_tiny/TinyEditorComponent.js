@@ -6,9 +6,9 @@ import React from 'react';
 
 import config from '../config';
 
-const TinyEditor = ({ content, onChange }) => {
+const TinyEditor = ({ content, onChange, ...rest }) => {
   return (
-    <Editor init={{ ...config }} value={content} onEditorChange={onChange} />
+    <Editor init={{ ...config }} value={content} {...rest} onEditorChange={onChange} />
   );
 };
 

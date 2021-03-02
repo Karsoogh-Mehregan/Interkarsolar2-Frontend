@@ -1,5 +1,5 @@
 import { Button, makeStyles, Paper, Typography, Grid } from '@material-ui/core';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import TinyPreview from '../../tiny_editor/react_tiny/Preview';
 import TinyEditorComponent from '../../tiny_editor/react_tiny/TinyEditorComponent';
@@ -42,14 +42,14 @@ const AnswerWidget = ({
   text,
 }) => {
   const classes = useStyles();
+  const [editor, setEditor] = useState(<div />);
   const [previousFileAnswer, setPreviousFileAnswer] = useState();
   const [fileAnswer, setFileAnswer] = useState();
-  const [textAnswer, setTextAnswer] = useState();
+  const [textAnswer, setTextAnswer] = useState("");
   const [inputFileID,] = useState(`file-answer-${Math.random()}`);
 
   const doSendAnswer = () => {
     const newText = textAnswer.replace(/\\/g, '/').replace(/"/g, '\\"');
-    console.log(newText)
     sendAnswer(fileAnswer, newText ? newText : INSTEAD_OF_BLANK, qc_id);
   }
 
@@ -78,16 +78,20 @@ const AnswerWidget = ({
       if (!action.response) return;
       if (action.response.res_code === 602) {
         setPreviousFileAnswer('');
-        setTextAnswer(INSTEAD_OF_BLANK)
+        setEditor(<TinyEditorComponent content={INSTEAD_OF_BLANK} onChange={setTextAnswer} />);
         return;
       }
       setPreviousFileAnswer(action.response.data.file ? BASE_URL_OF_FILES_ON_DATABASE + action.response.data.file : '');
-      setTextAnswer(action.response.data.answer)
+      setEditor(<TinyEditorComponent content={action.response.data.answer} onChange={setTextAnswer} />);
     }
     if (qc_id) {
       fetchPreviousAnswers();
     }
   }, [qc_id,])
+
+  useEffect(() => {
+
+  }, [])
 
   return (
     <Paper className={classes.paper}>
@@ -103,11 +107,7 @@ const AnswerWidget = ({
           />
         </Grid>
         <Grid item xs={12}>
-          <TinyEditorComponent
-            id={`text-answer-${Math.floor(Math.random() * 1000)}`}
-            content={textAnswer}
-            onChange={setTextAnswer}
-          />
+          {editor}
         </Grid>
         <Grid item container xs={12} sm={6} justify='center' alignItems='center'>
           <Grid item container justify='flex-start' alignItems='center'>

@@ -94,12 +94,13 @@ const RegistrationTab = ({ doPayment, isFetching, info, ignorePayment, isAllowed
          </Typography>
         </Grid>
         <Grid container item direction='row' justify='center' spacing={4}>
-          {isAllowed &&
+          <Grid item xs={12} sm={6} className={classes.sadImage} />
+          {/* {isAllowed &&
             <Grid item xs={12} sm={6} className={classes.readyImage} />
           }
           {!isAllowed &&
             <Grid item xs={12} sm={6} className={classes.sadImage} />
-          }
+          } */}
           <Grid
             xs={12} sm={5}
             item
@@ -111,16 +112,17 @@ const RegistrationTab = ({ doPayment, isFetching, info, ignorePayment, isAllowed
           >
             <Grid item container justify='center'>
               <Typography variant='h3' className={classes.header3} align='center'>
-                {
+                {'مهلت ثبت‌نام تموم شده :('}
+                {/* {
                   isRegistrationCompleted
                     ? 'خوبه. ثبت‌نام نهایی‌ات با موفقیت انجام شده. ان‌شاالله اطلاعاتت رو بررسی می‌کنیم و اگه مشکلی بود، بهت خبر می‌دیم (;'
                     : isAllowed
                       ? 'ایول! اطلاعاتت تکمیله و می‌تونی ثبت‌نامت رو نهایی کنی...'
                       : 'انگار هنوز اطلاعاتت ناقصه! به بخش «مشخصات من» برو و مشخصاتت رو کامل کن، بعد می‌تونی ثبت‌نامت رو نهایی کنی.'
-                }
+                } */}
               </Typography>
             </Grid>
-            {isAllowed && !isRegistrationCompleted &&
+            {/* {isAllowed && !isRegistrationCompleted &&
               <>
                 <Grid item container direction='row' spacing={4} justify='space-around'>
                   <Grid item xs={1}>
@@ -138,7 +140,7 @@ const RegistrationTab = ({ doPayment, isFetching, info, ignorePayment, isAllowed
                   </Button>
                 </Grid>
               </>
-            }
+            } */}
           </Grid>
           <Hidden xsDown>
             <Grid item xs={12} sm={1} />

@@ -101,14 +101,15 @@ const ExamTab = ({ isFetching, }) => {
           >
             <Grid item container justify='center'>
               <Typography variant='h3' className={classes.header3} align='center'>
-                برای ورود به آزمون مرحله اول آماده‌ای؟
+                {'آزمون مرحله اول تموم شده :('}
+                {/* برای ورود به آزمون مرحله اول آماده‌ای؟ */}
               </Typography>
             </Grid>
-            <Grid item container justify='center'>
+            {/* <Grid item container justify='center'>
               <Button href='/exam/1' target="_blank" variant='contained' color='primary' size='large' disabled={isFetching}>
                 بزن بریم!
               </Button>
-            </Grid>
+            </Grid> */}
           </Grid>
           <Hidden xsDown>
             <Grid item xs={12} sm={1} />

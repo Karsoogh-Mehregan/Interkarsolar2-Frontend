@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Announcement = ({ title, date, text, image }) => {
+const Announcement = ({ title, date, text, image, linkURL, linkText }) => {
   const classes = useStyles();
 
   return (
@@ -60,6 +60,11 @@ const Announcement = ({ title, date, text, image }) => {
               variant="body2"
               color="textSecondary">
               {text}
+            </Typography>
+            <Typography>
+              <a href={linkURL} target="_blank" rel="noreferrer">
+                {linkText}
+              </a>
             </Typography>
           </Grid>
         </Grid>

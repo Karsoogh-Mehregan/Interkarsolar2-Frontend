@@ -74,14 +74,19 @@ const AnnouncementsTab = ({ status, isRegistrationCompleted, didPaymentFail }) =
           justify='center'
           alignItems='center'
           spacing={2}>
+
           <Grid item xs={12}>
-            <Announcement title='مرحله یک تموم شد :(' date='۱۲اسفند۹۹' image='sad.png' text='خداروشکر مرحله اول کارسوق امسال هم به خوبی و خوشی تموم شد! امیدواریم لذت برده باشین. اخبار بعدیمون رو از طریق کانال کارسوق (@karsooghmehregan) دنبال کنید!' />
+            <Announcement title='نظرسنجی' date='۲۳ اسفند ۹۹' image='survey.png' text='قطعا در برگزاری مرحله اول مشکلاتی داشتیم که بابتش ازتون عذرخواهی می‌کنیم. لطفاً شما هم با پرکردن نظرسنجی زیر به ما برای ادامه‌ی بهتر اینترکارسولار کمک کنید!' linkURL='https://formaloo.com/interkarsolar' linkText='لینک نظرسنجی' />
+          </Grid>
+
+          <Grid item xs={12}>
+            <Announcement title='پایان مرحله یک' date='۱۲ اسفند ۹۹' image='announcement.jpg' text='خداروشکر مرحله اول کارسوق امسال هم به خوبی و خوشی تموم شد! امیدواریم لذت برده باشین. اخبار بعدیمون رو از طریق کانال کارسوق (@karsooghmehregan) دنبال کنید!' />
           </Grid>
           <Grid item xs={12}>
-            <Announcement title='مرحله یک شروع شد!' date='۸اسفند۹۹' image='announcement.jpg' text='بالاخره مرحله یک شروع شد! اگه پیش‌تر ثبت‌نام کردی، می‌تونی از همین الان وارد بخش «آزمون‌ها» بشی و مرحله اول رو شروع کنی! اگه سوالی برات پیش اومد، از ادمین کارسوق بپرسین!' />
+            <Announcement title='مرحله یک شروع شد!' date='۸ اسفند ۹۹' image='announcement.jpg' text='بالاخره مرحله یک شروع شد! اگه پیش‌تر ثبت‌نام کردی، می‌تونی از همین الان وارد بخش «آزمون‌ها» بشی و مرحله اول رو شروع کنی! اگه سوالی برات پیش اومد، از ادمین کارسوق بپرسین!' />
           </Grid>
           <Grid item xs={12}>
-            <Announcement title='داغ‌ترین اخبار!' date='۸اسفند۹۹' image='changePassword.png' text='کم‌کم داره مرحله یک شروع میشه. برای اطلاع از آخرین اخبار و اطلاعیه‌های آزمون، عضو کانال کارسوق در تلگرام، بله یا ایتا (@karsooghmehregan) بشید.' />
+            <Announcement title='داغ‌ترین اخبار!' date='۸ اسفند ۹۹' image='changePassword.png' text='کم‌کم داره مرحله یک شروع میشه. برای اطلاع از آخرین اخبار و اطلاعیه‌های آزمون، عضو کانال کارسوق در تلگرام، بله یا ایتا (@karsooghmehregan) بشید.' />
           </Grid>
           {didPaymentFail &&
             < Grid item xs={12}>
@@ -99,7 +104,7 @@ const AnnouncementsTab = ({ status, isRegistrationCompleted, didPaymentFail }) =
             </Grid>
           }
           <Grid item xs={12}>
-            <Announcement title='تمدید مهلت ثبت‌نام' date='۳۰بهمن۹۹' image='announcement.jpg' text='خب خبر خوب اینکه مهلت ثبت‌نام مرحله اول تا ۵ ام اسفند تمدید شد!' />
+            <Announcement title='تمدید مهلت ثبت‌نام' date='۳۰ بهمن ۹۹' image='announcement.jpg' text='خب خبر خوب اینکه مهلت ثبت‌نام مرحله اول تا ۵ ام اسفند تمدید شد!' />
           </Grid>
           <Grid item xs={12}>
             <Announcement title='آغاز ثبت‌نام مرحله یک' date='۲۵بهمن۹۹' image='announcement.jpg' text='بله! بعد از یک سال دوری از شما سیارک‌داران گرامی، دوباره با دوره‌ی دوم رویداد اینترکارسولار در خدمت شما هستیم! ثبت‌نام اینترکارسولار از امروز شروع شده و تا اول اسفند ادامه داره. بدو جا نمونی... ' />

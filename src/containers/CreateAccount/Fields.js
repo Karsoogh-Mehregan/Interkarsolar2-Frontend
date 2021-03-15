@@ -61,7 +61,7 @@ const InputFields = ({
           helperText='یادت باشه فقط از ارقام انگلیسی استفاده کنی!'
           value={nationalID}
           type='text'
-          variant='filled'
+          variant='outlined'
           fullWidth />
       </Grid>
       <Grid item>
@@ -77,7 +77,7 @@ const InputFields = ({
           label='شماره موبایل'
           type='tel'
           helperText='این‌جا هم همینطور، فقط رقم انگلیسی به کار ببر.'
-          variant='filled'
+          variant='outlined'
           fullWidth>
         </TextField>
       </Grid>
@@ -85,7 +85,7 @@ const InputFields = ({
         <TextField
           onBlur={(e) => setPassword(e.target.value)}
           label='رمز عبور'
-          variant='filled'
+          variant='outlined'
           type='password'
           fullWidth>
         </TextField>
@@ -95,7 +95,7 @@ const InputFields = ({
           onBlur={(e) => setConfirmPassword(e.target.value)}
           label='تکرار رمز عبور'
           type='password'
-          variant='filled'
+          variant='outlined'
           fullWidth>
         </TextField>
       </Grid>

@@ -5,22 +5,27 @@ import {
   makeStyles,
   TextField,
   Button,
+  Paper,
   Typography,
 } from '@material-ui/core';
 import { connect } from 'react-redux'
 import InputFields from './Fields';
 
 const useStyles = makeStyles((theme) => ({
-  background: {
-    height: '100vh',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2),
+  // background: {
+  //   height: '100vh',
+  //   display: 'flex',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  //   paddingTop: theme.spacing(2),
+  //   paddingBottom: theme.spacing(2),
+  // },
+  paper: {
+    padding: theme.spacing(2),
+    margin: theme.spacing(2),
   },
   readyImage: {
-    height: '40vh',
+    height: '29vh',
     background: `url(${process.env.PUBLIC_URL + '/ready.png'})`,
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
@@ -33,6 +38,7 @@ const MobileCreateAccount = () => {
   return (
     <>
       <Container className={classes.background}>
+      <Paper className={classes.paper}>
         <Grid
           container
           direction='column'
@@ -48,6 +54,7 @@ const MobileCreateAccount = () => {
           </Grid>
           <InputFields />
         </Grid>
+        </Paper>
       </Container>
     </>
   )

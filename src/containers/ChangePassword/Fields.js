@@ -60,7 +60,7 @@ const InputFields = ({
           label='کد ملی'
           value={nationalID}
           type='text'
-          variant='filled'
+          variant='outlined'
           fullWidth />
       </Grid>
       <Grid item>
@@ -76,7 +76,7 @@ const InputFields = ({
           label='شماره موبایل اصلی'
           type='tel'
           helperText='شماره موبایل زاپاس رو وارد نکنیا!'
-          variant='filled'
+          variant='outlined'
           fullWidth>
         </TextField>
       </Grid>
@@ -84,7 +84,7 @@ const InputFields = ({
         <TextField
           onBlur={(e) => setPassword(e.target.value)}
           label='رمز عبور جدید'
-          variant='filled'
+          variant='outlined'
           type='password'
           fullWidth>
         </TextField>
@@ -94,7 +94,7 @@ const InputFields = ({
           onBlur={(e) => setConfirmPassword(e.target.value)}
           label='تکرار رمز عبور جدید'
           type='password'
-          variant='filled'
+          variant='outlined'
           fullWidth>
         </TextField>
       </Grid>

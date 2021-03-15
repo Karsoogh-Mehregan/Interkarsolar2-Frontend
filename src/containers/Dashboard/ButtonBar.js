@@ -59,7 +59,7 @@ const ButtonBar = ({ onClick, logout, isRegistrationCompleted }) => {
                 </Grid>
             }
             <Grid container item justify='center' xs={12} sm={3} lg={3}>
-                <FancyPushButton text='مشخصات من' color='dark-blue' onClick={() => {
+                <FancyPushButton text='مشخصات' color='dark-blue' onClick={() => {
                     onClick(2);
                     history.push('/dashboard?tab=profile')
                 }} />

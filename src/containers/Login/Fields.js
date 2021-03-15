@@ -11,6 +11,7 @@ import {
 } from '../../redux/actions/account'
 import { toast } from 'react-toastify';
 
+
 const InputFields = ({
   login,
   isFetching,
@@ -49,17 +50,16 @@ const InputFields = ({
           value={nationalID}
           label='کد ملی'
           type='text'
-          variant='filled'
+          variant='outlined'
           fullWidth />
       </Grid>
       <Grid item>
         <TextField
           onBlur={(e) => setPassword(e.target.value)}
           label='رمز عبور'
-          variant='filled'
           type='password'
-          fullWidth>
-        </TextField>
+          variant='outlined'
+          fullWidth />
       </Grid>
       <Grid item container justify='center'>
         <Typography align='center'>

@@ -12,14 +12,14 @@ import { connect } from 'react-redux'
 import InputFields from './Fields';
 
 const useStyles = makeStyles((theme) => ({
-  // background: {
-  //   height: '100vh',
-  //   display: 'flex',
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  //   paddingTop: theme.spacing(2),
-  //   paddingBottom: theme.spacing(2),
-  // },
+  background: {
+    height: '100vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
+  },
   paper: {
     padding: theme.spacing(2),
     margin: theme.spacing(2),
@@ -45,8 +45,8 @@ const MobileCreateAccount = () => {
             justify='space-evenly'
             alignItems='stretch'
             spacing={2}>
-            <Grid item className={classes.readyImage}>
-            </Grid>
+            {/* <Grid item className={classes.readyImage}>
+            </Grid> */}
             <Grid item>
               <Typography gutterBottom variant='h3' align='center'>
                 تغییر رمز

@@ -12,14 +12,14 @@ import { connect } from 'react-redux'
 import InputFields from './Fields';
 
 const useStyles = makeStyles((theme) => ({
-  // background: {
-  //   height: '100vh',
-  //   display: 'flex',
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  //   paddingTop: theme.spacing(2),
-  //   paddingBottom: theme.spacing(2),
-  // },
+  background: {
+    height: '100vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
+  },
   paper: {
     padding: theme.spacing(2),
     margin: theme.spacing(2),
@@ -48,8 +48,8 @@ const MobileCreateAccount = () => {
             justify='space-evenly'
             alignItems='stretch'
             spacing={2}>
-            <Grid item className={classes.loginImage}>
-            </Grid>
+            {/* <Grid item className={classes.loginImage}>
+            </Grid> */}
             <Grid item>
               <Typography gutterBottom variant='h4' align='center' >
                 برای ورود به سفینه‌ات آماده‌ای؟

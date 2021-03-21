@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   notificationTitle: {
-    fontSize: 30,
+    fontSize: 28,
     color: '#4d4a70',
   },
   paper: {
@@ -39,17 +39,17 @@ const Announcement = ({ title, date, text, image, linkURL, linkText }) => {
   return (
     <Paper className={classes.paper}>
       <Grid container textAlign="center" spacing={4} >
-        <Grid item container justify='center' xs={5} sm={4} md={2} style={{ maxHeight: '20vh' }}>
+        <Grid item container justify='center' xs={12} sm={4} md={2} style={{ maxHeight: '20vh' }}>
           <img src={process.env.PUBLIC_URL + image} alt='' height='100%' />
         </Grid>
-        <Grid item xs={7} sm={8} md={10} container direction='column' justify='space-evenly' spacing={1}>
+        <Grid item xs={12} sm={8} md={10} container direction='column' justify='space-evenly' spacing={1}>
           <Grid item container alignItems='flex-end' spacing={1}>
             <Grid item>
               <Typography variant="h3" className={classes.notificationTitle}>
                 {title}
               </Typography>
             </Grid>
-            <Grid item>
+            <Grid item xs={12}>
               <Typography variant="subtitle" >
                 {date}
               </Typography>

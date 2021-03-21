@@ -5,6 +5,7 @@ import {
   makeStyles,
   TextField,
   Button,
+  Paper,
   Typography,
 } from '@material-ui/core';
 import { connect } from 'react-redux'
@@ -19,8 +20,12 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
   },
+  paper: {
+    padding: theme.spacing(2),
+    margin: theme.spacing(2),
+  },
   loginImage: {
-    height: '40vh',
+    height: '25vh',
     background: `url(${process.env.PUBLIC_URL + '/login.png'})`,
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
@@ -36,21 +41,23 @@ const MobileCreateAccount = () => {
   return (
     <>
       <Container className={classes.background}>
-        <Grid
-          container
-          direction='column'
-          justify='space-evenly'
-          alignItems='stretch'
-          spacing={2}>
-          <Grid item className={classes.loginImage}>
+        <Paper className={classes.paper}>
+          <Grid
+            container
+            direction='column'
+            justify='space-evenly'
+            alignItems='stretch'
+            spacing={2}>
+            {/* <Grid item className={classes.loginImage}>
+            </Grid> */}
+            <Grid item>
+              <Typography gutterBottom variant='h4' align='center' >
+                برای ورود به سفینه‌ات آماده‌ای؟
+              </Typography>
+            </Grid>
+            <InputFields />
           </Grid>
-          <Grid item>
-            <Typography gutterBottom variant='h3' align='center' >
-              برای ورود به سفینه‌ات آماده‌ای؟
-            </Typography>
-          </Grid>
-          <InputFields />
-        </Grid>
+        </Paper>
       </Container>
     </>
   )

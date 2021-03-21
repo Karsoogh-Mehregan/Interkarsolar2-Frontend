@@ -5,6 +5,7 @@ import {
   makeStyles,
   TextField,
   Button,
+  Paper,
   Typography,
 } from '@material-ui/core';
 import { connect } from 'react-redux'
@@ -19,8 +20,12 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
   },
+  paper: {
+    padding: theme.spacing(2),
+    margin: theme.spacing(2),
+  },
   readyImage: {
-    height: '40vh',
+    height: '29vh',
     background: `url(${process.env.PUBLIC_URL + '/ready.png'})`,
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
@@ -33,14 +38,15 @@ const MobileCreateAccount = () => {
   return (
     <>
       <Container className={classes.background}>
+      <Paper className={classes.paper}>
         <Grid
           container
           direction='column'
           justify='space-evenly'
           alignItems='stretch'
           spacing={2}>
-          <Grid item className={classes.readyImage}>
-          </Grid>
+          {/* <Grid item className={classes.readyImage}>
+          </Grid> */}
           <Grid item>
             <Typography gutterBottom variant='h3' align='center'>
               پیش‌ثبت نام اینترکارسولار۲
@@ -48,6 +54,7 @@ const MobileCreateAccount = () => {
           </Grid>
           <InputFields />
         </Grid>
+        </Paper>
       </Container>
     </>
   )

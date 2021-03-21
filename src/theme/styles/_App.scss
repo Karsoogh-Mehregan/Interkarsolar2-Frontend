@@ -112,9 +112,6 @@ input.rtl-placeholder::placeholder,
   -webkit-filter: blur(4px);
 }
 
-
-
-
 .login-background {
   transform: scale(1.1);
   height: 100vh;
@@ -123,7 +120,6 @@ input.rtl-placeholder::placeholder,
   top: 0;
   left: 0;
   background: url('loginBackground.png') no-repeat center center fixed;
-  opacity: 0.5;
 
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -131,11 +127,14 @@ input.rtl-placeholder::placeholder,
   background-size: cover;
   z-index: -1;
   animation: show-back 0.8s 0.3s both;
-
-  filter: blur(3px);
-  -webkit-filter: blur(3px);
+  @media screen and (min-width: 600px) {
+    opacity: 0.5;
+    filter: blur(3px);
+    -webkit-filter: blur(3px);
+  }
+  filter: blur(1px);
+  -webkit-filter: blur(1px);
 }
-
 
 .createAccount-background {
   transform: scale(1.1);
@@ -145,7 +144,6 @@ input.rtl-placeholder::placeholder,
   top: 0;
   left: 0;
   background: url('createAccount-background.jpg') no-repeat center center fixed;
-  opacity: 0.5;
 
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -153,11 +151,14 @@ input.rtl-placeholder::placeholder,
   background-size: cover;
   z-index: -1;
   animation: show-back 0.8s 0.3s both;
-
-  filter: blur(3px);
-  -webkit-filter: blur(3px);
+  @media screen and (min-width: 600px) {
+    opacity: 0.5;
+    filter: blur(3px);
+    -webkit-filter: blur(3px);
+  }
+  filter: blur(1px);
+  -webkit-filter: blur(1px);
 }
-
 
 .dashboard-background {
   transform: scale(1.1);

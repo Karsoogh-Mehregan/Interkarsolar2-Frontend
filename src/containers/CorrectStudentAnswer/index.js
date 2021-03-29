@@ -40,7 +40,7 @@ const Index = ({
 }) => {
   const classes = useStyles();
   const [isFetching, setIsFetching] = useState(false);
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState();
   const [answerId, setAnswerId] = useState();
   const [question, setQuestion] = useState();
   const [textAnswer, setTextAnswer] = useState();
@@ -64,6 +64,7 @@ const Index = ({
     const action = await getAnswerForCorrection({ ans_id: answerId });
     if (!action || !action.response || action.response.message != "درخواست موفق") {
       toast.error('یه اشکالی وجود داره! به تیم فنی خبر بده :(');
+      setIsFetching(false);
       return;
     }
     setQuestion(<TextWidget text={action.response.data.text} />);
@@ -85,6 +86,7 @@ const Index = ({
     const action = await setAnswerScore({ ans_id: answerId, score });
     if (action.response.message != "درخواست موفق") {
       toast.error('یه اشکالی وجود داره! به تیم فنی خبر بده :(');
+      setIsFetching(false);
       return;
     }
     toast.success('نمره با موفقیت ثبت شد!');
@@ -122,7 +124,7 @@ const Index = ({
                     </Grid>
                     <Grid item>
                       <Typography variant='h2'>
-                        {'پاسخ تایپ‌شده‌ی دانش‌آموز'}
+                        {'پاسخ تایپ‌شده'}
                       </Typography>
                     </Grid>
                     <Grid item xs={12}>

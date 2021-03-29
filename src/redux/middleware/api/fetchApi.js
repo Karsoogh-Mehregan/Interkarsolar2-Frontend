@@ -30,9 +30,6 @@ const checkErrorsStatusCode = (response, jsonResponse) => {
 };
 
 const fetchApi = async (url, fetchOptions) => {
-
-  console.log(fetchOptions);
-
   const response = await fetch(url, fetchOptions);
   let stringifiedResponse = await response.json();
   stringifiedResponse = stringifiedResponse.replace(/\\n/g, "\\n")
@@ -45,11 +42,15 @@ const fetchApi = async (url, fetchOptions) => {
     .replace(/\\f/g, "\\f");
   stringifiedResponse = stringifiedResponse.replace(/[\u0000-\u0019]+/g, "");
 
-  // console.log(stringifiedResponse);
+
+  console.log(stringifiedResponse);
+
 
   const jsonResponse = JSON.parse(stringifiedResponse);
 
-  // console.log(jsonResponse);
+
+  console.log(jsonResponse);
+
 
   checkErrorsStatusCode(response, jsonResponse);
   if (!response.ok) {

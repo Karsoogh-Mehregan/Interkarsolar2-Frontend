@@ -58,20 +58,26 @@ const Index = ({
   }
 
   const fetchAnswer = async () => {
+    setScore();
+    setQuestion();
+    setTextAnswer();
+    setFileAnswer();
     if (!isDigit(answerId)) {
       toast.error('تو شناسه‌ی سوال فقط از ارقام انگلیسی استفاده کن!');
       return;
     }
     setIsFetching(true);
     const action = await getAnswerForCorrection({ ans_id: answerId });
-    if (!action || !action.response || action.response.message != "درخواست موفق") {
+    if (!action || !action.response || !action.response.data) {
       toast.error('یه اشکالی وجود داره! به تیم فنی خبر بده :(');
       setIsFetching(false);
       return;
     }
     setQuestion(<TextWidget text={action.response.data.text} />);
     setTextAnswer(<TextWidget text={action.response.data.answer_text} />);
-    setFileAnswer(BASE_URL_OF_FILES_ON_DATABASE + action.response.data.answer_file);
+    if (action.response.data.answer_file) {
+      setFileAnswer(BASE_URL_OF_FILES_ON_DATABASE + action.response.data.answer_file);
+    }
     setIsFetching(false);
   }
 
@@ -86,7 +92,7 @@ const Index = ({
     }
     setIsFetching(true);
     const action = await setAnswerScore({ ans_id: answerId, score });
-    if (action.response.message != "درخواست موفق") {
+    if (!action || !action.response || !action.response.data) {
       toast.error('یه اشکالی وجود داره! به تیم فنی خبر بده :(');
       setIsFetching(false);
       return;

@@ -33,6 +33,13 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
     width: '100%',
+  },
+  textArea: {
+    width: '100%',
+    resize: 'vertical',
+    borderRadius: '10px',
+    minHeight: '100px',
+    padding: theme.spacing(1),
   }
 }))
 
@@ -43,6 +50,7 @@ const Index = ({
   const classes = useStyles();
   const [isFetching, setIsFetching] = useState(false);
   const [score, setScore] = useState();
+  const [comment, setComment] = useState();
   const [answerId, setAnswerId] = useState();
   const [question, setQuestion] = useState();
   const [textAnswer, setTextAnswer] = useState();
@@ -62,6 +70,7 @@ const Index = ({
     setQuestion();
     setTextAnswer();
     setFileAnswer();
+    setComment();
     if (!isDigit(answerId)) {
       toast.error('تو شناسه‌ی سوال فقط از ارقام انگلیسی استفاده کن!');
       return;
@@ -75,6 +84,7 @@ const Index = ({
     }
     setQuestion(<TextWidget text={action.response.data.text} />);
     setTextAnswer(<TextWidget text={action.response.data.answer_text} />);
+    setComment(action.response.data.comment);
     if (action.response.data.answer_file) {
       setFileAnswer(BASE_URL_OF_FILES_ON_DATABASE + action.response.data.answer_file);
     }
@@ -82,7 +92,7 @@ const Index = ({
   }
 
   const submitScore = async () => {
-    if (!isDigit(score)) {
+    if (!isDigit(score) && score != null) {
       toast.error('نمره فقط می‌تونه رقم انگلیسی باشه!');
       return;
     }
@@ -91,7 +101,7 @@ const Index = ({
       return;
     }
     setIsFetching(true);
-    const action = await setAnswerScore({ ans_id: answerId, score });
+    const action = await setAnswerScore({ ans_id: answerId, score, comment });
     if (!action || !action.response || !action.response.data) {
       toast.error('یه اشکالی وجود داره! به تیم فنی خبر بده :(');
       setIsFetching(false);
@@ -157,15 +167,21 @@ const Index = ({
                   <Grid container direction='column' spacing={2} >
                     <Grid item>
                       <Typography align='center' variant='h2'>
-                        {'نمره'}
+                        {'نمره‌دهی'}
                       </Typography>
                     </Grid>
                     <Grid item >
                       <TextField fullWidth label='نمره' variant='outlined' value={score} onChange={(e) => setScore(e.target.value)} />
                     </Grid>
+                    <Grid item>
+                      <Typography variant='caption'>
+                        {'نظر مصحح:'}
+                      </Typography>
+                      <textarea value={comment} className={classes.textArea} onChange={(e) => setComment(e.target.value)} />
+                    </Grid>
                     <Grid item >
-                      <Button disabled={!score || isFetching} variant='contained' fullWidth color='primary' onClick={submitScore}>
-                        {'ثبت نمره'}
+                      <Button disabled={isFetching} variant='contained' fullWidth color='primary' onClick={submitScore}>
+                        {'ثبت'}
                       </Button>
                     </Grid>
                   </Grid>

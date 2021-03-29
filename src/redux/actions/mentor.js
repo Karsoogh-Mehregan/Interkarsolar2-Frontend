@@ -20,7 +20,7 @@ export const getAnswerForCorrection = ({ ans_id }) => ({
   },
 });
 
-export const setAnswerScore = ({ ans_id, score }) => ({
+export const setAnswerScore = ({ ans_id, score, comment }) => ({
   [CALL_API]: {
     types: [
       actionTypes.SET_ANSWER_SCORE_REQUEST,
@@ -33,6 +33,7 @@ export const setAnswerScore = ({ ans_id, score }) => ({
       body: {
         ans_id,
         score,
+        comment,
       },
     },
   },

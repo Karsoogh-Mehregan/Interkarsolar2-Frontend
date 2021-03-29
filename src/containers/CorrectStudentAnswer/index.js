@@ -23,7 +23,9 @@ const BASE_URL_OF_FILES_ON_DATABASE = 'https://backend.interkarsolar.ir/media/'
 
 const useStyles = makeStyles((theme) => ({
   centerItems: {
-    height: '100vh',
+    paddingTop: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    minHeight: '100vh',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

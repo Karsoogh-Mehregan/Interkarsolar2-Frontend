@@ -30,6 +30,9 @@ const checkErrorsStatusCode = (response, jsonResponse) => {
 };
 
 const fetchApi = async (url, fetchOptions) => {
+
+  console.log(fetchOptions);
+
   const response = await fetch(url, fetchOptions);
   let stringifiedResponse = await response.json();
   stringifiedResponse = stringifiedResponse.replace(/\\n/g, "\\n")

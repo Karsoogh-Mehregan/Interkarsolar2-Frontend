@@ -9,6 +9,7 @@ import ChangePassword from '../containers/ChangePassword'
 import Homepage from '../containers/Homepage';
 import Staff from '../containers/Staff/Staff';
 import Exam from '../containers/Exam/Exam';
+import CorrectStudentAnswer from '../containers/CorrectStudentAnswer';
 import Dashboard from '../containers/Dashboard/Dashboard';
 
 const Root = () => {
@@ -19,6 +20,7 @@ const Root = () => {
         <Route path='/login' component={Login} />
         <Route path='/change-password' component={ChangePassword} />
         <Route path="/staff/" component={Staff} />
+        <Route path="/correct-student-answer/" component={CorrectStudentAnswer} />
         <PrivateRoute path="/exam/:examID/:questionID?" component={Exam} />
         <PrivateRoute path="/dashboard/" component={Dashboard} />
         <Route path="/" component={Homepage} />

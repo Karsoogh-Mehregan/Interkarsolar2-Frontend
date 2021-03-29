@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { initRedirect } from './redux/actions/redirect';
 import { initToast } from './redux/actions/notifications';
-import Root from './root/Root';
+import Route from './Route';
 import RTLMuiTheme from './theme/RTLMuiTheme';
 import jss from './utils/jssRTL';
 
@@ -83,7 +83,7 @@ const App = ({ redirectTo, forceRedirect, initRedirect, initToast, loading, noti
         <CssBaseline />
         <Loading />
         <Toast />
-        <Root />
+        <Route />
       </StylesProvider>
     </ThemeProvider>
   );

@@ -26,5 +26,4 @@ export const PAYMENT = ROOT.concat('pay/request/');
 export const PAYMENT_IGNORE = ROOT.concat('pay/ignore/');
 export const PAYMENT_STATUS = ROOT.concat('pay/check/');
 
-// export const LOGIN = ROOT.concat('auth/token/obtain/'); //todo
-// export const LOGOUT = ROOT.concat('auth/logout/'); //todo
+export const GET_ANSWER_FOR_CORRECTION = ROOT.concat('answer/show/')

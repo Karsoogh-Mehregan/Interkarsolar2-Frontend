@@ -5,6 +5,7 @@ import TinyPreview from '../../tiny_editor/react_tiny/Preview';
 const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
+    width: '100%',
   },
 }))
 

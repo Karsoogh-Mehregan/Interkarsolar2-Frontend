@@ -1,7 +1,7 @@
 export const ROOT =
   process.env.NODE_ENV === 'production'
     ? 'https://backend.interkarsolar.ir/'
-    : 'https://backend.interkarsolar.ir/';
+    : 'http://127.0.0.1:8000/';
 
 export const CREATE_ACCOUNT = ROOT.concat('student/register/');
 export const UPDATE_PROFILE = ROOT.concat('student/register/completed/');
@@ -26,4 +26,5 @@ export const PAYMENT = ROOT.concat('pay/request/');
 export const PAYMENT_IGNORE = ROOT.concat('pay/ignore/');
 export const PAYMENT_STATUS = ROOT.concat('pay/check/');
 
-export const GET_ANSWER_FOR_CORRECTION = ROOT.concat('answer/show/')
+export const GET_ANSWER_FOR_CORRECTION = ROOT.concat('answer/show/');
+export const SET_ANSWER_SCORE = ROOT.concat('answer/set/');

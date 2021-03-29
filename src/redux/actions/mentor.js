@@ -19,3 +19,21 @@ export const getAnswerForCorrection = ({ ans_id }) => ({
     },
   },
 });
+
+export const setAnswerScore = ({ ans_id, score }) => ({
+  [CALL_API]: {
+    types: [
+      actionTypes.SET_ANSWER_SCORE_REQUEST,
+      actionTypes.SET_ANSWER_SCORE_SUCCESS,
+      actionTypes.SET_ANSWER_SCORE_FAILURE,
+    ],
+    url: URLs.SET_ANSWER_SCORE,
+    fetchOptions: {
+      method: 'POST',
+      body: {
+        ans_id,
+        score,
+      },
+    },
+  },
+});

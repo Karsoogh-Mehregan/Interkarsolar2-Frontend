@@ -9,7 +9,10 @@ import {
   Paper,
   Divider,
 } from '@material-ui/core';
-import { getAnswerForCorrection } from '../../redux/actions/mentor'
+import {
+  getAnswerForCorrection,
+  setAnswerScore,
+} from '../../redux/actions/mentor'
 import { useParams } from "react-router-dom";
 import { connect } from 'react-redux';
 import TinyEditorComponent from '../../components/tiny_editor/react_tiny/TinyEditorComponent';
@@ -28,19 +31,22 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Index = ({
-  getAnswerForCorrection
+  getAnswerForCorrection,
+  setAnswerScore,
 }) => {
   const classes = useStyles();
 
   useEffect(() => {
     // clearInputFile();
     const fetchPreviousAnswers = async () => {
-      const action = await getAnswerForCorrection({ ans_id: 3000 });
+      let action = await getAnswerForCorrection({ ans_id: 1 });
+      console.log(action);
+      action = await setAnswerScore({ ans_id: 1, score: 20 });
       console.log(action);
     }
     fetchPreviousAnswers();
 
-  }, [,])
+  }, [])
 
 
   return (
@@ -84,6 +90,7 @@ const mapStateToProps = (state, ownProps) => ({
 export default connect(
   mapStateToProps,
   {
-    getAnswerForCorrection
+    getAnswerForCorrection,
+    setAnswerScore,
   }
 )(Index)

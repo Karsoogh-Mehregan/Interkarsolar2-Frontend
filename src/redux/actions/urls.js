@@ -28,3 +28,26 @@ export const PAYMENT_STATUS = ROOT.concat('pay/check/');
 
 export const GET_ANSWER_FOR_CORRECTION = ROOT.concat('answer/show/');
 export const SET_ANSWER_SCORE = ROOT.concat('answer/set/');
+
+
+
+
+const FORMULA0_ROOT = ROOT.concat('formula0/')
+
+
+export const TEAM_LOGIN = FORMULA0_ROOT.concat('student/login/');
+export const GET_TEAM_DATA = FORMULA0_ROOT.concat('student/get_team_data/');
+
+export const REQUEST_PROBLEM = FORMULA0_ROOT.concat('student/request_problem/');
+export const SUBMIT_ANSWER = FORMULA0_ROOT.concat('student/submit_answer/');
+
+export const GET_AUCTION_PROBLEMS = FORMULA0_ROOT.concat('student/get_auction_problems/');
+export const PUT_PROBLEM_IN_AUCTION = FORMULA0_ROOT.concat('student/put_problem_in_auction/');
+export const GET_PROBLEM_FROM_AUCTION = FORMULA0_ROOT.concat('student/get_problem_from_auction/');
+
+export const GET_PROBLEM = FORMULA0_ROOT.concat('student/get_problem/');
+export const GET_PROBLEMS = FORMULA0_ROOT.concat('student/get_problems/');
+
+
+export const GET_UNCORRECTED_PROBLEMS = FORMULA0_ROOT.concat('mentor/get_uncorrected_problems/');
+export const SUBMIT_PROBLEM_SCORE = FORMULA0_ROOT.concat('mentor/submit_problem_score/');

@@ -7,28 +7,28 @@ const initState = {
 function index(state = initState, action) {
   switch (action.type) {
 
-    case actionTypes.PROBLEM_REQUEST:
-    case actionTypes.PROBLEMS_REQUEST:
+    case actionTypes.GET_PROBLEM_REQUEST:
+    case actionTypes.GET_PROBLEMS_REQUEST:
       return {
         ...state,
         isFetching: true,
       }
 
-    case actionTypes.PROBLEM_FAILURE:
-    case actionTypes.PROBLEMS_FAILURE:
+    case actionTypes.GET_PROBLEM_FAILURE:
+    case actionTypes.GET_PROBLEMS_FAILURE:
       return {
         ...state,
         isFetching: false,
       }
 
-    case actionTypes.PROBLEMS_SUCCESS:
+    case actionTypes.GET_PROBLEMS_SUCCESS:
       return {
         ...state,
         problems: action.response.data,
         isFetching: false,
       }
 
-    case actionTypes.PROBLEM_SUCCESS:
+    case actionTypes.GET_PROBLEM_SUCCESS:
       return {
         ...state,
         problem: {

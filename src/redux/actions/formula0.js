@@ -39,9 +39,9 @@ export const getTeamData = ({ team_id }) => ({
 export const getProblems = ({ team_id, status }) => ({
   [CALL_API]: {
     types: [
-      actionTypes.PROBLEMS_REQUEST,
-      actionTypes.PROBLEMS_SUCCESS,
-      actionTypes.PROBLEMS_FAILURE,
+      actionTypes.GET_PROBLEMS_REQUEST,
+      actionTypes.GET_PROBLEMS_SUCCESS,
+      actionTypes.GET_PROBLEMS_FAILURE,
     ],
     url: URLs.GET_PROBLEMS,
     fetchOptions: {
@@ -57,9 +57,9 @@ export const getProblems = ({ team_id, status }) => ({
 export const getProblem = ({ team_id, id }) => ({
   [CALL_API]: {
     types: [
-      actionTypes.PROBLEM_REQUEST,
-      actionTypes.PROBLEM_SUCCESS,
-      actionTypes.PROBLEM_FAILURE,
+      actionTypes.GET_PROBLEM_REQUEST,
+      actionTypes.GET_PROBLEM_SUCCESS,
+      actionTypes.GET_PROBLEM_FAILURE,
     ],
     url: `${URLs.GET_PROBLEM}${id}/`,
     fetchOptions: {

@@ -16,7 +16,7 @@ store.subscribe(() => {
     'Interkarsoolar2',
     JSON.stringify({
       account: state.account,
-      formula0: state.formula0,
+      team_id: state.formula0.team_id,
     })
   );
 });

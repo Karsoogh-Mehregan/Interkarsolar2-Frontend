@@ -36,7 +36,7 @@ export const getTeamData = ({ team_id }) => ({
   },
 });
 
-export const getProblems = ({ team_id, status }) => ({
+export const getProblems = ({ team_id }) => ({
   [CALL_API]: {
     types: [
       actionTypes.GET_PROBLEMS_REQUEST,
@@ -48,7 +48,6 @@ export const getProblems = ({ team_id, status }) => ({
       method: 'POST',
       body: {
         team_id,
-        status,
       },
     },
   },
@@ -61,10 +60,29 @@ export const getProblem = ({ team_id, id }) => ({
       actionTypes.GET_PROBLEM_SUCCESS,
       actionTypes.GET_PROBLEM_FAILURE,
     ],
-    url: `${URLs.GET_PROBLEM}${id}/`,
+    url: URLs.GET_PROBLEM,
     fetchOptions: {
       method: 'POST',
       body: {
+        team_id,
+        id,
+      },
+    },
+  },
+});
+
+export const requestProblem = ({ team_id, subject }) => ({
+  [CALL_API]: {
+    types: [
+      actionTypes.REQUEST_PROBLEM_REQUEST,
+      actionTypes.REQUEST_PROBLEM_SUCCESS,
+      actionTypes.REQUEST_PROBLEM_FAILURE,
+    ],
+    url: URLs.REQUEST_PROBLEM,
+    fetchOptions: {
+      method: 'POST',
+      body: {
+        subject,
         team_id,
       },
     },

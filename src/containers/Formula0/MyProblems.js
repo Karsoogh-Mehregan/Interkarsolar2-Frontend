@@ -9,24 +9,45 @@ import {
   Paper,
   Divider,
   TextField,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
 } from '@material-ui/core';
 import {
-  getProblems,
   getProblem,
   getTeamData,
+  getProblems,
+  requestProblem,
 } from '../../redux/actions/formula0';
 import ResponsiveAppBar from '../../components/Appbar/ResponsiveAppBar'
 import { useParams } from "react-router-dom";
 import TextWidget from '../../components/Widget/TextWidget';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
+import ProblemCard from './ProblemCard';
 
-const BASE_URL_OF_FILES_ON_DATABASE = 'https://backend.interkarsolar.ir/media/'
+const PROBLEM_SUBJECTS = [
+  [0, 'اقتصاد - سطح ۱'],
+  [1, 'اقتصاد - سطح ۲'],
+  [2, 'ریاضی - سطح ۱'],
+  [3, 'ریاضی - سطح ۲'],
+  [4, 'زیست - سطح ۱'],
+  [5, 'زیست - سطح ۲'],
+  [6, 'شیمی - سطح ۱'],
+  [7, 'شیمی - سطح ۲'],
+  [8, 'فیزیک - سطح ۱'],
+  [9, 'فیزیک - سطح ۲'],
+  [10, 'کامپیوتر - سطح ۱'],
+  [11, 'کامپیوتر - سطح ۲'],
+  [12, 'نجوم - سطح ۱'],
+  [13, 'نجوم - سطح ۲'],
+]
 
 const useStyles = makeStyles((theme) => ({
   centerItems: {
     paddingTop: theme.spacing(2),
-    paddingRight: theme.spacing(2),
+    paddingBottom: theme.spacing(10),
     minHeight: '90vh',
     display: 'flex',
     alignItems: 'center',
@@ -42,120 +63,92 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '10px',
     minHeight: '100px',
     padding: theme.spacing(1),
-  }
+  },
+  getProblemSection: {
+    width: '300px',
+    position: 'fixed',
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
+    zIndex: 10,
+  },
+  formControl: {
+    width: '100%'
+  },
+  dropDown: {
+    minWidth: '100px',
+  },
 }))
 
 const Index = ({
   team_id,
+  problems,
+
   getProblems,
   getProblem,
   getTeamData,
+  requestProblem,
 }) => {
   const classes = useStyles();
-  const [isFetching, setIsFetching] = useState(false);
-  const [score, setScore] = useState();
-  const [comment, setComment] = useState();
-  const [answerId, setAnswerId] = useState();
-  const [question, setQuestion] = useState();
-  const [textAnswer, setTextAnswer] = useState();
-  const [fileAnswer, setFileAnswer] = useState();
+  const [subject, setSubject] = useState();
 
   useEffect(() => {
     getTeamData({ team_id });
+    getProblems({ team_id })
   }, [])
 
-  const fetchAnswer = async () => {
-    getProblems({ team_id: 'sos-mast' });
-    getProblem({ team_id: 'sos-mast', id: 7 })
-  }
-
-  const submitScore = async () => {
-
+  const doGetProblem = () => {
+    if (!subject) {
+      toast.error('لطفاً یک موضوع انتخاب کن!');
+      return;
+    }
+    requestProblem({ team_id, subject })
   }
 
   return (
     <>
       <ResponsiveAppBar mode="FORMULA0" position={'relative'} hideOnScroll={false} />
-
       <Container className={`${classes.centerItems}`}>
+        <Grid xs={12} container justify='center' spacing={2}>
 
-        <Grid container justify='center' spacing={2}>
-
-          <Grid item container justify='flex-start' alignItems='center' xs={12} sm={9} spacing={2}>
-            <Grid item >
-              <TextField label='شناسه‌ی پاسخ را وارد کنید' variant='outlined' value={answerId} onChange={(e) => setAnswerId(e.target.value)} />
-            </Grid>
-            <Grid item >
-              <Button disabled={!answerId || isFetching} variant='contained' color='primary' onClick={fetchAnswer}>
-                {'دریافت پاسخ'}
-              </Button>
-            </Grid>
-          </Grid>
-
-          {question &&
-            <>
-              <Grid item container justify='center' alignItems='flex-start' xs={12} sm={9} md={6} spacing={1}>
-                <Grid item xs={12}>
-                  <Paper className={classes.paper}>
-                    <Grid container direction='column' spacing={2} >
-                      <Grid item>
-                        <Typography variant='h2'>
-                          {'صورت سوال'}
-                        </Typography>
-                      </Grid>
-                      <Grid item xs={12}>
-                        {question}
-                      </Grid>
-                      <Grid item>
-                        <Typography variant='h2'>
-                          {'پاسخ تایپ‌شده'}
-                        </Typography>
-                      </Grid>
-                      <Grid item xs={12}>
-                        {textAnswer}
-                      </Grid>
-                      {fileAnswer &&
-                        <Grid item xs={12}>
-                          <a href={fileAnswer} >
-                            {'دانلود فایل پاسخ'}
-                          </a>
-                        </Grid>
-                      }
-                    </Grid>
-                  </Paper>
-                </Grid>
+          <div className={classes.getProblemSection}>
+            <Grid item container justify='center' alignItems='center' spacing={2}>
+              <Grid item xs={6} >
+                <FormControl variant="outlined" className={classes.formControl}>
+                  <InputLabel id="demo-simple-select-required-label">{'موضوع'}</InputLabel>
+                  <Select
+                    className={classes.dropDown}
+                    value={subject}
+                    onClick={(e) => setSubject(e.target.value)}
+                    label='موضوع'
+                  >
+                    {
+                      PROBLEM_SUBJECTS.map((subject) => (
+                        <MenuItem value={subject[0]}>{subject[1]}</MenuItem>
+                      ))
+                    }
+                  </Select>
+                </FormControl >
               </Grid>
-
-
-              <Grid item container justify='center' alignItems='flex-start' xs={12} sm={9} md={3} spacing={2}>
-                <Grid item xs={12}>
-                  <Paper className={classes.paper}>
-                    <Grid container direction='column' spacing={2} >
-                      <Grid item>
-                        <Typography align='center' variant='h2'>
-                          {'نمره‌دهی'}
-                        </Typography>
-                      </Grid>
-                      <Grid item >
-                        <TextField fullWidth label='نمره' variant='outlined' value={score} onChange={(e) => setScore(e.target.value)} />
-                      </Grid>
-                      <Grid item>
-                        <Typography variant='caption'>
-                          {'نظر مصحح:'}
-                        </Typography>
-                        <textarea value={comment} className={classes.textArea} onChange={(e) => setComment(e.target.value)} />
-                      </Grid>
-                      <Grid item >
-                        <Button disabled={isFetching} variant='contained' fullWidth color='primary' onClick={submitScore}>
-                          {'ثبت'}
-                        </Button>
-                      </Grid>
-                    </Grid>
-                  </Paper>
-                </Grid>
+              <Grid item xs={6}>
+                <Button onClick={doGetProblem} variant='contained' size='large' color='primary' fullWidth >
+                  {'دریافت مسئله'}
+                </Button>
               </Grid>
-            </>
-          }
+            </Grid>
+          </div>
+
+          {problems.map((problem) => {
+            return (
+              <Grid item>
+                <ProblemCard
+                  name={problem.name}
+                  score={problem.score}
+                  status={problem.status}
+                  subject={problem.subject} />
+              </Grid>
+            )
+          })}
+
         </Grid>
       </Container>
     </>
@@ -163,10 +156,8 @@ const Index = ({
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  team_id: state.formula0.team_id,
-  isFetching: state.exam.isFetching,
-  examQuestionList: state.exam.examQuestionList,
-  question: state.exam.question,
+  team_id: state.account.team_id,
+  problems: state.formula0.problems ? state.formula0.problems : [],
 })
 
 export default connect(
@@ -175,5 +166,6 @@ export default connect(
     getProblems,
     getProblem,
     getTeamData,
+    requestProblem,
   }
 )(Index)

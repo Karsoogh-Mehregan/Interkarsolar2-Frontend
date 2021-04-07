@@ -63,6 +63,20 @@ function notifications(state = initState, action) {
         success: action.message,
       }
 
+    // formula0
+    case actionTypes.REQUEST_PROBLEM_SUCCESS:
+      return {
+        ...state,
+        success: action.message,
+      }
+
+    // formula0
+    case actionTypes.REQUEST_PROBLEM_FAILURE:
+      return {
+        ...state,
+        error: action.message,
+      }
+
     case actionTypes.UPDATE_USER_INFO_SUCCESS:
       return {
         ...state,

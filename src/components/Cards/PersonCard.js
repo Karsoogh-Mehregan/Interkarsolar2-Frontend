@@ -19,12 +19,12 @@ const useStyles = makeStyles({
     fontSize: '1rem',
     textDecoration: 'none',
     overflow: 'hidden',
-    boxShadow: '0 0 3rem -1rem rgba(0, 0, 0, 0.5)',
+    boxShadow: '0 0 2rem -1.5rem rgba(0, 0, 0, 0.5)',
     transition: 'transform 0.1s ease-in-out',
     maxWidth: '300px',
     '&:hover': {
       transform: 'translateY(-0.2rem) scale(1.02)',
-      boxShadow: '0 0.5em 3rem -1rem rgba(0, 0, 0, 0.5)',
+      boxShadow: '0 0.5em 0.5rem -0.5rem rgba(0, 0, 0, 0.5)',
     }
   },
   media: {

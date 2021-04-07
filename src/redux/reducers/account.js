@@ -101,6 +101,14 @@ function account(state = initState, action) {
         ...state,
         schools: action.response.data,
       }
+    /////////////////////
+    // formula0
+    case actionTypes.TEAM_LOGIN_SUCCESS:
+      return {
+        ...state,
+        team_id: action.data.team_id,
+        isFetching: false,
+      }
 
     default:
       return state;

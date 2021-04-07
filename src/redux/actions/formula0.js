@@ -2,7 +2,7 @@ import { CALL_API } from '../middleware/api/api';
 import * as actionTypes from '../actionTypes';
 import * as URLs from './urls';
 
-export const teamLogin = ({ national_id }) => ({
+export const login = ({ national_id }) => ({
   [CALL_API]: {
     types: [
       actionTypes.TEAM_LOGIN_REQUEST,

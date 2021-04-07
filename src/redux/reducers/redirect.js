@@ -15,11 +15,16 @@ function redirect(state = initState, action) {
     case actionTypes.LOGIN_SUCCESS:
       return { redirectTo: '/dashboard?tab=announcements' }
 
+    // formula0
     case actionTypes.LOGOUT:
-      return { redirectTo: '/' }
+      return { redirectTo: '/formula0/login' }
 
     case actionTypes.PAYMENT_IGNORE_SUCCESS:
       return { redirectTo: '/dashboard?tab=announcements' }
+
+    // formula0
+    case actionTypes.TEAM_LOGIN_SUCCESS:
+      return { redirectTo: '/formula0/my_problems' }
 
     case actionTypes.INIT_REDIRECT:
       return initState;

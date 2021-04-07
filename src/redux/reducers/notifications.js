@@ -29,6 +29,7 @@ function notifications(state = initState, action) {
         success: 'جواب با موفقیت ثبت شد!',
       };
 
+
     case actionTypes.CHANGE_PASSWORD_FAILURE:
     case actionTypes.SEND_ANSWER_FAILURE:
     case actionTypes.PAYMENT_IGNORE_FAILURE:
@@ -48,6 +49,20 @@ function notifications(state = initState, action) {
         }
       }
 
+    // formula 0:
+    case actionTypes.TEAM_LOGIN_FAILURE:
+      return {
+        ...state,
+        error: action.message,
+      }
+
+    // formula 0:
+    case actionTypes.TEAM_LOGIN_SUCCESS:
+      return {
+        ...state,
+        success: action.message,
+      }
+
     case actionTypes.UPDATE_USER_INFO_SUCCESS:
       return {
         ...state,
@@ -57,11 +72,7 @@ function notifications(state = initState, action) {
     case actionTypes.LOGOUT:
       setTimeout(
         () => {
-          toast.info('خدا به همراهت!',
-            {
-              position: 'bottom-right',
-            }
-          )
+          toast.info('خدا به همراهت!')
         }, 0)
       return { ...state };
 

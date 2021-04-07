@@ -20,19 +20,20 @@ const App = ({ redirectTo, forceRedirect, initRedirect, initToast, loading, noti
     if (notifications.success) {
       setTimeout(() => {
         toast.success(notifications.success);
-      }, 0)
+      }, 10)
     } else if (notifications.warning) {
       setTimeout(() => {
         toast.warning(notifications.warning);
-      }, 0)
+      }, 10)
     } else if (notifications.info) {
       setTimeout(() => {
         toast.info(notifications.info);
-      }, 0)
+      }, 10)
     } else if (notifications.error) {
+      toast.error(notifications.error);
+
       setTimeout(() => {
-        toast.error(notifications.error);
-      }, 0)
+      }, 10)
     }
     rerender(Math.random());
     initToast();

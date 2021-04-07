@@ -1,9 +1,11 @@
 import LandingAppBarItems from './LandingAppBarItems';
-import SecondaryPageAppBarItems from './SecondaryPageAppBarItems';
+import StudentDashboardItems from './StudentDashboardItems';
+import Formula0 from './Formula0';
 
 const AppbarModes = {
+  FORMULA0: Formula0,
+  STUDENT_DASHBOARD: StudentDashboardItems,
   LANDING: LandingAppBarItems,
-  SECONDARY: SecondaryPageAppBarItems,
 };
 
 export default AppbarModes;

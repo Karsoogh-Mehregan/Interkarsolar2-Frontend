@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
 export default function LogoButton({ size }) {
   const classes = useStyles({ size });
   return (
-    <Tooltip title="رستا" arrow>
+    <Tooltip title="اینترکارسولار" arrow>
       <IconButton className={classes.logoButton}>
         <img
           src={process.env.PUBLIC_URL + '/logo.png'}

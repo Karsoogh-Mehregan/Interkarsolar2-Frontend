@@ -7,6 +7,7 @@ const initState = {
 function index(state = initState, action) {
   switch (action.type) {
 
+    case actionTypes.TEAM_LOGIN_REQUEST:
     case actionTypes.GET_PROBLEM_REQUEST:
     case actionTypes.GET_PROBLEMS_REQUEST:
       return {
@@ -14,6 +15,10 @@ function index(state = initState, action) {
         isFetching: true,
       }
 
+    case actionTypes.LOGOUT:
+      return initState;
+
+    case actionTypes.TEAM_LOGIN_FAILURE:
     case actionTypes.GET_PROBLEM_FAILURE:
     case actionTypes.GET_PROBLEMS_FAILURE:
       return {
@@ -21,10 +26,18 @@ function index(state = initState, action) {
         isFetching: false,
       }
 
+    case actionTypes.TEAM_LOGIN_SUCCESS:
+      console.log(action)
+      return {
+        ...state,
+        team_id: action.data.team_id,
+        isFetching: false,
+      }
+
     case actionTypes.GET_PROBLEMS_SUCCESS:
       return {
         ...state,
-        problems: action.response.data,
+        problems: action.data,
         isFetching: false,
       }
 
@@ -32,7 +45,7 @@ function index(state = initState, action) {
       return {
         ...state,
         problem: {
-          ...action.response.data,
+          ...action.data,
         },
         isFetching: false,
       }

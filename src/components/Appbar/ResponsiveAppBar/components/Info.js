@@ -14,7 +14,7 @@ function Index({ score = 0 }) {
 }
 
 const mapStateToProps = (state) => ({
-  score: state.account.user ? state.account.user.name : 'فرمول صفر',
+  score: state.formula0.team ? state.formula0.team.score : '?',
 });
 
 export default connect(mapStateToProps)(Index);

@@ -8,7 +8,7 @@ const useStyles = makeStyles(() => ({
   avatar: {},
 }));
 
-function AvatarComponent({ name = 'هاشم' }) {
+function AvatarComponent({ name }) {
   const classes = useStyles();
   return (
     <Tooltip title={name} arrow>
@@ -24,7 +24,7 @@ function AvatarComponent({ name = 'هاشم' }) {
 }
 
 const mapStateToProps = (state) => ({
-  name: state.account.user ? state.account.user.name : 'فرمول صفر',
+  name: state.formula0.team ? state.formula0.team.name : 'فرمول صفر',
 });
 
 export default connect(mapStateToProps)(AvatarComponent);

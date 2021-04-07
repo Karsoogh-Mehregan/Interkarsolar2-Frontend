@@ -13,6 +13,7 @@ import {
 import {
   getProblems,
   getProblem,
+  getTeamData,
 } from '../../redux/actions/formula0';
 import ResponsiveAppBar from '../../components/Appbar/ResponsiveAppBar'
 import { useParams } from "react-router-dom";
@@ -45,8 +46,10 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Index = ({
+  team_id,
   getProblems,
   getProblem,
+  getTeamData,
 }) => {
   const classes = useStyles();
   const [isFetching, setIsFetching] = useState(false);
@@ -57,14 +60,9 @@ const Index = ({
   const [textAnswer, setTextAnswer] = useState();
   const [fileAnswer, setFileAnswer] = useState();
 
-  const isDigit = (string) => {
-    var regex = new RegExp(`\\d+`);
-    if (regex.test(string)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  useEffect(() => {
+    getTeamData({ team_id });
+  }, [])
 
   const fetchAnswer = async () => {
     getProblems({ team_id: 'sos-mast' });
@@ -165,6 +163,7 @@ const Index = ({
 }
 
 const mapStateToProps = (state, ownProps) => ({
+  team_id: state.formula0.team_id,
   isFetching: state.exam.isFetching,
   examQuestionList: state.exam.examQuestionList,
   question: state.exam.question,
@@ -175,5 +174,6 @@ export default connect(
   {
     getProblems,
     getProblem,
+    getTeamData,
   }
 )(Index)

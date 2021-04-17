@@ -112,14 +112,14 @@ const Index = ({
 
           <div className={classes.getProblemSection}>
             <Grid item container justify='center' alignItems='center' spacing={2}>
-              <Grid item xs={6} >
+              <Grid item xs={7} >
                 <FormControl variant="outlined" className={classes.formControl}>
-                  <InputLabel id="demo-simple-select-required-label">{'موضوع'}</InputLabel>
+                  <InputLabel id="demo-simple-select-required-label">{'موضوع مسئله'}</InputLabel>
                   <Select
                     className={classes.dropDown}
                     value={subject}
                     onClick={(e) => setSubject(e.target.value)}
-                    label='موضوع'
+                    label='موضوع مسئله'
                   >
                     {
                       PROBLEM_SUBJECTS.map((subject) => (
@@ -129,9 +129,9 @@ const Index = ({
                   </Select>
                 </FormControl >
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={5}>
                 <Button onClick={doGetProblem} variant='contained' size='large' color='primary' fullWidth >
-                  {'دریافت مسئله'}
+                  {'دریافت'}
                 </Button>
               </Grid>
             </Grid>

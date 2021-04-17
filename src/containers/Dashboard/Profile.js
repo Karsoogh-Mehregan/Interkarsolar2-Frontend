@@ -170,16 +170,16 @@ const ProfileTab = ({
 
   // todo: add province in backend
   console.log(info)
-  useEffect(
-    () => {
-      const fetchAndSetProvince = async () => {
-        const action = await getCityDetails(info.city)
-        setProvince(action.data.pid)
-      }
-      if (info.city) {
-        fetchAndSetProvince();
-      }
-    }, [info.city, getCityDetails])
+  useEffect(() => {
+    if (!info.city) return;
+    const fetchAndSetProvince = async () => {
+      const action = await getCityDetails(info.city)
+      setProvince(action.data.pid)
+    }
+    if (info.city) {
+      fetchAndSetProvince();
+    }
+  }, [info, getCityDetails])
 
 
   if (!info) {

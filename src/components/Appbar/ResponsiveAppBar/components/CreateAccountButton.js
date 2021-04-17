@@ -1,10 +1,9 @@
 import { Button, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
-import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   button: {
-    margin: theme.spacing(0.5),
+    margin: theme.spacing(1) / 2,
   },
 }));
 
@@ -13,7 +12,7 @@ function CreateAccountButton({ name, to, ...rest }) {
   return (
     <Button variant='contained' href='/create-account' color='primary' size='large' className={classes.button} >
       <Typography variant='inherit' align='center'>
-        پیش‌ثبت‌نام
+        {'پیش‌ثبت‌نام'}
       </Typography>
     </Button>
   );

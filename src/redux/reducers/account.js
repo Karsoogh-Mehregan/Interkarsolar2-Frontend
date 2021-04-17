@@ -25,7 +25,7 @@ function account(state = initState, action) {
       return {
         ...state,
         isFetching: false,
-        token: action.response.data.token,
+        token: action.data.token,
       };
 
     case actionTypes.CHANGE_PASSWORD_SUCCESS:
@@ -51,16 +51,17 @@ function account(state = initState, action) {
       }
 
     case actionTypes.PAYMENT_SUCCESS:
-      window.location.replace(action.response.data.pay_link)
+      window.location.replace(action.data.pay_link)
       return {
         ...state,
         isFetching: false,
       }
 
     case actionTypes.GET_USER_INFO_SUCCESS:
+      console.log(action)
       return {
         ...state,
-        info: action.response.data[0].fields,
+        info: action.data[0].fields,
       }
 
     case actionTypes.PAYMENT_IGNORE_SUCCESS:
@@ -73,7 +74,7 @@ function account(state = initState, action) {
     case actionTypes.CHECK_PAYMENT_STATUS_SUCCESS:
       return {
         ...state,
-        payments: action.response.data,
+        payments: action.data,
       }
 
 
@@ -87,19 +88,19 @@ function account(state = initState, action) {
     case actionTypes.PROVINCE_SUCCESS:
       return {
         ...state,
-        provinces: action.response.data,
+        provinces: action.data,
       }
 
     case actionTypes.CITY_SUCCESS:
       return {
         ...state,
-        cities: action.response.data,
+        cities: action.data,
       }
 
     case actionTypes.SCHOOL_SUCCESS:
       return {
         ...state,
-        schools: action.response.data,
+        schools: action.data,
       }
     /////////////////////
     // formula0

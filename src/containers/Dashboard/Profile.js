@@ -169,11 +169,12 @@ const ProfileTab = ({
 
 
   // todo: add province in backend
+  console.log(info)
   useEffect(
     () => {
       const fetchAndSetProvince = async () => {
         const action = await getCityDetails(info.city)
-        setProvince(action.response.data.pid)
+        setProvince(action.data.pid)
       }
       if (info.city) {
         fetchAndSetProvince();
@@ -185,7 +186,7 @@ const ProfileTab = ({
     return (
       <Container style={{ overflow: 'hidden' }}>
         <div className={`dashboard-background blur`} />
-        loading...
+        {'loading...'}
       </Container >
     )
   }

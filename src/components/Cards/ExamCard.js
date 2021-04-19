@@ -71,19 +71,22 @@ const Index = ({
   finish_date,
   cost,
   status,
+  registration_start,
   registration_deadline,
   registration_description,
 }) => {
   const [isDialogueOpen, setDialogueOpen] = useState(false);
   const [isExamStarted, setExamStartStatus] = useState(false);
   const [isExamFinished, setExamFinishStatus] = useState(false);
-  const [isExamRegistrationPassed, setExamRegistrationStatus] = useState(false);
+  const [isExamRegistrationStarted, setExamRegistrationStartStatus] = useState(false);
+  const [isExamRegistrationFinished, setExamRegistrationFinishStatus] = useState(false);
 
   useEffect(() => {
     setExamStartStatus(jMoment().isAfter(jMoment(start_date)))
     setExamFinishStatus(jMoment().isAfter(jMoment(finish_date)))
-    setExamRegistrationStatus(jMoment().isAfter(jMoment(registration_deadline)))
-  }, [start_date, finish_date, registration_deadline])
+    setExamRegistrationStartStatus(jMoment().isAfter(jMoment(registration_start)))
+    setExamRegistrationFinishStatus(jMoment().isAfter(jMoment(registration_deadline)))
+  }, [start_date, finish_date, registration_start, registration_deadline])
   const classes = useStyles();
 
   const doRegister = () => {
@@ -140,9 +143,9 @@ const Index = ({
           }
           {status == 0 &&
             <Grid item xs={12}>
-              <Button disabled={isExamRegistrationPassed} variant='contained' color='secondary' fullWidth
+              <Button disabled={isExamRegistrationFinished || !isExamRegistrationStarted} variant='contained' color='secondary' fullWidth
                 onClick={() => setDialogueOpen(true)}>
-                {isExamRegistrationPassed ? 'مهلت ثبت‌نام تمام شده' : 'ثبت‌نام'}
+                {isExamRegistrationFinished ? 'مهلت ثبت‌نام تمام شده' : (!isExamRegistrationStarted ? 'ثبت‌نام هنوز شروع نشده' : 'ثبت‌نام')}
               </Button>
             </Grid>
           }

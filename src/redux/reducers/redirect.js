@@ -21,6 +21,9 @@ function redirect(state = initState, action) {
     case actionTypes.PAYMENT_IGNORE_SUCCESS:
       return { redirectTo: '/dashboard?tab=announcements' }
 
+    case actionTypes.EXAM_REGISTER_SUCCESS:
+      return { redirectTo: '/dashboard?tab=exam' }
+
     // formula0
     case actionTypes.TEAM_LOGIN_SUCCESS:
       return { redirectTo: '/formula0/my_problems' }

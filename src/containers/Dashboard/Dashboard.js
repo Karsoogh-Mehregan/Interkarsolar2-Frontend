@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { toast } from 'react-toastify';
 import {
   Grid,
 } from '@material-ui/core'
@@ -17,7 +16,6 @@ import { connect } from 'react-redux';
 
 import ExamTab from './Exam';
 import AnnouncementsTab from './Announcements';
-import RegistrationTab from './Registration';
 import ProfileTab from './Profile';
 import ButtonBar from './ButtonBar';
 
@@ -88,12 +86,10 @@ function Dashboard({
     () => {
       if (tabName == 'announcements') {
         setTab(0);
-      } else if (tabName == 'registration') {
+      } else if (tabName == 'exam') {
         setTab(1);
       } else if (tabName == 'profile') {
         setTab(2);
-      } else if (tabName == 'exam') {
-        setTab(3);
       } else {
         return (
           <Redirect to={'/dashboard?tab=announcements'} />
@@ -113,29 +109,28 @@ function Dashboard({
 
 
   return (
-    <Grid container direction='column' justify='space-between' alignItems='center' className={classes.container}>
-      <Grid item container direction='row' alignItems='center'>
-        {
-          tab == 0 &&
-          <AnnouncementsTab isRegistrationCompleted={isRegistrationCompleted} didPaymentFail={didPaymentFail} />
-        }
-        {
-          tab == 1 &&
-          <RegistrationTab isRegistrationCompleted={isRegistrationCompleted} isAllowed={isAllowed} />
-        }
-        {
-          tab == 2 &&
-          <ProfileTab isRegistrationCompleted={isRegistrationCompleted} />
-        }
-        {
-          tab == 3 &&
-          <ExamTab isRegistrationCompleted={isRegistrationCompleted} />
-        }
+    <>
+      <div className={`dashboard-background blur`} />
+      <Grid container direction='column' justify='space-between' alignItems='center' className={classes.container}>
+        <Grid item container direction='row' alignItems='center'>
+          {
+            tab == 0 &&
+            <AnnouncementsTab isRegistrationCompleted={isRegistrationCompleted} didPaymentFail={didPaymentFail} />
+          }
+          {
+            tab == 1 &&
+            <ExamTab isRegistrationCompleted={isRegistrationCompleted} />
+          }
+          {
+            tab == 2 &&
+            <ProfileTab isRegistrationCompleted={isRegistrationCompleted} />
+          }
+        </Grid>
+        <Grid item container>
+        </Grid>
+        <ButtonBar isRegistrationCompleted={isRegistrationCompleted} className={classes.buttonBar} onClick={setTab} />
       </Grid>
-      <Grid item container>
-      </Grid>
-      <ButtonBar isRegistrationCompleted={isRegistrationCompleted} className={classes.buttonBar} onClick={setTab} />
-    </Grid>
+    </>
   );
 }
 

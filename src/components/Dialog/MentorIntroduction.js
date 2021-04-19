@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: '2px 2px 5px gray',
     height: 'inherit',
   }),
-  descriotion: {
+  description: {
     padding: '10px',
     align: 'left',
     textAlign: 'justify',
@@ -56,7 +56,7 @@ function MentorIntroduction({
             </Typography>
           </Grid >
           <Grid item>
-            <Typography component="h4" variant="h6" className={classes.descriotion}>
+            <Typography component="h4" variant="h6" className={classes.description}>
               {description}
             </Typography>
           </Grid>

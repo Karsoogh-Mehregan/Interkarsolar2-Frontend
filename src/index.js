@@ -9,14 +9,15 @@ import configureStore from './redux/store/configureStore';
 const persistedState = localStorage.getItem('Interkarsoolar2')
   ? JSON.parse(localStorage.getItem('Interkarsoolar2'))
   : {};
+
 const store = configureStore(persistedState);
+
 store.subscribe(() => {
   const state = store.getState();
   localStorage.setItem(
     'Interkarsoolar2',
     JSON.stringify({
       account: state.account,
-      team_id: state.formula0.team_id,
     })
   );
 });

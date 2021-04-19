@@ -16,8 +16,9 @@ import {
 } from '../../redux/actions/account'
 import {
   getExamQuestionsList,
+  getStudentExams,
 } from '../../redux/actions/exam'
-
+import ExamCard from '../../components/Cards/ExamCard';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,16 +67,19 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const ExamTab = ({ isFetching, }) => {
+const ExamTab = ({ isFetching, getStudentExams, exams }) => {
   const classes = useStyles();
 
   const showToast = () => {
     toast.info('مسابقه هنوز شروع نشده. یکم صبر کنین!');
   }
 
+  useEffect(() => {
+    getStudentExams();
+  }, [])
+
   return (
     <Container style={{ overflow: 'hidden' }}>
-      <div className={`dashboard-background blur`} />
       <Grid
         className={classes.root}
         container
@@ -85,35 +89,19 @@ const ExamTab = ({ isFetching, }) => {
       >
         <Grid item container justify='center'>
           <Typography variant='h2' className={classes.title} >
-            آزمون‌ها
+            {'آزمون‌ها'}
           </Typography>
         </Grid>
-        <Grid container item direction='row' justify='center' spacing={4}>
-          <Grid item xs={12} sm={6} className={classes.readyImage} />
-          <Grid
-            xs={12} sm={5}
-            item
-            container
-            direction='column'
-            justify='center'
-            alignItems='center'
-            spacing={4}
-          >
-            <Grid item container justify='center'>
-              <Typography variant='h3' className={classes.header3} align='center'>
-                {'آزمون مرحله اول تموم شده :('}
-                {/* برای ورود به آزمون مرحله اول آماده‌ای؟ */}
-              </Typography>
-            </Grid>
-            {/* <Grid item container justify='center'>
-              <Button href='/exam/1' target="_blank" variant='contained' color='primary' size='large' disabled={isFetching}>
-                بزن بریم!
-              </Button>
-            </Grid> */}
-          </Grid>
-          <Hidden xsDown>
-            <Grid item xs={12} sm={1} />
-          </Hidden>
+        <Grid container item direction='row' justify='center' alignItems='center' spacing={2}>
+          {
+            exams.map((exam) => {
+              return (
+                <Grid item container justify='center' xs={12} sm={6} md={3}>
+                  <ExamCard {...exam} />
+                </Grid>
+              )
+            })
+          }
         </Grid>
       </Grid>
     </Container >
@@ -122,6 +110,7 @@ const ExamTab = ({ isFetching, }) => {
 
 const mapStateToProps = (state, ownProps) => ({
   isFetching: state.account.isFetching,
+  exams: state.exam.exams ? state.exam.exams : [],
 })
 
 export default connect(
@@ -130,5 +119,6 @@ export default connect(
     doPayment,
     ignorePayment,
     getExamQuestionsList,
+    getStudentExams,
   }
 )(ExamTab);

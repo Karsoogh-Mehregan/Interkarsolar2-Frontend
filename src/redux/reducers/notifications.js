@@ -29,7 +29,14 @@ function notifications(state = initState, action) {
         success: 'جواب با موفقیت ثبت شد!',
       };
 
+    case actionTypes.EXAM_REGISTER_SUCCESS:
+      return {
+        ...state,
+        success: 'ثبت‌نامت با موفقیت انجام شد!',
+      }
 
+
+    case actionTypes.EXAM_REGISTER_FAILURE:
     case actionTypes.CHANGE_PASSWORD_FAILURE:
     case actionTypes.SEND_ANSWER_FAILURE:
     case actionTypes.PAYMENT_IGNORE_FAILURE:

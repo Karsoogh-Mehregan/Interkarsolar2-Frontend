@@ -1,7 +1,7 @@
 export const ROOT =
   process.env.NODE_ENV === 'production'
     ? 'https://backend.interkarsolar.ir/'
-    : 'https://backend.interkarsolar.ir/'
+    : 'http://127.0.0.1:8000/'
 
 export const CREATE_ACCOUNT = ROOT.concat('student/register/');
 export const UPDATE_PROFILE = ROOT.concat('student/register/completed/');
@@ -17,6 +17,8 @@ export const CITY = ROOT.concat('city/');
 export const CITY_DETAILS = ROOT.concat('city/detail/');
 export const SCHOOL = ROOT.concat('school/');
 
+export const EXAM_REGISTER = ROOT.concat('exam/register/')
+export const GET_STUDENT_EXAMS = ROOT.concat('exam/')
 export const EXAM = ROOT.concat('exam/question/list/')
 export const QUESTION = (qid) => ROOT.concat(`exam/question/${qid}/content/`)
 export const SEND_ANSWER = ROOT.concat('exam/answer/')

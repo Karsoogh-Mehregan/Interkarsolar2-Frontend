@@ -76,9 +76,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  dropDown: {
-    minWidth: '100px',
-  },
 }));
 
 const Index = ({

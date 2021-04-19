@@ -3,6 +3,37 @@ import { CALL_API } from '../middleware/api/api';
 import * as actionTypes from '../actionTypes';
 import * as URLs from './urls';
 
+export const registerInExam = ({ exam_id }) => ({
+  [CALL_API]: {
+    types: [
+      actionTypes.EXAM_REGISTER_REQUEST,
+      actionTypes.EXAM_REGISTER_SUCCESS,
+      actionTypes.EXAM_REGISTER_FAILURE,
+    ],
+    url: URLs.EXAM_REGISTER,
+    fetchOptions: {
+      method: 'POST',
+      body: {
+        exam_id
+      }
+    },
+  },
+});
+
+export const getStudentExams = () => ({
+  [CALL_API]: {
+    types: [
+      actionTypes.GET_STUDENT_EXAMS_REQUEST,
+      actionTypes.GET_STUDENT_EXAMS_SUCCESS,
+      actionTypes.GET_STUDENT_EXAMS_FAILURE,
+    ],
+    url: URLs.GET_STUDENT_EXAMS,
+    fetchOptions: {
+      method: 'GET',
+    },
+  },
+});
+
 export const getExamQuestionsList = (examID) => ({
   [CALL_API]: {
     types: [

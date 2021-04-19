@@ -193,7 +193,6 @@ const ProfileTab = ({
 
   return (
     <Container style={{ overflow: 'hidden' }}>
-      <div className={`dashboard-background blur`} />
       <Grid
         className={classes.root}
         container
@@ -203,7 +202,7 @@ const ProfileTab = ({
       >
         <Grid item xs={12}>
           <Typography variant='h2' className={classes.title} align='center'>
-            مشخصات من
+            {'مشخصات من'}
           </Typography>
         </Grid>
         <Grid item container justify='space-evenly' alignItems='center' spacing={4} xs={12}>
@@ -365,8 +364,8 @@ const ProfileTab = ({
             <Grid item container md={3} className={classes.formImage} />
           </Hidden>
           <Grid item container xs={12} sm={4} justify='center'>
-            <Button disabled={isFetching} size='large' variant='contained' color='primary' fullWidth onClick={saveUpdates}>
-              ذخیره تغییرات
+            <Button disabled={isFetching} size='large' variant='contained' color='primary' onClick={saveUpdates}>
+              {'ذخیره تغییرات'}
             </Button>
           </Grid>
         </Grid>

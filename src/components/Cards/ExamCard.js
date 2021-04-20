@@ -123,7 +123,7 @@ const Index = ({
           {status == 1 &&
             <Grid item xs={12}>
               <Typography variant='subtitle'>
-                {`این آزمون از ${dateFormatter({ date: start_date, format: 'dddd، Do MMMM، ساعت h:mm' })} شروع میشه و تا ${dateFormatter({ date: finish_date, format: 'dddd، Do MMMM، ساعت h:mm' })} ادامه داره.`}
+                {`این آزمون ${dateFormatter({ date: start_date, format: 'dddd، Do MMMM، ساعت H:mm' })} شروع میشه و تا ${dateFormatter({ date: finish_date, format: 'dddd، Do MMMM، ساعت H:mm' })} ادامه داره.`}
               </Typography>
             </Grid>
           }

@@ -128,7 +128,7 @@ function Dashboard({
         </Grid>
         <Grid item container>
         </Grid>
-        <ButtonBar isRegistrationCompleted={isRegistrationCompleted} className={classes.buttonBar} onClick={setTab} />
+        <ButtonBar className={classes.buttonBar} onClick={setTab} />
       </Grid>
     </>
   );

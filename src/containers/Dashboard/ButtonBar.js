@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const ButtonBar = ({ onClick, logout, isRegistrationCompleted }) => {
+const ButtonBar = ({ onClick, logout }) => {
   let history = useHistory();
   const classes = useStyles();
   return (
@@ -42,14 +42,12 @@ const ButtonBar = ({ onClick, logout, isRegistrationCompleted }) => {
           history.push('/dashboard?tab=announcements')
         }} />
       </Grid>
-      {isRegistrationCompleted &&
-        <Grid container item justify='center' xs={12} sm={3} lg={3}>
-          <FancyPushButton text='آزمون‌ها' color='green' onClick={() => {
-            onClick(1);
-            history.push('/dashboard?tab=exam')
-          }} />
-        </Grid>
-      }
+      <Grid container item justify='center' xs={12} sm={3} lg={3}>
+        <FancyPushButton text='آزمون‌ها' color='green' onClick={() => {
+          onClick(1);
+          history.push('/dashboard?tab=exam')
+        }} />
+      </Grid>
       <Grid container item justify='center' xs={12} sm={3} lg={3}>
         <FancyPushButton text='مشخصات' color='dark-blue' onClick={() => {
           onClick(2);
@@ -65,7 +63,6 @@ const ButtonBar = ({ onClick, logout, isRegistrationCompleted }) => {
 
 const mapStateToProps = (state, ownProps) => ({
   onClick: ownProps.onClick,
-  isRegistrationCompleted: ownProps.isRegistrationCompleted,
 })
 
 export default connect(

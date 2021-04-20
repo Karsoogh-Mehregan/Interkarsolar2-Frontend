@@ -42,10 +42,10 @@ const AnswerWidget = ({
   text,
 }) => {
   const classes = useStyles();
-  const [editor, setEditor] = useState(<div />);
+  const [editor, setEditor] = useState();
   const [previousFileAnswer, setPreviousFileAnswer] = useState();
   const [fileAnswer, setFileAnswer] = useState();
-  const [textAnswer, setTextAnswer] = useState("");
+  const [textAnswer, setTextAnswer] = useState(INSTEAD_OF_BLANK);
   const [inputFileID,] = useState(`file-answer-${Math.random()}`);
 
   const doSendAnswer = () => {
@@ -75,14 +75,14 @@ const AnswerWidget = ({
     clearInputFile();
     const fetchPreviousAnswers = async () => {
       const action = await getPreviousAnswer(qc_id);
-      if (!action.response) return;
-      if (action.response.res_code === 602) {
+      if (!action) return;
+      if (action.res_code === 602) {
         setPreviousFileAnswer('');
-        setEditor(<TinyEditorComponent content={INSTEAD_OF_BLANK} onChange={setTextAnswer} />);
+        setEditor(<TinyEditorComponent initialValue={INSTEAD_OF_BLANK} onChange={setTextAnswer} />);
         return;
       }
-      setPreviousFileAnswer(action.response.data.file ? BASE_URL_OF_FILES_ON_DATABASE + action.response.data.file : '');
-      setEditor(<TinyEditorComponent content={action.response.data.answer} onChange={setTextAnswer} />);
+      setPreviousFileAnswer(action.data.file ? BASE_URL_OF_FILES_ON_DATABASE + action.data.file : '');
+      setEditor(<TinyEditorComponent initialValue={action.data.answer} onChange={setTextAnswer} />);
     }
     if (qc_id) {
       fetchPreviousAnswers();

@@ -93,7 +93,13 @@ const ExamTab = ({ isFetching, getStudentExams, exams }) => {
           </Typography>
         </Grid>
         <Grid container item direction='row' justify='center' alignItems='center' spacing={2}>
-          {
+          <Grid item container justify='center' xs={12}>
+            <Typography variant='h1'>
+              {'یکم دندون رو جیگر بذارین! نتایج داره میاد :))'}
+            </Typography>
+          </Grid>
+
+          {/* {
             exams.map((exam) => {
               return (
                 <Grid item container justify='center' xs={12} sm={6} md={3}>
@@ -101,7 +107,7 @@ const ExamTab = ({ isFetching, getStudentExams, exams }) => {
                 </Grid>
               )
             })
-          }
+          } */}
         </Grid>
       </Grid>
     </Container >

@@ -151,7 +151,9 @@ const Index = ({
           }
           {status == 1 &&
             <Grid item xs={12}>
-              <Button variant='contained' color='secondary' fullWidth disabled={isExamFinished || !isExamStarted} href={`/exam/${id}`}>
+              <Button variant='contained' color='secondary'
+                fullWidth disabled={isExamFinished || !isExamStarted}
+                target="_blank" href={`/exam/${id}`}>
                 {!isExamStarted ? 'آزمون هنوز شروع نشده' : (isExamFinished ? 'آزمون تمام شده' : 'ورود')}
               </Button>
             </Grid>

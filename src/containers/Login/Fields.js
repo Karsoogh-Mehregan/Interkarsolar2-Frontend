@@ -51,6 +51,7 @@ const InputFields = ({
           label='کد ملی'
           type='text'
           variant='outlined'
+          inputProps={{ className: 'ltr-input' }}
           fullWidth />
       </Grid>
       <Grid item>
@@ -59,6 +60,7 @@ const InputFields = ({
           label='رمز عبور'
           type='password'
           variant='outlined'
+          inputProps={{ className: 'ltr-input' }}
           fullWidth />
       </Grid>
       <Grid item container justify='center'>
@@ -77,8 +79,8 @@ const InputFields = ({
           color='primary'
           disabled={isFetching}
           fullWidth>
-          بزن بریم
-      </Button>
+          {'بزن بریم'}
+        </Button>
       </Grid>
     </>
   )

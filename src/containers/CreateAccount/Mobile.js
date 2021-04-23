@@ -38,22 +38,20 @@ const MobileCreateAccount = () => {
   return (
     <>
       <Container className={classes.background}>
-      <Paper className={classes.paper}>
-        <Grid
-          container
-          direction='column'
-          justify='space-evenly'
-          alignItems='stretch'
-          spacing={2}>
-          {/* <Grid item className={classes.readyImage}>
-          </Grid> */}
-          <Grid item>
-            <Typography gutterBottom variant='h3' align='center'>
-              پیش‌ثبت نام اینترکارسولار۲
-            </Typography>
+        <Paper className={classes.paper}>
+          <Grid
+            container
+            direction='column'
+            justify='space-evenly'
+            alignItems='stretch'
+            spacing={2}>
+            <Grid item>
+              <Typography gutterBottom variant='h3' align='center'>
+                {'ایجاد سفینه در اینترکارسولار'}
+              </Typography>
+            </Grid>
+            <InputFields />
           </Grid>
-          <InputFields />
-        </Grid>
         </Paper>
       </Container>
     </>

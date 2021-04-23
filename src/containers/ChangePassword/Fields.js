@@ -57,6 +57,7 @@ const InputFields = ({
               }
             }
           }
+          inputProps={{ className: 'ltr-input' }}
           label='کد ملی'
           value={nationalID}
           type='text'
@@ -72,6 +73,7 @@ const InputFields = ({
               }
             }
           }
+          inputProps={{ className: 'ltr-input' }}
           value={phoneNumber}
           label='شماره موبایل اصلی'
           type='tel'
@@ -86,6 +88,7 @@ const InputFields = ({
           label='رمز عبور جدید'
           variant='outlined'
           type='password'
+          inputProps={{ className: 'ltr-input' }}
           fullWidth>
         </TextField>
       </Grid>
@@ -95,6 +98,7 @@ const InputFields = ({
           label='تکرار رمز عبور جدید'
           type='password'
           variant='outlined'
+          inputProps={{ className: 'ltr-input' }}
           fullWidth>
         </TextField>
       </Grid>

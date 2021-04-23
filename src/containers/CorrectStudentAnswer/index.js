@@ -117,7 +117,10 @@ const Index = ({
 
         <Grid item container justify='flex-start' alignItems='center' xs={12} sm={9} spacing={2}>
           <Grid item >
-            <TextField label='شناسه‌ی پاسخ را وارد کنید' variant='outlined' value={answerId} onChange={(e) => setAnswerId(e.target.value)} />
+            <TextField
+              label='شناسه‌ی پاسخ را وارد کنید' variant='outlined'
+              value={answerId} onChange={(e) => setAnswerId(e.target.value)}
+              inputProps={{ className: 'ltr-input' }} />
           </Grid>
           <Grid item >
             <Button disabled={!answerId || isFetching} variant='contained' color='primary' onClick={fetchAnswer}>

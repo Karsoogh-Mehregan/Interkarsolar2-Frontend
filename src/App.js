@@ -20,20 +20,19 @@ const App = ({ redirectTo, forceRedirect, initRedirect, initToast, loading, noti
     if (notifications.success) {
       setTimeout(() => {
         toast.success(notifications.success);
-      }, 10)
+      }, 0)
     } else if (notifications.warning) {
       setTimeout(() => {
         toast.warning(notifications.warning);
-      }, 10)
+      }, 0)
     } else if (notifications.info) {
       setTimeout(() => {
         toast.info(notifications.info);
-      }, 10)
+      }, 0)
     } else if (notifications.error) {
-      toast.error(notifications.error);
-
       setTimeout(() => {
-      }, 10)
+        toast.error(notifications.error);
+      }, 0)
     }
     rerender(Math.random());
     initToast();
@@ -51,7 +50,7 @@ const App = ({ redirectTo, forceRedirect, initRedirect, initToast, loading, noti
     <ToastContainer
       rtl
       position="top-left"
-      autoClose={4000}
+      autoClose={3000}
       transition={Slide}
       newestOnTop
       hideProgressBar={false}

@@ -48,11 +48,9 @@ const MobileCreateAccount = () => {
             justify='space-evenly'
             alignItems='stretch'
             spacing={2}>
-            {/* <Grid item className={classes.loginImage}>
-            </Grid> */}
             <Grid item>
               <Typography gutterBottom variant='h4' align='center' >
-                برای ورود به سفینه‌ات آماده‌ای؟
+                {'برای ورود به سفینه‌ات آماده‌ای؟'}
               </Typography>
             </Grid>
             <InputFields />

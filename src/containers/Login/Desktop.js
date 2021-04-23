@@ -48,7 +48,7 @@ const DesktopCreateAccount = () => {
             justify='center'
             alignItems='center'
             xs={6}>
-            <Grid item xs={8}>
+            <Grid item xs={9}>
               <Paper className={classes.paper}>
                 <Grid item container>
                   <Grid
@@ -59,7 +59,7 @@ const DesktopCreateAccount = () => {
                     spacing={2}>
                     <Grid item>
                       <Typography gutterBottom variant='h3' align='center'>
-                        برای ورود به سفینه‌ات آماده‌ای؟
+                        {'برای ورود به سفینه‌ات آماده‌ای؟'}
                       </Typography>
                     </Grid>
                     <InputFields />

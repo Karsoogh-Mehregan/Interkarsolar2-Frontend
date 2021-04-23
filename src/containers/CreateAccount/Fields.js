@@ -61,6 +61,7 @@ const InputFields = ({
           helperText='یادت باشه فقط از ارقام انگلیسی استفاده کنی!'
           value={nationalID}
           type='text'
+          inputProps={{ className: 'ltr-input' }}
           variant='outlined'
           fullWidth />
       </Grid>
@@ -77,6 +78,7 @@ const InputFields = ({
           label='شماره موبایل'
           type='tel'
           helperText='این‌جا هم همینطور، فقط رقم انگلیسی به کار ببر.'
+          inputProps={{ className: 'ltr-input' }}
           variant='outlined'
           fullWidth>
         </TextField>
@@ -87,6 +89,7 @@ const InputFields = ({
           label='رمز عبور'
           variant='outlined'
           type='password'
+          inputProps={{ className: 'ltr-input' }}
           fullWidth>
         </TextField>
       </Grid>
@@ -96,16 +99,17 @@ const InputFields = ({
           label='تکرار رمز عبور'
           type='password'
           variant='outlined'
+          inputProps={{ className: 'ltr-input' }}
           fullWidth>
         </TextField>
       </Grid>
       <Grid item container justify='center'>
         <Typography align='center'>
-          {'اگه قبلاً پیش‌ثبت‌نامت رو انجام دادی، از '}
+          {'اگه قبلاً سفینه‌ت رو ساختی از '}
           <a href='/login'>
             {'این‌جا'}
           </a>
-          {' وارد شو!'}
+          {' واردش شو!'}
         </Typography>
       </Grid>
       <Grid container item direction='row' justify='center'>
@@ -115,7 +119,7 @@ const InputFields = ({
           color='secondary'
           disabled={isFetching}
           fullWidth>
-          ثبت
+          {'ثبت'}
         </Button>
       </Grid>
     </>

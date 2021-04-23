@@ -7,6 +7,8 @@ export const CREATE_ACCOUNT = ROOT.concat('student/register/');
 export const UPDATE_PROFILE = ROOT.concat('student/register/completed/');
 export const CHANGE_PASSWORD = ROOT.concat('student/change/password/');
 
+export const TEAM_DATA = ROOT.concat('auth/teamData/');
+
 export const LOGIN = ROOT.concat('student/login/');
 export const LOGOUT = ROOT.concat('student/logout/');
 export const GET_PROFILE = ROOT.concat('student/profile/');

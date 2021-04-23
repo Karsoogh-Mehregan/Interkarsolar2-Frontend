@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useEffect } from 'react';
 import _ from 'lodash';
 import {
   Button,
@@ -10,9 +10,12 @@ import {
 } from '@material-ui/core';
 import { connect } from 'react-redux';
 import PersonCard from '../../components/Cards/PersonCard'
-import { Staff as StaffInfo, subteams } from './StaticData';
+//import { Staff as StaffInfo, subteams } from './StaticData';
 import ResponsiveAppBar from '../../components/Appbar/ResponsiveAppBar';
 import Footer from '../../components/Footer/Footer';
+
+import { getLandingData } from '../../redux/actions/landing';
+
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -52,7 +55,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Staff() {
+function Staff({ members = [], getLandingData }) {
+  useEffect(() => {
+    getLandingData();
+  }, []);
+
   const classes = useStyles();
   return (
     <div className={classes.container}>
@@ -65,17 +72,17 @@ function Staff() {
           </Grid>
           <Grid container item direction='column' spacing={4} alignItems='center'>
             {
-              subteams.map((subteam) => {
+              members.map((member) => {
                 return (
                   <>
                     <Grid item>
                       <Typography variant='h4' align='center' className={classes.subtitle}>
-                        {subteam.name}
+                        {member.name}
                       </Typography>
                     </Grid>
                     <Grid container item direction='row' spacing={2} justify='center'>
                       {
-                        StaffInfo.filter((staff) => staff.subteam == subteam.id).map((staff) => {
+                        members.filter((staff) => staff.subteam == member.id).map((staff) => {
                           return (
                             <Grid container item xs={12} sm={4} md={3} justify='center'>
                               <PersonCard
@@ -102,10 +109,13 @@ function Staff() {
   );
 }
 
-const mapStateToProps = (state, ownProps) => ({
-});
+/* const mapStateToProps = (state, ownProps) => ({
+});*/
 
+const mapStateToProps = (state) => ({
+  members: state.landing.members,
+});
 export default connect(
   mapStateToProps
-  , {}
+  , { getLandingData }
 )(Staff);

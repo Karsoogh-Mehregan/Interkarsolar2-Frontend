@@ -96,7 +96,7 @@ export default function TimeLine() {
       <TimelineItem>
         <TimelineOppositeContent>
           <Typography variant="body2" color="textSecondary">
-            ۵ الی ۷ اردیبهشت
+            {'۱۰ اردیبهشت'}
           </Typography>
         </TimelineOppositeContent>
         <TimelineSeparator>

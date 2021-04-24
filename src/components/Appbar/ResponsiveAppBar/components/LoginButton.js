@@ -15,7 +15,7 @@ function LoginButton({ name, to, ...rest }) {
   return (
     <Button variant='contained' href='/login' color='primary' size='large' className={classes.button} >
       <Typography variant='inherit' align='center'>
-        {'ورود به سفینه'}
+        {'ورود'}
       </Typography>
     </Button>
   );

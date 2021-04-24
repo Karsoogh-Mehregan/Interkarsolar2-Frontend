@@ -7,6 +7,7 @@ import {
   makeStyles,
   Typography,
   Container,
+  Paper,
 } from '@material-ui/core';
 import PersonCard from '../components/Cards/PersonCard'
 import Timeline from '../components/TimeLine/TimeLine'
@@ -131,10 +132,12 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: theme.spacing(3),
     },
   },
+
   footer: {
     alignContent: 'center',
     color: '#a69eac',
   },
+
   h_iframe_aparat_embed_frame: {
     position: 'relative',
     height: 'auto',
@@ -149,6 +152,27 @@ const useStyles = makeStyles((theme) => ({
       borderRadius: 8,
     },
   },
+
+  announcement: {
+    fontSize: 35,
+    color: '#191B4B',
+    textShadow: '-1px 1px 2px #888',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 20,
+    },
+  },
+
+  announcementSubtitle: {
+    fontSize: 20,
+    color: '#191B4B',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 10,
+    },
+  },
+
+  paper: {
+    padding: theme.spacing(2),
+  }
 }));
 
 function Homepage({ isLoggedIn }) {
@@ -161,12 +185,12 @@ function Homepage({ isLoggedIn }) {
         <div id="back-to-top-anchor" />
         <ResponsiveAppBar mode="LANDING" showBackOnScroll hideOnScroll={false} />
 
-        <Grid container direction="row" style={{ height: '100%' }}>
+        <Grid container justify='center' direction="row" style={{ height: '100%' }}>
           <Hidden xsDown>
             <Grid item container xs={12} sm={7} />
           </Hidden>
           <Grid
-            item container
+            item container direction='column' spacing={6}
             xs={12} sm={5}
             justify="center"
             alignItems="center">
@@ -175,14 +199,31 @@ function Homepage({ isLoggedIn }) {
                 component="h1"
                 variant="h1"
                 className={classes.title}>
-                اینترکارسولار
-                </Typography>
+                {'اینترکارسولار'}
+              </Typography>
               <Typography
                 component="h2"
                 variant="h3"
                 className={classes.subtitle}>
-                دومین دوره رویداد برخطِ
+                {'دومین دوره رویداد برخطِ'}
               </Typography>
+            </Grid>
+            <Grid item>
+              <Paper className={classes.paper}>
+                <Typography
+                  align='center'
+                  component="h1"
+                  variant="h1"
+                  className={classes.announcement}>
+                  {'نتایج مرحله اول اومد!'}
+                </Typography>
+                <Typography
+                  align='center'
+                  variant="h3"
+                  className={classes.announcementSubtitle}>
+                  {'برای دیدن نتایج وارد سفینه‌‌تون بشید.'}
+                </Typography>
+              </Paper>
             </Grid>
           </Grid>
         </Grid>
@@ -196,11 +237,11 @@ function Homepage({ isLoggedIn }) {
               variant="h2"
               className={classes.sectionTitle}
               align='center'>
-              اینجا چه خبره؟
+              {'اینجا چه خبره؟'}
             </Typography>
           </Grid>
           <Grid container item direction="row" justify='space-evenly' spacing={2}>
-            <Grid container item direciton="column" xs={12} sm={6} spacing={2} alignItems='center'>
+            <Grid container item direction="column" xs={12} sm={6} spacing={2} alignItems='center'>
               <Grid item>
                 <Typography
                   component="h3"
@@ -302,7 +343,7 @@ function Homepage({ isLoggedIn }) {
               size="medium"
               target="_blank"
               href="staff/">
-              <Typography variant="h3">مشاهده همه</Typography>
+              <Typography variant="h3">{'مشاهده همه'}</Typography>
             </Button>
           </Grid>
         </Grid>

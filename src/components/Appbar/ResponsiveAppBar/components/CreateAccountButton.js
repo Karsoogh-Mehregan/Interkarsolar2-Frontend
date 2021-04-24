@@ -12,7 +12,7 @@ function CreateAccountButton({ name, to, ...rest }) {
   return (
     <Button variant='contained' href='/create-account' color='primary' size='large' className={classes.button} >
       <Typography variant='inherit' align='center'>
-        {'ایجاد سفینه'}
+        {'ساختن سفینه'}
       </Typography>
     </Button>
   );

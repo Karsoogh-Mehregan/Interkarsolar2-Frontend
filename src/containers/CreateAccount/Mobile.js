@@ -47,7 +47,7 @@ const MobileCreateAccount = () => {
             spacing={2}>
             <Grid item>
               <Typography gutterBottom variant='h3' align='center'>
-                {'ایجاد سفینه در اینترکارسولار'}
+                {'ساختن سفینه در اینترکارسولار'}
               </Typography>
             </Grid>
             <InputFields />

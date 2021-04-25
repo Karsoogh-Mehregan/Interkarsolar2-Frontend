@@ -15,10 +15,11 @@ import { connect } from 'react-redux';
 import ScrollTop from '../components/ScrollToTop/ScrollToTop';
 import ResponsiveAppBar from '../components/Appbar/ResponsiveAppBar';
 import { logout } from '../redux/actions/account';
-import { Staff } from './Staff/StaticData';
+//import { Staff } from './Staff/StaticData';
 import Supporter from '../components/Footer/Supporters'
 import Footer from '../components/Footer/Footer';
 import FAQ from '../components/FAQ';
+import LandingTeam from '../containers/Staff/landingTeam';
 
 const useStyles = makeStyles((theme) => ({
   centerItems: {
@@ -322,19 +323,7 @@ function Homepage({ isLoggedIn }) {
             justify='center'
             alignItems='center'
             className={classes.personCard}>
-            {
-              _.shuffle(Staff).slice(0, 4).map((staff) => {
-                return (
-                  <Grid container item xs={12} sm={6} md={3} justify='center'>
-                    <PersonCard
-                      name={staff.name}
-                      position={staff.position}
-                      description={staff.description}
-                      image={staff.image} />
-                  </Grid>
-                )
-              })
-            }
+            <LandingTeam />
           </Grid>
           <Grid container item justify="center" alignItems="center" >
             <Button

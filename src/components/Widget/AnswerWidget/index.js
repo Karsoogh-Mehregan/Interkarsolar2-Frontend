@@ -6,6 +6,7 @@ import TinyEditorComponent from '../../tiny_editor/react_tiny/TinyEditorComponen
 import {
   DescriptionOutlined as DescriptionOutlinedIcon,
 } from '@material-ui/icons';
+import jMoment from 'jalali-moment';
 import {
   getPreviousAnswer,
   sendAnswer,
@@ -36,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
 
 const AnswerWidget = ({
   isFetching,
+  finishDate,
   getPreviousAnswer,
   sendAnswer,
   qc_id,
@@ -89,9 +91,7 @@ const AnswerWidget = ({
     }
   }, [qc_id,])
 
-  useEffect(() => {
 
-  }, [])
 
   return (
     <Paper className={classes.paper}>
@@ -139,14 +139,7 @@ const AnswerWidget = ({
           }
         </Grid>
         <Grid item container xs={12} sm={6} justify='center' alignItems='center'>
-          <Button
-            fullWidth
-            variant="contained"
-            color="secondary"
-            disabled={isFetching}
-            onClick={doSendAnswer}>
-            ذخیره جواب
-          </Button>
+          <SubmitButton finishDate={finishDate} isFetching={isFetching} doSendAnswer={doSendAnswer} />
         </Grid>
       </Grid>
     </Paper>
@@ -155,6 +148,7 @@ const AnswerWidget = ({
 
 const mapStateToProps = (state, ownProps) => ({
   qc_id: ownProps.qc_id,
+  finishDate: ownProps.finishDate,
   isFetching: state.exam.isFetching,
 })
 
@@ -165,3 +159,27 @@ export default connect(
     sendAnswer,
   }
 )(AnswerWidget);
+
+
+const SubmitButton = ({ isFetching, finishDate, doSendAnswer }) => {
+  const [isExamFinished, setExamFinishStatus] = useState(false);
+
+  useEffect(() => {
+    if (finishDate) {
+      setInterval(() => {
+        setExamFinishStatus(jMoment().isAfter(jMoment(finishDate)))
+      }, 1000)
+    }
+  }, [finishDate])
+
+  return (
+    <Button
+      fullWidth
+      variant="contained"
+      color="secondary"
+      disabled={isFetching || isExamFinished}
+      onClick={doSendAnswer}>
+      {isExamFinished ? 'وقت آزمون تمام شده' : 'ذخیره جواب'}
+    </Button>
+  )
+}

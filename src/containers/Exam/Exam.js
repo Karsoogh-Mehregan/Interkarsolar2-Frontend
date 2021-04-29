@@ -195,7 +195,7 @@ const Exam = ({
                 } else if (content.type == 5) {
                   return (
                     <Grid item id={Math.random()}>
-                      <AnswerWidget qc_id={content.qc_id} text={content.content_desc} />
+                      <AnswerWidget finishDate={finishDate} qc_id={content.qc_id} text={content.content_desc} />
                     </Grid>
                   )
                 }
@@ -246,7 +246,7 @@ const CountDown = ({ finishDate }) => {
   useEffect(() => {
     if (finishDate) {
       setInterval(() => {
-        const remainedTime = jMoment.duration(finishDateInMilliseconds - jMoment.now(), 'milliseconds');
+        const remainedTime = jMoment.duration(Math.max(finishDateInMilliseconds - jMoment.now(), 0), 'milliseconds');
         setFormattedRemainedTime(`${toPersianNumber(remainedTime.hours())}:${toPersianNumber(remainedTime.minutes())}:${toPersianNumber(remainedTime.seconds())}`);
       }, 1000)
     }

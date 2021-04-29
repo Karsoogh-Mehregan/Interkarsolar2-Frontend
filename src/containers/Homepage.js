@@ -215,13 +215,13 @@ function Homepage({ isLoggedIn }) {
                   component="h1"
                   variant="h1"
                   className={classes.announcement}>
-                  {'نتایج مرحله اول اومد!'}
+                  {'امروز، روز مرحله دومه!'}
                 </Typography>
                 <Typography
                   align='center'
                   variant="h3"
                   className={classes.announcementSubtitle}>
-                  {'برای دیدن نتایج وارد سفینه‌‌تون بشید.'}
+                  {'برای شرکت در آزمون وارد سفینه‌تون بشید.'}
                 </Typography>
               </Paper>
             </Grid>

@@ -173,28 +173,28 @@ const Exam = ({
 
           <Grid container item xs={12} sm={9} md={6} direction='column' spacing={2}>
             {question && question.contents &&
-              question.contents.map((content) => {
+              question.contents.map((content, index) => {
                 if (content.type == 1) {
                   return (
-                    <Grid item id={Math.random()}>
+                    <Grid item id={index}>
                       <TextWidget text={content.content_desc} />
                     </Grid>
                   )
                 } else if (content.type == 2) {
                   return (
-                    <Grid item id={Math.random()}>
+                    <Grid item id={index}>
                       <VideoWidget link={content.content_desc} />
                     </Grid>
                   )
                 } else if (content.type == 3) {
                   return (
-                    <Grid item>
+                    <Grid item id={index}>
                       <ImageWidget link={content.content_desc} />
                     </Grid>
                   )
                 } else if (content.type == 5) {
                   return (
-                    <Grid item id={Math.random()}>
+                    <Grid item id={index}>
                       <AnswerWidget finishDate={finishDate} qc_id={content.qc_id} text={content.content_desc} />
                     </Grid>
                   )
@@ -204,10 +204,10 @@ const Exam = ({
           </Grid>
           <Grid container item xs={12} direction='column' spacing={2}>
             {question && question.contents &&
-              question.contents.map((content) => {
+              question.contents.map((content, index) => {
                 if (content.type == 4) {
                   return (
-                    <Grid item id={Math.random()}>
+                    <Grid item id={index}>
                       <MiniGameWidget link={content.content_desc} />
                     </Grid>
                   )

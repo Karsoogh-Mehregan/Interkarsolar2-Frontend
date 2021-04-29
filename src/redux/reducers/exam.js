@@ -42,7 +42,9 @@ function exam(state = initState, action) {
       return {
         ...state,
         isFetching: false,
-        examQuestionList: action.data,
+        examQuestionIds: action.data.exam_question_ids,
+        startDate: action.data.start_date,
+        finishDate: action.data.finish_date,
       }
 
     case actionTypes.GET_ANSWER_SUCCESS:
@@ -52,6 +54,7 @@ function exam(state = initState, action) {
       }
 
     case actionTypes.GET_QUESTION_SUCCESS:
+      console.log(action.data)
       return {
         ...state,
         isFetching: false,

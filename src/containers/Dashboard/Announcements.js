@@ -64,7 +64,7 @@ const AnnouncementsTab = ({ status, isRegistrationCompleted, didPaymentFail }) =
       >
         <Grid item container justify='center'>
           <Typography variant='h2' className={classes.title} >
-            اطلاعیه‌ها
+            {'اطلاعیه‌ها'}
           </Typography>
         </Grid>
         <Grid

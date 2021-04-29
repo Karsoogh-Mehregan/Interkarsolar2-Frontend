@@ -8,7 +8,9 @@ import {
   Typography,
   Paper,
   Divider,
+  Chip,
 } from '@material-ui/core';
+import jMoment from 'jalali-moment';
 import ImageWidget from '../../components/Widget/ImageWidget';
 import AnswerWidget from '../../components/Widget/AnswerWidget';
 import TextWidget from '../../components/Widget/TextWidget';
@@ -21,6 +23,7 @@ import {
 import { redirect } from '../../redux/actions/redirect'
 import { useParams } from "react-router-dom";
 import { connect } from 'react-redux';
+import { toPersianNumber } from '../../utils/translateNumber';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -63,7 +66,8 @@ const Exam = ({
   redirect,
   getExamQuestionsList,
   getQuestionContents,
-  examQuestionList,
+  examQuestionIds,
+  finishDate,
   question,
 }) => {
   const classes = useStyles();
@@ -77,22 +81,23 @@ const Exam = ({
     }
     , [getExamQuestionsList, examID])
 
-
   useEffect(
     () => {
-      if (!questionID && examQuestionList && examQuestionList[0]) {
-        goToQuestion(examQuestionList[0].id);
+      console.log(examQuestionIds)
+      if (!questionID && examQuestionIds && examQuestionIds[0]) {
+        goToQuestion(examQuestionIds[0].id);
+        console.log(examQuestionIds[0].id)
       }
     }
-    , [examQuestionList, examID, redirect, questionID])
+    , [examQuestionIds, examID, redirect, questionID])
 
   const goToQuestion = (questionID) => {
     redirect(`/exam/${examID}/${questionID}`);
   }
 
   const getQuestionIndex = (questionID) => {
-    for (let i = 0; i < examQuestionList.length; i++) {
-      if (examQuestionList[i].id == questionID) {
+    for (let i = 0; i < examQuestionIds.length; i++) {
+      if (examQuestionIds[i].id == questionID) {
         return i;
       }
     }
@@ -100,119 +105,127 @@ const Exam = ({
 
   const getNextQuestionID = (questionID) => {
     let index = getQuestionIndex(questionID);
-    return examQuestionList[index + 1].id;
+    return examQuestionIds[index + 1].id;
   }
 
   const getPreviousQuestionID = (questionID) => {
     let index = getQuestionIndex(questionID);
-    return examQuestionList[index - 1].id;
+    return examQuestionIds[index - 1].id;
   }
 
 
   useEffect(
     () => {
-      if (questionID && examQuestionList && examQuestionList[0] && examQuestionList[examQuestionList.length - 1]) {
+      if (questionID && examQuestionIds && examQuestionIds[0] && examQuestionIds[examQuestionIds.length - 1]) {
         getQuestionContents(questionID);
-        if (questionID == examQuestionList[0].id) {
+        if (questionID == examQuestionIds[0].id) {
           setPreviousProblemButtonStatus(true);
         } else {
           setPreviousProblemButtonStatus(false);
         }
-        if (questionID == examQuestionList[examQuestionList.length - 1].id) {
+        if (questionID == examQuestionIds[examQuestionIds.length - 1].id) {
           setNextProblemButtonStatus(true);
         } else {
           setNextProblemButtonStatus(false);
         }
       }
     }
-    , [getQuestionContents, examQuestionList, questionID, setPreviousProblemButtonStatus, setNextProblemButtonStatus])
+    , [getQuestionContents, examQuestionIds, questionID, setPreviousProblemButtonStatus, setNextProblemButtonStatus])
 
   return (
-    <Container className={`${classes.centerItems} ${classes.container}`}>
-      <div className='bazi' />
-      <Grid
-        container
-        direction='row'
-        justify='center'
-        spacing={2}>
-        <Grid container item xs={12} sm={9} md={3} direction='column' spacing={2}>
-          <Grid item>
-            <Paper className={classes.paper}>
-              <Grid container direction='column' spacing={2}>
-                <Grid item>
-                  <Typography align='center' variant='h2'>
-                    {question && question.title}
-                  </Typography>
+    <>
+      <Container className={`${classes.centerItems} ${classes.container}`}>
+        <div className='bazi' />
+        <Grid
+          container
+          direction='row'
+          justify='center'
+          spacing={2}>
+          <Grid container item xs={12} sm={9} md={3} direction='column' spacing={2}>
+            <Grid item>
+              <Paper className={classes.paper}>
+                <Grid container direction='column' spacing={4}>
+                  <Grid item>
+                    <Typography align='center' variant='h2'>
+                      {question && question.title}
+                    </Typography>
+                  </Grid>
+                  <Divider />
+                  <Grid item>
+                    <Typography>
+                      {question && question.description}
+                    </Typography>
+                  </Grid>
+                  <Grid item container justify='center'>
+                    <ButtonGroup variant='contained' color="secondary" aria-label="text primary button group">
+                      <Button disabled={isNextProblemButtonDisabled} onClick={() => goToQuestion(parseInt(getNextQuestionID(questionID)))}>سوال بعدی</Button>
+                      <Button disabled={isPreviousProblemButtonDisabled} onClick={() => goToQuestion(parseInt(getPreviousQuestionID(questionID)))}>سوال قبلی</Button>
+                    </ButtonGroup>
+                  </Grid>
+                  <Divider />
+                  <Grid container item justify='center'>
+                    <CountDown finishDate={finishDate} />
+                  </Grid>
                 </Grid>
-                <Divider />
-                <Grid item>
-                  <Typography>
-                    {question && question.description}
-                  </Typography>
-                </Grid>
-                <Grid item container justify='center'>
-                  <ButtonGroup variant='contained' color="secondary" aria-label="text primary button group">
-                    <Button disabled={isNextProblemButtonDisabled} onClick={() => goToQuestion(parseInt(getNextQuestionID(questionID)))}>سوال بعدی</Button>
-                    <Button disabled={isPreviousProblemButtonDisabled} onClick={() => goToQuestion(parseInt(getPreviousQuestionID(questionID)))}>سوال قبلی</Button>
-                  </ButtonGroup>
-                </Grid>
-              </Grid>
-            </Paper>
+              </Paper>
+            </Grid>
+          </Grid>
+
+          <Grid container item xs={12} sm={9} md={6} direction='column' spacing={2}>
+            {question && question.contents &&
+              question.contents.map((content) => {
+                if (content.type == 1) {
+                  return (
+                    <Grid item id={Math.random()}>
+                      <TextWidget text={content.content_desc} />
+                    </Grid>
+                  )
+                } else if (content.type == 2) {
+                  return (
+                    <Grid item id={Math.random()}>
+                      <VideoWidget link={content.content_desc} />
+                    </Grid>
+                  )
+                } else if (content.type == 3) {
+                  return (
+                    <Grid item>
+                      <ImageWidget link={content.content_desc} />
+                    </Grid>
+                  )
+                } else if (content.type == 5) {
+                  return (
+                    <Grid item id={Math.random()}>
+                      <AnswerWidget qc_id={content.qc_id} text={content.content_desc} />
+                    </Grid>
+                  )
+                }
+              })
+            }
+          </Grid>
+          <Grid container item xs={12} direction='column' spacing={2}>
+            {question && question.contents &&
+              question.contents.map((content) => {
+                if (content.type == 4) {
+                  return (
+                    <Grid item id={Math.random()}>
+                      <MiniGameWidget link={content.content_desc} />
+                    </Grid>
+                  )
+                }
+              })
+            }
           </Grid>
         </Grid>
-
-        <Grid container item xs={12} sm={9} md={6} direction='column' spacing={2}>
-          {question && question.contents &&
-            question.contents.map((content) => {
-              if (content.type == 1) {
-                return (
-                  <Grid item id={Math.random()}>
-                    <TextWidget text={content.content_desc} />
-                  </Grid>
-                )
-              } else if (content.type == 2) {
-                return (
-                  <Grid item id={Math.random()}>
-                    <VideoWidget link={content.content_desc} />
-                  </Grid>
-                )
-              } else if (content.type == 3) {
-                return (
-                  <Grid item>
-                    <ImageWidget link={content.content_desc} />
-                  </Grid>
-                )
-              } else if (content.type == 5) {
-                return (
-                  <Grid item id={Math.random()}>
-                    <AnswerWidget qc_id={content.qc_id} text={content.content_desc} />
-                  </Grid>
-                )
-              }
-            })
-          }
-        </Grid>
-        <Grid container item xs={12} direction='column' spacing={2}>
-          {question && question.contents &&
-            question.contents.map((content) => {
-              if (content.type == 4) {
-                return (
-                  <Grid item id={Math.random()}>
-                    <MiniGameWidget link={content.content_desc} />
-                  </Grid>
-                )
-              }
-            })
-          }
-        </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </>
   )
 }
 
 const mapStateToProps = (state, ownProps) => ({
   isFetching: state.exam.isFetching,
-  examQuestionList: state.exam.examQuestionList,
+  examQuestionIds: state.exam.examQuestionIds,
+  startDate: state.exam.startDate,
+  finishDate: state.exam.finishDate,
   question: state.exam.question,
 })
 
@@ -224,3 +237,22 @@ export default connect(
     getQuestionContents,
   }
 )(Exam)
+
+
+const CountDown = ({ finishDate }) => {
+  const finishDateInMilliseconds = new Date(finishDate).getTime();
+  const [formattedRemainedTime, setFormattedRemainedTime] = useState('');
+
+  useEffect(() => {
+    if (finishDate) {
+      setInterval(() => {
+        const remainedTime = jMoment.duration(finishDateInMilliseconds - jMoment.now(), 'milliseconds');
+        setFormattedRemainedTime(`${toPersianNumber(remainedTime.hours())}:${toPersianNumber(remainedTime.minutes())}:${toPersianNumber(remainedTime.seconds())}`);
+      }, 1000)
+    }
+  }, [finishDate])
+
+  return (
+    <Chip color="secondary" label={`زمان باقی‌مانده: ${formattedRemainedTime}`} />
+  )
+}

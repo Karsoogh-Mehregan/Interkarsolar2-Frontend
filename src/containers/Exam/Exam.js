@@ -151,11 +151,13 @@ const Exam = ({
                     </Typography>
                   </Grid>
                   <Divider />
-                  <Grid item>
-                    <Typography>
-                      {question && question.description}
-                    </Typography>
-                  </Grid>
+                  {question && question.description &&
+                    <Grid item>
+                      <Typography>
+                        {question.description}
+                      </Typography>
+                    </Grid>
+                  }
                   <Grid item container justify='center'>
                     <ButtonGroup variant='contained' color="secondary" aria-label="text primary button group">
                       <Button disabled={isNextProblemButtonDisabled} onClick={() => goToQuestion(parseInt(getNextQuestionID(questionID)))}>سوال بعدی</Button>
@@ -176,25 +178,25 @@ const Exam = ({
               question.contents.map((content, index) => {
                 if (content.type == 1) {
                   return (
-                    <Grid item id={index}>
+                    <Grid container justify='center' alignItems='center' item id={index}>
                       <TextWidget text={content.content_desc} />
                     </Grid>
                   )
                 } else if (content.type == 2) {
                   return (
-                    <Grid item id={index}>
+                    <Grid container justify='center' alignItems='center' item id={index}>
                       <VideoWidget link={content.content_desc} />
                     </Grid>
                   )
                 } else if (content.type == 3) {
                   return (
-                    <Grid item id={index}>
+                    <Grid container justify='center' alignItems='center' item id={index}>
                       <ImageWidget link={content.content_desc} />
                     </Grid>
                   )
                 } else if (content.type == 5) {
                   return (
-                    <Grid item id={index}>
+                    <Grid container justify='center' alignItems='center' item id={index}>
                       <AnswerWidget finishDate={finishDate} qc_id={content.qc_id} text={content.content_desc} />
                     </Grid>
                   )

@@ -3,7 +3,9 @@ import React from 'react';
 
 const useStyles = makeStyles((theme) => ({
   imageWidget: {
-    width: '100%',
+    maxWidth: '100%',
+    maxHeight: '100%',
+    objectFit: 'fill',
     borderRadius: 10,
   },
 }));

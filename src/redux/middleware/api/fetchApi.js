@@ -43,13 +43,13 @@ const fetchApi = async (url, fetchOptions) => {
   stringifiedResponse = stringifiedResponse.replace(/[\u0000-\u0019]+/g, "");
 
 
-  console.log(stringifiedResponse);
+  // console.log(stringifiedResponse);
 
 
   const jsonResponse = JSON.parse(stringifiedResponse);
 
 
-  console.log(jsonResponse);
+  // console.log(jsonResponse);
 
 
   checkErrorsStatusCode(response, jsonResponse);

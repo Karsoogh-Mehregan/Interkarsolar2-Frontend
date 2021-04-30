@@ -77,16 +77,16 @@ const Index = ({
     }
     setIsFetching(true);
     const action = await getAnswerForCorrection({ ans_id: answerId });
-    if (!action || !action.response || !action.response.data) {
+    if (!action || !action.data) {
       toast.error('یه اشکالی وجود داره! به تیم فنی خبر بده :(');
       setIsFetching(false);
       return;
     }
-    setQuestion(<TextWidget text={action.response.data.text} />);
-    setTextAnswer(<TextWidget text={action.response.data.answer_text} />);
-    setComment(action.response.data.comment);
-    if (action.response.data.answer_file) {
-      setFileAnswer(BASE_URL_OF_FILES_ON_DATABASE + action.response.data.answer_file);
+    setQuestion(<TextWidget text={action.data.text} />);
+    setTextAnswer(<TextWidget text={action.data.answer_text} />);
+    setComment(action.data.comment);
+    if (action.data.answer_file) {
+      setFileAnswer(BASE_URL_OF_FILES_ON_DATABASE + action.data.answer_file);
     }
     setIsFetching(false);
   }
@@ -102,7 +102,7 @@ const Index = ({
     }
     setIsFetching(true);
     const action = await setAnswerScore({ ans_id: answerId, score, comment });
-    if (!action || !action.response || !action.response.data) {
+    if (!action || !action.data) {
       toast.error('یه اشکالی وجود داره! به تیم فنی خبر بده :(');
       setIsFetching(false);
       return;

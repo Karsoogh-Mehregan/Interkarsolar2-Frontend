@@ -51,7 +51,7 @@ const AnswerWidget = ({
   const [inputFileID,] = useState(`file-answer-${Math.random()}`);
 
   const doSendAnswer = () => {
-    const newText = textAnswer.replace(/\\/g, '/').replace(/"/g, "\\'");
+    const newText = textAnswer.replace(/\\/g, '/').replace(/"/g, '\\"');
     sendAnswer(fileAnswer, newText ? newText : INSTEAD_OF_BLANK, qc_id);
   }
 
@@ -164,13 +164,13 @@ export default connect(
 const SubmitButton = ({ isFetching, finishDate, doSendAnswer }) => {
   const [isExamFinished, setExamFinishStatus] = useState(false);
 
-  useEffect(() => {
-    if (finishDate) {
-      setInterval(() => {
-        setExamFinishStatus(jMoment().isAfter(jMoment(finishDate)))
-      }, 1000)
-    }
-  }, [finishDate])
+  // useEffect(() => {
+  //   if (finishDate) {
+  //     setInterval(() => {
+  //       setExamFinishStatus(jMoment().isAfter(jMoment(finishDate)))
+  //     }, 1000)
+  //   }
+  // }, [finishDate])
 
   return (
     <Button

@@ -54,7 +54,6 @@ function exam(state = initState, action) {
       }
 
     case actionTypes.GET_QUESTION_SUCCESS:
-      console.log(action.data)
       return {
         ...state,
         isFetching: false,

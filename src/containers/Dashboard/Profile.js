@@ -169,7 +169,6 @@ const ProfileTab = ({
 
 
   // todo: add province in backend
-  console.log(info)
   useEffect(() => {
     if (!info.city) return;
     const fetchAndSetProvince = async () => {

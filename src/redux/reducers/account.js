@@ -58,7 +58,6 @@ function account(state = initState, action) {
       }
 
     case actionTypes.GET_USER_INFO_SUCCESS:
-      console.log(action)
       return {
         ...state,
         info: action.data[0].fields,

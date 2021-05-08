@@ -14,7 +14,6 @@ function mentor(state = initState, action) {
       }
 
     case actionTypes.GET_ANSWER_FOR_CORRECTION_SUCCESS:
-      console.log(action.response);
       return {
         ...state,
         isFetching: false,

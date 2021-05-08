@@ -83,10 +83,8 @@ const Exam = ({
 
   useEffect(
     () => {
-      console.log(examQuestionIds)
       if (!questionID && examQuestionIds && examQuestionIds[0]) {
         goToQuestion(examQuestionIds[0].id);
-        console.log(examQuestionIds[0].id)
       }
     }
     , [examQuestionIds, examID, redirect, questionID])

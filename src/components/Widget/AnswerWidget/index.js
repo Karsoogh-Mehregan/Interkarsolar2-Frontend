@@ -52,7 +52,6 @@ const AnswerWidget = ({
 
   const doSendAnswer = () => {
     const newText = textAnswer.replace(/\\/g, '/').replace(/"/g, '\'');
-    console.log(textAnswer)
     sendAnswer(fileAnswer, newText ? newText : INSTEAD_OF_BLANK, qc_id);
   }
 
@@ -84,8 +83,6 @@ const AnswerWidget = ({
         setEditor(<TinyEditorComponent initialValue={INSTEAD_OF_BLANK} onChange={setTextAnswer} />);
         return;
       }
-
-      console.log(action)
       setPreviousFileAnswer(action.data.file ? BASE_URL_OF_FILES_ON_DATABASE + action.data.file : '');
       setEditor(<TinyEditorComponent initialValue={action.data.answer} onChange={setTextAnswer} />);
     }

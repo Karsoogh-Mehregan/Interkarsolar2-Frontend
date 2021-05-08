@@ -208,23 +208,6 @@ function Homepage({ isLoggedIn }) {
                 {'دومین دوره رویداد برخطِ'}
               </Typography>
             </Grid>
-            <Grid item>
-              <Paper className={classes.paper}>
-                <Typography
-                  align='center'
-                  component="h1"
-                  variant="h1"
-                  className={classes.announcement}>
-                  {'امروز، روز مرحله دومه!'}
-                </Typography>
-                <Typography
-                  align='center'
-                  variant="h3"
-                  className={classes.announcementSubtitle}>
-                  {'برای شرکت در آزمون وارد سفینه‌تون بشید.'}
-                </Typography>
-              </Paper>
-            </Grid>
           </Grid>
         </Grid>
       </Container>

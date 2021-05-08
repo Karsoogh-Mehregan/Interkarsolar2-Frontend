@@ -76,15 +76,11 @@ const AnnouncementsTab = ({ status, isRegistrationCompleted, didPaymentFail }) =
           spacing={2}>
 
           <Grid item xs={12}>
+            <Announcement title='نظرسنجی' date='۱۸ اردیبهشت ۱۴۰۰' image='survey.png' text='قطعا در برگزاری آزمون مرحله دوم مشکلاتی داشتیم که بابتش ازتون عذرخواهی می‌کنیم. لطفاً شما هم با پرکردن نظرسنجی زیر به ما برای ادامه‌ی بهتر اینترکارسولار کمک کنید!' linkURL='https://formaloo.com/ya4xc' linkText='لینک نظرسنجی مرحله دو' />
+          </Grid>
+
+          <Grid item xs={12}>
             <Announcement title='آزمون مرحله دو' date='۵ اردیبهشت ۱۴۰۰' image='announcement.jpg' text='سلام مجدد! خواستیم یادآوری کنیم که آزمون مرحله دوم، جمعه‌ی همین هفته از ساعت ۹ تا ۱۴ برگزار میشه. اگه توی مرحله اول قبول شدید، یادتون نره برای مرحله دوم ثبت‌نام کنید. بعداً نگید نگفتیدا!' />
-          </Grid>
-
-          <Grid item xs={12}>
-            <Announcement title='اعلام نتایج' date='۳۱ فروردین ۱۴۰۰' image='announcement.jpg' text='بالاخره نتایج مرحله‌ی اول اعلام شد! می‌تونید به صفحه‌ی «آزمون‌ها» برید و اونجا نتیجه‌تون رو ببینید :) راستی، اگه قبول شده بودید یادتون نره که حتماً توی آزمون مرحله دوم ثبت‌نام کنید.' />
-          </Grid>
-
-          <Grid item xs={12}>
-            <Announcement title='نظرسنجی' date='۲۳ اسفند ۹۹' image='survey.png' text='قطعا در برگزاری مرحله اول مشکلاتی داشتیم که بابتش ازتون عذرخواهی می‌کنیم. لطفاً شما هم با پرکردن نظرسنجی زیر به ما برای ادامه‌ی بهتر اینترکارسولار کمک کنید!' linkURL='https://formaloo.com/interkarsolar' linkText='لینک نظرسنجی' />
           </Grid>
 
         </Grid>

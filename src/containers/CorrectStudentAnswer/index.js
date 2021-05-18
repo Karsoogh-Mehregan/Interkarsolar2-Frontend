@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   makeStyles,
   Container,
@@ -49,12 +49,16 @@ const Index = ({
 }) => {
   const classes = useStyles();
   const [isFetching, setIsFetching] = useState(false);
-  const [score, setScore] = useState();
+  const [score1, setScore1] = useState();
+  const [doesScore1HaveValue, setScore1PreviousValue] = useState(false);
+  const [score2, setScore2] = useState();
+  const [doesScore2HaveValue, setScore2PreviousValue] = useState(false);
   const [comment, setComment] = useState();
   const [answerId, setAnswerId] = useState();
   const [question, setQuestion] = useState();
   const [textAnswer, setTextAnswer] = useState();
   const [fileAnswer, setFileAnswer] = useState();
+  const fetchAnswerButton = useRef();
 
   const isDigit = (string) => {
     var regex = new RegExp(`\\d+`);
@@ -65,8 +69,16 @@ const Index = ({
     }
   }
 
+  const fetchAnswerByEnter = (e) => {
+    if (e.key !== 'Enter') return;
+    fetchAnswer();
+  }
+
   const fetchAnswer = async () => {
-    setScore();
+    setScore1();
+    setScore2();
+    setScore1PreviousValue();
+    setScore2PreviousValue();
     setQuestion();
     setTextAnswer();
     setFileAnswer();
@@ -82,6 +94,9 @@ const Index = ({
       setIsFetching(false);
       return;
     }
+    setScore1PreviousValue(action.data.score1);
+    setScore2PreviousValue(action.data.score2);
+    console.log(action.data);
     setQuestion(<TextWidget text={action.data.text} />);
     setTextAnswer(<TextWidget text={action.data.answer_text} />);
     setComment(action.data.comment);
@@ -92,16 +107,16 @@ const Index = ({
   }
 
   const submitScore = async () => {
-    if (!isDigit(score) && score != null) {
+    if ((!isDigit(score1) && score1 != null) || (!isDigit(score2) && score2 != null)) {
       toast.error('نمره فقط می‌تونه رقم انگلیسی باشه!');
       return;
     }
-    if (score < 0 || score > 10) {
+    if (score1 < 0 || score1 > 10 || score2 < 0 || score2 > 10) {
       toast.error('لطفاً یک نمره بین ۰ تا ۱۰ وارد کن!');
       return;
     }
     setIsFetching(true);
-    const action = await setAnswerScore({ ans_id: answerId, score, comment });
+    const action = await setAnswerScore({ ans_id: answerId, score1, score2, comment });
     if (!action || !action.data) {
       toast.error('یه اشکالی وجود داره! به تیم فنی خبر بده :(');
       setIsFetching(false);
@@ -120,10 +135,14 @@ const Index = ({
             <TextField
               label='شناسه‌ی پاسخ را وارد کنید' variant='outlined'
               value={answerId} onChange={(e) => setAnswerId(e.target.value)}
-              inputProps={{ className: 'ltr-input' }} />
+              inputProps={{ className: 'ltr-input' }}
+              onKeyPress={fetchAnswerByEnter} />
           </Grid>
           <Grid item >
-            <Button disabled={!answerId || isFetching} variant='contained' color='primary' onClick={fetchAnswer}>
+            <Button ref={fetchAnswerButton}
+              disabled={!answerId || isFetching}
+              variant='contained' color='primary'
+              onClick={fetchAnswer}>
               {'دریافت پاسخ'}
             </Button>
           </Grid>
@@ -174,13 +193,19 @@ const Index = ({
                       </Typography>
                     </Grid>
                     <Grid item >
-                      <TextField fullWidth label='نمره' variant='outlined' value={score} onChange={(e) => setScore(e.target.value)} />
+                      <TextField helperText={doesScore1HaveValue == 'None' ? '' : 'نمره‌ی اول قبلاً ثبت شده.'}
+                        fullWidth label='نمره‌ی ۱' variant='outlined'
+                        value={score1} onChange={(e) => setScore1(e.target.value)} />
+                    </Grid>
+                    <Grid item >
+                      <TextField helperText={doesScore2HaveValue == 'None' ? '' : 'نمره‌ی دوم قبلاً ثبت شده.'}
+                        fullWidth label='نمره‌ی ۲' variant='outlined'
+                        value={score2} onChange={(e) => setScore2(e.target.value)} />
                     </Grid>
                     <Grid item>
-                      <Typography variant='caption'>
-                        {'نظر مصحح:'}
-                      </Typography>
-                      <textarea value={comment} className={classes.textArea} onChange={(e) => setComment(e.target.value)} />
+                      <TextField multiline rows={5}
+                        fullWidth label='نظرات مصححین' variant='outlined'
+                        value={comment == 'None' ? '' : comment} onChange={(e) => setComment(e.target.value)} />
                     </Grid>
                     <Grid item >
                       <Button disabled={isFetching} variant='contained' fullWidth color='primary' onClick={submitScore}>

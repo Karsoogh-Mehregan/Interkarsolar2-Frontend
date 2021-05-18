@@ -193,12 +193,12 @@ const Index = ({
                       </Typography>
                     </Grid>
                     <Grid item >
-                      <TextField helperText={doesScore1HaveValue == 'None' ? '' : 'نمره‌ی اول قبلاً ثبت شده.'}
+                      <TextField helperText={(doesScore1HaveValue == 'None' || doesScore1HaveValue == 0) ? '' : 'نمره‌ی اول قبلاً ثبت شده.'}
                         fullWidth label='نمره‌ی ۱' variant='outlined'
                         value={score1} onChange={(e) => setScore1(e.target.value)} />
                     </Grid>
                     <Grid item >
-                      <TextField helperText={doesScore2HaveValue == 'None' ? '' : 'نمره‌ی دوم قبلاً ثبت شده.'}
+                      <TextField helperText={(doesScore2HaveValue == 'None' || doesScore2HaveValue == 0) ? '' : 'نمره‌ی دوم قبلاً ثبت شده.'}
                         fullWidth label='نمره‌ی ۲' variant='outlined'
                         value={score2} onChange={(e) => setScore2(e.target.value)} />
                     </Grid>

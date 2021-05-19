@@ -117,7 +117,7 @@ export default function TimeLine() {
       <TimelineItem>
         <TimelineOppositeContent>
           <Typography variant="body2" color="textSecondary">
-            خرداد و مرداد ۱۴۰۰
+            تیر و مرداد ۱۴۰۰
           </Typography>
         </TimelineOppositeContent>
         <TimelineSeparator>

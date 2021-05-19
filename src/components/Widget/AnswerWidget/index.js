@@ -50,26 +50,48 @@ const AnswerWidget = ({
   const [textAnswer, setTextAnswer] = useState(INSTEAD_OF_BLANK);
   const [inputFileID,] = useState(`file-answer-${Math.random()}`);
 
+  console.log(fileAnswer)
+
   const doSendAnswer = () => {
     const newText = textAnswer.replace(/\\/g, '/').replace(/"/g, '\'');
     sendAnswer(fileAnswer, newText ? newText : INSTEAD_OF_BLANK, qc_id);
   }
 
   const clearInputFile = () => {
+    console.log(document.getElementById(inputFileID).value)
     document.getElementById(inputFileID).value = '';
     setFileAnswer('');
   }
 
   const onChangeFile = async (e) => {
     e.preventDefault();
+
+    // Validate FileUploader for images/pdf/doc files only
     if (e.target.files[0]) {
-      if (e.target.files[0].size <= 10e6) {
-        setFileAnswer(e.target.files[0]);
-      } else {
-        e.target.value = '';
-        e.target.setCustomValidity('اندازه‌ی فایلت خیلی بیشتر از ۸ مگابایته!');
-        e.target.reportValidity();
-      }
+        const allowedExtensions =  ['pdf','png', 'jpg', 'jpeg', 'doc'],
+              sizeLimit = 8000000; // 8 megabyte
+
+        const { name:fileName, size:fileSize } = e.target.files[0];
+
+        const fileExtension = fileName.split(".").pop();
+
+        if(!allowedExtensions.includes(fileExtension)){
+          e.target.setCustomValidity('نوع پرونده نامعتبر است!');
+          e.target.value = '';
+        }else if(fileSize > sizeLimit){
+          e.target.value = '';
+          e.target.setCustomValidity('اندازه‌ی فایلت خیلی بیشتر از ۸ مگابایته!');
+          e.target.reportValidity();
+        }else{
+          setFileAnswer(e.target.files[0]);
+        }
+      // if (e.target.files[0].size <= sizeLimit) {
+      //   setFileAnswer(e.target.files[0]);
+      // } else {
+      //   e.target.value = '';
+      //   e.target.setCustomValidity('اندازه‌ی فایلت خیلی بیشتر از ۸ مگابایته!');
+      //   e.target.reportValidity();
+      // }
     }
   };
 
@@ -113,9 +135,10 @@ const AnswerWidget = ({
           <Grid item container justify='flex-start' alignItems='center'>
             <input
               id={inputFileID}
-              accept="application/pdf,image/*"
+              accept="image/*,.pdf"
               type="file"
               onChange={onChangeFile}
+              
             />
             {!previousFileAnswer &&
               <Typography variant='caption'>

@@ -75,6 +75,17 @@ const AnnouncementsTab = ({ status, isRegistrationCompleted, didPaymentFail }) =
           alignItems='center'
           spacing={2}>
 
+          {didPaymentFail &&
+            < Grid item xs={12}>
+              <Announcement title='ای بابا!' date='همین چند لحظه پیش' image='ohDad.png' text='به نظر می‌رسه که پرداختت با موفقیت به پایان نرسیده. اگه پولی از حسابت کم شده ولی ثبت‌نامت نهایی نشده، به ادمینِ کاروسق توی بله، اینستاگرام یا تلگرام پیام بده تا پیگیری کنیم :)' />
+            </Grid>
+          }
+          {isRegistrationCompleted &&
+            <Grid item xs={12}>
+              <Announcement title='ثبت‌نامت تکمیله!' date='' image='greenCheck.png' text='ایول! ثبت‌نامت برای دوره‌ی تابستونه با موفقیت انجام شد.' />
+            </Grid>
+          }
+
           <Grid item xs={12}>
             <Announcement title='نظرسنجی' date='۱۸ اردیبهشت ۱۴۰۰' image='survey.png' text='قطعا در برگزاری آزمون مرحله دوم مشکلاتی داشتیم که بابتش ازتون عذرخواهی می‌کنیم. لطفاً شما هم با پرکردن نظرسنجی زیر به ما برای ادامه‌ی بهتر اینترکارسولار کمک کنید!' linkURL='https://formaloo.com/ya4xc' linkText='لینک نظرسنجی مرحله دو' />
           </Grid>

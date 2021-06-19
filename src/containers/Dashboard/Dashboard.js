@@ -42,23 +42,23 @@ function Dashboard({
   const [didPaymentFail, setPaymentFailure] = useState(false);
 
 
-  useEffect(
-    () => {
-      if (info) {
-        if (info.status === 20 || info.status === 10) {
-          setRegistrationStatus(true);
-        } else {
-          setRegistrationStatus(false);
-        }
+  // useEffect(
+  //   () => {
+  //     if (info) {
+  //       if (info.status === 20 || info.status === 10) {
+  //         setRegistrationStatus(true);
+  //       } else {
+  //         setRegistrationStatus(false);
+  //       }
 
-        const { first_name, last_name, national_code, phone1, phone2, grade, city, school_name } = info;
-        if (first_name && last_name && national_code && phone1 && phone2 && grade && city && school_name) {
-          setIsAllowed(true);
-        } else {
-          setIsAllowed(false);
-        }
-      }
-    }, [info])
+  //       const { first_name, last_name, national_code, phone1, phone2, grade, city, school_name } = info;
+  //       if (first_name && last_name && national_code && phone1 && phone2 && grade && city && school_name) {
+  //         setIsAllowed(true);
+  //       } else {
+  //         setIsAllowed(false);
+  //       }
+  //     }
+  //   }, [info])
 
 
 
@@ -71,10 +71,15 @@ function Dashboard({
 
   useEffect(
     () => {
-      if (payments && payments[0] && payments[0].status === 100) {
-        setRegistrationStatus(true);
-      } else if (payments && payments[0] && (new Date().getTime() / 1000 - payments[0].update_date) < 1000) {
-        setPaymentFailure(true);
+      if (new Date().getTime() / 1000 - payments[payments.length - 1]?.update_date < 2000) {
+        if (payments[payments.length - 1]?.status === 100) {
+          setRegistrationStatus(true);
+        } else {
+          setPaymentFailure(true);
+        }
+      } else {
+        setRegistrationStatus(false);
+        setPaymentFailure(false);
       }
     }, [payments])
 

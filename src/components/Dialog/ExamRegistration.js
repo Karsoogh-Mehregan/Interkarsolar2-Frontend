@@ -6,10 +6,13 @@ import {
   Typography,
   Checkbox,
 } from '@material-ui/core';
+import { connect } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import TinyPreview from '../tiny_editor/react_tiny/Preview';
 import dateFormatter from '../../utils/dateFormatter';
 import { toPersianNumber } from '../../utils/translateNumber';
+import { doPayment } from '../../redux/actions/account'
+import { registerInExam } from '../../redux/actions/exam';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,12 +25,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Description({
+  doPayment,
+  registerInExam,
   open,
   handleClose,
   deadline,
   title,
+  examId,
   description,
-  register,
   cost = 0,
 }) {
 
@@ -41,6 +46,20 @@ function Description({
         width: '100%',
       }}
       content={description} />);
+
+
+  const register = () => {
+    if (cost == 0) {
+      registerInExam({ exam_id: examId }).then(() => {
+        setTimeout(() => {
+          window.location.reload()
+        }, 1000)
+      })
+    } else {
+      doPayment({ amount: cost, exam_id: examId });
+    }
+
+  }
 
   return (
     <Dialog maxWidth="sm" fullWidth open={open} onClose={handleClose} >
@@ -65,7 +84,7 @@ function Description({
               <Grid item>
                 <li>
                   <Typography variant="subtitle" align="center">
-                    {`قیمت: ${cost ? toPersianNumber(cost) + ' ریال' : 'رایگان'}`}
+                    {`قیمت: ${cost ? toPersianNumber(cost / 10) + ' تومان' : 'رایگان'}`}
                   </Typography>
                 </li>
               </Grid>
@@ -95,4 +114,24 @@ function Description({
 }
 
 
-export default Description;
+const mapStateToProps = (state, ownProps) => {
+  const {
+    open,
+    handleClose,
+    deadline,
+    title,
+    examId,
+    description,
+    cost } = ownProps;
+  return ({
+    open,
+    handleClose,
+    deadline,
+    title,
+    examId,
+    description,
+    cost
+  })
+}
+
+export default connect(mapStateToProps, { doPayment, registerInExam })(Description);

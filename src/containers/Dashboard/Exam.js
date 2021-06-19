@@ -11,10 +11,6 @@ import {
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import {
-  doPayment,
-  ignorePayment,
-} from '../../redux/actions/account'
-import {
   getExamQuestionsList,
   getStudentExams,
 } from '../../redux/actions/exam'
@@ -116,8 +112,6 @@ const mapStateToProps = (state, ownProps) => ({
 export default connect(
   mapStateToProps,
   {
-    doPayment,
-    ignorePayment,
     getExamQuestionsList,
     getStudentExams,
   }

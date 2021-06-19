@@ -96,7 +96,6 @@ const Index = ({
     }
     setScore1PreviousValue(action.data.score1);
     setScore2PreviousValue(action.data.score2);
-    console.log(action.data);
     setQuestion(<TextWidget text={action.data.text} />);
     setTextAnswer(<TextWidget text={action.data.answer_text} />);
     setComment(action.data.comment);
@@ -117,6 +116,7 @@ const Index = ({
     }
     setIsFetching(true);
     const action = await setAnswerScore({ ans_id: answerId, score1, score2, comment });
+    console.log(action);
     if (!action || !action.data) {
       toast.error('یه اشکالی وجود داره! به تیم فنی خبر بده :(');
       setIsFetching(false);

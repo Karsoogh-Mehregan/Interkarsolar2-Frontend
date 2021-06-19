@@ -125,7 +125,7 @@ export const getUserInfo = () => ({
 
 //////////////////////
 
-export const doPayment = () => ({
+export const doPayment = ({ amount, exam_id }) => ({
   [CALL_API]: {
     types: [
       actionTypes.PAYMENT_REQUEST,
@@ -136,8 +136,9 @@ export const doPayment = () => ({
     fetchOptions: {
       method: 'POST',
       body: {
-        amount: 100000,
-        return_link: 'https://interkarsolar.ir/dashboard?tab=announcements',
+        amount,
+        exam_id,
+        return_link: 'https://interkarsolar.ir/dashboard?tab=exam',
       },
     },
   },

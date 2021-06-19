@@ -10,6 +10,7 @@ import {
   Grid,
   Button,
 } from '@material-ui/core';
+import { doPayment } from '../../redux/actions/account'
 import { registerInExam } from '../../redux/actions/exam';
 
 const STUDENT_EXAM_STATUS = [
@@ -65,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Index = ({
   registerInExam,
+  doPayment,
   id,
   title,
   start_date,
@@ -89,14 +91,6 @@ const Index = ({
   }, [start_date, finish_date, registration_start, registration_deadline])
   const classes = useStyles();
 
-  const doRegister = () => {
-    registerInExam({ exam_id: id }).then(() => {
-      setTimeout(() => {
-        window.location.reload()
-      }, 3000)
-    })
-  }
-
   return (
     <>
       <Paper className={`${classes.paper} ${classes.root}`}>
@@ -116,7 +110,7 @@ const Index = ({
           {status == 0 &&
             <Grid item xs={12}>
               <Typography variant='subtitle'>
-                {'برای ثبت‌نام در آزمون، روی دکمه‌ی زیر کلیک کن!'}
+                {'برای ثبت‌نام روی دکمه‌ی زیر کلیک کن!'}
               </Typography>
             </Grid>
           }
@@ -166,7 +160,7 @@ const Index = ({
         deadline={registration_deadline}
         open={isDialogueOpen}
         cost={cost}
-        register={doRegister}
+        examId={id}
         handleClose={() => { setDialogueOpen(!isDialogueOpen) }}
       />
     </>
@@ -174,4 +168,4 @@ const Index = ({
 }
 
 
-export default connect(null, { registerInExam })(Index);
+export default connect(null, { registerInExam, doPayment })(Index);

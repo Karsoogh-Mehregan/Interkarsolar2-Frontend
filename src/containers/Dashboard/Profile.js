@@ -183,7 +183,7 @@ const ProfileTab = ({
     if (!info.city) return;
     const fetchAndSetProvince = async () => {
       const action = await getCityDetails(info.city)
-      setProvince(action.data.pid)
+      setProvince(action?.data?.pid)
     }
     if (info.city) {
       fetchAndSetProvince();

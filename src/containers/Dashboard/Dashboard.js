@@ -74,8 +74,10 @@ function Dashboard({
       if (new Date().getTime() / 1000 - payments[payments.length - 1]?.update_date < 2000) {
         if (payments[payments?.length - 1]?.status === 100) {
           setRegistrationStatus(true);
+          setPaymentFailure(false);
         } else {
           setPaymentFailure(true);
+          setRegistrationStatus(false);
         }
       } else {
         setRegistrationStatus(false);

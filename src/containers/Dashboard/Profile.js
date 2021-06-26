@@ -113,10 +113,20 @@ const ProfileTab = ({
     })
   }
 
+  function validateEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
   const saveUpdates = () => {
-    const { first_name, last_name, national_code, phone1, phone2, grade, city, school_name } = info;
-    if (!(first_name && last_name && national_code && phone1 && phone2 && grade && city && school_name)) {
-      toast.error('همه‌ی اطلاعاتی که اجباری هستند (کنارشون علامت ستاره خورده) رو باید تکمیل کنی!.')
+    const { first_name, last_name, gender, email, national_code, phone1, phone2, grade, city, school_name } = info;
+    if (!(first_name && last_name && gender && email && national_code && phone1 && phone2 && grade && city && school_name)) {
+      toast.error('همه‌ی اطلاعاتی که اجباری هستند (کنارشون علامت ستاره خورده) رو باید تکمیل کنی!')
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      toast.error('ایمیلی که وارد کردی معتبر نیست!')
       return;
     }
 
@@ -222,16 +232,27 @@ const ProfileTab = ({
                   <Grid item container xs={12} sm={3} justify='center'>
                     <TextField name='national_code' label='کد ملی' defaultValue={info.national_code} disabled variant='outlined' required fullWidth />
                   </Grid>
-                  <Hidden xsDown>
-                    <Grid item container xs={12} sm={3} justify='center' />
-                  </Hidden>
+                  <Grid item container xs={12} sm={3}>
+                    <FormControl variant="outlined" className={classes.formControl} required>
+                      <InputLabel id="demo-simple-select-required-label">جنسیت</InputLabel>
+                      <Select
+                        className={classes.dropDown}
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        defaultValue={info.gender}
+                        onBlur={onBlur}
+                        name='gender'
+                        label='جنسیت'
+                      >
+                        <MenuItem value={'MAN'}>پسر</MenuItem>
+                        <MenuItem value={'WOMAN'}>دختر</MenuItem>
+                      </Select>
+                    </FormControl >
+                  </Grid>
                   <Grid item container xs={12} sm={3} justify='center'>
                     <TextField
-                      label='مدرسه' name='school_name' defaultValue={info.school_name} required variant='outlined' onBlur={onBlur} fullWidth />
+                      label='ایمیل' name='email' defaultValue={info.email} required variant='outlined' onBlur={onBlur} fullWidth />
                   </Grid>
-                  <Hidden xsDown>
-                    <Grid item container xs={12} sm={3} justify='center' />
-                  </Hidden>
                   <Grid item container xs={12} sm={3} justify='center'>
                     <TextField name='phone1' label='شماره موبایل' defaultValue={info.phone1} disabled variant='outlined' required onBlur={onBlur} fullWidth />
                   </Grid>
@@ -248,6 +269,9 @@ const ProfileTab = ({
                         }
                       } />
                   </Grid>
+                  <Hidden xsDown>
+                    <Grid item container xs={12} sm={3} justify='center' />
+                  </Hidden>
                 </Grid>
               </Paper>
             </Grid>
@@ -258,6 +282,10 @@ const ProfileTab = ({
               spacing={2}>
               <Paper className={classes.paper}>
                 <Grid item container spacing={1} justify='center' alignItems='center'>
+                  <Grid item container xs={12} sm={3} justify='center'>
+                    <TextField
+                      label='مدرسه' name='school_name' defaultValue={info.school_name} required variant='outlined' onBlur={onBlur} fullWidth />
+                  </Grid>
                   <Grid item container xs={12} sm={3}>
                     <FormControl variant="outlined" className={classes.formControl} required>
                       <InputLabel id="demo-simple-select-required-label">استان</InputLabel>
@@ -299,9 +327,6 @@ const ProfileTab = ({
                       </Select>
                     </FormControl >
                   </Grid>
-                  <Hidden xsDown>
-                    <Grid item container xs={12} sm={3} justify='center' />
-                  </Hidden>
                   <Grid item container xs={12} sm={3}>
                     <FormControl variant="outlined" className={classes.formControl} required>
                       <InputLabel id="demo-simple-select-required-label">پایه</InputLabel>
@@ -322,9 +347,6 @@ const ProfileTab = ({
                       </Select>
                     </FormControl >
                   </Grid>
-                  <Hidden xsDown>
-                    <Grid item container xs={12} sm={3} justify='center' />
-                  </Hidden>
                   <Grid item container xs={12} sm={3} justify='center'>
                     <TextField
                       label='شماره تلفن مدرسه' name='school_phone' value={info.school_phone} variant='outlined' placeholder='پیش‌شماره یادت نره!' fullWidth
@@ -355,6 +377,9 @@ const ProfileTab = ({
                         }
                       } />
                   </Grid>
+                  <Hidden xsDown>
+                    <Grid item container xs={12} sm={3} justify='center' />
+                  </Hidden>
                 </Grid>
               </Paper>
             </Grid>

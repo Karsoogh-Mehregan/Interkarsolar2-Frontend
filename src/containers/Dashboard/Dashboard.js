@@ -68,11 +68,13 @@ function Dashboard({
     }, [checkPaymentStatus])
 
 
+  console.log(payments)
+
 
   useEffect(
     () => {
-      if (new Date().getTime() / 1000 - payments[payments.length - 1]?.update_date < 2000) {
-        if (payments[payments.length - 1]?.status === 100) {
+      if (new Date().getTime() / 1000 - payments[payments?.length - 1]?.update_date < 1000) {
+        if (payments[payments?.length - 1]?.status === 100) {
           setRegistrationStatus(true);
         } else {
           setPaymentFailure(true);
@@ -101,7 +103,7 @@ function Dashboard({
         )
       }
     }
-    , [useLocation])
+    , [tabName])
 
 
 
@@ -142,7 +144,7 @@ function Dashboard({
 const mapStateToProps = (state, ownProps) => ({
   info: state.account.info,
   isFetching: state.account.isFetching,
-  payments: state.account.payments,
+  payments: state.account.payments | [],
 })
 
 export default connect(

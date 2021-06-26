@@ -63,17 +63,7 @@ export const logout = () => ({
 });
 
 
-export const updateUserInfo = ({
-  first_name,
-  last_name,
-  grade, phone2,
-  school_name,
-  school_phone,
-  manager_name,
-  manager_phone,
-  province,
-  city,
-}) => ({
+export const updateUserInfo = (info) => ({
   [CALL_API]: {
     types: [
       actionTypes.UPDATE_USER_INFO_REQUEST,
@@ -81,30 +71,10 @@ export const updateUserInfo = ({
       actionTypes.UPDATE_USER_INFO_FAILURE,
     ],
     url: URLs.UPDATE_PROFILE,
-    payload: {
-      first_name,
-      last_name,
-      grade, phone2,
-      school_name,
-      school_phone,
-      manager_name,
-      manager_phone,
-      province,
-      city,
-    },
+    payload: info,
     fetchOptions: {
       method: 'POST',
-      body: {
-        first_name,
-        last_name,
-        grade,
-        phone2,
-        school_name,
-        school_phone,
-        manager_name,
-        manager_phone,
-        city,
-      },
+      body: info,
     },
   },
 });

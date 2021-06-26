@@ -84,7 +84,7 @@ function Description({
               <Grid item>
                 <li>
                   <Typography variant="subtitle" align="center">
-                    {`قیمت: ${cost ? toPersianNumber(cost / 10) + ' تومان' : 'رایگان'}`}
+                    {`هزینه‌ی ثبت‌نام: ${cost ? toPersianNumber(cost / 10) + ' تومان' : 'رایگان'}`}
                   </Typography>
                 </li>
               </Grid>

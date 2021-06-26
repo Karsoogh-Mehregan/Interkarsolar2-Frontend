@@ -117,21 +117,21 @@ const Index = ({
           {status == 1 &&
             <Grid item xs={12}>
               <Typography variant='subtitle'>
-                {`این آزمون ${dateFormatter({ date: start_date, format: 'dddd، Do MMMM، ساعت H:mm' })} شروع میشه و تا ${dateFormatter({ date: finish_date, format: 'dddd، Do MMMM، ساعت H:mm' })} ادامه داره.`}
+                {`ثبت‌نامت با موفقیت انجام شد. تا ${dateFormatter({ date: start_date, format: 'dddd Do MMMM، ساعت H:mm' })} صبر کن!`}
               </Typography>
             </Grid>
           }
           {status == 2 &&
             <Grid item xs={12}>
               <Typography variant='subtitle'>
-                {'ایول! قبول‌شدنت تو این آزمون رو تبریک میگم!'}
+                {'ایول! قبول‌شدنت رو تبریک میگم!'}
               </Typography>
             </Grid>
           }
           {status == 3 &&
             <Grid item xs={12}>
               <Typography variant='subtitle'>
-                {'خب! بعضی وقت‌ها نمیشه دیگه :( ایشالا یه بار دیگه هم بتونیم هم‌دیگه رو ببینیم!'}
+                {'خب! بعضی وقت‌ها نمیشه دیگه :( ایشالا بازم بتونیم هم‌دیگه رو ببینیم!'}
               </Typography>
             </Grid>
           }

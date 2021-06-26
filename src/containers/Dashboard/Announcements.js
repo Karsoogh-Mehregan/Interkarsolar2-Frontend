@@ -86,13 +86,15 @@ const AnnouncementsTab = ({ status, isRegistrationCompleted, didPaymentFail }) =
             </Grid>
           }
 
+
+          <Grid item xs={12}>
+            <Announcement title='دوره تابستونه' date='۵ خرداد ۱۴۰۰' image='announcement.jpg' text='بالاخره نتایج مرحله دو اومد! اگه تو این مرحله قبول شده باشی، می‌تونی برای دوره‌ی تابستونه ثبت‌نام کنی. به امید این که هر چه زودتر (هرچند به صورت مجازی) ببینیمت!' />
+          </Grid>
+
           <Grid item xs={12}>
             <Announcement title='نظرسنجی' date='۱۸ اردیبهشت ۱۴۰۰' image='survey.png' text='قطعا در برگزاری آزمون مرحله دوم مشکلاتی داشتیم که بابتش ازتون عذرخواهی می‌کنیم. لطفاً شما هم با پرکردن نظرسنجی زیر به ما برای ادامه‌ی بهتر اینترکارسولار کمک کنید!' linkURL='https://formaloo.com/ya4xc' linkText='لینک نظرسنجی مرحله دو' />
           </Grid>
 
-          <Grid item xs={12}>
-            <Announcement title='آزمون مرحله دو' date='۵ اردیبهشت ۱۴۰۰' image='announcement.jpg' text='سلام مجدد! خواستیم یادآوری کنیم که آزمون مرحله دوم، جمعه‌ی همین هفته از ساعت ۹ تا ۱۴ برگزار میشه. اگه توی مرحله اول قبول شدید، یادتون نره برای مرحله دوم ثبت‌نام کنید. بعداً نگید نگفتیدا!' />
-          </Grid>
 
         </Grid>
       </Grid>

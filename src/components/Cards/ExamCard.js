@@ -117,7 +117,7 @@ const Index = ({
           {status == 1 &&
             <Grid item xs={12}>
               <Typography variant='subtitle'>
-                {`ثبت‌نامت با موفقیت انجام شد. تا ${dateFormatter({ date: start_date, format: 'dddd Do MMMM، ساعت H:mm' })} صبر کن!`}
+                {`ثبت‌نامت با موفقیت انجام شده. تا ${dateFormatter({ date: start_date, format: 'dddd Do MMMM، ساعت H:mm' })} صبر کن!`}
               </Typography>
             </Grid>
           }
@@ -148,7 +148,7 @@ const Index = ({
               <Button variant='contained' color='secondary'
                 fullWidth disabled={isExamFinished || !isExamStarted}
                 target="_blank" href={`/exam/${id}`}>
-                {!isExamStarted ? 'آزمون هنوز شروع نشده' : (isExamFinished ? 'آزمون تمام شده' : 'ورود')}
+                {!isExamStarted ? 'برنامه هنوز شروع نشده' : (isExamFinished ? 'این برنامه تمام شده' : 'ورود')}
               </Button>
             </Grid>
           }

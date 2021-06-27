@@ -154,19 +154,19 @@ const useStyles = makeStyles((theme) => ({
   },
 
   announcement: {
-    fontSize: 35,
+    fontSize: 36,
     color: '#191B4B',
     textShadow: '-1px 1px 2px #888',
     [theme.breakpoints.down('sm')]: {
-      fontSize: 20,
+      fontSize: 24,
     },
   },
 
   announcementSubtitle: {
-    fontSize: 20,
+    fontSize: 18,
     color: '#191B4B',
     [theme.breakpoints.down('sm')]: {
-      fontSize: 10,
+      fontSize: 12,
     },
   },
 
@@ -207,6 +207,23 @@ function Homepage({ isLoggedIn }) {
                 className={classes.subtitle}>
                 {'دومین دوره رویداد برخطِ'}
               </Typography>
+            </Grid>
+            <Grid item>
+              <Paper className={classes.paper}>
+                <Typography
+                  align='center'
+                  component="h1"
+                  variant="h1"
+                  className={classes.announcement}>
+                  {'بالاخره نتایج اومد!'}
+                </Typography>
+                <Typography
+                  align='center'
+                  variant="h3"
+                  className={classes.announcementSubtitle}>
+                  {'برای دیدن نتایج و ثبت‌نام در دوره‌ی تابستونه، وارد سفینه‌ت شو.'}
+                </Typography>
+              </Paper>
             </Grid>
           </Grid>
         </Grid>

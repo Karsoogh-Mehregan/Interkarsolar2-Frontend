@@ -208,7 +208,7 @@ function Homepage({ isLoggedIn }) {
                 {'دومین دوره رویداد برخطِ'}
               </Typography>
             </Grid>
-            <Grid item>
+            {/* <Grid item>
               <Paper className={classes.paper}>
                 <Typography
                   align='center'
@@ -224,7 +224,7 @@ function Homepage({ isLoggedIn }) {
                   {'برای دیدن نتایج و ثبت‌نام در دوره‌ی تابستونه، وارد سفینه‌ت شو.'}
                 </Typography>
               </Paper>
-            </Grid>
+            </Grid> */}
           </Grid>
         </Grid>
       </Container>

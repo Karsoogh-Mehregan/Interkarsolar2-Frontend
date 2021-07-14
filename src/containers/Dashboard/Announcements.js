@@ -91,7 +91,8 @@ const AnnouncementsTab = ({ status, isRegistrationCompleted, didPaymentFail }) =
           </Grid>
 
           <Grid item xs={12}>
-            <Announcement title='کارسوق سال آینده؟' date='۱۸ خرداد ۱۴۰۰' image='survey.png' text='به نظرتون برای بهترشدن کارسوق در سال آینده، چه کارایی میشه کرد؟ خوبه که اگه نظری دارین، به حساب کاربری ما در تلگرام یا روبیکا یا اینستاگرام بگین!' />
+            <Announcement title='کارسوق سال آینده؟' date='۱۸ خرداد ۱۴۰۰' image='survey.png' linkURL='https://docs.google.com/forms/d/e/1FAIpQLSdCvuKqnwX00I-MyL6zV2uQjmfAYtYRQDqe1255HM0GZmqHlA/viewform?usp=sf_link' linkText='لینک فرم'
+              text='به نظرتون برای بهترشدن کارسوق سال آینده چه کارایی میشه کرد؟ خوبه که اگه نظری دارین، تو فرمی که لینکش این پایین اومده برامون بنویسین. همینطور اگه دوست دارین تا سال آینده به عنوان کارسوقمند در کنارمون باشین، اسمتون رو توی این فرم بنویسین!' />
           </Grid>
 
         </Grid>

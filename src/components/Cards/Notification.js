@@ -7,7 +7,6 @@ import {
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
-
   statImage: {
     height: '40vh',
     background: `url(${process.env.PUBLIC_URL + '/logo.png'})`,

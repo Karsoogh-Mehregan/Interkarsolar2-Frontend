@@ -32,26 +32,7 @@ const checkErrorsStatusCode = (response, jsonResponse) => {
 const fetchApi = async (url, fetchOptions) => {
 
   const response = await fetch(url, fetchOptions);
-  let stringifiedResponse = await response.json();
-  stringifiedResponse = stringifiedResponse.replace(/\\n/g, "\\n")
-    .replace(/\\'/g, "\\'")
-    .replace(/\\"/g, '\\"')
-    .replace(/\\&/g, "\\&")
-    .replace(/\\r/g, "\\r")
-    .replace(/\\t/g, "\\t")
-    .replace(/\\b/g, "\\b")
-    .replace(/\\f/g, "\\f");
-  stringifiedResponse = stringifiedResponse.replace(/[\u0000-\u0019]+/g, "");
-
-
-  // console.log(stringifiedResponse);
-
-
-  const jsonResponse = JSON.parse(stringifiedResponse);
-
-
-  // console.log(jsonResponse);
-
+  let jsonResponse = await response.json();
 
   checkErrorsStatusCode(response, jsonResponse);
   if (!response.ok) {

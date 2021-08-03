@@ -92,7 +92,7 @@ const App = ({ redirectTo, forceRedirect, initRedirect, initToast, loading, noti
 const mapStateToProps = (state) => ({
   redirectTo: state.redirect.redirectTo,
   forceRedirect: state.redirect.force,
-  loading: state.account.isFetching || state.exam.isFetching,
+  loading: state.account.isFetching || state.exam.isFetching || state.game.isFetching,
   notifications: state.notifications,
 });
 

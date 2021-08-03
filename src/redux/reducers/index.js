@@ -3,10 +3,10 @@ import account from './account';
 import notifications from './notifications';
 import redirect from './redirect';
 import exam from './exam';
-import formula0 from './formula0';
+import game from './game';
 
 const allReducers = combineReducers({
-  formula0,
+  game,
   notifications,
   account,
   redirect,

@@ -2,7 +2,7 @@ import { CALL_API } from '../middleware/api/api';
 import * as actionTypes from '../actionTypes';
 import * as URLs from './urls';
 
-export const createAccount = (national_code, password, phone1) => ({
+export const createAccount = ({ username, password, phoneNumber }) => ({
   [CALL_API]: {
     types: [
       actionTypes.CREATE_ACCOUNT_REQUEST,
@@ -13,15 +13,15 @@ export const createAccount = (national_code, password, phone1) => ({
     fetchOptions: {
       method: 'POST',
       body: {
-        national_code,
+        username,
         password,
-        phone1,
+        phone_number: phoneNumber,
       },
     },
   },
 });
 
-export const login = (national_code, password) => ({
+export const login = ({ username, password }) => ({
   [CALL_API]: {
     types: [
       actionTypes.LOGIN_REQUEST,
@@ -32,7 +32,7 @@ export const login = (national_code, password) => ({
     fetchOptions: {
       method: 'POST',
       body: {
-        national_code,
+        username,
         password,
       },
     },

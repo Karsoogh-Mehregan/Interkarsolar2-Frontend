@@ -1,14 +1,17 @@
 export const ROOT =
   process.env.NODE_ENV === 'production'
-    ? 'https://backend.interkarsolar.ir/'
-    : 'http://127.0.0.1:8000/'
+    ? 'https://backend.interkarsolar.ir/api/'
+    : 'http://127.0.0.1:8000/api/'
 
-export const CREATE_ACCOUNT = ROOT.concat('student/register/');
-export const UPDATE_PROFILE = ROOT.concat('student/register/completed/');
-export const CHANGE_PASSWORD = ROOT.concat('student/change/password/');
+export const CREATE_ACCOUNT = ROOT.concat('account/create/');
+export const LOGIN = ROOT.concat('account/login/');
+export const LOGOUT = ROOT.concat('account/logout/');
+export const CHANGE_PASSWORD = ROOT.concat('account/change-password/');
+export const RECOVERY_PASSWORD = ROOT.concat('account/recovery-password/');
 
-export const LOGIN = ROOT.concat('student/login/');
-export const LOGOUT = ROOT.concat('student/logout/');
+
+export const UPDATE_PROFILE = ROOT.concat('account/login/');
+
 export const GET_PROFILE = ROOT.concat('student/profile/');
 
 export const PROVINCE = ROOT.concat('province/');
@@ -32,9 +35,8 @@ export const GET_ANSWER_FOR_CORRECTION = ROOT.concat('answer/show/');
 export const SET_ANSWER_SCORE = ROOT.concat('answer/set/');
 
 
-
-
 const FORMULA0_ROOT = ROOT.concat('formula0/')
+const GAME_ROOT = ROOT.concat('game/')
 
 
 export const TEAM_LOGIN = FORMULA0_ROOT.concat('student/login/');
@@ -53,3 +55,10 @@ export const GET_PROBLEMS = FORMULA0_ROOT.concat('student/get_problems/');
 
 export const GET_UNCORRECTED_PROBLEMS = FORMULA0_ROOT.concat('mentor/get_uncorrected_problems/');
 export const SUBMIT_PROBLEM_SCORE = FORMULA0_ROOT.concat('mentor/submit_problem_score/');
+
+
+//////////////////////////
+
+export const PLAYER_PROBLEMS = GAME_ROOT.concat('player/problem/');
+export const SUBJECTS = GAME_ROOT.concat('subject/');
+export const ONE_PROBLEM = GAME_ROOT.concat('problem/');

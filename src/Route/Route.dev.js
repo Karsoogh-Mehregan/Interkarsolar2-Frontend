@@ -13,7 +13,7 @@ import CorrectStudentAnswer from '../containers/CorrectStudentAnswer';
 import Dashboard from '../containers/Dashboard/Dashboard';
 
 import Formula0Login from '../containers/Formula0/Login';
-import MyProblems from '../containers/Formula0/MyProblems';
+import PlayerProblems from '../containers/Game/PlayerProblems';
 import ShowProblem from '../containers/Formula0/ShowProblem';
 import CorrectProblem from '../containers/Formula0/CorrectProblem';
 import Auction from '../containers/Formula0/Auction';
@@ -30,12 +30,12 @@ const Root = () => {
         <Route path="/staff/" component={Staff} />
         <Route path="/correct-student-answer/" component={CorrectStudentAnswer} />
 
-        <Route path="/formula0/login" component={Formula0Login} />
-        <Route path="/formula0/my_problems" component={MyProblems} />
-        <Route path="/formula0/auction" component={Auction} />
-        <Route path="/formula0/show_problem" component={ShowProblem} />
-        <Route path="/formula0/mentor/correct_problem" component={CorrectProblem} />
-        <Route path="/formula0/mentor/uncorrected_problems" component={UncorrectedProblems} />
+        <Route path="/game/login" component={Formula0Login} />
+        <Route path="/game/my_problems" component={PlayerProblems} />
+        <Route path="/game/auction" component={Auction} />
+        <Route path="/game/show_problem" component={ShowProblem} />
+        <Route path="/game/mentor/correct_problem" component={CorrectProblem} />
+        <Route path="/game/mentor/uncorrected_problems" component={UncorrectedProblems} />
 
         <PrivateRoute path="/exam/:examID/:questionID?" component={Exam} />
         <PrivateRoute path="/dashboard/" component={Dashboard} />

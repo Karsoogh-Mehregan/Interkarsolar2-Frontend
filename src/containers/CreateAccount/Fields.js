@@ -15,10 +15,10 @@ const InputFields = ({
   createAccount,
   isFetching,
 }) => {
-  const [nationalID, setNationalID] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
+  const [confirmPassword, setConfirmPassword] = useState();
+  const [phoneNumber, setPhoneNumber] = useState();
 
   const checkForEnglishDigits = (number) => {
     var regex = new RegExp(`\\d{${number.length}}`);
@@ -30,7 +30,7 @@ const InputFields = ({
   }
 
   const doCreateAccount = () => {
-    if (!nationalID || !password || !confirmPassword || !phoneNumber) {
+    if (!username || !password || !confirmPassword || !phoneNumber) {
       toast.error('لطفاً همه‌ی چیزهایی که ازت خواسته شده رو پر کن!')
       return;
     }
@@ -43,7 +43,9 @@ const InputFields = ({
       toast.error('شماره موبایلی که وارد کردی نامعتبره!')
       return;
     }
-    createAccount(nationalID, password, phoneNumber);
+
+    console.log(phoneNumber)
+    createAccount({ username, password, phoneNumber });
   }
 
   return (
@@ -53,13 +55,13 @@ const InputFields = ({
           onChange={
             (e) => {
               if (checkForEnglishDigits(e.target.value) !== 'error') {
-                setNationalID(checkForEnglishDigits(e.target.value))
+                setUsername(checkForEnglishDigits(e.target.value))
               }
             }
           }
           label='کد ملی'
           helperText='یادت باشه فقط از ارقام انگلیسی استفاده کنی!'
-          value={nationalID}
+          value={username}
           type='text'
           inputProps={{ className: 'ltr-input' }}
           variant='outlined'

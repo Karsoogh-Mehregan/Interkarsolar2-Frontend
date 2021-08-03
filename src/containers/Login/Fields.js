@@ -16,8 +16,8 @@ const InputFields = ({
   login,
   isFetching,
 }) => {
-  const [nationalID, setNationalID] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
 
   const checkForEnglishDigits = (number) => {
     var regex = new RegExp(`\\d{${number.length}}`);
@@ -28,26 +28,20 @@ const InputFields = ({
     }
   }
 
-  const doCreateAccount = () => {
-    if (!nationalID || !password) {
+  const doLogin = () => {
+    if (!username || !password) {
       toast.error('لطفاً همه‌ی چیزهایی که ازت خواسته شده رو پر کن!')
       return;
     }
-    login(nationalID, password);
+    login({ username, password });
   }
 
   return (
     <>
       <Grid item>
         <TextField
-          onChange={
-            (e) => {
-              if (checkForEnglishDigits(e.target.value) !== 'error') {
-                setNationalID(checkForEnglishDigits(e.target.value))
-              }
-            }
-          }
-          value={nationalID}
+          onChange={e => setUsername(e.target.value)}
+          value={username}
           label='کد ملی'
           type='text'
           variant='outlined'
@@ -74,7 +68,7 @@ const InputFields = ({
       </Grid>
       <Grid container item direction='row' justify='center'>
         <Button
-          onClick={doCreateAccount}
+          onClick={doLogin}
           variant='contained'
           color='primary'
           disabled={isFetching}

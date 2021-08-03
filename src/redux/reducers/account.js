@@ -22,10 +22,11 @@ function account(state = initState, action) {
 
     case actionTypes.CREATE_ACCOUNT_SUCCESS:
     case actionTypes.LOGIN_SUCCESS:
+      console.log(action.response)
       return {
         ...state,
         isFetching: false,
-        token: action.data.token,
+        token: action.response.access,
       };
 
     case actionTypes.CHANGE_PASSWORD_SUCCESS:

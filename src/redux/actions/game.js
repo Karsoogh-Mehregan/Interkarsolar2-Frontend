@@ -9,12 +9,9 @@ export const getAllSingleProblems = ({ gameId }) => ({
       actionTypes.GET_ALL_SINGLE_PROBLEMS_SUCCESS,
       actionTypes.GET_ALL_SINGLE_PROBLEMS_FAILURE,
     ],
-    url: urls.ALL_SINGLE_PROBLEMS,
+    url: urls.SINGLE_PROBLEMS(gameId),
     fetchOptions: {
-      method: 'POST',
-      body: {
-        game_id: gameId
-      }
+      method: 'GET',
     },
   },
 });
@@ -27,12 +24,9 @@ export const getAllMultipleProblems = ({ gameId }) => ({
       actionTypes.GET_ALL_MULTIPLE_PROBLEMS_SUCCESS,
       actionTypes.GET_ALL_MULTIPLE_PROBLEMS_FAILURE,
     ],
-    url: urls.ALL_MULTIPLE_PROBLEMS,
+    url: urls.MULTIPLE_PROBLEMS(gameId),
     fetchOptions: {
-      method: 'POST',
-      body: {
-        game_id: gameId
-      }
+      method: 'GET',
     },
   },
 });

@@ -24,10 +24,13 @@ import {
 } from '@material-ui/core';
 import { useHistory } from "react-router-dom";
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { toPersianNumber } from '../../utils/translateNumber'
 import {
-  getAllPlayerProblems,
+  getAllSingleProblems,
+  getAllMultipleProblems,
+  getRandomSingleProblem,
+  getRandomMultipleProblem,
   getAllSubjects,
 } from '../../redux/actions/game';
 
@@ -43,21 +46,40 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
+const DIFFICULTY = {
+  'EASY': 'آسان',
+  'MEDIUM': 'متوسط',
+  'HARD': 'سخت',
+}
+
+const STATUS = {
+  'RECEIVED': 'دریافت‌شده',
+  'DELIVERED': 'تحویل‌داده‌شده',
+  'SCORED': 'تصحیح‌شده',
+}
+
 const PlayerProblems = ({
-  getAllPlayerProblems,
+  getAllSingleProblems,
+  getAllMultipleProblems,
   getAllSubjects,
+  getRandomSingleProblem,
+  getRandomMultipleProblem,
   allSubjects,
-  playerProblems,
+  singleProblems,
+  multipleProblems,
   isFetching
 }) => {
   const classes = useStyles();
   const history = useHistory();
   const [properties, setProperties] = useState({ difficulty: '', subject: '' });
   const [requestedProblemType, setRequestedProblemType] = useState('single');
+  let { gameId } = useParams();
+
 
   useEffect(() => {
-    getAllPlayerProblems();
-    getAllSubjects();
+    getAllSingleProblems({ gameId });
+    getAllMultipleProblems({ gameId });
+    getAllSubjects({ gameId });
   }, [])
 
 
@@ -75,37 +97,51 @@ const PlayerProblems = ({
           <Typography variant="h1" align="center">«مسئله‌های من»</Typography>
         </Grid>
         <Grid item container spacing={2} xs={12} md={10} lg={8}>
-          <Grid item container xs={12} md={8} direction='column' spacing={2}>
-            <Grid item>
-              <TableContainer component={Paper}>
-                <Table>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>شناسه</TableCell>
-                      <TableCell>عنوان</TableCell>
-                      <TableCell>سختی</TableCell>
-                      <TableCell>وضعیت</TableCell>
-                      <TableCell>نمره</TableCell>
+          <Grid item container xs={12} sm={8} direction='column'>
+            <TableContainer component={Paper}>
+              <Table >
+                <TableHead>
+                  <TableRow>
+                    <TableCell>شناسه</TableCell>
+                    <TableCell>عنوان</TableCell>
+                    <TableCell>سختی</TableCell>
+                    <TableCell>وضعیت</TableCell>
+                    <TableCell>نمره</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {singleProblems.map((mySingleProblem, index) =>
+                    <TableRow key={index}>
+                      <TableCell>{toPersianNumber(mySingleProblem.id)}</TableCell>
+                      <TableCell >
+                        <a as={Link} href={'/problem/' + mySingleProblem.id}>{mySingleProblem.problem.title}</a>
+                      </TableCell>
+                      <TableCell>{DIFFICULTY[mySingleProblem.problem.difficulty]}</TableCell>
+                      <TableCell>{STATUS[mySingleProblem.status]}</TableCell>
+                      <TableCell>{mySingleProblem.mark == -1 ? '-' : mySingleProblem.mark}</TableCell>
                     </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {playerProblems.map((myProblem, index) =>
-                      <TableRow key={index}>
-                        <TableCell>{toPersianNumber(myProblem.id)}</TableCell>
-                        <TableCell >
-                          <a as={Link} href={'/problem/' + myProblem.id}>{myProblem.problem.title}</a>
-                        </TableCell>
-                        <TableCell>{myProblem.problem.difficulty}</TableCell>
-                        <TableCell>{myProblem.status}</TableCell>
-                        <TableCell>{myProblem.mark == -1 ? '-' : myProblem.mark}</TableCell>
-                      </TableRow>
-                    )}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </Grid>
+                  )}
+                  {multipleProblems.map((myMultipleProblem, index) =>
+                    <TableRow key={index}>
+                      <TableCell>{toPersianNumber(myMultipleProblem.id)}</TableCell>
+                      <TableCell >
+                        <a as={Link} href={'/problem/' + myMultipleProblem.id}>{myMultipleProblem.multipleProblem.title}</a>
+                      </TableCell>
+                      <TableCell>{`${toPersianNumber(myMultipleProblem.multipleProblem.difficulty)} تایی`}</TableCell>
+                      <TableCell>{STATUS[myMultipleProblem.status]}</TableCell>
+                      <TableCell>{myMultipleProblem.mark == -1 ? '-' : myMultipleProblem.mark}</TableCell>
+                    </TableRow>
+                  )}
+                  {singleProblems.length == 0 &&
+                    <TableRow>
+                      <TableCell fu>هنوز سوال تکی‌ گرفته نشده است!</TableCell>
+                    </TableRow>
+                  }
+                </TableBody>
+              </Table>
+            </TableContainer>
           </Grid>
-          <Grid item container xs={12} md={4}>
+          <Grid item container xs={12} sm={4}>
             <Paper className={classes.paper}>
               <Grid item container direction='column' spacing={2}>
                 <Grid item>
@@ -114,7 +150,6 @@ const PlayerProblems = ({
                 <Divider />
                 <Grid item>
                   <FormControl size='small' >
-                    <FormLabel>نوع</FormLabel>
                     <RadioGroup
                       row
                       defaultValue={'single'}
@@ -183,7 +218,8 @@ const PlayerProblems = ({
 
 const mapStateToProps = (state) => ({
   allSubjects: state.game.allSubjects,
-  playerProblems: state.game.playerProblems,
+  singleProblems: state.game.singleProblems,
+  multipleProblems: state.game.multipleProblems,
   isFetching: state.game.isFetching,
 })
 
@@ -192,6 +228,9 @@ export default connect(
   mapStateToProps,
   {
     getAllSubjects,
-    getAllPlayerProblems,
+    getAllSingleProblems,
+    getAllMultipleProblems,
+    getRandomSingleProblem,
+    getRandomMultipleProblem,
   }
 )(PlayerProblems)

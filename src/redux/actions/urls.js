@@ -59,6 +59,8 @@ export const SUBMIT_PROBLEM_SCORE = FORMULA0_ROOT.concat('mentor/submit_problem_
 
 //////////////////////////
 
-export const PLAYER_PROBLEMS = GAME_ROOT.concat('player/problem/');
+export const ALL_SINGLE_PROBLEMS = GAME_ROOT.concat('problem/single/');
+export const ALL_MULTIPLE_PROBLEMS = GAME_ROOT.concat('problem/multiple/');
+export const RANDOM_SINGLE_PROBLEMS = GAME_ROOT.concat('problem/single/random/');
+export const RANDOM_MULTIPLE_PROBLEMS = GAME_ROOT.concat('problem/multiple/random/');
 export const SUBJECTS = GAME_ROOT.concat('subject/');
-export const ONE_PROBLEM = GAME_ROOT.concat('problem/');

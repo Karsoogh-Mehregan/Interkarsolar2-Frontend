@@ -12,7 +12,7 @@ import CorrectStudentAnswer from '../containers/CorrectStudentAnswer';
 import Dashboard from '../containers/Dashboard/Dashboard';
 
 import PlayerProblems from '../containers/Game/PlayerProblems';
-import ShowProblem from '../containers/Formula0/ShowProblem';
+import ShowProblem from '../containers/Game/ShowProblem';
 import CorrectProblem from '../containers/Formula0/CorrectProblem';
 import Auction from '../containers/Formula0/Auction';
 import UncorrectedProblems from '../containers/Formula0/UncorrectedProblems';
@@ -30,8 +30,8 @@ const Root = () => {
         <PrivateRoute path="/correct-student-answer/" component={CorrectStudentAnswer} />
 
         <Route path="/game/my_problems" component={PlayerProblems} />
-        <Route path="/game/auction" component={Auction} />
-        <Route path="/game/show_problem" component={ShowProblem} />
+        <Route path="/game/:gameId/auction" component={Auction} />
+        <Route path="/game/:gameId/problem/:problemId" component={ShowProblem} />
         <Route path="/game/mentor/correct_problem" component={CorrectProblem} />
         <Route path="/game/mentor/uncorrected_problems" component={UncorrectedProblems} />
 

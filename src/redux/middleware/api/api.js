@@ -39,7 +39,7 @@ export default ({ getState }) => (next) => async (action) => {
     if (account && account.token) {
       fetchOptions.headers = {
         ...fetchOptions.headers,
-        Token: account.token,
+        Authorization: 'JWT ' + account.token,
       };
     }
 

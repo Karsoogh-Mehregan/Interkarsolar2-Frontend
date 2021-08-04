@@ -2,25 +2,27 @@ import * as actionTypes from '../actionTypes';
 
 const initState = {
   allSubjects: [],
-  playerProblems: [],
+  singleProblems: [],
+  multipleProblems: [],
   isFetching: false,
 };
 
 function index(state = initState, action) {
   switch (action.type) {
 
-    case actionTypes.GET_ALL_PLAYER_PROBLEMS_REQUEST:
+    case actionTypes.GET_ALL_SINGLE_PROBLEMS_REQUEST:
+    case actionTypes.GET_ALL_MULTIPLE_PROBLEMS_REQUEST:
+    case actionTypes.GET_RANDOM_SINGLE_PROBLEM_REQUEST:
+    case actionTypes.GET_RANDOM_MULTIPLE_PROBLEM_REQUEST:
     case actionTypes.GET_ALL_SUBJECTS_REQUEST:
-    case actionTypes.GET_ONE_PROBLEM_REQUEST:
       return {
         ...state,
         isFetching: true,
       }
 
-    case actionTypes.GET_ALL_PLAYER_PROBLEMS_FAILURE:
+    case actionTypes.GET_ALL_SINGLE_PROBLEMS_FAILURE:
+    case actionTypes.GET_ALL_MULTIPLE_PROBLEMS_FAILURE:
     case actionTypes.GET_ALL_SUBJECTS_FAILURE:
-    case actionTypes.GET_ONE_PROBLEM_FAILURE:
-    case actionTypes.GET_ONE_PROBLEM_SUCCESS:
       return {
         ...state,
         // todo
@@ -35,10 +37,17 @@ function index(state = initState, action) {
       }
 
 
-    case actionTypes.GET_ALL_PLAYER_PROBLEMS_SUCCESS:
+    case actionTypes.GET_ALL_SINGLE_PROBLEMS_SUCCESS:
       return {
         ...state,
-        playerProblems: action.response,
+        singleProblems: action.response,
+        isFetching: false,
+      }
+
+    case actionTypes.GET_ALL_MULTIPLE_PROBLEMS_SUCCESS:
+      return {
+        ...state,
+        multipleProblems: action.response,
         isFetching: false,
       }
 

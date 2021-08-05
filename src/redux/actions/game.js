@@ -116,3 +116,40 @@ export const getSpecificMultipleProblem = ({ gameId, problemId }) => ({
     },
   },
 });
+
+
+// todo: add file
+export const submitSingleProblemAnswer = ({ gameId, problemId, answer }) => ({
+  [CALL_API]: {
+    types: [
+      actionTypes.SUBMIT_SINGLE_PROBLEM_ANSWER_REQUEST,
+      actionTypes.SUBMIT_SINGLE_PROBLEM_ANSWER_SUCCESS,
+      actionTypes.SUBMIT_SINGLE_PROBLEM_ANSWER_FAILURE,
+    ],
+    url: `${urls.MULTIPLE_PROBLEMS(gameId)}${problemId}/`,
+    fetchOptions: {
+      method: 'POST',
+      body: {
+        answer
+      }
+    },
+  },
+});
+
+export const submitMultipleProblemAnswer = ({ gameId, problemId, answer }) => ({
+  [CALL_API]: {
+    types: [
+      actionTypes.SUBMIT_MULTIPLE_PROBLEM_ANSWER_REQUEST,
+      actionTypes.SUBMIT_MULTIPLE_PROBLEM_ANSWER_SUCCESS,
+      actionTypes.SUBMIT_MULTIPLE_PROBLEM_ANSWER_FAILURE,
+    ],
+    url: `${urls.MULTIPLE_PROBLEMS(gameId)}${problemId}/`,
+    fetchOptions: {
+      method: 'POST',
+      body: {
+        answer
+      }
+    },
+  },
+});
+

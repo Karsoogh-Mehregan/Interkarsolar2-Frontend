@@ -23,6 +23,8 @@ import {
   getSpecificSingleProblem,
   getSpecificMultipleProblem,
   getPlayerInfo,
+  submitSingleProblemAnswer,
+  submitMultipleProblemAnswer
 } from '../../redux/actions/game';
 import ResponsiveAppBar from '../../components/Appbar/ResponsiveAppBar'
 
@@ -46,6 +48,8 @@ const ViewProblem = ({
   getSpecificSingleProblem,
   getSpecificMultipleProblem,
   getPlayerInfo,
+  submitSingleProblemAnswer,
+  submitMultipleProblemAnswer,
   singleProblem,
   multipleProblem,
   isFetching,
@@ -68,7 +72,7 @@ const ViewProblem = ({
     } else {
       getSpecificMultipleProblem({ gameId, problemId });
     }
-  }, [getSpecificSingleProblem, getSpecificMultipleProblem, gameId, problemId, singleOrMultiple]);
+  }, [getSpecificSingleProblem, getSpecificMultipleProblem, getPlayerInfo, gameId, problemId, singleOrMultiple]);
 
 
   useEffect(() => {
@@ -81,7 +85,12 @@ const ViewProblem = ({
 
 
   const submitAnswer = () => {
-
+    if (singleOrMultiple == 'single') {
+      submitSingleProblemAnswer({ gameId, problemId, answer: textAnswer });
+    } else {
+      console.log(textAnswer)
+      submitMultipleProblemAnswer({ gameId, problemId, answer: textAnswer });
+    }
   }
 
   return (
@@ -186,5 +195,7 @@ export default connect(
     getSpecificSingleProblem,
     getSpecificMultipleProblem,
     getPlayerInfo,
+    submitSingleProblemAnswer,
+    submitMultipleProblemAnswer,
   }
 )(ViewProblem);

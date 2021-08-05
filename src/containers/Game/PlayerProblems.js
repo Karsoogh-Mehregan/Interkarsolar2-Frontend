@@ -123,7 +123,7 @@ const PlayerProblems = ({
                 <Table >
                   <TableHead>
                     <TableRow>
-                      <TableCell>شناسه</TableCell>
+                      <TableCell>نوع</TableCell>
                       <TableCell>عنوان</TableCell>
                       <TableCell>سختی</TableCell>
                       <TableCell>وضعیت</TableCell>
@@ -133,9 +133,12 @@ const PlayerProblems = ({
                   <TableBody>
                     {singleProblems.map((mySingleProblem, index) =>
                       <TableRow key={index}>
-                        <TableCell>{toPersianNumber(mySingleProblem.id)}</TableCell>
+                        <TableCell>{'تکی'}</TableCell>
                         <TableCell >
-                          <a as={Link} href={`/game/${gameId}/problem/single/${mySingleProblem.id}`}>{mySingleProblem.problem?.title}</a>
+                          {mySingleProblem.status === 'RECEIVED' &&
+                            <a as={Link} href={`/game/${gameId}/problem/single/${mySingleProblem.id}`}>{mySingleProblem.problem?.title}</a>
+                          }
+                          {mySingleProblem.status !== 'RECEIVED' && mySingleProblem.problem?.title}
                         </TableCell>
                         <TableCell>{DIFFICULTY[mySingleProblem.problem?.difficulty]}</TableCell>
                         <TableCell>{STATUS[mySingleProblem.status]}</TableCell>
@@ -146,12 +149,17 @@ const PlayerProblems = ({
                       console.log(myMultipleProblem)
                       return (
                         <TableRow key={index}>
-                          <TableCell>{toPersianNumber(myMultipleProblem.id)}</TableCell>
+                          <TableCell>{'دنباله‌دار'}</TableCell>
                           <TableCell >
-                            <a as={Link} href={`/game/${gameId}/problem/multiple/${myMultipleProblem.id}`}>{myMultipleProblem.multiple_problem?.title}</a>
+                            {myMultipleProblem.step !== myMultipleProblem.multiple_problem?.problems_count &&
+                              <a as={Link} href={`/game/${gameId}/problem/multiple/${myMultipleProblem.id}`}>{myMultipleProblem.multiple_problem?.title}</a>
+                            }
+                            {myMultipleProblem.step === myMultipleProblem.multiple_problem?.problems_count && myMultipleProblem.multiple_problem?.title}
                           </TableCell>
-                          <TableCell>{`${toPersianNumber(myMultipleProblem.multiple_problem?.problems_count || 0)} تایی`}</TableCell>
-                          <TableCell>{`دنباله‌ی ${toPersianNumber(myMultipleProblem.step + 1)}`}</TableCell>
+                          <TableCell>{`${toPersianNumber(myMultipleProblem.multiple_problem?.problems_count || 0)} مرحله‌ای`}</TableCell>
+                          <TableCell>
+                            {`مرحله‌ی ${myMultipleProblem.step == myMultipleProblem.multiple_problem?.problems_count ? 'پایان‌یافته' : toPersianNumber(myMultipleProblem.step + 1)}`}
+                          </TableCell>
                           <TableCell>{myMultipleProblem.mark == -1 ? '-' : myMultipleProblem.mark}</TableCell>
                         </TableRow>
                       )

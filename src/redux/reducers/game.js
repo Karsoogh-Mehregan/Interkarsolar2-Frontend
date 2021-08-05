@@ -10,6 +10,9 @@ const initState = {
 function index(state = initState, action) {
   switch (action.type) {
 
+    case actionTypes.GET_PLAYER_INFO_REQUEST:
+    case actionTypes.GET_SPECIFIC_SINGLE_PROBLEM_REQUEST:
+    case actionTypes.GET_SPECIFIC_MULTIPLE_PROBLEM_REQUEST:
     case actionTypes.GET_ALL_SINGLE_PROBLEMS_REQUEST:
     case actionTypes.GET_ALL_MULTIPLE_PROBLEMS_REQUEST:
     case actionTypes.GET_RANDOM_SINGLE_PROBLEM_REQUEST:
@@ -20,7 +23,9 @@ function index(state = initState, action) {
         isFetching: true,
       }
 
-
+    case actionTypes.GET_PLAYER_INFO_FAILURE:
+    case actionTypes.GET_SPECIFIC_SINGLE_PROBLEM_FAILURE:
+    case actionTypes.GET_SPECIFIC_MULTIPLE_PROBLEM_FAILURE:
     case actionTypes.GET_RANDOM_MULTIPLE_PROBLEM_FAILURE:
     case actionTypes.GET_RANDOM_SINGLE_PROBLEM_FAILURE:
     case actionTypes.GET_ALL_SINGLE_PROBLEMS_FAILURE:
@@ -31,6 +36,14 @@ function index(state = initState, action) {
         isFetching: false,
       }
 
+
+    case actionTypes.GET_PLAYER_INFO_SUCCESS:
+      return {
+        ...state,
+        player: action.response,
+      }
+
+
     case actionTypes.GET_RANDOM_SINGLE_PROBLEM_SUCCESS:
     case actionTypes.GET_RANDOM_MULTIPLE_PROBLEM_SUCCESS:
       setTimeout(() => {
@@ -38,6 +51,21 @@ function index(state = initState, action) {
       }, 4000)
       return {
         ...state,
+        isFetching: false,
+      }
+
+
+    case actionTypes.GET_SPECIFIC_SINGLE_PROBLEM_SUCCESS:
+      return {
+        ...state,
+        singleProblem: action.response,
+        isFetching: false,
+      }
+
+    case actionTypes.GET_SPECIFIC_MULTIPLE_PROBLEM_SUCCESS:
+      return {
+        ...state,
+        multipleProblem: action.response,
         isFetching: false,
       }
 

@@ -7,8 +7,8 @@ import { toast } from 'react-toastify';
 import App from './App';
 import configureStore from './redux/store/configureStore';
 
-const persistedState = localStorage.getItem('Interkarsoolar2')
-  ? JSON.parse(localStorage.getItem('Interkarsoolar2'))
+const persistedState = localStorage.getItem('Interkarsolar')
+  ? JSON.parse(localStorage.getItem('Interkarsolar'))
   : {};
 
 const store = configureStore(persistedState);
@@ -16,9 +16,10 @@ const store = configureStore(persistedState);
 store.subscribe(() => {
   const state = store.getState();
   localStorage.setItem(
-    'Interkarsoolar2',
+    'Interkarsolar',
     JSON.stringify({
       account: state.account,
+      player: state.player,
     })
   );
 });

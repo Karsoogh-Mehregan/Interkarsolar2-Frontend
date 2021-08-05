@@ -34,7 +34,9 @@ import {
   getRandomSingleProblem,
   getRandomMultipleProblem,
   getAllSubjects,
+  getPlayerInfo,
 } from '../../redux/actions/game';
+import ResponsiveAppBar from '../../components/Appbar/ResponsiveAppBar'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -66,6 +68,7 @@ const PlayerProblems = ({
   getAllSubjects,
   getRandomSingleProblem,
   getRandomMultipleProblem,
+  getPlayerInfo,
   allSubjects,
   singleProblems,
   multipleProblems,
@@ -83,6 +86,7 @@ const PlayerProblems = ({
     getAllSingleProblems({ gameId });
     getAllMultipleProblems({ gameId });
     getAllSubjects({ gameId });
+    getPlayerInfo({ gameId });
   }, [])
 
 
@@ -94,11 +98,11 @@ const PlayerProblems = ({
   }
 
   const getProblem = (e) => {
-    if (!properties.difficulty || !properties.subject) {
-      toast.error('لطفا هم مبحث و هم سختی مسئله‌ی درخواستی را وارد کنید!')
-      return;
-    }
     if (requestedProblemType === 'single') {
+      if (!properties.difficulty || !properties.subject) {
+        toast.error('لطفا هم مبحث و هم سختی مسئله‌ی درخواستی را وارد کنید!')
+        return;
+      }
       getRandomSingleProblem({ gameId, ...properties })
     } else {
       getRandomMultipleProblem({ gameId })
@@ -107,6 +111,7 @@ const PlayerProblems = ({
 
   return (
     <>
+      <ResponsiveAppBar mode="FORMULA0" position={'relative'} hideOnScroll={false} />
       <Container className={classes.container}>
         <Grid container spacing={2} justify='center'>
           <Grid item xs={12}>
@@ -130,7 +135,7 @@ const PlayerProblems = ({
                       <TableRow key={index}>
                         <TableCell>{toPersianNumber(mySingleProblem.id)}</TableCell>
                         <TableCell >
-                          <a as={Link} href={'/problem/' + mySingleProblem.id}>{mySingleProblem.problem?.title}</a>
+                          <a as={Link} href={`/game/${gameId}/problem/single/${mySingleProblem.id}`}>{mySingleProblem.problem?.title}</a>
                         </TableCell>
                         <TableCell>{DIFFICULTY[mySingleProblem.problem?.difficulty]}</TableCell>
                         <TableCell>{STATUS[mySingleProblem.status]}</TableCell>
@@ -143,7 +148,7 @@ const PlayerProblems = ({
                         <TableRow key={index}>
                           <TableCell>{toPersianNumber(myMultipleProblem.id)}</TableCell>
                           <TableCell >
-                            <a as={Link} href={'/problem/' + myMultipleProblem.id}>{myMultipleProblem.multiple_problem?.title}</a>
+                            <a as={Link} href={`/game/${gameId}/problem/multiple/${myMultipleProblem.id}`}>{myMultipleProblem.multiple_problem?.title}</a>
                           </TableCell>
                           <TableCell>{`${toPersianNumber(myMultipleProblem.multiple_problem?.problems_count || 0)} تایی`}</TableCell>
                           <TableCell>{`دنباله‌ی ${toPersianNumber(myMultipleProblem.step + 1)}`}</TableCell>
@@ -257,5 +262,6 @@ export default connect(
     getAllMultipleProblems,
     getRandomSingleProblem,
     getRandomMultipleProblem,
+    getPlayerInfo,
   }
 )(PlayerProblems)

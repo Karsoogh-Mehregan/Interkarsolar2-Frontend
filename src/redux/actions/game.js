@@ -2,6 +2,22 @@ import { CALL_API } from '../middleware/api/api';
 import * as actionTypes from '../actionTypes';
 import * as urls from './urls';
 
+
+export const getPlayerInfo = ({ gameId }) => ({
+  [CALL_API]: {
+    types: [
+      actionTypes.GET_PLAYER_INFO_REQUEST,
+      actionTypes.GET_PLAYER_INFO_SUCCESS,
+      actionTypes.GET_PLAYER_INFO_FAILURE,
+    ],
+    url: urls.PLAYER(gameId),
+    fetchOptions: {
+      method: 'GET',
+    },
+  },
+});
+
+
 export const getAllSingleProblems = ({ gameId }) => ({
   [CALL_API]: {
     types: [
@@ -15,7 +31,6 @@ export const getAllSingleProblems = ({ gameId }) => ({
     },
   },
 });
-
 
 export const getAllMultipleProblems = ({ gameId }) => ({
   [CALL_API]: {
@@ -60,6 +75,20 @@ export const getRandomSingleProblem = ({ gameId, difficulty, subject }) => ({
   },
 });
 
+export const getSpecificSingleProblem = ({ gameId, problemId }) => ({
+  [CALL_API]: {
+    types: [
+      actionTypes.GET_SPECIFIC_SINGLE_PROBLEM_REQUEST,
+      actionTypes.GET_SPECIFIC_SINGLE_PROBLEM_SUCCESS,
+      actionTypes.GET_SPECIFIC_SINGLE_PROBLEM_FAILURE,
+    ],
+    url: `${urls.SINGLE_PROBLEMS(gameId)}${problemId}/`,
+    fetchOptions: {
+      method: 'GET',
+    },
+  },
+});
+
 export const getRandomMultipleProblem = ({ gameId }) => ({
   [CALL_API]: {
     types: [
@@ -70,6 +99,20 @@ export const getRandomMultipleProblem = ({ gameId }) => ({
     url: urls.MULTIPLE_PROBLEMS(gameId),
     fetchOptions: {
       method: 'POST',
+    },
+  },
+});
+
+export const getSpecificMultipleProblem = ({ gameId, problemId }) => ({
+  [CALL_API]: {
+    types: [
+      actionTypes.GET_SPECIFIC_MULTIPLE_PROBLEM_REQUEST,
+      actionTypes.GET_SPECIFIC_MULTIPLE_PROBLEM_SUCCESS,
+      actionTypes.GET_SPECIFIC_MULTIPLE_PROBLEM_FAILURE,
+    ],
+    url: `${urls.MULTIPLE_PROBLEMS(gameId)}${problemId}/`,
+    fetchOptions: {
+      method: 'GET',
     },
   },
 });

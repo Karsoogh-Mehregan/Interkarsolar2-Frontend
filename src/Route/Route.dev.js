@@ -31,7 +31,7 @@ const Root = () => {
 
         <Route path="/game/:gameId/my_problems" component={PlayerProblems} />
         <Route path="/game/:gameId/auction" component={Auction} />
-        <Route path="/game/:gameId/problem/:problemId" component={ShowProblem} />
+        <Route path="/game/:gameId/problem/:singleOrMultiple/:problemId" component={ShowProblem} />
         <Route path="/game/mentor/correct_problem" component={CorrectProblem} />
         <Route path="/game/mentor/uncorrected_problems" component={UncorrectedProblems} />
 

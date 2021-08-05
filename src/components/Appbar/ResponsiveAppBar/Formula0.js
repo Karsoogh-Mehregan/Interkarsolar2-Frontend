@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
+import { useParams } from 'react-router-dom'
 import AvatarComponent from './components/Avatar';
 import DashboardButton from './components/DashboardButton';
 import LogoButton from './components/LogoButton';
@@ -8,7 +9,7 @@ import Info from './components/Info';
 
 const DashboardItems = () => {
   const logoButton = <LogoButton />;
-  const score = <Info />;
+  // const score = <Info />;
   const myProblemsButton = <DashboardButton name={'سوالات من'} to={'/formula0/my_problems'} />;
   const auctionButton = <DashboardButton name={'مزایده'} to={'/formula0/auction'} />;
 
@@ -16,9 +17,9 @@ const DashboardItems = () => {
   const Avatar = <AvatarComponent />;
 
   return {
-    desktopLeftItems: [score, logoutButton],
-    desktopRightItems: [Avatar, myProblemsButton, auctionButton,],
-    mobileLeftItems: [score, Avatar],
+    desktopLeftItems: [Avatar, logoutButton],
+    desktopRightItems: [myProblemsButton, auctionButton,],
+    mobileLeftItems: [],
     mobileRightItems: [],
     mobileMenuListItems: [myProblemsButton, auctionButton, logoutButton],
   };

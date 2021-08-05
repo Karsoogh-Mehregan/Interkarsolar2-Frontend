@@ -8,23 +8,30 @@ const useStyles = makeStyles(() => ({
   avatar: {},
 }));
 
-function AvatarComponent({ name }) {
+function AvatarComponent({ player }) {
+
+
+  console.log(player)
+
+  const firstName = player?.user?.first_name || 'نام';
+  const lastName = player?.user?.last_name || 'نام خانوادگی'
+
   const classes = useStyles();
   return (
-    <Tooltip title={name} arrow>
+    <Tooltip title={`${firstName} ${lastName}`} arrow>
       <Avatar
         // src={process.env.PUBLIC_URL + '/logo.png'}
-        style={{ backgroundColor: stringToColor(name) }}
+        style={{ backgroundColor: stringToColor(firstName) }}
         alt="logo"
         className={classes.avatar}>
-        {name[0]}
+        {firstName[0]}
       </Avatar>
     </Tooltip>
   );
 }
 
 const mapStateToProps = (state) => ({
-  name: state.formula0.team ? state.formula0.team.name : 'فرمول صفر',
-});
+  player: state.game.player,
+})
 
-export default connect(mapStateToProps)(AvatarComponent);
+export default connect(mapStateToProps, {})(AvatarComponent);

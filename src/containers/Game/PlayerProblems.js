@@ -116,7 +116,7 @@ const PlayerProblems = ({
             <Typography variant="h1" align="center">«مسئله‌های من»</Typography>
           </Grid>
           <Grid item container spacing={2} xs={12} md={10} lg={8}>
-            <Grid item container xs={12} sm={8} direction='column'>
+            <Grid item container xs={12} md={8} direction='column'>
               <TableContainer component={Paper}>
                 <Table >
                   <TableHead>
@@ -172,7 +172,7 @@ const PlayerProblems = ({
                 </Table>
               </TableContainer>
             </Grid>
-            <Grid item container xs={12} sm={4}>
+            <Grid item container xs={12} md={4}>
               <Paper className={classes.paper}>
                 <Grid item container direction='column' spacing={2}>
                   <Grid item>

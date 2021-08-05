@@ -97,8 +97,7 @@ const ViewProblem = ({
 
   console.log(multipleProblem)
 
-  if ((singleProblem?.status && singleProblem?.status !== 'RECEIVED')
-    || (!multipleProblem && singleOrMultiple === 'multiple')) {
+  if ((singleProblem?.status && singleProblem?.status !== 'RECEIVED')) {
     return (<Redirect to={`/game/${gameId}/my_problems/`} />)
   }
 

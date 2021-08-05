@@ -11,7 +11,7 @@ import {
   Chip,
   TextField,
 } from '@material-ui/core';
-import { Link, useParams } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import TinyPreview from '../../components/tiny_editor/react_tiny/Preview';
@@ -58,7 +58,7 @@ const ViewProblem = ({
   const [problem, setProblem] = useState();
   let history = useHistory();
   let { gameId, problemId, singleOrMultiple } = useParams();
-  const [textAnswer, setTextAnswer] = useState();
+  const [textAnswer, setTextAnswer] = useState('');
   const [isDialogOpen, setDialogStatus] = useState(false);
 
 
@@ -78,19 +78,28 @@ const ViewProblem = ({
   useEffect(() => {
     if (singleProblem) {
       setProblem(singleProblem.problem)
-    } else {
-      setProblem(multipleProblem)
+    }
+    if (multipleProblem) {
+      setProblem(multipleProblem.problem)
     }
   }, [singleProblem, multipleProblem,])
 
 
   const submitAnswer = () => {
-    if (singleOrMultiple == 'single') {
+    console.log(textAnswer)
+    if (singleOrMultiple === 'single') {
       submitSingleProblemAnswer({ gameId, problemId, answer: textAnswer });
     } else {
       console.log(textAnswer)
       submitMultipleProblemAnswer({ gameId, problemId, answer: textAnswer });
     }
+  }
+
+  console.log(multipleProblem)
+
+  if ((singleProblem?.status && singleProblem?.status !== 'RECEIVED')
+    || (!multipleProblem && singleOrMultiple === 'multiple')) {
+    return (<Redirect to={`/game/${gameId}/my_problems/`} />)
   }
 
   return (

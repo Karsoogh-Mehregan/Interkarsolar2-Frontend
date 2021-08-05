@@ -22,7 +22,6 @@ import {
   RadioGroup,
   Radio,
 } from '@material-ui/core';
-import { useHistory } from "react-router-dom";
 import { connect } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { toPersianNumber } from '../../utils/translateNumber';
@@ -75,8 +74,7 @@ const PlayerProblems = ({
   isFetching
 }) => {
   const classes = useStyles();
-  const history = useHistory();
-  const [properties, setProperties] = useState({ difficulty: '', subject: '' });
+  const [properties, setProperties] = useState({ difficulty: 'EASY', subject: '' });
   const [requestedProblemType, setRequestedProblemType] = useState('single');
   const [isDialogOpen, setDialogStatus] = useState(false);
   let { gameId } = useParams();
@@ -99,8 +97,8 @@ const PlayerProblems = ({
 
   const getProblem = (e) => {
     if (requestedProblemType === 'single') {
-      if (!properties.difficulty || !properties.subject) {
-        toast.error('لطفا هم مبحث و هم سختی مسئله‌ی درخواستی را وارد کنید!')
+      if (!properties.difficulty) {
+        toast.error('لطفا سختی مسئله‌ی درخواستی را وارد کنید!')
         return;
       }
       getRandomSingleProblem({ gameId, ...properties })
@@ -158,7 +156,7 @@ const PlayerProblems = ({
                           </TableCell>
                           <TableCell>{`${toPersianNumber(myMultipleProblem.multiple_problem?.problems_count || 0)} مرحله‌ای`}</TableCell>
                           <TableCell>
-                            {`مرحله‌ی ${myMultipleProblem.step == myMultipleProblem.multiple_problem?.problems_count ? 'پایان‌یافته' : toPersianNumber(myMultipleProblem.step + 1)}`}
+                            {myMultipleProblem.step == myMultipleProblem.multiple_problem?.problems_count ? 'پایان‌یافته' : `مرحله‌ی ${toPersianNumber(myMultipleProblem.step + 1)}`}
                           </TableCell>
                           <TableCell>{myMultipleProblem.mark == -1 ? '-' : myMultipleProblem.mark}</TableCell>
                         </TableRow>
@@ -205,7 +203,7 @@ const PlayerProblems = ({
                   </Grid>
                   {requestedProblemType == 'single' &&
                     <>
-                      <Grid item>
+                      {/* <Grid item>
                         <FormControl size='small' variant="outlined" fullWidth>
                           <InputLabel>مبحث</InputLabel>
                           <Select
@@ -219,13 +217,14 @@ const PlayerProblems = ({
                             ))}
                           </Select>
                         </FormControl >
-                      </Grid>
+                      </Grid> */}
                       <Grid item>
                         <FormControl size='small' variant="outlined" fullWidth>
                           <InputLabel>سختی</InputLabel>
                           <Select
                             className={classes.dropDown}
                             onBlur={handleSelect}
+                            defaultValue='EASY'
                             name='difficulty'
                             label='سختی'
                           >

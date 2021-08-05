@@ -126,7 +126,7 @@ export const submitSingleProblemAnswer = ({ gameId, problemId, answer }) => ({
       actionTypes.SUBMIT_SINGLE_PROBLEM_ANSWER_SUCCESS,
       actionTypes.SUBMIT_SINGLE_PROBLEM_ANSWER_FAILURE,
     ],
-    url: `${urls.MULTIPLE_PROBLEMS(gameId)}${problemId}/`,
+    url: `${urls.SINGLE_PROBLEMS(gameId)}${problemId}/`,
     fetchOptions: {
       method: 'POST',
       body: {

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import App from './App';
 import configureStore from './redux/store/configureStore';
@@ -25,7 +26,7 @@ store.subscribe(() => {
 ReactDOM.render(
   <Router>
     <Provider store={store}>
-      <App />
+      <App toast={toast} />
     </Provider>
   </Router>,
   document.getElementById('root')

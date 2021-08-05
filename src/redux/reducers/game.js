@@ -20,12 +20,24 @@ function index(state = initState, action) {
         isFetching: true,
       }
 
+
+    case actionTypes.GET_RANDOM_MULTIPLE_PROBLEM_FAILURE:
+    case actionTypes.GET_RANDOM_SINGLE_PROBLEM_FAILURE:
     case actionTypes.GET_ALL_SINGLE_PROBLEMS_FAILURE:
     case actionTypes.GET_ALL_MULTIPLE_PROBLEMS_FAILURE:
     case actionTypes.GET_ALL_SUBJECTS_FAILURE:
       return {
         ...state,
-        // todo
+        isFetching: false,
+      }
+
+    case actionTypes.GET_RANDOM_SINGLE_PROBLEM_SUCCESS:
+    case actionTypes.GET_RANDOM_MULTIPLE_PROBLEM_SUCCESS:
+      setTimeout(() => {
+        window.location.reload();
+      }, 4000)
+      return {
+        ...state,
         isFetching: false,
       }
 

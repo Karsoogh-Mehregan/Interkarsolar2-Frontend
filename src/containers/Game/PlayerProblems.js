@@ -90,6 +90,14 @@ const PlayerProblems = ({
     })
   }
 
+  const onClick = (e) => {
+    if (requestedProblemType === 'single') {
+      getRandomSingleProblem({ gameId, ...properties })
+    } else {
+      getRandomMultipleProblem({ gameId })
+    }
+  }
+
   return (
     <Container className={classes.container}>
       <Grid container spacing={2} justify='center'>
@@ -114,27 +122,31 @@ const PlayerProblems = ({
                     <TableRow key={index}>
                       <TableCell>{toPersianNumber(mySingleProblem.id)}</TableCell>
                       <TableCell >
-                        <a as={Link} href={'/problem/' + mySingleProblem.id}>{mySingleProblem.problem.title}</a>
+                        <a as={Link} href={'/problem/' + mySingleProblem.id}>{mySingleProblem.problem?.title}</a>
                       </TableCell>
-                      <TableCell>{DIFFICULTY[mySingleProblem.problem.difficulty]}</TableCell>
+                      <TableCell>{DIFFICULTY[mySingleProblem.problem?.difficulty]}</TableCell>
                       <TableCell>{STATUS[mySingleProblem.status]}</TableCell>
                       <TableCell>{mySingleProblem.mark == -1 ? '-' : mySingleProblem.mark}</TableCell>
                     </TableRow>
                   )}
-                  {multipleProblems.map((myMultipleProblem, index) =>
-                    <TableRow key={index}>
-                      <TableCell>{toPersianNumber(myMultipleProblem.id)}</TableCell>
-                      <TableCell >
-                        <a as={Link} href={'/problem/' + myMultipleProblem.id}>{myMultipleProblem.multipleProblem.title}</a>
-                      </TableCell>
-                      <TableCell>{`${toPersianNumber(myMultipleProblem.multipleProblem.difficulty)} تایی`}</TableCell>
-                      <TableCell>{STATUS[myMultipleProblem.status]}</TableCell>
-                      <TableCell>{myMultipleProblem.mark == -1 ? '-' : myMultipleProblem.mark}</TableCell>
-                    </TableRow>
+                  {multipleProblems.map((myMultipleProblem, index) => {
+                    console.log(myMultipleProblem)
+                    return (
+                      <TableRow key={index}>
+                        <TableCell>{toPersianNumber(myMultipleProblem.id)}</TableCell>
+                        <TableCell >
+                          <a as={Link} href={'/problem/' + myMultipleProblem.id}>{myMultipleProblem.multiple_problem?.title}</a>
+                        </TableCell>
+                        <TableCell>{`${toPersianNumber(myMultipleProblem.multiple_problem?.problems_count || 0)} تایی`}</TableCell>
+                        <TableCell>{`دنباله‌ی ${toPersianNumber(myMultipleProblem.step + 1)}`}</TableCell>
+                        <TableCell>{myMultipleProblem.mark == -1 ? '-' : myMultipleProblem.mark}</TableCell>
+                      </TableRow>
+                    )
+                  }
                   )}
                   {singleProblems.length == 0 &&
                     <TableRow>
-                      <TableCell fu>هنوز سوال تکی‌ گرفته نشده است!</TableCell>
+                      <TableCell>هنوز سوال تکی‌ گرفته نشده است!</TableCell>
                     </TableRow>
                   }
                 </TableBody>
@@ -162,7 +174,7 @@ const PlayerProblems = ({
                         labelPlacement="end"
                       />
                       <FormControlLabel
-                        value="consecutive"
+                        value="multiple"
                         control={<Radio />}
                         label="دنباله‌دار"
                         labelPlacement="end"
@@ -197,7 +209,7 @@ const PlayerProblems = ({
                           label='سختی'
                         >
                           <MenuItem value={'EASY'}>{'آسان'}</MenuItem>
-                          <MenuItem value={'NORMAN'}>{'متوسط'}</MenuItem>
+                          <MenuItem value={'MEDIUM'}>{'متوسط'}</MenuItem>
                           <MenuItem value={'HARD'}>{'سخت'}</MenuItem>
                         </Select>
                       </FormControl >
@@ -205,7 +217,7 @@ const PlayerProblems = ({
                   </>
                 }
                 <Grid item>
-                  <Button fullWidth variant='contained' color='primary' >دریافت</Button>
+                  <Button fullWidth variant='contained' color='primary' onClick={onClick}>دریافت</Button>
                 </Grid>
               </Grid>
             </Paper>
@@ -222,7 +234,6 @@ const mapStateToProps = (state) => ({
   multipleProblems: state.game.multipleProblems,
   isFetching: state.game.isFetching,
 })
-
 
 export default connect(
   mapStateToProps,

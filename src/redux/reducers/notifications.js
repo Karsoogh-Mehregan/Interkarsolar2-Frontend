@@ -10,6 +10,20 @@ const initState = {
 
 function notifications(state = initState, action) {
   switch (action.type) {
+    case actionTypes.GET_RANDOM_SINGLE_PROBLEM_SUCCESS:
+    case actionTypes.GET_RANDOM_MULTIPLE_PROBLEM_SUCCESS:
+      return {
+        ...state,
+        success: action.response?.message || 'عملیات خواسته شده با موفقیت انجام شد!'
+      }
+
+    case actionTypes.GET_RANDOM_SINGLE_PROBLEM_FAILURE:
+    case actionTypes.GET_RANDOM_MULTIPLE_PROBLEM_FAILURE:
+      console.log(action)
+      return {
+        ...state,
+        error: action.error || 'عملیات موفق نبود! یه چند لحظه دیگه دوباره تلاش کن.'
+      }
 
     case actionTypes.CREATE_ACCOUNT_SUCCESS:
       return {
@@ -23,19 +37,6 @@ function notifications(state = initState, action) {
         success: 'دوباره سلام!',
       };
 
-    case actionTypes.SEND_ANSWER_SUCCESS:
-      return {
-        ...state,
-        success: 'جواب با موفقیت ثبت شد!',
-      };
-
-    case actionTypes.EXAM_REGISTER_SUCCESS:
-      return {
-        ...state,
-        success: 'ثبت‌نامت با موفقیت انجام شد!',
-      }
-
-
     case actionTypes.EXAM_REGISTER_FAILURE:
     case actionTypes.CHANGE_PASSWORD_FAILURE:
     case actionTypes.SEND_ANSWER_FAILURE:
@@ -44,51 +45,10 @@ function notifications(state = initState, action) {
     case actionTypes.UPDATE_USER_INFO_FAILURE:
     case actionTypes.LOGIN_FAILURE:
     case actionTypes.CREATE_ACCOUNT_FAILURE:
-      if (action.error) {
-        return {
-          ...state,
-          error: action.error,
-        }
-      } else {
-        return {
-          ...state,
-          error: 'ای بابا! یه مشکلی وجود داره. یه چند لحظه دیگه دوباره امتحان کن.',
-        }
-      }
-
-    // formula 0:
-    case actionTypes.TEAM_LOGIN_FAILURE:
       return {
         ...state,
-        error: action.message,
+        error: action.error || action.response?.message || 'ای بابا! یه مشکلی وجود داره. یه چند لحظه دیگه دوباره امتحان کن.',
       }
-
-    // formula 0:
-    case actionTypes.TEAM_LOGIN_SUCCESS:
-      return {
-        ...state,
-        success: action.message,
-      }
-
-    // formula0
-    case actionTypes.REQUEST_PROBLEM_SUCCESS:
-      return {
-        ...state,
-        success: action.message,
-      }
-
-    // formula0
-    case actionTypes.REQUEST_PROBLEM_FAILURE:
-      return {
-        ...state,
-        error: action.message,
-      }
-
-    case actionTypes.UPDATE_USER_INFO_SUCCESS:
-      return {
-        ...state,
-        success: 'ایول! اطلاعاتت با موفقیت به روز شد.',
-      };
 
     case actionTypes.LOGOUT:
       setTimeout(
@@ -103,11 +63,7 @@ function notifications(state = initState, action) {
         success: 'خوبه! رمزت با موفقیت به اون چیزی که وارد کردی، تغییر کرد.',
       };
 
-    case actionTypes.PAYMENT_SUCCESS:
-      return {
-        ...state,
-        info: 'در حال رفتن به درگاه پرداخت...',
-      };
+
 
     case actionTypes.INIT_TOAST:
       return initState;

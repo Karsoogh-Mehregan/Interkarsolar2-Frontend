@@ -38,43 +38,38 @@ export const getAllSubjects = ({ gameId }) => ({
       actionTypes.GET_ALL_SUBJECTS_SUCCESS,
       actionTypes.GET_ALL_SUBJECTS_FAILURE,
     ],
-    url: urls.SUBJECTS,
+    url: urls.SUBJECTS(gameId),
     fetchOptions: {
-      method: 'POST',
-      body: {
-        game_id: gameId
-      }
+      method: 'GET',
     },
   },
 });
 
-export const getRandomSingleProblem = ({ type, difficulty, subject }) => ({
+export const getRandomSingleProblem = ({ gameId, difficulty, subject }) => ({
   [CALL_API]: {
     types: [
       actionTypes.GET_RANDOM_SINGLE_PROBLEM_REQUEST,
       actionTypes.GET_RANDOM_SINGLE_PROBLEM_SUCCESS,
       actionTypes.GET_RANDOM_SINGLE_PROBLEM_FAILURE,
     ],
-    url: urls.RANDOM_SINGLE_PROBLEMS,
+    url: urls.SINGLE_PROBLEMS(gameId),
     fetchOptions: {
       method: 'POST',
-      body: { type, difficulty, subject }
+      body: { difficulty, subject }
     },
   },
 });
 
-export const getRandomMultipleProblem = () => ({
+export const getRandomMultipleProblem = ({ gameId }) => ({
   [CALL_API]: {
     types: [
       actionTypes.GET_RANDOM_MULTIPLE_PROBLEM_REQUEST,
-      actionTypes.GET_RANDOM_MULTIPLE_PROBLEM_FAILURE,
       actionTypes.GET_RANDOM_MULTIPLE_PROBLEM_SUCCESS,
+      actionTypes.GET_RANDOM_MULTIPLE_PROBLEM_FAILURE,
     ],
-    url: urls.RANDOM_MULTIPLE_PROBLEMS,
+    url: urls.MULTIPLE_PROBLEMS(gameId),
     fetchOptions: {
       method: 'POST',
     },
   },
 });
-
-

@@ -1,6 +1,6 @@
 import './theme/styles/style.scss';
 import 'react-toastify/dist/ReactToastify.css';
-import { Slide, ToastContainer, toast } from 'react-toastify';
+import { Slide, ToastContainer } from 'react-toastify';
 import { CssBaseline, LinearProgress } from '@material-ui/core';
 import { ThemeProvider, StylesProvider } from '@material-ui/styles';
 import React, { useEffect, useState } from 'react';
@@ -12,7 +12,7 @@ import Route from './Route';
 import RTLMuiTheme from './theme/RTLMuiTheme';
 import jss from './utils/jssRTL';
 
-const App = ({ redirectTo, forceRedirect, initRedirect, initToast, loading, notifications }) => {
+const App = ({ redirectTo, forceRedirect, initRedirect, initToast, loading, notifications, toast }) => {
 
   const [_, rerender] = useState();
 
@@ -20,23 +20,22 @@ const App = ({ redirectTo, forceRedirect, initRedirect, initToast, loading, noti
     if (notifications.success) {
       setTimeout(() => {
         toast.success(notifications.success);
-      }, 0)
+      }, 10)
     } else if (notifications.warning) {
       setTimeout(() => {
         toast.warning(notifications.warning);
-      }, 0)
+      }, 10)
     } else if (notifications.info) {
       setTimeout(() => {
         toast.info(notifications.info);
-      }, 0)
+      }, 10)
     } else if (notifications.error) {
       setTimeout(() => {
         toast.error(notifications.error);
-      }, 0)
+      }, 10)
     }
-    rerender(Math.random());
     initToast();
-  }, [notifications, initToast])
+  }, [notifications, initToast, toast])
 
   const history = useHistory();
   useEffect(() => {
@@ -89,7 +88,8 @@ const App = ({ redirectTo, forceRedirect, initRedirect, initToast, loading, noti
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, props) => ({
+  toast: props.toast,
   redirectTo: state.redirect.redirectTo,
   forceRedirect: state.redirect.force,
   loading: state.account.isFetching || state.exam.isFetching || state.game.isFetching,

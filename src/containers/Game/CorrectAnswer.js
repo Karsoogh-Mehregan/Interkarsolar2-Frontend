@@ -55,6 +55,8 @@ const Index = ({
 }) => {
   const classes = useStyles();
   const [mark, setMark] = useState();
+  const [problemText, setProblemText] = useState('');
+  const [answerText, setAnswerText] = useState('')
 
   const isDigit = (string) => {
     var regex = new RegExp(`\\d{${string.length}}`);
@@ -68,6 +70,15 @@ const Index = ({
   useEffect(() => {
     getPlayerSingleProblemForCorrection()
   }, [getPlayerSingleProblemForCorrection])
+
+  useEffect(() => {
+    if (playerSingleProblem?.text_answer) {
+      setAnswerText(<TextWidget text={playerSingleProblem?.text_answer} />)
+    }
+    if (playerSingleProblem?.problem?.text) {
+      setProblemText(<TextWidget text={playerSingleProblem?.problem?.text} />)
+    }
+  }, [playerSingleProblem])
 
   const submitScore = () => {
     if ((!isDigit(mark) && mark != null)) {
@@ -97,7 +108,7 @@ const Index = ({
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  {playerSingleProblem?.problem?.text}
+                  {problemText}
                 </Grid>
                 <Grid item>
                   <Typography variant='h2'>
@@ -105,7 +116,7 @@ const Index = ({
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  {playerSingleProblem?.text_answer}
+                  {answerText}
                 </Grid>
                 {/* {fileAnswer &&
                   <Grid item xs={12}>

@@ -10,6 +10,7 @@ import Homepage from '../containers/Homepage';
 import Staff from '../containers/Staff/Staff';
 import Exam from '../containers/Exam/Exam';
 import CorrectAnswer from '../containers/Game/CorrectAnswer';
+import AnswerHint from '../containers/Game/AnswerHint';
 import Dashboard from '../containers/Dashboard/Dashboard';
 import AfterLogin from '../containers/Game/AfterLogin';
 
@@ -31,7 +32,7 @@ const Root = () => {
         <Route path="/correct-student-answer" component={CorrectAnswer} />
 
         <Route path="/game/mentor/correct_problem" component={CorrectProblem} />
-        <Route path="/game/mentor/uncorrected_problems" component={UncorrectedProblems} />
+        <Route path="/game/mentor/answer_hint" component={AnswerHint} />
 
         <PrivateRoute path="/after_login" component={AfterLogin} />
         <PrivateRoute path="/game/:gameId/my_problems" component={PlayerProblems} />

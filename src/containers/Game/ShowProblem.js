@@ -24,7 +24,9 @@ import {
   getSpecificMultipleProblem,
   getPlayerInfo,
   submitSingleProblemAnswer,
-  submitMultipleProblemAnswer
+  submitMultipleProblemAnswer,
+  getProblemHints,
+  submitNewHint,
 } from '../../redux/actions/game';
 import ResponsiveAppBar from '../../components/Appbar/ResponsiveAppBar'
 
@@ -50,20 +52,19 @@ const ViewProblem = ({
   getPlayerInfo,
   submitSingleProblemAnswer,
   submitMultipleProblemAnswer,
+  getProblemHints,
+  submitNewHint,
+  hints,
   singleProblem,
   multipleProblem,
   isFetching,
 }) => {
   const classes = useStyles();
   const [problem, setProblem] = useState();
-  let history = useHistory();
   let { gameId, problemId, singleOrMultiple } = useParams();
   const [textAnswer, setTextAnswer] = useState('');
   const [isDialogOpen, setDialogStatus] = useState(false);
 
-
-  console.log(singleProblem)
-  console.log(multipleProblem)
 
   useEffect(() => {
     getPlayerInfo({ gameId });
@@ -74,16 +75,20 @@ const ViewProblem = ({
     }
   }, [getSpecificSingleProblem, getSpecificMultipleProblem, getPlayerInfo, gameId, problemId, singleOrMultiple]);
 
-
   useEffect(() => {
     if (singleProblem) {
       setProblem(singleProblem.problem)
     }
     if (multipleProblem) {
-      setProblem(multipleProblem.problem)
+      setProblem(multipleProblem)
     }
   }, [singleProblem, multipleProblem,])
 
+
+  if ((singleProblem?.status && singleProblem?.status !== 'RECEIVED')
+    || (multipleProblem?.is_end)) {
+    return (<Redirect to={`/game/${gameId}/my_problems/`} />)
+  }
 
   const submitAnswer = () => {
     console.log(textAnswer)
@@ -93,12 +98,6 @@ const ViewProblem = ({
       console.log(textAnswer)
       submitMultipleProblemAnswer({ gameId, problemId, answer: textAnswer });
     }
-  }
-
-  console.log(multipleProblem)
-
-  if ((singleProblem?.status && singleProblem?.status !== 'RECEIVED')) {
-    return (<Redirect to={`/game/${gameId}/my_problems/`} />)
   }
 
   return (
@@ -194,6 +193,7 @@ const mapStateToProps = (state) => {
   return ({
     singleProblem: state.game.singleProblem,
     multipleProblem: state.game.multipleProblem,
+    hints: state.game.hints,
   });
 }
 
@@ -205,5 +205,7 @@ export default connect(
     getPlayerInfo,
     submitSingleProblemAnswer,
     submitMultipleProblemAnswer,
+    getProblemHints,
+    submitNewHint,
   }
 )(ViewProblem);

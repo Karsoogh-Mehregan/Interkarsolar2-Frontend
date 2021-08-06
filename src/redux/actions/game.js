@@ -153,3 +153,34 @@ export const submitMultipleProblemAnswer = ({ gameId, problemId, answer }) => ({
   },
 });
 
+
+export const getProblemHints = ({ gameId, problemId }) => ({
+  [CALL_API]: {
+    types: [
+      actionTypes.GET_PROBLEM_HINTS_REQUEST,
+      actionTypes.GET_PROBLEM_HINTS_SUCCESS,
+      actionTypes.GET_PROBLEM_HINTS_FAILURE,
+    ],
+    url: `${urls.HINT(gameId)}${problemId}/`,
+    fetchOptions: {
+      method: 'GET',
+    },
+  },
+});
+
+export const submitNewHint = ({ gameId, problemId, question }) => ({
+  [CALL_API]: {
+    types: [
+      actionTypes.SUBMIT_NEW_HINT_REQUEST,
+      actionTypes.SUBMIT_NEW_HINT_SUCCESS,
+      actionTypes.SUBMIT_NEW_HINT_FAILURE,
+    ],
+    url: `${urls.HINT(gameId)}${problemId}/`,
+    fetchOptions: {
+      method: 'POST',
+      body: {
+        question
+      }
+    },
+  },
+});

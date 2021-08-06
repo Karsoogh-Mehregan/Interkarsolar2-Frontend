@@ -29,7 +29,7 @@ const Root = () => {
         <Route path="/staff/" component={Staff} />
         <Route path="/correct-student-answer/" component={CorrectStudentAnswer} />
 
-        <Route path="/game/:gameId/my_problems" component={PlayerProblems} />
+        <Route path="/game/:gameId/my_problems/" component={PlayerProblems} />
         <Route path="/game/:gameId/auction" component={Auction} />
         <Route path="/game/:gameId/problem/:singleOrMultiple/:problemId" component={ShowProblem} />
         <Route path="/game/mentor/correct_problem" component={CorrectProblem} />

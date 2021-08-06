@@ -140,7 +140,7 @@ const PlayerProblems = ({
                         </TableCell>
                         <TableCell>{DIFFICULTY[mySingleProblem.problem?.difficulty]}</TableCell>
                         <TableCell>{STATUS[mySingleProblem.status]}</TableCell>
-                        <TableCell>{mySingleProblem.mark == -1 ? '-' : mySingleProblem.mark}</TableCell>
+                        <TableCell>{mySingleProblem.mark == -1 ? '-' : toPersianNumber(mySingleProblem.mark)}</TableCell>
                       </TableRow>
                     )}
                     {multipleProblems.map((myMultipleProblem, index) => {
@@ -158,7 +158,7 @@ const PlayerProblems = ({
                           <TableCell>
                             {myMultipleProblem.step == myMultipleProblem.multiple_problem?.problems_count ? 'پایان‌یافته' : `مرحله‌ی ${toPersianNumber(myMultipleProblem.step + 1)}`}
                           </TableCell>
-                          <TableCell>{myMultipleProblem.mark == -1 ? '-' : myMultipleProblem.mark}</TableCell>
+                          <TableCell>{myMultipleProblem.mark == -1 ? '-' : toPersianNumber(myMultipleProblem.mark)}</TableCell>
                         </TableRow>
                       )
                     }

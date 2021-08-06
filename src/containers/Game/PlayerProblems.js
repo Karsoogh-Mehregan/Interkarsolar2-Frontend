@@ -185,7 +185,7 @@ const PlayerProblems = ({
                     <Typography variant="h2" align='center'>مسئله‌ی جدید</Typography>
                   </Grid>
                   <Divider />
-                  <Grid item>
+                  {/* <Grid item>
                     <FormControl size='small' >
                       <RadioGroup
                         row
@@ -206,7 +206,7 @@ const PlayerProblems = ({
                         />
                       </RadioGroup>
                     </FormControl>
-                  </Grid>
+                  </Grid> */}
                   {requestedProblemType == 'single' &&
                     <>
                       {/* <Grid item>

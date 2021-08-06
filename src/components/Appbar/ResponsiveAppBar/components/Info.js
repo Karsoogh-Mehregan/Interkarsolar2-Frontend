@@ -6,15 +6,15 @@ const useStyles = makeStyles(() => ({
   avatar: {},
 }));
 
-function Index({ score = 0 }) {
+function Index({ score }) {
   const classes = useStyles();
   return (
-    <Chip variant="outlined" color="primary" label={`چوق شما: ${score}`} />
+    <Chip variant="outlined" color="primary" label={`سکه‌ی شما: ${score}`} />
   );
 }
 
 const mapStateToProps = (state) => ({
-  score: state.formula0.team ? state.formula0.team.score : '?',
+  score: state.game.player?.score || 0,
 });
 
 export default connect(mapStateToProps)(Index);

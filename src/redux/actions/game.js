@@ -168,7 +168,7 @@ export const getProblemHints = ({ gameId, problemId }) => ({
   },
 });
 
-export const submitNewHint = ({ gameId, problemId, question }) => ({
+export const submitNewHint = ({ gameId, problemId, question, single_or_multiple }) => ({
   [CALL_API]: {
     types: [
       actionTypes.SUBMIT_NEW_HINT_REQUEST,
@@ -179,7 +179,8 @@ export const submitNewHint = ({ gameId, problemId, question }) => ({
     fetchOptions: {
       method: 'POST',
       body: {
-        question
+        question,
+        single_or_multiple,
       }
     },
   },

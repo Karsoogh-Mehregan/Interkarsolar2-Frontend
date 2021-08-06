@@ -11,6 +11,7 @@ const initState = {
 function notifications(state = initState, action) {
   switch (action.type) {
 
+    case actionTypes.SUBMIT_NEW_HINT_SUCCESS:
     case actionTypes.SUBMIT_SINGLE_PROBLEM_ANSWER_SUCCESS:
     case actionTypes.SUBMIT_MULTIPLE_PROBLEM_ANSWER_SUCCESS:
     case actionTypes.GET_RANDOM_SINGLE_PROBLEM_SUCCESS:
@@ -20,6 +21,7 @@ function notifications(state = initState, action) {
         success: action.response?.message || 'عملیات خواسته شده با موفقیت انجام شد!'
       }
 
+    case actionTypes.SUBMIT_NEW_HINT_FAILURE:
     case actionTypes.SUBMIT_SINGLE_PROBLEM_ANSWER_FAILURE:
     case actionTypes.SUBMIT_MULTIPLE_PROBLEM_ANSWER_FAILURE:
     case actionTypes.GET_RANDOM_SINGLE_PROBLEM_FAILURE:

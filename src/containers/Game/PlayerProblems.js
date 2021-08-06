@@ -57,7 +57,7 @@ const DIFFICULTY = {
 
 const STATUS = {
   'RECEIVED': 'دریافت‌شده',
-  'DELIVERED': 'تحویل‌داده‌شده',
+  'DELIVERED': 'در انتظار تصحیح',
   'SCORED': 'تصحیح‌شده',
 }
 
@@ -125,40 +125,46 @@ const PlayerProblems = ({
                       <TableCell>عنوان</TableCell>
                       <TableCell>سختی</TableCell>
                       <TableCell>وضعیت</TableCell>
+                      <TableCell>هزینه</TableCell>
+                      <TableCell>پاداش</TableCell>
                       <TableCell>نمره</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {singleProblems.map((mySingleProblem, index) =>
+                    {singleProblems.map((playerSingleProblem, index) =>
                       <TableRow key={index}>
                         <TableCell>{'تکی'}</TableCell>
                         <TableCell >
-                          {mySingleProblem.status === 'RECEIVED' &&
-                            <a as={Link} href={`/game/${gameId}/problem/single/${mySingleProblem.id}`}>{mySingleProblem.problem?.title}</a>
+                          {playerSingleProblem.status === 'RECEIVED' &&
+                            <a as={Link} href={`/game/${gameId}/problem/single/${playerSingleProblem.problem?.id}`}>{playerSingleProblem.problem?.title}</a>
                           }
-                          {mySingleProblem.status !== 'RECEIVED' && mySingleProblem.problem?.title}
+                          {playerSingleProblem.status !== 'RECEIVED' && playerSingleProblem.problem?.title}
                         </TableCell>
-                        <TableCell>{DIFFICULTY[mySingleProblem.problem?.difficulty]}</TableCell>
-                        <TableCell>{STATUS[mySingleProblem.status]}</TableCell>
-                        <TableCell>{mySingleProblem.mark == -1 ? '-' : toPersianNumber(mySingleProblem.mark)}</TableCell>
+                        <TableCell>{DIFFICULTY[playerSingleProblem.problem?.difficulty]}</TableCell>
+                        <TableCell>{STATUS[playerSingleProblem.status]}</TableCell>
+                        <TableCell>{toPersianNumber(playerSingleProblem.problem.cost)}</TableCell>
+                        <TableCell>{toPersianNumber(playerSingleProblem.problem.reward)}</TableCell>
+                        <TableCell>{playerSingleProblem.mark == -1 ? '-' : toPersianNumber(playerSingleProblem.mark)}</TableCell>
                       </TableRow>
                     )}
-                    {multipleProblems.map((myMultipleProblem, index) => {
-                      console.log(myMultipleProblem)
+                    {multipleProblems.map((playerMultipleProblem, index) => {
+                      console.log(playerMultipleProblem)
                       return (
                         <TableRow key={index}>
                           <TableCell>{'دنباله‌دار'}</TableCell>
                           <TableCell >
-                            {myMultipleProblem.step !== myMultipleProblem.multiple_problem?.problems_count &&
-                              <a as={Link} href={`/game/${gameId}/problem/multiple/${myMultipleProblem.id}`}>{myMultipleProblem.multiple_problem?.title}</a>
+                            {playerMultipleProblem.step !== playerMultipleProblem.multiple_problem?.problems_count &&
+                              <a as={Link} href={`/game/${gameId}/problem/multiple/${playerMultipleProblem.multiple_problem?.id}`}>{playerMultipleProblem.multiple_problem?.title}</a>
                             }
-                            {myMultipleProblem.step === myMultipleProblem.multiple_problem?.problems_count && myMultipleProblem.multiple_problem?.title}
+                            {playerMultipleProblem.step === playerMultipleProblem.multiple_problem?.problems_count && playerMultipleProblem.multiple_problem?.title}
                           </TableCell>
-                          <TableCell>{`${toPersianNumber(myMultipleProblem.multiple_problem?.problems_count || 0)} مرحله‌ای`}</TableCell>
+                          <TableCell>{`${toPersianNumber(playerMultipleProblem.multiple_problem?.problems_count || 0)} مرحله‌ای`}</TableCell>
                           <TableCell>
-                            {myMultipleProblem.step == myMultipleProblem.multiple_problem?.problems_count ? 'پایان‌یافته' : `مرحله‌ی ${toPersianNumber(myMultipleProblem.step + 1)}`}
+                            {playerMultipleProblem.step == playerMultipleProblem.multiple_problem?.problems_count ? 'پایان‌یافته' : `مرحله‌ی ${toPersianNumber(playerMultipleProblem.step + 1)}`}
                           </TableCell>
-                          <TableCell>{myMultipleProblem.mark == -1 ? '-' : toPersianNumber(myMultipleProblem.mark)}</TableCell>
+                          <TableCell>{toPersianNumber(playerMultipleProblem.multiple_problem.cost)}</TableCell>
+                          <TableCell>{toPersianNumber(playerMultipleProblem.multiple_problem.reward)}</TableCell>
+                          <TableCell>{playerMultipleProblem.mark == -1 ? '-' : toPersianNumber(playerMultipleProblem.mark)}</TableCell>
                         </TableRow>
                       )
                     }

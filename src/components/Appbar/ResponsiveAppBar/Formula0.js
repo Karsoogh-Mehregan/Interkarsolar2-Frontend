@@ -7,21 +7,24 @@ import LogoButton from './components/LogoButton';
 import LogoutButton from './components/LogoutButton';
 import Info from './components/Info';
 
-const DashboardItems = () => {
-  const logoButton = <LogoButton />;
-  // const score = <Info />;
-  const myProblemsButton = <DashboardButton name={'سوالات من'} to={'/formula0/my_problems'} />;
-  const auctionButton = <DashboardButton name={'مزایده'} to={'/formula0/auction'} />;
 
+
+const DashboardItems = () => {
+
+  let { gameId } = useParams();
+
+  const logoButton = <LogoButton />;
+  const score = <Info />;
+  const myProblemsButton = <DashboardButton name={'مسئله‌های من'} to={`/game/${gameId}/my_problems`} />;
   const logoutButton = <LogoutButton />;
   const Avatar = <AvatarComponent />;
 
   return {
     desktopLeftItems: [Avatar, logoutButton],
-    desktopRightItems: [myProblemsButton, auctionButton,],
-    mobileLeftItems: [],
+    desktopRightItems: [myProblemsButton, score],
+    mobileLeftItems: [score],
     mobileRightItems: [],
-    mobileMenuListItems: [myProblemsButton, auctionButton, logoutButton],
+    mobileMenuListItems: [myProblemsButton, logoutButton],
   };
 };
 

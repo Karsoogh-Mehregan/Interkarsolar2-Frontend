@@ -221,11 +221,11 @@ export const correctAnswer = ({ mark, player_single_problem_id }) => ({
 export const getHint = () => ({
   [CALL_API]: {
     types: [
-      actionTypes.PLAYER_SINGLE_PROBLEM_FOR_CORRECTION_REQUEST,
-      actionTypes.PLAYER_SINGLE_PROBLEM_FOR_CORRECTION_SUCCESS,
-      actionTypes.PLAYER_SINGLE_PROBLEM_FOR_CORRECTION_FAILURE,
+      actionTypes.GET_HINT_REQUEST,
+      actionTypes.GET_HINT_SUCCESS,
+      actionTypes.GET_HINT_FAILURE,
     ],
-    url: urls.CORRECT_PROBLEM,
+    url: urls.ANSWER_HINT,
     fetchOptions: {
       method: 'GET',
     },
@@ -235,11 +235,11 @@ export const getHint = () => ({
 export const answerHint = ({ answer, hint_id }) => ({
   [CALL_API]: {
     types: [
-      actionTypes.CORRECT_ANSWER_REQUEST,
-      actionTypes.CORRECT_ANSWER_SUCCESS,
-      actionTypes.CORRECT_ANSWER_FAILURE,
+      actionTypes.ANSWER_HINT_REQUEST,
+      actionTypes.ANSWER_HINT_SUCCESS,
+      actionTypes.ANSWER_HINT_FAILURE,
     ],
-    url: urls.CORRECT_PROBLEM,
+    url: urls.ANSWER_HINT,
     fetchOptions: {
       method: 'POST',
       body: {

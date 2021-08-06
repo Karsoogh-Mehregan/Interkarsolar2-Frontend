@@ -5,6 +5,7 @@ const initState = {
   singleProblems: [],
   multipleProblems: [],
   hints: [],
+  hint: {},
   getPlayerSingleProblem: {},
   isFetching: false,
 };
@@ -60,10 +61,17 @@ function index(state = initState, action) {
 
 
     case actionTypes.PLAYER_SINGLE_PROBLEM_FOR_CORRECTION_SUCCESS:
-      console.log(action.response)
       return {
         ...state,
         playerSingleProblem: action.response,
+        isFetching: false,
+      }
+
+
+    case actionTypes.GET_HINT_SUCCESS:
+      return {
+        ...state,
+        hint: action.response,
         isFetching: false,
       }
 
@@ -81,6 +89,7 @@ function index(state = initState, action) {
       }
 
 
+    case actionTypes.ANSWER_HINT_SUCCESS:
     case actionTypes.CORRECT_ANSWER_SUCCESS:
       window.location.reload();
       return {

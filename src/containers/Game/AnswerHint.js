@@ -13,7 +13,6 @@ import {
 import {
   getHint,
   answerHint,
-  getProblemHints,
 } from '../../redux/actions/game';
 import { useParams } from "react-router-dom";
 import TextWidget from '../../components/Widget/TextWidget';
@@ -60,16 +59,20 @@ const Index = ({
   }, [getHint])
 
   useEffect(() => {
-    if (hint?.multiple_problem?.text) {
-      setProblemText(<TextWidget text={hint?.multiple_problem?.text} />)
+    if (hint?.questioned_problem?.text) {
+      setProblemText(<TextWidget text={hint?.questioned_problem?.text} />)
     }
-    if (hint?.question) {
-      setHintQuestion(<TextWidget text={hint?.question} />)
+    if (hint?.hint?.question) {
+      setHintQuestion(<TextWidget text={hint?.hint?.question} />)
     }
   }, [hint])
 
   const submitAnswer = () => {
-    answerHint({ answer, hint_id: hint?.id })
+    if (!answer) {
+      toast.error('لطفاً به سوال این دانش‌آموز پاسخی بدهید!');
+      return;
+    }
+    answerHint({ answer, hint_id: hint?.hint?.id })
   }
 
   console.log(hint)
@@ -82,28 +85,21 @@ const Index = ({
             <Paper className={classes.paper}>
               <Grid container direction='column' spacing={2} >
                 <Grid item>
-                  <Typography variant='h2'>
-                    {hint?.multiple_problem?.title}
+                  <Typography variant='h2' align='center'>
+                    {hint?.questioned_problem?.title}
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
                   {problemText}
                 </Grid>
                 <Grid item>
-                  <Typography variant='h2'>
+                  <Typography variant='h2' align='center'>
                     {'سوال دانش‌آموز'}
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
                   {hintQuestion}
                 </Grid>
-                {/* {fileAnswer &&
-                  <Grid item xs={12}>
-                    <a href={fileAnswer} >
-                      {'دانلود فایل پاسخ'}
-                    </a>
-                  </Grid>
-                } */}
               </Grid>
             </Paper>
           </Grid>

@@ -11,6 +11,7 @@ import Staff from '../containers/Staff/Staff';
 import Exam from '../containers/Exam/Exam';
 import CorrectStudentAnswer from '../containers/CorrectStudentAnswer';
 import Dashboard from '../containers/Dashboard/Dashboard';
+import AfterLogin from '../containers/Game/AfterLogin';
 
 import PlayerProblems from '../containers/Game/PlayerProblems';
 import ShowProblem from '../containers/Game/ShowProblem';
@@ -26,17 +27,19 @@ const Root = () => {
         <Route path='/create-account' component={CreateAccount} />
         <Route path='/login' component={Login} />
         <Route path='/change-password' component={ChangePassword} />
-        <Route path="/staff/" component={Staff} />
-        <Route path="/correct-student-answer/" component={CorrectStudentAnswer} />
+        <Route path="/staff" component={Staff} />
+        <Route path="/correct-student-answer" component={CorrectStudentAnswer} />
 
-        <Route path="/game/:gameId/my_problems/" component={PlayerProblems} />
-        <Route path="/game/:gameId/auction" component={Auction} />
-        <Route path="/game/:gameId/problem/:singleOrMultiple/:problemId" component={ShowProblem} />
         <Route path="/game/mentor/correct_problem" component={CorrectProblem} />
         <Route path="/game/mentor/uncorrected_problems" component={UncorrectedProblems} />
 
+        <PrivateRoute path="/after_login" component={AfterLogin} />
+        <PrivateRoute path="/game/:gameId/my_problems" component={PlayerProblems} />
+        <PrivateRoute path="/game/:gameId/problem/:singleOrMultiple/:problemId" component={ShowProblem} />
+
+
         <PrivateRoute path="/exam/:examID/:questionID?" component={Exam} />
-        <PrivateRoute path="/dashboard/" component={Dashboard} />
+        <PrivateRoute path="/dashboard" component={Dashboard} />
         <Route path="/" component={Homepage} />
       </Switch>
       <DevTools />

@@ -10,10 +10,10 @@ function redirect(state = initState, action) {
       return { redirectTo: action.payload };
 
     case actionTypes.CREATE_ACCOUNT_SUCCESS:
-      return { redirectTo: '/dashboard?tab=announcements' }
+      return { redirectTo: '/login' }
 
     case actionTypes.LOGIN_SUCCESS:
-      return { redirectTo: '/dashboard?tab=announcements' }
+      return { redirectTo: '/after_login' }
 
     case actionTypes.LOGOUT:
       return { redirectTo: '/' }

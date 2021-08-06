@@ -57,7 +57,7 @@ const InputFields = ({
           inputProps={{ className: 'ltr-input' }}
           fullWidth />
       </Grid>
-      <Grid item container justify='center'>
+      {/* <Grid item container justify='center'>
         <Typography align='center'>
           {'اگه رمز عبورت یادت رفته، از '}
           <a href='/change-password'>
@@ -65,7 +65,7 @@ const InputFields = ({
           </a>
           {' دوباره تعیینش کن!'}
         </Typography>
-      </Grid>
+      </Grid> */}
       <Grid container item direction='row' justify='center'>
         <Button
           onClick={doLogin}

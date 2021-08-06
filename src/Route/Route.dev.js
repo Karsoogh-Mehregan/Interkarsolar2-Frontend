@@ -30,9 +30,7 @@ const Root = () => {
         <Route path='/change-password' component={ChangePassword} />
         <Route path="/staff" component={Staff} />
         <Route path="/correct-student-answer" component={CorrectAnswer} />
-
-        <Route path="/game/mentor/correct_problem" component={CorrectProblem} />
-        <Route path="/game/mentor/answer_hint" component={AnswerHint} />
+        <Route path="/answer_hint" component={AnswerHint} />
 
         <PrivateRoute path="/after_login" component={AfterLogin} />
         <PrivateRoute path="/game/:gameId/my_problems" component={PlayerProblems} />

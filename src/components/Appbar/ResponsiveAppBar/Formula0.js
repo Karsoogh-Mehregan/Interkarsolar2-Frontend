@@ -8,7 +8,6 @@ import LogoutButton from './components/LogoutButton';
 import Info from './components/Info';
 
 
-
 const DashboardItems = () => {
 
   let { gameId } = useParams();

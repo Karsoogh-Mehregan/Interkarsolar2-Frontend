@@ -81,7 +81,7 @@ const Index = ({
   }, [playerSingleProblem])
 
   const submitScore = () => {
-    if ((!isDigit(mark) && mark != null)) {
+    if (!mark || (!isDigit(mark) && mark != null)) {
       toast.error('نمره فقط می‌تونه رقم انگلیسی باشه!');
       return;
     }

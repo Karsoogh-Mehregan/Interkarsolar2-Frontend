@@ -11,12 +11,9 @@ import {
   TextField,
 } from '@material-ui/core';
 import {
-  getAnswerForCorrection,
-  setAnswerScore,
-} from '../../redux/actions/mentor';
-import {
-  getPlayerSingleProblemForCorrection,
-  correctAnswer,
+  getHint,
+  answerHint,
+  getProblemHints,
 } from '../../redux/actions/game';
 import { useParams } from "react-router-dom";
 import TextWidget from '../../components/Widget/TextWidget';
@@ -48,41 +45,34 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Index = ({
-  getPlayerSingleProblemForCorrection,
-  correctAnswer,
-  playerSingleProblem,
+  getHint,
+  answerHint,
+  hint,
   isFetching,
 }) => {
   const classes = useStyles();
-  const [mark, setMark] = useState();
-
-  const isDigit = (string) => {
-    var regex = new RegExp(`\\d{${string.length}}`);
-    if (regex.test(string)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  const [answer, setAnswer] = useState();
+  const [problemText, setProblemText] = useState('');
+  const [hintQuestion, setHintQuestion] = useState('')
 
   useEffect(() => {
-    getPlayerSingleProblemForCorrection()
-  }, [getPlayerSingleProblemForCorrection])
+    getHint()
+  }, [getHint])
 
-  const submitScore = () => {
-    if ((!isDigit(mark) && mark != null)) {
-      toast.error('نمره فقط می‌تونه رقم انگلیسی باشه!');
-      return;
+  useEffect(() => {
+    if (hint?.multiple_problem?.text) {
+      setProblemText(<TextWidget text={hint?.multiple_problem?.text} />)
     }
-    if (mark < 0 || mark > 10) {
-      toast.error('لطفاً یک نمره بین ۰ تا ۱۰ وارد کن!');
-      return;
+    if (hint?.question) {
+      setHintQuestion(<TextWidget text={hint?.question} />)
     }
-    correctAnswer({ mark, player_single_problem_id: playerSingleProblem?.id })
+  }, [hint])
+
+  const submitAnswer = () => {
+    answerHint({ answer, hint_id: hint?.id })
   }
 
-  console.log(playerSingleProblem)
-  console.log(mark)
+  console.log(hint)
 
   return (
     <Container className={`${classes.centerItems}`}>
@@ -93,19 +83,19 @@ const Index = ({
               <Grid container direction='column' spacing={2} >
                 <Grid item>
                   <Typography variant='h2'>
-                    {playerSingleProblem?.problem?.title}
+                    {hint?.multiple_problem?.title}
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <TextWidget text={playerSingleProblem?.problem?.text} />
+                  {problemText}
                 </Grid>
                 <Grid item>
                   <Typography variant='h2'>
-                    {'پاسخ تایپ‌شده'}
+                    {'سوال دانش‌آموز'}
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <TextWidget text={playerSingleProblem?.text_answer} />
+                  {hintQuestion}
                 </Grid>
                 {/* {fileAnswer &&
                   <Grid item xs={12}>
@@ -126,15 +116,15 @@ const Index = ({
               <Grid container direction='column' spacing={2} >
                 <Grid item>
                   <Typography align='center' variant='h2'>
-                    {'نمره‌دهی'}
+                    {'پاسخ شما'}
                   </Typography>
                 </Grid>
                 <Grid item >
-                  <TextField fullWidth label='نمره' variant='outlined'
-                    value={mark} onChange={(e) => setMark(e.target.value)} />
+                  <TextField multiline rows={3} fullWidth label='پاسخ' variant='outlined'
+                    value={answer} onChange={(e) => setAnswer(e.target.value)} />
                 </Grid>
                 <Grid item >
-                  <Button disabled={isFetching} variant='contained' fullWidth color='primary' onClick={submitScore}>
+                  <Button disabled={isFetching} variant='contained' fullWidth color='primary' onClick={submitAnswer}>
                     {'ثبت'}
                   </Button>
                 </Grid>
@@ -149,13 +139,13 @@ const Index = ({
 
 const mapStateToProps = (state, ownProps) => ({
   isFetching: state.game.isFetching,
-  playerSingleProblem: state.game.playerSingleProblem,
+  hint: state.game.hint,
 })
 
 export default connect(
   mapStateToProps,
   {
-    getPlayerSingleProblemForCorrection,
-    correctAnswer,
+    getHint,
+    answerHint,
   }
 )(Index)

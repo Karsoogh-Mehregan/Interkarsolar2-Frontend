@@ -37,9 +37,8 @@ const Root = () => {
         <PrivateRoute path="/game/:gameId/my_problems" component={PlayerProblems} />
         <PrivateRoute path="/game/:gameId/problem/:singleOrMultiple/:problemId" component={ShowProblem} />
 
-
-        <PrivateRoute path="/exam/:examID/:questionID?" component={Exam} />
-        <PrivateRoute path="/dashboard" component={Dashboard} />
+        {/* <PrivateRoute path="/exam/:examID/:questionID?" component={Exam} /> */}
+        {/* <PrivateRoute path="/dashboard" component={Dashboard} /> */}
         <Route path="/" component={Homepage} />
       </Switch>
       <DevTools />

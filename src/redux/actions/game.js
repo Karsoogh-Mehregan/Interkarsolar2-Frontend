@@ -185,3 +185,35 @@ export const submitNewHint = ({ gameId, problemId, question, single_or_multiple 
     },
   },
 });
+
+export const getPlayerSingleProblemForCorrection = () => ({
+  [CALL_API]: {
+    types: [
+      actionTypes.PLAYER_SINGLE_PROBLEM_FOR_CORRECTION_REQUEST,
+      actionTypes.PLAYER_SINGLE_PROBLEM_FOR_CORRECTION_SUCCESS,
+      actionTypes.PLAYER_SINGLE_PROBLEM_FOR_CORRECTION_FAILURE,
+    ],
+    url: urls.CORRECT_PROBLEM,
+    fetchOptions: {
+      method: 'GET',
+    },
+  },
+});
+
+export const correctAnswer = ({ mark, player_single_problem_id }) => ({
+  [CALL_API]: {
+    types: [
+      actionTypes.CORRECT_ANSWER_REQUEST,
+      actionTypes.CORRECT_ANSWER_SUCCESS,
+      actionTypes.CORRECT_ANSWER_FAILURE,
+    ],
+    url: urls.CORRECT_PROBLEM,
+    fetchOptions: {
+      method: 'POST',
+      body: {
+        mark,
+        player_single_problem_id,
+      }
+    },
+  },
+});

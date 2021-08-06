@@ -5,6 +5,7 @@ const initState = {
   singleProblems: [],
   multipleProblems: [],
   hints: [],
+  getPlayerSingleProblem: {},
   isFetching: false,
 };
 
@@ -58,6 +59,14 @@ function index(state = initState, action) {
       }
 
 
+    case actionTypes.PLAYER_SINGLE_PROBLEM_FOR_CORRECTION_SUCCESS:
+      console.log(action.response)
+      return {
+        ...state,
+        playerSingleProblem: action.response,
+        isFetching: false,
+      }
+
     case actionTypes.SUBMIT_NEW_HINT_SUCCESS:
     case actionTypes.SUBMIT_MULTIPLE_PROBLEM_ANSWER_SUCCESS:
     case actionTypes.SUBMIT_SINGLE_PROBLEM_ANSWER_SUCCESS:
@@ -66,6 +75,14 @@ function index(state = initState, action) {
       setTimeout(() => {
         window.location.reload();
       }, 4000)
+      return {
+        ...state,
+        isFetching: false,
+      }
+
+
+    case actionTypes.CORRECT_ANSWER_SUCCESS:
+      window.location.reload();
       return {
         ...state,
         isFetching: false,

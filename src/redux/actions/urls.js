@@ -64,3 +64,5 @@ export const SINGLE_PROBLEMS = (gameId) => GAME_ROOT.concat(gameId + '/problem/s
 export const MULTIPLE_PROBLEMS = (gameId) => GAME_ROOT.concat(gameId + '/problem/multiple/');
 export const SUBJECTS = (gameId) => GAME_ROOT.concat(gameId + '/subject/');
 export const HINT = (gameId) => GAME_ROOT.concat(gameId + '/hint/')
+export const CORRECT_PROBLEM = GAME_ROOT.concat('mentor/problem/')
+export const ANSWER_HINT = GAME_ROOT.concat('mentor/hint/')

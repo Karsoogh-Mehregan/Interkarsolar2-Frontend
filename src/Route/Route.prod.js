@@ -8,7 +8,7 @@ import Login from '../containers/Login';
 import Exam from '../containers/Exam/Exam';
 import Homepage from '../containers/Homepage';
 import Staff from '../containers/Staff/Staff';
-import CorrectStudentAnswer from '../containers/CorrectStudentAnswer';
+import CorrectAnswer from '../containers/Game/CorrectAnswer';
 import Dashboard from '../containers/Dashboard/Dashboard';
 import AfterLogin from '../containers/Game/AfterLogin';
 
@@ -28,7 +28,7 @@ const Root = () => {
         <Route path='/change-password' component={ChangePassword} />
         <Route path="/staff/" component={Staff} />
         <PrivateRoute path="/exam/:examID/:questionID?" component={Exam} />
-        <PrivateRoute path="/correct-student-answer" component={CorrectStudentAnswer} />
+        <PrivateRoute path="/correct-student-answer" component={CorrectAnswer} />
 
         <Route path="/game/mentor/correct_problem" component={CorrectProblem} />
         <Route path="/game/mentor/uncorrected_problems" component={UncorrectedProblems} />

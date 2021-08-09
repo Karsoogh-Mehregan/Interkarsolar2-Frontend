@@ -136,10 +136,7 @@ const PlayerProblems = ({
                       <TableRow key={index}>
                         <TableCell>{'تکی'}</TableCell>
                         <TableCell >
-                          {playerSingleProblem.status === 'RECEIVED' &&
-                            <a as={Link} href={`/game/${gameId}/problem/single/${playerSingleProblem.problem?.id}`}>{playerSingleProblem.problem?.title}</a>
-                          }
-                          {playerSingleProblem.status !== 'RECEIVED' && playerSingleProblem.problem?.title}
+                          <a as={Link} href={`/game/${gameId}/problem/single/${playerSingleProblem.problem?.id}`}>{playerSingleProblem.problem?.title}</a>
                         </TableCell>
                         <TableCell>{DIFFICULTY[playerSingleProblem.problem?.difficulty]}</TableCell>
                         <TableCell>{STATUS[playerSingleProblem.status]}</TableCell>
@@ -154,10 +151,7 @@ const PlayerProblems = ({
                         <TableRow key={index}>
                           <TableCell>{'دنباله‌دار'}</TableCell>
                           <TableCell >
-                            {playerMultipleProblem.step !== playerMultipleProblem.multiple_problem?.problems_count &&
-                              <a as={Link} href={`/game/${gameId}/problem/multiple/${playerMultipleProblem.multiple_problem?.id}`}>{playerMultipleProblem.multiple_problem?.title}</a>
-                            }
-                            {playerMultipleProblem.step === playerMultipleProblem.multiple_problem?.problems_count && playerMultipleProblem.multiple_problem?.title}
+                            <a as={Link} href={`/game/${gameId}/problem/multiple/${playerMultipleProblem.multiple_problem?.id}`}>{playerMultipleProblem.multiple_problem?.title}</a>
                           </TableCell>
                           <TableCell>{`${toPersianNumber(playerMultipleProblem.multiple_problem?.problems_count || 0)} مرحله‌ای`}</TableCell>
                           <TableCell>

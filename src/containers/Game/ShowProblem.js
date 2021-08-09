@@ -88,12 +88,12 @@ const ViewProblem = ({
   }, [singleProblem, multipleProblem,])
 
 
-  if (singleProblem?.status === 'DELIVERED' ||
-    singleProblem?.status === 'SCORED' ||
-    multipleProblem?.status === 'DELIVERED' ||
-    multipleProblem?.status === 'SCORED') {
-    return (<Redirect to={`/game/${gameId}/my_problems/`} />)
-  }
+  // if (singleProblem?.status === 'DELIVERED' ||
+  //   singleProblem?.status === 'SCORED' ||
+  //   multipleProblem?.status === 'DELIVERED' ||
+  //   multipleProblem?.status === 'SCORED') {
+  //   return (<Redirect to={`/game/${gameId}/my_problems/`} />)
+  // }
 
   const submitAnswer = () => {
     console.log(textAnswer)

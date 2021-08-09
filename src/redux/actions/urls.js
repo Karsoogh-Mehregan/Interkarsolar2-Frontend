@@ -1,14 +1,13 @@
 export const ROOT =
   process.env.NODE_ENV === 'production'
     ? 'https://backend.interkarsolar.ir/api/'
-    : 'https://backend.interkarsolar.ir/api/'
+    : 'http://127.0.0.1:8000/api/'
 
 export const CREATE_ACCOUNT = ROOT.concat('account/create/');
 export const LOGIN = ROOT.concat('account/login/');
 export const LOGOUT = ROOT.concat('account/logout/');
 export const CHANGE_PASSWORD = ROOT.concat('account/change-password/');
 export const RECOVERY_PASSWORD = ROOT.concat('account/recovery-password/');
-
 
 
 export const UPDATE_PROFILE = ROOT.concat('account/login/');

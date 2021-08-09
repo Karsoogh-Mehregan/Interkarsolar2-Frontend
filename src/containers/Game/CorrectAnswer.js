@@ -11,14 +11,9 @@ import {
   TextField,
 } from '@material-ui/core';
 import {
-  getAnswerForCorrection,
-  setAnswerScore,
-} from '../../redux/actions/mentor';
-import {
   getPlayerSingleProblemForCorrection,
   correctAnswer,
 } from '../../redux/actions/game';
-import { useParams } from "react-router-dom";
 import TextWidget from '../../components/Widget/TextWidget';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';

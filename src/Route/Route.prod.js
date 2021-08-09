@@ -28,7 +28,6 @@ const Root = () => {
         <Route path='/login' component={Login} />
         <Route path='/change-password' component={ChangePassword} />
         <Route path="/staff/" component={Staff} />
-        <PrivateRoute path="/exam/:examID/:questionID?" component={Exam} />
         <Route path="/correct-student-answer" component={CorrectAnswer} />
         <Route path="/answer_hint" component={AnswerHint} />
 

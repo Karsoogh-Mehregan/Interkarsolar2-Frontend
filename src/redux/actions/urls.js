@@ -10,6 +10,7 @@ export const CHANGE_PASSWORD = ROOT.concat('account/change-password/');
 export const RECOVERY_PASSWORD = ROOT.concat('account/recovery-password/');
 
 
+
 export const UPDATE_PROFILE = ROOT.concat('account/login/');
 
 export const GET_PROFILE = ROOT.concat('student/profile/');

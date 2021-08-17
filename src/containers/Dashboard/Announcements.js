@@ -87,13 +87,19 @@ const AnnouncementsTab = ({ status, isRegistrationCompleted, didPaymentFail }) =
           }
 
           <Grid item xs={12}>
-            <Announcement title='دوره تابستونه' date='۵ خرداد ۱۴۰۰' image='announcement.jpg' text='بالاخره نتایج مرحله دو اومد! اگه تو این مرحله قبول شده باشی، می‌تونی برای دوره‌ی تابستونه ثبت‌نام کنی. به امید این که هر چه زودتر (هرچند به صورت مجازی) ببینیمت!' />
+            <Announcement title='مسابقه فرمول صفر' date='۲۶ مرداد ۱۴۰۰' image='announcement.jpg'
+              text='مسابقه‌ی فرمول صفر توسط واحد پژوهشی دبیرستان شهید اژه‌ای ۱ دوره اول برگزار میشه و فقط مخصوص دانش‌آموزان برگزیده در مرحله‌ی اول از همین مسابقه‌ست. برای ثبت‌نام در این مسابقه به بخش «آزمون‌ها» مراجعه کنید.' />
           </Grid>
 
           <Grid item xs={12}>
+            <Announcement title='نظرسنجی پایانی اینترکارسولار' date='۱۵ مرداد ۱۴۰۰' image='survey.png' linkURL='https://docs.google.com/forms/d/e/1FAIpQLSfLpS7TTvSwaLBgv40FRuR7CvRZ_fKuhMYLcfE4Ji3zBGp2Ag/viewform?usp=sf_link' linkText='لینک نظرسنجی'
+              text='امیدواریم که از شرکت در دوره‌ی تابستونه‌ی اینترکارسولار لذت برده باشید! ازتون می‌خوایم اگه امسال در این دوره شرکت کردین، برای هرچه بهترشدن کارسوق در سال بعد حتما فرم نظرسنجی رو پر کنید.' />
+          </Grid>
+
+          {/* <Grid item xs={12}>
             <Announcement title='کارسوق سال آینده؟' date='۱۸ خرداد ۱۴۰۰' image='survey.png' linkURL='https://docs.google.com/forms/d/e/1FAIpQLSdCvuKqnwX00I-MyL6zV2uQjmfAYtYRQDqe1255HM0GZmqHlA/viewform?usp=sf_link' linkText='لینک فرم'
               text='به نظرتون برای بهترشدن کارسوق سال آینده چه کارایی میشه کرد؟ خوبه که اگه نظری دارین، تو فرمی که لینکش این پایین اومده برامون بنویسین. همینطور اگه دوست دارین تا سال آینده به عنوان کارسوقمند در کنارمون باشین، اسمتون رو توی این فرم بنویسین!' />
-          </Grid>
+          </Grid> */}
 
         </Grid>
       </Grid>

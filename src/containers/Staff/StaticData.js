@@ -54,6 +54,13 @@ export const Staff = [
     subteam: 2,
   },
   {
+    name: 'ندا فلاح',
+    position: '',
+    image: 'Neda-Fallah.jpg',
+    description: 'دانشجوی ریاضی شریف! از جمله ارادتمندان به دوره‌ی پایانی در کارسوق امسال',
+    subteam: 2,
+  },
+  {
     name: 'درسا جمالی',
     position: '',
     image: 'Dorsa-Jamali.jpg',

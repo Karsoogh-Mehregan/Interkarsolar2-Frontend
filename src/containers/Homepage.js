@@ -273,7 +273,7 @@ function Homepage({ isLoggedIn }) {
         </Grid>
       </Container>
 
-      <Container className={`${classes.section4} ${classes.centerItems}`}>
+      {/* <Container className={`${classes.section4} ${classes.centerItems}`}>
         <Grid container direction="column" spacing={4}>
           <Grid item>
             <Typography
@@ -287,9 +287,9 @@ function Homepage({ isLoggedIn }) {
             <Timeline />
           </Grid>
         </Grid>
-      </Container>
+      </Container> */}
 
-      <Container className={`${classes.section7} ${classes.centerItems}`}>
+      {/* <Container className={`${classes.section7} ${classes.centerItems}`}>
         <Grid container direction="column" alignItems='center' spacing={4}>
           <Grid item>
             <Typography
@@ -303,9 +303,9 @@ function Homepage({ isLoggedIn }) {
             <FAQ />
           </Grid>
         </Grid>
-      </Container>
+      </Container> */}
 
-      <Container className={`${classes.section5} ${classes.centerItems}`}>
+      {/* <Container className={`${classes.section5} ${classes.centerItems}`}>
         <Grid container direction="column" spacing={4}>
           <Grid item>
             <Typography
@@ -347,7 +347,7 @@ function Homepage({ isLoggedIn }) {
             </Button>
           </Grid>
         </Grid>
-      </Container>
+      </Container> */}
 
       <Container className={`${classes.section6} ${classes.centerItems}`}>
         <Grid container direction="column" spacing={4}>

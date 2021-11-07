@@ -10,7 +10,7 @@
     "jalali-moment": "^3.3.8",
     "jss-rtl": "^0.3.0",
     "lodash": "^4.17.20",
-    "node-sass": "4.14.1",
+    "node-sass": "^6.0.1",
     "query-string": "^4.3.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

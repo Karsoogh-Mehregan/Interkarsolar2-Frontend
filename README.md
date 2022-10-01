@@ -1,4 +1,4 @@
-# Karsoogh Frontend
+# Interkarsolar2 Frontend
 
 ## Installation
 
